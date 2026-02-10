@@ -17,7 +17,7 @@
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-      min-height: 100svh; /* FIX iOS */
+      min-height: 100svh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -32,45 +32,47 @@
       align-items: center;
       justify-content: center;
 
-      gap: 32px;
+      gap: 28px;
       padding: 24px 16px;
       text-align: center;
     }
 
-    /* LOGO */
+    /* LOGO (−25%) */
     .logo {
-      width: min(85vw, 340px);
+      width: min(65vw, 260px);
       height: auto;
       display: block;
     }
 
-    /* HERE WE… GOL */
+    /* HERE WE… GOL (MAX possibile, 1 riga) */
     .headline {
       font-weight: 900;
-      letter-spacing: 2px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
 
-      font-size: clamp(32px, 7vw, 46px);
+      font-size: clamp(34px, 8vw, 54px);
       white-space: nowrap;
       line-height: 1.1;
     }
 
-    /* BOX VERDE */
+    /* BOX VERDE RESPONSIVA */
     .badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 20px 36px;
+      max-width: 92vw;
+      padding: 18px 28px;
       border-radius: 999px;
 
       background: #00ff9c;
       color: #000;
 
       font-weight: 900;
-      font-size: clamp(18px, 4.2vw, 24px);
+      font-size: clamp(16px, 4vw, 22px);
       text-transform: uppercase;
       white-space: nowrap;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
   </style>
 </head>
@@ -91,4 +93,3 @@
   </div>
 </body>
 </html>
-
