@@ -1,109 +1,110 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Fantastef</title>
 
-  <!-- VIEWPORT -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
 
-  <!-- PWA -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Fantastef">
+  <!-- PWA iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Fantastef" />
 
-  <!-- ICONA -->
-  <link rel="apple-touch-icon" href="icon-512.png">
-  <link rel="icon" type="image/png" href="icon-512.png">
+  <!-- ICONA iOS (OBBLIGATORIA) -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="/apple-touch-icon.png" />
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      background: black;
-      color: white;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #000;
+      color: #fff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .container {
       text-align: center;
+      animation: fadeIn 1.2s ease-out forwards;
     }
 
-    /* LOGO */
     .logo {
-      width: 180px;
-      max-width: 60vw;
-      margin-bottom: 30px;
-      opacity: 0;
-      transform: scale(0.85);
-      animation: logoIn 1.2s ease-out forwards;
+      width: 55vw;
+      max-width: 320px;
+      animation: logoFloat 3s ease-in-out infinite;
+      margin-bottom: 32px;
     }
 
-    /* TESTO */
     h1 {
-      font-size: clamp(28px, 6vw, 44px);
-      letter-spacing: 3px;
-      margin-bottom: 30px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: textIn 0.9s ease-out forwards;
-      animation-delay: 0.8s;
-      white-space: nowrap;
+      font-size: clamp(28px, 7vw, 48px);
+      letter-spacing: 2px;
+      margin: 0 0 28px;
+      animation: slideUp 1.2s ease-out forwards;
     }
 
-    /* BOX */
-    .box {
+    .badge {
       display: inline-block;
-      background: #00ff99;
-      color: black;
-      padding: 22px 34px;
-      border-radius: 50px;
-      font-weight: 900;
-      font-size: clamp(18px, 4vw, 24px);
+      background: #16ff9a;
+      color: #000;
+      padding: 22px 28px;
+      border-radius: 999px;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: clamp(18px, 5vw, 24px);
       line-height: 1.2;
-      opacity: 0;
-      animation: boxIn 0.8s ease-out forwards;
-      animation-delay: 1.6s;
+      animation: pulse 2.2s ease-in-out infinite;
       max-width: 90vw;
     }
 
-    /* ANIMAZIONI */
-    @keyframes logoIn {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    @keyframes textIn {
+    @keyframes slideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
       to {
-        opacity: 1;
         transform: translateY(0);
+        opacity: 1;
       }
     }
 
-    @keyframes boxIn {
-      to {
-        opacity: 1;
-      }
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <img src="logo.png" alt="Fantastef logo" class="logo">
+    <img src="logo.png" alt="Fantastef" class="logo" />
 
     <h1>HERE WE… GOL</h1>
 
-    <div class="box">
-      LA FANTAREVOLUTION<br>
+    <div class="badge">
+      LA FANTAREVOLUTION<br />
       STA PER INIZIARE
     </div>
   </div>
 </body>
 </html>
+
