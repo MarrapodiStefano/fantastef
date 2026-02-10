@@ -15,7 +15,8 @@
     body {
       background: #000;
       color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
 
       min-height: 100svh;
       display: flex;
@@ -53,7 +54,7 @@
     @keyframes fadeUp {
       from {
         opacity: 0;
-        transform: translateY(14px);
+        transform: translateY(12px);
       }
       to {
         opacity: 1;
@@ -72,7 +73,7 @@
       will-change: transform, opacity;
     }
 
-    /* HEADLINE */
+    /* HERE WE… GOL */
     .headline {
       font-weight: 900;
       letter-spacing: 2px;
@@ -88,26 +89,31 @@
       will-change: transform, opacity;
     }
 
-    /* BOX VERDE */
+    /* BOX VERDE — FIX DEFINITIVO */
     .badge {
       width: 100%;
       max-width: 92vw;
+      height: auto;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      padding: 18px 20px;
+      padding: 18px 22px;
       border-radius: 999px;
 
       background: #00ff9c;
       color: #000;
 
       font-weight: 900;
-      font-size: clamp(16px, 4.5vw, 22px);
+      font-size: clamp(16px, 4.2vw, 22px);
+      line-height: 1.2;
       text-transform: uppercase;
       white-space: nowrap;
       text-align: center;
+
+      overflow: hidden;              /* 🔒 BLOCCA SBORDAMENTI */
+      box-sizing: border-box;
 
       animation: fadeUp 0.7s ease-out forwards;
       animation-delay: 0.9s;
@@ -133,3 +139,4 @@
   </div>
 </body>
 </html>
+/html>
