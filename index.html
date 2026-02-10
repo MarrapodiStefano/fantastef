@@ -16,7 +16,8 @@
       background: #000;
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      min-height: 100vh;
+
+      min-height: 100svh; /* FIX iOS */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -25,45 +26,51 @@
     .container {
       width: 100%;
       max-width: 480px;
-      padding: 40px 20px;
+
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+
+      gap: 32px;
+      padding: 24px 16px;
       text-align: center;
-      gap: 28px;
     }
 
     /* LOGO */
     .logo {
-      width: min(80vw, 320px);
+      width: min(85vw, 340px);
       height: auto;
       display: block;
     }
 
-    /* TESTO PRINCIPALE */
+    /* HERE WE… GOL */
     .headline {
       font-weight: 900;
       letter-spacing: 2px;
       text-transform: uppercase;
+
+      font-size: clamp(32px, 7vw, 46px);
       white-space: nowrap;
-      font-size: clamp(28px, 8vw, 48px);
+      line-height: 1.1;
     }
 
     /* BOX VERDE */
     .badge {
-      display: flex;
-      justify-content: center;
+      display: inline-flex;
       align-items: center;
+      justify-content: center;
 
-      margin: 0 auto;
-      padding: 22px 38px;
+      padding: 20px 36px;
       border-radius: 999px;
+
       background: #00ff9c;
       color: #000;
+
       font-weight: 900;
-      font-size: clamp(18px, 4.5vw, 24px);
-      white-space: nowrap;
+      font-size: clamp(18px, 4.2vw, 24px);
       text-transform: uppercase;
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -84,3 +91,4 @@
   </div>
 </body>
 </html>
+
