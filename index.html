@@ -7,12 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000000" />
 
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="/manifest.json">
+
   <!-- PWA iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="apple-mobile-web-app-title" content="Fantastef" />
 
-  <!-- ICONA iOS (OBBLIGATORIA) -->
+  <!-- Icone -->
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" href="/apple-touch-icon.png" />
 
@@ -35,42 +38,46 @@
 
     .container {
       text-align: center;
-      animation: fadeIn 1.2s ease-out forwards;
     }
 
+    /* LOGO: movimento continuo leggero */
     .logo {
-      width: 55vw;
-      max-width: 320px;
-      animation: logoFloat 3s ease-in-out infinite;
+      width: 42vw;
+      max-width: 260px;
       margin-bottom: 32px;
+      animation: logoFloat 3s ease-in-out infinite;
     }
 
+    /* TESTO: entra una sola volta */
     h1 {
-      font-size: clamp(28px, 7vw, 48px);
+      font-size: clamp(34px, 8vw, 56px);
       letter-spacing: 2px;
       margin: 0 0 28px;
-      animation: slideUp 1.2s ease-out forwards;
+      white-space: nowrap;
+      opacity: 0;
+      animation: slideUp 1s ease-out forwards;
+      animation-delay: 0.3s;
     }
 
+    /* BOX VERDE: entra una sola volta */
     .badge {
       display: inline-block;
       background: #16ff9a;
       color: #000;
-      padding: 22px 28px;
+      padding: 26px 36px;
       border-radius: 999px;
-      font-weight: 800;
+      font-weight: 900;
       text-transform: uppercase;
-      font-size: clamp(18px, 5vw, 24px);
+      font-size: clamp(20px, 5vw, 26px);
       line-height: 1.2;
-      animation: pulse 2.2s ease-in-out infinite;
       max-width: 90vw;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+      animation-delay: 0.8s;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
+    /* Animazioni */
     @keyframes slideUp {
       from {
         transform: translateY(30px);
@@ -82,14 +89,14 @@
       }
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     @keyframes logoFloat {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.04); }
     }
   </style>
 </head>
