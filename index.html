@@ -1,133 +1,71 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Fantastef</title>
 
+  <!-- VIEWPORT -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- PWA / WEB APP -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Fantastef">
+
+  <!-- ICONA iOS -->
+  <link rel="apple-touch-icon" href="icon-512.png">
+
+  <!-- ICONA GENERICA -->
+  <link rel="icon" type="image/png" href="icon-512.png">
+
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow-x: hidden;
-      background: #000;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #fff;
-    }
-
     body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
     }
 
     .container {
-      width: 100%;
-      max-width: 480px;
-      padding: 32px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       text-align: center;
     }
 
-    /* LOGO */
-    .logo {
-      width: 52%;
-      max-width: 300px;
-      margin-bottom: 32px;
-      animation: fadeZoom 1.4s ease-out forwards;
+    img {
+      width: 240px;
+      max-width: 70vw;
+      margin-bottom: 30px;
     }
 
-    .logo img {
-      width: 100%;
-      height: auto;
-      display: block;
+    h1 {
+      font-size: clamp(28px, 6vw, 48px);
+      letter-spacing: 2px;
+      margin-bottom: 30px;
     }
 
-    /* TESTO HERE WE… GOL */
-    .headline {
-      font-size: clamp(36px, 7vw, 52px);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      margin-bottom: 28px;
-      white-space: nowrap;
-      opacity: 0;
-      animation: fadeUp 1.2s ease-out forwards;
-      animation-delay: 0.6s;
-    }
-
-    /* BOX VERDE */
-    .cta {
-      width: 100%;
+    .box {
       background: #00ff99;
-      color: #000;
-      font-weight: 900;
-      padding: 24px 16px;
-      border-radius: 999px;
-      line-height: 1.1;
-      opacity: 0;
-      animation: fadeUp 1.2s ease-out forwards;
-      animation-delay: 1.2s;
-    }
-
-    .cta-line-1 {
-      font-size: clamp(22px, 5.6vw, 28px);
-    }
-
-    .cta-line-2 {
-      font-size: clamp(20px, 5.2vw, 26px);
-      margin-top: 6px;
-    }
-
-    /* ANIMAZIONI */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeZoom {
-      from {
-        opacity: 0;
-        transform: scale(0.92);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      color: black;
+      padding: 20px 30px;
+      border-radius: 40px;
+      font-weight: 800;
+      font-size: clamp(18px, 4vw, 24px);
+      line-height: 1.2;
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    
-    <div class="logo">
-      <img src="logo.png" alt="Fantastef logo">
+    <img src="logo.png" alt="Fantastef logo">
+    <h1>HERE WE… GOL</h1>
+    <div class="box">
+      LA FANTAREVOLUTION<br>
+      STA PER INIZIARE
     </div>
-
-    <div class="headline">
-      HERE WE… GOL
-    </div>
-
-    <div class="cta">
-      <div class="cta-line-1">LA FANTAREVOLUTION</div>
-      <div class="cta-line-2">STA PER INIZIARE</div>
-    </div>
-
   </div>
 </body>
 </html>
-
