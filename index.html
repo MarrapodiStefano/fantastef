@@ -32,39 +32,42 @@
 
     /* LOGO */
     .logo {
-      width: 240px;
-      max-width: 70vw;
+      width: 260px;
+      max-width: 75vw;
       margin-bottom: 48px;
     }
 
-    /* TESTO PRINCIPALE */
+    /* HERE WE… GOL — UNA SOLA RIGA */
     .hero-text {
-      font-size: 9.5vw;
+      font-size: 6vw;            /* grande ma sicuro */
       font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 36px;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      white-space: nowrap;       /* BLOCCA il ritorno a capo */
+      margin-bottom: 40px;
     }
 
-    /* BOX VERDE */
+    /* BOX VERDE — TESTO PIÙ GRANDE */
     .badge {
       display: inline-block;
-      padding: 18px 28px;
+      padding: 22px 32px;
       border-radius: 999px;
       background: #00ff9c;
       color: #000;
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 1.1rem;         /* PIÙ GRANDE */
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1.2;
     }
 
-    /* Miglioria su schermi grandi */
+    /* Desktop */
     @media (min-width: 768px) {
       .hero-text {
-        font-size: 72px;
+        font-size: 50px;
       }
 
-      .logo {
-        width: 260px;
+      .badge {
+        font-size: 1.25rem;
+        padding: 24px 40px;
       }
     }
   </style>
@@ -75,12 +78,11 @@
     <img src="logo.png" alt="Fantastef logo" class="logo" />
 
     <div class="hero-text">
-      HERE WE…<br />
-      GOL
+      HERE WE… GOL
     </div>
 
     <div class="badge">
-      La FantaRevolution sta per iniziare.
+      LA FANTAREVOLUTION STA PER INIZIARE
     </div>
   </div>
 </body>
