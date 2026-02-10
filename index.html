@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fantastef</title>
 
   <style>
@@ -17,53 +17,55 @@
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                    Roboto, Helvetica, Arial, sans-serif;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
     }
 
     .container {
-      text-align: center;
-      padding: 0 16px;
       width: 100%;
       max-width: 420px;
+      padding: 0 16px;
+      text-align: center;
     }
 
     /* LOGO */
     .logo {
-      width: 280px;
-      max-width: 80vw;
-      margin-bottom: 42px;
+      width: 300px;
+      max-width: 85vw;
+      margin-bottom: 40px;
     }
 
-    /* HERE WE… GOL — GRANDE, UNA RIGA */
+    /* HERE WE… GOL */
     .hero-text {
       font-weight: 900;
-      font-size: clamp(28px, 7.2vw, 52px);
+      font-size: clamp(34px, 8vw, 58px); /* PIÙ GRANDE */
       letter-spacing: 2px;
-      white-space: nowrap;   /* MAI a capo */
+      white-space: nowrap;              /* UNA SOLA RIGA */
+      text-align: center;
       margin-bottom: 36px;
     }
 
-    /* BOX VERDE — UNA RIGA, TESTO GRANDE */
+    /* BOX VERDE */
     .badge {
       display: inline-block;
-      padding: 22px 36px;
+      padding: 22px 38px;
       border-radius: 999px;
       background: #00ff9c;
       color: #000;
       font-weight: 900;
-      font-size: clamp(16px, 4.2vw, 22px);
-      white-space: nowrap;   /* MAI a capo */
+      font-size: clamp(16px, 4.5vw, 22px);
+      white-space: nowrap;              /* UNA SOLA RIGA */
       text-transform: uppercase;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <img src="logo.png" alt="Fantastef logo" class="logo" />
+    <img src="logo.png" alt="Fantastef logo" class="logo">
 
     <div class="hero-text">
       HERE WE… GOL
@@ -75,4 +77,4 @@
   </div>
 </body>
 </html>
-html>
+
