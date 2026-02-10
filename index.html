@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -33,14 +34,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
     .container {
       text-align: center;
     }
 
-    /* LOGO: movimento continuo leggero */
+    /* LOGO */
     .logo {
       width: 42vw;
       max-width: 260px;
@@ -48,18 +49,44 @@
       animation: logoFloat 3s ease-in-out infinite;
     }
 
-    /* TESTO: entra una sola volta */
-    h1 {
+    /* TESTO PRINCIPALE */
+    .title {
       font-size: clamp(34px, 8vw, 56px);
       letter-spacing: 2px;
-      margin: 0 0 28px;
       white-space: nowrap;
+      margin-bottom: 28px;
+      height: 1.2em;
+      position: relative;
+    }
+
+    .word {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       opacity: 0;
-      animation: slideUp 1s ease-out forwards;
+      animation: drop 0.8s ease-out forwards;
+    }
+
+    .here {
       animation-delay: 0.3s;
     }
 
-    /* BOX VERDE: entra una sola volta */
+    .we {
+      animation-delay: 2.3s;
+    }
+
+    .gol {
+      animation-delay: 4.3s;
+    }
+
+    /* Testo finale composto */
+    .final-title {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+      animation-delay: 6.3s;
+    }
+
+    /* BOX VERDE */
     .badge {
       display: inline-block;
       background: #16ff9a;
@@ -74,17 +101,17 @@
       text-align: center;
       opacity: 0;
       animation: fadeIn 1s ease-out forwards;
-      animation-delay: 0.8s;
+      animation-delay: 7.2s;
     }
 
     /* Animazioni */
-    @keyframes slideUp {
+    @keyframes drop {
       from {
-        transform: translateY(30px);
+        transform: translate(-50%, -80px);
         opacity: 0;
       }
       to {
-        transform: translateY(0);
+        transform: translate(-50%, 0);
         opacity: 1;
       }
     }
@@ -105,7 +132,13 @@
   <div class="container">
     <img src="logo.png" alt="Fantastef" class="logo" />
 
-    <h1>HERE WE… GOL</h1>
+    <div class="title">
+      <span class="word here">HERE</span>
+      <span class="word we">WE…</span>
+      <span class="word gol">GOL</span>
+
+      <span class="final-title">HERE WE… GOL</span>
+    </div>
 
     <div class="badge">
       LA FANTAREVOLUTION<br />
@@ -114,4 +147,3 @@
   </div>
 </body>
 </html>
-
