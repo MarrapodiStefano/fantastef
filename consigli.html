@@ -25,8 +25,8 @@
     }
 
     h1 {
-      font-size: 2.4rem;
-      margin-bottom: 8px;
+      font-size: 2.2rem;
+      margin-bottom: 6px;
     }
 
     .subtitle {
@@ -37,7 +37,7 @@
     .roles {
       display: flex;
       gap: 10px;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     .role-btn {
@@ -57,20 +57,16 @@
     }
 
     .section-title {
-      margin-top: 24px;
+      margin-top: 28px;
       margin-bottom: 12px;
       font-size: 1.2rem;
-    }
-
-    .list {
-      width: 100%;
     }
 
     .row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 0;
+      padding: 12px 0;
       border-bottom: 1px solid #222;
       max-width: 520px;
       margin: 0 auto;
@@ -82,7 +78,6 @@
 
     .vote {
       font-weight: 700;
-      font-size: 1rem;
     }
   </style>
 </head>
@@ -93,52 +88,25 @@
     <div class="subtitle">Previsioni dell’algoritmo Fantastef</div>
 
     <div class="roles">
-      <button class="role-btn active" data-role="ATT">ATT</button>
-      <button class="role-btn" data-role="CEN">CEN</button>
-      <button class="role-btn" data-role="DIF">DIF</button>
-      <button class="role-btn" data-role="POR">POR</button>
+      <button class="role-btn active" data-role="attaccanti">ATT</button>
+      <button class="role-btn" data-role="centrocampisti">CEN</button>
+      <button class="role-btn" data-role="difensori">DIF</button>
+      <button class="role-btn" data-role="portieri">POR</button>
     </div>
 
     <div id="content"></div>
   </div>
 
   <script>
-    let data = [];
-    let currentRole = "ATT";
+    let jsonData = {};
+    let currentRole = "attaccanti";
 
     fetch("consigli_giornata.json")
       .then(res => res.json())
-      .then(json => {
-        data = json;
+      .then(data => {
+        jsonData = data.ruoli;
         render();
       });
-
-    function render() {
-      const container = document.getElementById("content");
-      container.innerHTML = "";
-
-      const top = data.filter(p => p.ruolo === currentRole && p.fascia === "TOP");
-      const buone = data.filter(p => p.ruolo === currentRole && p.fascia === "BUONE");
-
-      if (top.length) {
-        container.innerHTML += `<div class="section-title">🔥 TOP</div>`;
-        top.forEach(p => addRow(container, p));
-      }
-
-      if (buone.length) {
-        container.innerHTML += `<div class="section-title">🎯 BUONE SCELTE</div>`;
-        buone.forEach(p => addRow(container, p));
-      }
-    }
-
-    function addRow(container, p) {
-      container.innerHTML += `
-        <div class="row">
-          <div class="name">${p.nome} (${p.squadra})</div>
-          <div class="vote">${p.voto}</div>
-        </div>
-      `;
-    }
 
     document.querySelectorAll(".role-btn").forEach(btn => {
       btn.addEventListener("click", () => {
@@ -148,6 +116,34 @@
         render();
       });
     });
+
+    function render() {
+      const container = document.getElementById("content");
+      container.innerHTML = "";
+
+      const ruolo = jsonData[currentRole];
+      if (!ruolo) return;
+
+      renderSection("🔥 TOP", ruolo.top);
+      renderSection("🎯 BUONE SCELTE", ruolo.buoni);
+      renderSection("⚠️ RISCHIOSI", ruolo.rischiosi);
+    }
+
+    function renderSection(title, players) {
+      if (!players || players.length === 0) return;
+
+      const container = document.getElementById("content");
+      container.innerHTML += `<div class="section-title">${title}</div>`;
+
+      players.forEach(p => {
+        container.innerHTML += `
+          <div class="row">
+            <div class="name">${p.nome} (${p.squadra})</div>
+            <div class="vote">${p.voto}</div>
+          </div>
+        `;
+      });
+    }
   </script>
 </body>
 </html>
