@@ -25,50 +25,38 @@
 
     .container {
       text-align: center;
-      padding: 0 20px;
+      padding: 0 16px;
       width: 100%;
       max-width: 420px;
     }
 
     /* LOGO */
     .logo {
-      width: 260px;
-      max-width: 75vw;
-      margin-bottom: 48px;
+      width: 280px;
+      max-width: 80vw;
+      margin-bottom: 42px;
     }
 
-    /* HERE WE… GOL — UNA SOLA RIGA */
+    /* HERE WE… GOL — GRANDE, UNA RIGA */
     .hero-text {
-      font-size: 6vw;            /* grande ma sicuro */
-      font-weight: 800;
+      font-weight: 900;
+      font-size: clamp(28px, 7.2vw, 52px);
       letter-spacing: 2px;
-      white-space: nowrap;       /* BLOCCA il ritorno a capo */
-      margin-bottom: 40px;
+      white-space: nowrap;   /* MAI a capo */
+      margin-bottom: 36px;
     }
 
-    /* BOX VERDE — TESTO PIÙ GRANDE */
+    /* BOX VERDE — UNA RIGA, TESTO GRANDE */
     .badge {
       display: inline-block;
-      padding: 22px 32px;
+      padding: 22px 36px;
       border-radius: 999px;
       background: #00ff9c;
       color: #000;
-      font-size: 1.1rem;         /* PIÙ GRANDE */
-      font-weight: 800;
+      font-weight: 900;
+      font-size: clamp(16px, 4.2vw, 22px);
+      white-space: nowrap;   /* MAI a capo */
       text-transform: uppercase;
-      line-height: 1.2;
-    }
-
-    /* Desktop */
-    @media (min-width: 768px) {
-      .hero-text {
-        font-size: 50px;
-      }
-
-      .badge {
-        font-size: 1.25rem;
-        padding: 24px 40px;
-      }
     }
   </style>
 </head>
@@ -87,3 +75,4 @@
   </div>
 </body>
 </html>
+html>
