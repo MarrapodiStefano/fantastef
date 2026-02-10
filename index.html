@@ -7,71 +7,64 @@
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      height: 100vh;
       background: #000;
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                    Roboto, Helvetica, Arial, sans-serif;
+      height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
 
     .container {
       text-align: center;
-      padding: 20px;
-      animation: fadeIn 1.6s ease-out forwards;
+      padding: 0 20px;
+      width: 100%;
+      max-width: 420px;
     }
 
-    img.logo {
-      width: 90px;
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeIn 1.2s ease-out forwards;
+    /* LOGO */
+    .logo {
+      width: 240px;
+      max-width: 70vw;
+      margin-bottom: 48px;
     }
 
-    h1 {
-      font-size: clamp(3rem, 12vw, 6rem);
+    /* TESTO PRINCIPALE */
+    .hero-text {
+      font-size: 9.5vw;
       font-weight: 800;
-      letter-spacing: 2px;
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeInUp 1.6s ease-out forwards;
-      animation-delay: 0.6s;
+      line-height: 1.1;
+      margin-bottom: 36px;
+      letter-spacing: 1px;
     }
 
+    /* BOX VERDE */
     .badge {
       display: inline-block;
+      padding: 18px 28px;
+      border-radius: 999px;
       background: #00ff9c;
       color: #000;
-      padding: 16px 26px;
-      border-radius: 30px;
-      font-weight: 600;
       font-size: 1rem;
-      opacity: 0;
-      animation: fadeInUp 1.6s ease-out forwards;
-      animation-delay: 1.4s;
+      font-weight: 600;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
+    /* Miglioria su schermi grandi */
+    @media (min-width: 768px) {
+      .hero-text {
+        font-size: 72px;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      .logo {
+        width: 260px;
       }
     }
   </style>
@@ -81,7 +74,10 @@
   <div class="container">
     <img src="logo.png" alt="Fantastef logo" class="logo" />
 
-    <h1>HERE WE… GOL</h1>
+    <div class="hero-text">
+      HERE WE…<br />
+      GOL
+    </div>
 
     <div class="badge">
       La FantaRevolution sta per iniziare.
