@@ -3,26 +3,26 @@
   "aggiornamento": "2026-02-10",
   "ruoli": {
     "attaccanti": {
-      "top": [{ "nome": "Martinez L.", "squadra": "Inter", "voto": 9,4 },
-{ "nome": "Hojlund", "squadra": "Napoli", "voto": 9,3 },
-{ "nome": "Malen", "squadra": "Roma", "voto": 9,1 },
-{ "nome": "Thuram", "squadra": "Inter", "voto": 8,9 },
-{ "nome": "Leao", "squadra": "Milan", "voto": 8,9 },
-{ "nome": "Scamacca", "squadra": "Atalanta", "voto": 8,9 }
+      "top": [{ "nome": "Martinez L.", "squadra": "Inter", "voto": 9.4 },
+{ "nome": "Hojlund", "squadra": "Napoli", "voto": 9.3 },
+{ "nome": "Malen", "squadra": "Roma", "voto": 9.1 },
+{ "nome": "Thuram", "squadra": "Inter", "voto": 8.9 },
+{ "nome": "Leao", "squadra": "Milan", "voto": 8.9 },
+{ "nome": "Scamacca", "squadra": "Atalanta", "voto": 8.9 }
         
       ],
       "buoni": [{ "nome": "Castro S.", "squadra": "Bologna", "voto": 8 },
 { "nome": "Kean", "squadra": "Fiorentina", "voto": 8 },
 { "nome": "David", "squadra": "Juventus", "voto": 8 },
-{ "nome": "Soulè", "squadra": "Roma", "voto": 7,5 },
-{ "nome": "Orban", "squadra": "Verona", "voto": 7,5 },
-{ "nome": "De Ketelaere", "squadra": "Atalanta", "voto": 7,3 }
+{ "nome": "Soulè", "squadra": "Roma", "voto": 7.5 },
+{ "nome": "Orban", "squadra": "Verona", "voto": 7.5 },
+{ "nome": "De Ketelaere", "squadra": "Atalanta", "voto": 7.3 }
         
       ],
       "rischiosi": [{ "nome": "Pellegrino", "squadra": "Parma", "voto": 7 },
-{ "nome": "Adams C.", "squadra": "Torino", "voto": 6,3 },
-{ "nome": "Esposito P.", "squadra": "Inter", "voto": 6,3 },
-{ "nome": "Adams C.", "squadra": "Torino", "voto": 6,1 }
+{ "nome": "Adams C.", "squadra": "Torino", "voto": 6.3 },
+{ "nome": "Esposito P.", "squadra": "Inter", "voto": 6.3 },
+{ "nome": "Adams C.", "squadra": "Torino", "voto": 6.1 }
         
       ]
     },
