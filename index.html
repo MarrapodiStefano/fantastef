@@ -51,9 +51,10 @@
     /* AREA TITOLO */
     .title {
       position: relative;
-      height: 1.4em;
+      height: 1.6em;
       margin-bottom: 28px;
-      font-size: clamp(34px, 8vw, 56px);
+      font-size: clamp(42px, 10vw, 64px);
+      font-weight: 900;
       letter-spacing: 2px;
       white-space: nowrap;
     }
@@ -62,33 +63,35 @@
     .word {
       position: absolute;
       left: 50%;
-      transform: translateX(-50%);
+      top: 0;
+      transform: translateX(-50%) scale(0.2);
       opacity: 0;
     }
 
     .here {
-      animation: dropAndVanish 2s ease-out forwards;
-      animation-delay: 0.3s;
+      animation: boom 1.2s ease-out forwards;
+      animation-delay: 0.4s;
     }
 
     .we {
-      animation: dropAndVanish 2s ease-out forwards;
-      animation-delay: 2.6s;
+      animation: boom 1.2s ease-out forwards;
+      animation-delay: 1.9s;
     }
 
     .gol {
-      animation: dropAndVanish 2s ease-out forwards;
-      animation-delay: 4.9s;
+      animation: boom 1.2s ease-out forwards;
+      animation-delay: 3.4s;
     }
 
     /* TITOLO FINALE */
     .final-title {
-      opacity: 0;
-      animation: fadeIn 0.8s ease-out forwards;
-      animation-delay: 7.2s;
       position: absolute;
       left: 50%;
+      top: 0;
       transform: translateX(-50%);
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out forwards;
+      animation-delay: 5s;
     }
 
     /* BOX VERDE */
@@ -96,35 +99,35 @@
       display: inline-block;
       background: #16ff9a;
       color: #000;
-      padding: 26px 36px;
+      padding: 26px 40px;
       border-radius: 999px;
       font-weight: 900;
       text-transform: uppercase;
-      font-size: clamp(20px, 5vw, 26px);
+      font-size: clamp(22px, 5vw, 28px);
       line-height: 1.2;
       max-width: 90vw;
       text-align: center;
       opacity: 0;
-      animation: fadeIn 1s ease-out forwards;
-      animation-delay: 8.3s;
+      animation: fadeIn 0.8s ease-out forwards;
+      animation-delay: 5.9s;
     }
 
     /* ANIMAZIONI */
-    @keyframes dropAndVanish {
+    @keyframes boom {
       0% {
-        transform: translate(-50%, -80px);
+        transform: translateX(-50%) scale(0.2);
         opacity: 0;
       }
-      25% {
-        transform: translate(-50%, 0);
+      20% {
+        transform: translateX(-50%) scale(1.15);
         opacity: 1;
       }
-      75% {
-        transform: translate(-50%, 0);
+      60% {
+        transform: translateX(-50%) scale(1);
         opacity: 1;
       }
       100% {
-        transform: translate(-50%, 40px);
+        transform: translateX(-50%) scale(0.9);
         opacity: 0;
       }
     }
@@ -147,10 +150,10 @@
 
     <div class="title">
       <span class="word here">HERE</span>
-      <span class="word we">WE…</span>
+      <span class="word we">WE</span>
       <span class="word gol">GOL</span>
 
-      <span class="final-title">HERE WE… GOL</span>
+      <span class="final-title">HERE WE GOL</span>
     </div>
 
     <div class="badge">
