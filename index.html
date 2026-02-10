@@ -7,15 +7,13 @@
   <!-- VIEWPORT -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- PWA / WEB APP -->
+  <!-- PWA -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Fantastef">
 
-  <!-- ICONA iOS -->
+  <!-- ICONA -->
   <link rel="apple-touch-icon" href="icon-512.png">
-
-  <!-- ICONA GENERICA -->
   <link rel="icon" type="image/png" href="icon-512.png">
 
   <style>
@@ -28,40 +26,80 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
     }
 
     .container {
       text-align: center;
     }
 
-    img {
-      width: 240px;
-      max-width: 70vw;
+    /* LOGO */
+    .logo {
+      width: 180px;
+      max-width: 60vw;
       margin-bottom: 30px;
+      opacity: 0;
+      transform: scale(0.85);
+      animation: logoIn 1.2s ease-out forwards;
     }
 
+    /* TESTO */
     h1 {
-      font-size: clamp(28px, 6vw, 48px);
-      letter-spacing: 2px;
+      font-size: clamp(28px, 6vw, 44px);
+      letter-spacing: 3px;
       margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: textIn 0.9s ease-out forwards;
+      animation-delay: 0.8s;
+      white-space: nowrap;
     }
 
+    /* BOX */
     .box {
+      display: inline-block;
       background: #00ff99;
       color: black;
-      padding: 20px 30px;
-      border-radius: 40px;
-      font-weight: 800;
+      padding: 22px 34px;
+      border-radius: 50px;
+      font-weight: 900;
       font-size: clamp(18px, 4vw, 24px);
       line-height: 1.2;
+      opacity: 0;
+      animation: boxIn 0.8s ease-out forwards;
+      animation-delay: 1.6s;
+      max-width: 90vw;
+    }
+
+    /* ANIMAZIONI */
+    @keyframes logoIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes textIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes boxIn {
+      to {
+        opacity: 1;
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <img src="logo.png" alt="Fantastef logo">
+    <img src="logo.png" alt="Fantastef logo" class="logo">
+
     <h1>HERE WE… GOL</h1>
+
     <div class="box">
       LA FANTAREVOLUTION<br>
       STA PER INIZIARE
