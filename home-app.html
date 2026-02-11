@@ -15,184 +15,218 @@
 body{
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color:#fff;
+  min-height:100vh;
   background:
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
-    url("stadium-bg.png") center center / cover no-repeat fixed;
+    linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.95) 100%),
+    url("stadio-bg.png") center/cover no-repeat fixed;
+  overflow-x:hidden;
 }
 
 /* HEADER */
-header{
+
+.header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:70px;
+  background:rgba(10,20,35,0.9);
+  backdrop-filter: blur(8px);
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  padding:16px 20px;
-  background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(10px);
+  justify-content:space-between;
+  padding:0 20px;
+  z-index:1000;
 }
 
-.logo-area{
+.header-center{
   display:flex;
   align-items:center;
   gap:10px;
 }
 
-.logo-area img{
-  width:36px;
-  height:36px;
+.header img{
+  width:38px;
+  height:38px;
   border-radius:50%;
 }
 
-.logo-area h1{
+.header h1{
   font-size:20px;
   font-weight:600;
 }
 
-/* HERO */
-.hero{
+/* MAIN */
+
+main{
+  padding:110px 20px 120px 20px;
   text-align:center;
-  padding:80px 20px 60px 20px;
+  max-width:1200px;
+  margin:auto;
 }
 
+/* HERO */
+
 .hero h2{
-  font-size: clamp(28px,6vw,46px);
+  font-size:clamp(32px,6vw,56px);
   font-weight:800;
+  letter-spacing:1px;
+  text-shadow:0 0 20px rgba(0,255,150,0.4);
   white-space:nowrap;
 }
 
 .hero h2 span{
-  color:#2eff9e;
+  color:#32ff9c;
+  text-shadow:0 0 25px rgba(0,255,150,0.8);
 }
 
 .hero p{
-  margin-top:14px;
+  margin-top:15px;
   font-size:18px;
-  opacity:0.8;
+  color:#cfd8dc;
 }
 
-.hero button{
-  margin-top:30px;
-  padding:18px 40px;
-  border:none;
-  border-radius:50px;
-  background:#2eff9e;
+.cta{
+  margin-top:35px;
+}
+
+.cta button{
+  background:#32ff9c;
   color:#000;
-  font-weight:700;
+  border:none;
+  padding:18px 40px;
+  border-radius:50px;
   font-size:18px;
+  font-weight:700;
   cursor:pointer;
-  box-shadow:0 0 25px rgba(46,255,158,0.6);
+  box-shadow:0 0 35px rgba(0,255,150,0.7);
+  transition:0.3s;
+}
+
+.cta button:hover{
+  transform:scale(1.05);
 }
 
 /* SECTION TITLE */
+
 .section-title{
-  text-align:center;
-  padding:40px 20px 10px 20px;
+  margin-top:80px;
 }
 
 .section-title h3{
-  font-size: clamp(22px,4vw,30px);
-  white-space:nowrap;
+  font-size:28px;
+  font-weight:700;
 }
 
 .section-title p{
   margin-top:10px;
-  opacity:0.7;
+  color:#b0bec5;
 }
 
 /* CARDS */
+
 .cards{
+  margin-top:40px;
   display:flex;
   justify-content:center;
-  gap:20px;
-  padding:40px 20px 120px 20px;
+  gap:25px;
+  flex-wrap:wrap;
 }
 
 .card{
-  flex:1;
-  max-width:320px;
-  height:240px;
-  background:linear-gradient(145deg,#0f2b45,#0b1e33);
+  width:300px;
+  height:320px;
+  background:linear-gradient(145deg, #0f2a45, #081b2f);
   border-radius:20px;
-  padding:24px;
+  padding:25px;
   display:flex;
   flex-direction:column;
-  justify-content:center;
-  text-align:left;
-  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  justify-content:space-between;
+  box-shadow:0 20px 40px rgba(0,0,0,0.6);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
 }
 
 .card h4{
   font-size:18px;
-  margin-bottom:12px;
+  font-weight:600;
 }
 
 .card p{
   font-size:14px;
-  opacity:0.75;
+  color:#cfd8dc;
 }
 
-/* FOOTER MENU */
+/* MOTTO */
+
+.motto{
+  margin-top:80px;
+  font-size:22px;
+  line-height:1.6;
+}
+
+.motto span{
+  color:#32ff9c;
+  font-weight:700;
+}
+
+/* BOTTOM MENU */
+
 .bottom-menu{
   position:fixed;
   bottom:0;
   left:0;
   width:100%;
-  height:70px;
-  background:rgba(0,0,0,0.85);
+  height:75px;
+  background:rgba(10,20,35,0.95);
+  backdrop-filter:blur(10px);
   display:flex;
   justify-content:space-around;
   align-items:center;
-  backdrop-filter:blur(10px);
+  z-index:1000;
 }
 
 .bottom-menu div{
   text-align:center;
   font-size:12px;
-  opacity:0.7;
+  color:#cfd8dc;
 }
 
-.bottom-menu .active{
-  color:#2eff9e;
-  opacity:1;
+.bottom-menu div span{
+  display:block;
+  font-size:22px;
+  margin-bottom:4px;
 }
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .cards{
-    gap:12px;
-  }
-
-  .card{
-    height:200px;
-    padding:18px;
-  }
-
-  .card h4{
-    font-size:15px;
-  }
-
-  .card p{
-    font-size:12px;
-  }
+.active{
+  color:#32ff9c;
 }
-
 </style>
 </head>
 
 <body>
 
-<header>
+<div class="header">
   <div>☰</div>
-  <div class="logo-area">
-    <img src="logo.png">
+  <div class="header-center">
+    <img src="logo.png" alt="logo">
     <h1>FantaStef</h1>
   </div>
   <div>⚙️</div>
-</header>
+</div>
+
+<main>
 
 <section class="hero">
   <h2>HERE WE… <span>GOL!</span></h2>
   <p>La FantaRevolution è qui.</p>
-  <button>FantaConsigli di giornata</button>
+
+  <div class="cta">
+    <button>FantaConsigli di giornata</button>
+  </div>
 </section>
 
 <section class="section-title">
@@ -201,6 +235,7 @@ header{
 </section>
 
 <section class="cards">
+
   <div class="card">
     <h4>Algoritmo Schieramento</h4>
     <p>Scopri chi far giocare.</p>
@@ -215,14 +250,23 @@ header{
     <h4>Dream Team di Giornata</h4>
     <p>I top selezionati.</p>
   </div>
+
 </section>
 
+<section class="motto">
+  Il fantacalcio non è <span>solo fortuna</span>.<br>
+  È analisi, contesto e scelte lucide.<br><br>
+  FantaStef è il tuo <span>vantaggio competitivo</span>.
+</section>
+
+</main>
+
 <div class="bottom-menu">
-  <div class="active">HOME</div>
-  <div>CONSIGLI</div>
-  <div>LIVE</div>
-  <div>VOTI</div>
-  <div>STATS</div>
+  <div class="active"><span>🏠</span>HOME</div>
+  <div><span>📊</span>CONSIGLI</div>
+  <div><span>🔴</span>LIVE</div>
+  <div><span>⭐</span>VOTI</div>
+  <div><span>📈</span>STATS</div>
 </div>
 
 </body>
