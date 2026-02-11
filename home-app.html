@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FantaStef</title>
 
 <style>
@@ -13,180 +13,199 @@
 }
 
 body{
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: radial-gradient(circle at top, #0c1a2b 0%, #050b14 60%);
-  color:white;
-  min-height:100vh;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  background:linear-gradient(180deg,#0a0f1c,#05101d);
+  color:#fff;
+  overflow-x:hidden;
 }
 
 /* HEADER */
+
 .header{
-  height:70px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  padding:0 20px;
-  background:linear-gradient(to bottom,#0e1c2f,#091421);
-  border-bottom:1px solid rgba(255,255,255,0.05);
+  align-items:center;
+  padding:14px 18px;
+  background:#0c1626;
+  position:sticky;
+  top:0;
+  z-index:100;
 }
 
-.header-center{
+.header-left,
+.header-right{
+  font-size:22px;
+  opacity:.8;
+}
+
+.logo-center{
   display:flex;
   align-items:center;
   gap:10px;
-  font-weight:600;
+  font-weight:700;
   font-size:20px;
 }
 
-.header img{
-  width:32px;
-  height:32px;
+.logo-center img{
+  width:34px;
+  height:34px;
   border-radius:50%;
 }
 
 /* HERO */
+
 .hero{
   text-align:center;
   padding:60px 20px 40px;
 }
 
 .hero h1{
-  font-size: clamp(28px, 6vw, 42px);
+  font-size:clamp(28px,6vw,46px);
   font-weight:800;
   white-space:nowrap;
 }
 
 .hero h1 span{
-  color:#19f58c;
+  color:#2df59d;
 }
 
-.subtitle{
-  margin-top:15px;
+.hero p{
+  margin-top:14px;
   font-size:18px;
-  color:#9ecab4;
+  opacity:.8;
 }
 
 .cta{
-  margin-top:30px;
-  display:inline-block;
-  padding:18px 30px;
-  background:#19f58c;
-  color:black;
-  font-weight:700;
-  border-radius:40px;
+  margin-top:28px;
+}
+
+.cta button{
+  background:#2df59d;
+  border:none;
+  padding:18px 40px;
+  border-radius:50px;
   font-size:18px;
-  text-decoration:none;
-  box-shadow:0 0 25px rgba(25,245,140,0.5);
-}
-
-/* SEZIONE GIORNATA */
-.section{
-  text-align:center;
-  padding:40px 20px;
-}
-
-.section h2{
-  font-size: clamp(20px, 5vw, 28px);
   font-weight:700;
+  cursor:pointer;
+}
+
+/* SEZIONE CONSIGLI */
+
+.section-title{
+  text-align:center;
+  padding:40px 20px 10px;
+}
+
+.section-title h2{
+  font-size:clamp(22px,5vw,30px);
   white-space:nowrap;
 }
 
-.section p{
-  margin-top:12px;
-  color:#9ba9b5;
+.section-title p{
+  margin-top:10px;
+  opacity:.6;
 }
 
-/* CARDS VERTICALI */
+/* CARDS ORIZZONTALI */
+
 .cards{
   display:flex;
-  flex-direction:column;
-  gap:20px;
-  padding:0 20px 80px;
+  gap:18px;
+  padding:30px 20px 120px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
 }
 
 .card{
-  background:linear-gradient(145deg,#0f2034,#0a1624);
-  padding:25px;
-  border-radius:18px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  min-width:280px;
+  flex:0 0 auto;
+  background:linear-gradient(145deg,#0f1b2d,#12233a);
+  padding:26px;
+  border-radius:20px;
+  scroll-snap-align:start;
 }
 
 .card h3{
-  font-size:20px;
   margin-bottom:10px;
 }
 
 .card p{
-  color:#9ba9b5;
+  opacity:.7;
+  font-size:15px;
 }
 
-/* FRASE FINALE */
+/* FOOTER TESTO */
+
 .motto{
   text-align:center;
-  padding:40px 20px 100px;
-  font-size:22px;
+  padding:20px 20px 140px;
+  font-size:20px;
   line-height:1.6;
 }
 
 .motto span{
-  color:#19f58c;
+  color:#2df59d;
   font-weight:600;
 }
 
-/* MENU IN BASSO */
+/* MENU BOTTOM */
+
 .bottom-nav{
   position:fixed;
   bottom:0;
   left:0;
-  right:0;
-  height:70px;
-  background:#0e1c2f;
+  width:100%;
+  background:#0c1626;
   display:flex;
   justify-content:space-around;
-  align-items:center;
-  border-top:1px solid rgba(255,255,255,0.05);
+  padding:10px 0 14px;
+  border-top:1px solid rgba(255,255,255,.08);
 }
 
 .bottom-nav div{
   text-align:center;
-  font-size:12px;
-  color:#a0a9b3;
+  font-size:13px;
+  opacity:.7;
 }
 
-.bottom-nav div.active{
-  color:#19f58c;
+.bottom-nav .active{
+  color:#2df59d;
+  opacity:1;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
-  <div>☰</div>
-  <div class="header-center">
+  <div class="header-left">☰</div>
+
+  <div class="logo-center">
     <img src="logo.png" alt="logo">
     FantaStef
   </div>
-  <div>⚙️</div>
+
+  <div class="header-right">⚙</div>
 </div>
 
-<!-- HERO -->
-<div class="hero">
+
+<section class="hero">
   <h1>HERE WE… <span>GOL!</span></h1>
-  <div class="subtitle">La FantaRevolution è qui.</div>
-  <a href="consigli.html" class="cta">FantaConsigli di giornata</a>
-</div>
+  <p>La FantaRevolution è qui.</p>
 
-<!-- SEZIONE GIORNATA -->
-<div class="section">
+  <div class="cta">
+    <button>FantaConsigli di giornata</button>
+  </div>
+</section>
+
+
+<section class="section-title">
   <h2>FantaConsigli – 24ª giornata</h2>
   <p>I migliori nomi di giornata secondo il nostro algoritmo.</p>
-</div>
+</section>
 
-<!-- CARDS VERTICALI -->
-<div class="cards">
 
+<section class="cards">
   <div class="card">
     <h3>Algoritmo Schieramento</h3>
     <p>Inserisci la tua rosa e scopri chi far giocare.</p>
@@ -201,17 +220,16 @@ body{
     <h3>Dream Team di Giornata</h3>
     <p>I top assoluti selezionati dall’algoritmo.</p>
   </div>
+</section>
 
-</div>
 
-<!-- FRASE FINALE -->
-<div class="motto">
+<section class="motto">
   Il fantacalcio non è <span>solo fortuna</span>.<br>
   È analisi, contesto e scelte lucide.<br><br>
   FantaStef è il tuo <span>vantaggio competitivo</span>.
-</div>
+</section>
 
-<!-- MENU IN BASSO -->
+
 <div class="bottom-nav">
   <div class="active">🏠<br>HOME</div>
   <div>📊<br>CONSIGLI</div>
