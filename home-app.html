@@ -97,7 +97,6 @@ body{
     font-weight:700;
     cursor:pointer;
     color:#ffffff;
-
     background:
         linear-gradient(
             to bottom,
@@ -106,11 +105,11 @@ body{
             #26a95f 60%,
             #1e7f47 100%
         );
-
     box-shadow:
         inset 0 2px 4px rgba(255,255,255,0.35),
         inset 0 -4px 8px rgba(0,0,0,0.35),
         0 10px 25px rgba(0,0,0,0.55);
+    transition:all 0.25s ease;
 }
 
 .cta button::after{
@@ -119,7 +118,7 @@ body{
     margin-left:6px;
 }
 
-/* BARRA VERDE */
+/* BARRA VERDE SOTTO CTA */
 
 .green-divider{
     width:100%;
@@ -140,34 +139,35 @@ body{
 
 /* BLOCCO FANTACONSIGLI */
 
-.fantaconsigli{
-    margin:60px 120px 80px;
-    padding:50px;
-    background:rgba(0,0,0,0.55);
-    border-radius:35px;
+.fantaconsigli-block{
+    padding:40px 100px 80px;
 }
 
-.fantaconsigli h2{
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.section-title h2{
     font-size:40px;
-    text-align:center;
+    margin-bottom:20px;
 }
 
-.fantaconsigli p{
-    text-align:center;
-    margin-top:10px;
-    color:#d6dee8;
+.section-title p{
+    font-size:20px;
+    color:#e0e6ed;
 }
+
+/* ===== TABS PREMIUM ===== */
 
 .roles-tabs{
     display:flex;
     justify-content:center;
     gap:60px;
-    margin:40px 0 40px;
+    margin:40px 0 50px;
     position:relative;
-    padding-bottom:15px;
+    padding-bottom:18px;
 }
-
-/* Barra verde sotto le tab */
 
 .roles-tabs::after{
     content:"";
@@ -175,7 +175,8 @@ body{
     bottom:0;
     left:0;
     width:100%;
-    height:3px;
+    height:4px;
+    border-radius:20px;
     background:linear-gradient(
         90deg,
         rgba(0,0,0,0) 0%,
@@ -188,67 +189,58 @@ body{
     );
 }
 
-/* Singola tab */
-
 .tab{
     font-size:18px;
     font-weight:600;
     color:#cfd8e3;
     cursor:pointer;
-    position:relative;
-    padding:8px 12px;
-    transition:all 0.3s ease;
+    padding:10px 18px;
+    border-radius:14px;
+    transition:all 0.35s ease;
 }
 
-/* Tab attiva */
+.tab:hover{
+    color:#ffffff;
+    background:rgba(57,255,156,0.05);
+}
 
 .tab.active{
     color:#39ff9c;
+    background:linear-gradient(
+        to bottom,
+        rgba(57,255,156,0.12),
+        rgba(57,255,156,0.05)
+    );
+    box-shadow:
+        0 0 12px rgba(57,255,156,0.25),
+        inset 0 0 12px rgba(57,255,156,0.15);
 }
-
-/* Linea verde sotto la tab attiva */
 
 .tab.active::after{
     content:"";
     position:absolute;
-    bottom:-15px;
+    bottom:-18px;
     left:50%;
     transform:translateX(-50%);
-    width:70%;
-    height:3px;
-    border-radius:10px;
+    width:75%;
+    height:4px;
+    border-radius:20px;
     background:linear-gradient(
         90deg,
         #0e3b23,
         #39ff9c,
         #0e3b23
     );
+    box-shadow:0 0 12px rgba(57,255,156,0.6);
 }
 
-.player-list{
-    margin-top:30px;
-}
-
-.player{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 0;
-    border-bottom:1px solid rgba(255,255,255,0.1);
-}
-
-.player span{
-    color:#2ecc71;
-    font-weight:700;
-}
-
-/* 3 CARDS ORIGINALI */
+/* CARDS ORIGINALI */
 
 .cards{
     display:flex;
     justify-content:center;
     gap:50px;
-    padding:0 120px 120px;
+    padding:60px 100px 120px;
 }
 
 .card{
@@ -308,80 +300,82 @@ body{
 
 <div class="main-wrapper">
 
-    <div class="header">
-        <div style="font-size:24px;">☰</div>
-        <div class="logo-area">
-            <img src="logo.png">
-            FantaStef
-        </div>
-        <div style="font-size:35px;">⚙</div>
-    </div>
+<div class="header">
+<div style="font-size:24px;">☰</div>
+<div class="logo-area">
+<img src="logo.png">
+FantaStef
+</div>
+<div style="font-size:35px;">⚙</div>
+</div>
 
-    <div class="hero">
-        <h1>HERE WE... <span>GOL!</span></h1>
-        <p>Benvenuto nella FantaRevolution</p>
+<div class="hero">
+<h1>HERE WE... <span>GOL!</span></h1>
+<p>Benvenuto nella FantaRevolution</p>
 
-        <div class="cta">
-            <button>Consigli di Giornata</button>
-        </div>
+<div class="cta">
+<button>Consigli di Giornata</button>
+</div>
 
-        <div class="green-divider"></div>
-    </div>
+<div class="green-divider"></div>
+</div>
 
-    <!-- BLOCCO FANTACONSIGLI -->
+<!-- BLOCCO FANTACONSIGLI -->
 
-    <div class="fantaconsigli">
-        <h2>FantaConsigli – 24ª giornata</h2>
-        <p>I migliori nomi di giornata secondo il nostro algoritmo.</p>
+<div class="fantaconsigli-block">
 
-        <div class="roles-tabs">
-            <div>Attaccanti</div>
-            <div>Centrocampisti</div>
-            <div>Difensori</div>
-            <div>Portieri</div>
-        </div>
+<div class="section-title">
+<h2>FantaConsigli – 24ª giornata</h2>
+<p>I migliori nomi di giornata secondo il nostro algoritmo.</p>
+</div>
 
-        <div class="player-list">
-            <div class="player">
-                Lautaro Martinez <span>9.0</span>
-            </div>
-            <div class="player">
-                Chiesa <span>8.8</span>
-            </div>
-            <div class="player">
-                Leão <span>8.6</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- 3 CARD ORIGINALI RIPRISTINATE -->
-
-    <div class="cards">
-        <div class="card">
-            <h3>Algoritmo Schieramento</h3>
-            <p>Scopri chi far giocare.</p>
-        </div>
-
-        <div class="card">
-            <h3>Analisi Squadra</h3>
-            <p>Scopri punti deboli e potenzialità.</p>
-        </div>
-
-        <div class="card">
-            <h3>Matchup Intelligenti</h3>
-            <p>Le partite favorevoli della giornata.</p>
-        </div>
-    </div>
-
-    <div class="bottom-menu">
-        <div class="active"><span>🏠</span>HOME</div>
-        <div><span>📊</span>CONSIGLI</div>
-        <div><span>🔴</span>LIVE</div>
-        <div><span>⭐</span>VOTI</div>
-        <div><span>📈</span>STATS</div>
-    </div>
+<div class="roles-tabs">
+<div class="tab active">Attaccanti</div>
+<div class="tab">Centrocampisti</div>
+<div class="tab">Difensori</div>
+<div class="tab">Portieri</div>
+</div>
 
 </div>
+
+<!-- CARDS ORIGINALI -->
+
+<div class="cards">
+<div class="card">
+<h3>Algoritmo Schieramento</h3>
+<p>Scopri chi far giocare.</p>
+</div>
+
+<div class="card">
+<h3>FantaConsigli Partita per Partita</h3>
+<p>Shorts settimanali.</p>
+</div>
+
+<div class="card">
+<h3>Dream Team di Giornata</h3>
+<p>I top selezionati.</p>
+</div>
+</div>
+
+<div class="bottom-menu">
+<div class="active"><span>🏠</span>HOME</div>
+<div><span>📊</span>CONSIGLI</div>
+<div><span>🔴</span>LIVE</div>
+<div><span>⭐</span>VOTI</div>
+<div><span>📈</span>STATS</div>
+</div>
+
+</div>
+
+<script>
+const tabs = document.querySelectorAll(".tab");
+tabs.forEach(tab => {
+tab.addEventListener("click", () => {
+tabs.forEach(t => t.classList.remove("active"));
+tab.classList.add("active");
+});
+});
+</script>
 
 </body>
 </html>
