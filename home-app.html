@@ -161,16 +161,68 @@ body{
 .roles-tabs{
     display:flex;
     justify-content:center;
-    gap:40px;
-    margin:40px 0 30px;
-    border-bottom:2px solid rgba(255,255,255,0.2);
+    gap:60px;
+    margin:40px 0 40px;
+    position:relative;
     padding-bottom:15px;
 }
 
-.roles-tabs div{
+/* Barra verde sotto le tab */
+
+.roles-tabs::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background:linear-gradient(
+        90deg,
+        rgba(0,0,0,0) 0%,
+        #0e3b23 15%,
+        #1f7f4a 35%,
+        #39ff9c 50%,
+        #1f7f4a 65%,
+        #0e3b23 85%,
+        rgba(0,0,0,0) 100%
+    );
+}
+
+/* Singola tab */
+
+.tab{
+    font-size:18px;
     font-weight:600;
-    color:#a9f5c4;
+    color:#cfd8e3;
     cursor:pointer;
+    position:relative;
+    padding:8px 12px;
+    transition:all 0.3s ease;
+}
+
+/* Tab attiva */
+
+.tab.active{
+    color:#39ff9c;
+}
+
+/* Linea verde sotto la tab attiva */
+
+.tab.active::after{
+    content:"";
+    position:absolute;
+    bottom:-15px;
+    left:50%;
+    transform:translateX(-50%);
+    width:70%;
+    height:3px;
+    border-radius:10px;
+    background:linear-gradient(
+        90deg,
+        #0e3b23,
+        #39ff9c,
+        #0e3b23
+    );
 }
 
 .player-list{
