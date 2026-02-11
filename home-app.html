@@ -7,235 +7,206 @@
 
 <style>
 
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-  color: white;
-  background: #000;
-  overflow-x: hidden;
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#000;
+    color:white;
 }
 
-/* ===== SFONDO STADIO PROFESSIONALE ===== */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: 
-    linear-gradient(to bottom,
-      rgba(0,0,0,0.9) 0%,
-      rgba(0,0,0,0.6) 20%,
-      rgba(0,0,0,0.4) 45%,
-      rgba(0,0,0,0.6) 75%,
-      rgba(0,0,0,0.95) 100%
-    ),
-    url("stadium-bg.png") center center / cover no-repeat;
-  z-index: -1;
+/* ===== SFONDO STADIO ===== */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+        url("stadium-bg.png") center center / cover no-repeat;
+    z-index:-1;
 }
 
-/* HEADER */
-.header {
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  background: linear-gradient(to right, #071c2f, #0d2a45);
+/* ===== HEADER ===== */
+
+.header{
+    height:70px;
+    background:#0b1624;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 20px;
+    font-weight:bold;
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 20px;
+/* ===== HERO ===== */
+
+.hero{
+    text-align:center;
+    padding:70px 20px 40px 20px;
 }
 
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 40px 20px 120px;
-  text-align: center;
+.hero h1{
+    font-size:40px;
+    font-weight:800;
 }
 
-/* HERO */
-.hero h1 {
-  font-size: 38px;
-  font-weight: bold;
+.hero h1 span{
+    color:#35f2a1;
 }
 
-.hero span {
-  color: #35f29a;
+.hero p{
+    margin-top:15px;
+    font-size:18px;
+    color:#cfcfcf;
 }
 
-.hero p {
-  margin-top: 15px;
-  font-size: 18px;
-  color: #ccc;
+.cta{
+    margin-top:30px;
+    display:inline-block;
+    padding:18px 45px;
+    border-radius:50px;
+    font-weight:bold;
+    font-size:18px;
+    background:linear-gradient(180deg,#3effa9,#22c98a);
+    color:#000;
+    box-shadow:0 0 25px rgba(62,255,169,0.6);
 }
 
-.cta {
-  margin-top: 30px;
+/* ===== SEZIONE ===== */
+
+.section{
+    text-align:center;
+    padding:60px 20px 30px 20px;
 }
 
-.cta button {
-  background: #35f29a;
-  border: none;
-  padding: 18px 40px;
-  border-radius: 40px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  color: #000;
-  box-shadow: 0 0 25px rgba(53,242,154,0.6);
+.section h2{
+    font-size:28px;
+    margin-bottom:10px;
 }
 
-/* SEZIONE GIORNATA */
-.section-title {
-  margin-top: 80px;
+.section p{
+    color:#bfbfbf;
+    margin-bottom:20px;
 }
 
-.section-title h2 {
-  font-size: 32px;
+/* BARRA VERDE MOCKUP */
+
+.green-bar{
+    height:3px;
+    width:140px;
+    margin:20px auto 40px auto;
+    background:linear-gradient(to right,#00ff88,#2bd67f);
+    box-shadow:0 0 15px rgba(0,255,136,0.7);
+    border-radius:5px;
 }
 
-.section-title p {
-  margin-top: 10px;
-  color: #bbb;
+/* ===== BOX SEZIONI ===== */
+
+.cards{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    padding:0 20px 60px 20px;
 }
 
-/* ===== CARDS PERFETTAMENTE UGUALI ===== */
-.cards {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+.card{
+    flex:1;
+    max-width:220px;
+    height:220px;
+    background:linear-gradient(145deg,#10263f,#0d1e32);
+    border-radius:25px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    text-align:center;
 }
 
-.card {
-  height: 260px;
-  padding: 25px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #0d2a45, #123a60);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+.card h3{
+    font-size:15px;
+    line-height:1.3;
 }
 
-.card h3 {
-  font-size: 18px;
+.card p{
+    font-size:13px;
+    color:#cfcfcf;
 }
 
-.card p {
-  font-size: 14px;
-  color: #ccc;
+/* ===== MENU FISSO ===== */
+
+.bottom-menu{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:75px;
+    background:#0b1624;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    font-size:13px;
 }
 
-/* ===== MENU INFERIORE ===== */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 70px;
-  background: linear-gradient(to right, #071c2f, #0d2a45);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 12px;
+.bottom-menu div{
+    text-align:center;
 }
 
-.bottom-nav div {
-  text-align: center;
-}
-
-.bottom-nav span {
-  display: block;
-  font-size: 20px;
-}
-
-.active {
-  color: #35f29a;
-}
-
-/* ===== RESPONSIVE MOBILE ===== */
-@media(max-width: 900px) {
-
-  .cards {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-
-  .card {
-    height: 220px;
-    padding: 15px;
-  }
-
-  .card h3 {
-    font-size: 14px;
-  }
-
-  .card p {
-    font-size: 12px;
-  }
-
+.active{
+    color:#35f2a1;
 }
 
 </style>
 </head>
-
 <body>
 
 <div class="header">
-  <div>☰</div>
-  <div class="logo">FantaStef</div>
-  <div>⚙️</div>
+    <div>☰</div>
+    <div>FantaStef</div>
+    <div>⚙️</div>
 </div>
 
-<div class="container">
-
-  <div class="hero">
-    <h1>HERE WE... <span>GOL!</span></h1>
+<div class="hero">
+    <h1>HERE WE… <span>GOL!</span></h1>
     <p>La FantaRevolution è qui.</p>
+    <div class="cta">FantaConsigli di giornata</div>
+</div>
 
-    <div class="cta">
-      <button>FantaConsigli di giornata</button>
-    </div>
-  </div>
-
-  <div class="section-title">
+<div class="section">
     <h2>FantaConsigli – 24ª giornata</h2>
     <p>I migliori nomi di giornata secondo il nostro algoritmo.</p>
-  </div>
+    <div class="green-bar"></div>
+</div>
 
-  <div class="cards">
+<div class="cards">
+
     <div class="card">
-      <h3>Algoritmo Schieramento</h3>
-      <p>Scopri chi far giocare.</p>
+        <h3>Algoritmo<br>Schieramento</h3>
+        <p>Scopri chi far giocare.</p>
     </div>
 
     <div class="card">
-      <h3>FantaConsigli Partita per Partita</h3>
-      <p>Shorts settimanali.</p>
+        <h3>FantaConsigli<br>Partita per Partita</h3>
+        <p>Shorts settimanali.</p>
     </div>
 
     <div class="card">
-      <h3>Dream Team di Giornata</h3>
-      <p>I top selezionati.</p>
+        <h3>Dream Team<br>di Giornata</h3>
+        <p>I top selezionati.</p>
     </div>
-  </div>
 
 </div>
 
-<div class="bottom-nav">
-  <div class="active"><span>🏠</span>HOME</div>
-  <div><span>📊</span>CONSIGLI</div>
-  <div><span>🔴</span>LIVE</div>
-  <div><span>⭐</span>VOTI</div>
-  <div><span>📈</span>STATS</div>
+<div class="bottom-menu">
+    <div class="active">🏠<br>HOME</div>
+    <div>📊<br>CONSIGLI</div>
+    <div>🔴<br>LIVE</div>
+    <div>⭐<br>VOTI</div>
+    <div>📈<br>STATS</div>
 </div>
 
 </body>
