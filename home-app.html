@@ -1,177 +1,188 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>FantaStef</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  background:linear-gradient(180deg,#0a0f1c,#05101d);
-  color:#fff;
-  overflow-x:hidden;
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: url("stadium-bg.png") center center / cover no-repeat fixed;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Overlay scuro cinematografico */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,10,25,0.95));
+  z-index: -1;
 }
 
 /* HEADER */
-
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 20px;
-  background:#0c1626;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
 }
 
-.logo-center{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-weight:700;
-  font-size:18px;
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.logo-center img{
-  width:30px;
-  height:30px;
-  border-radius:50%;
+.logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 /* HERO */
-
-.hero{
-  text-align:center;
-  padding:50px 16px 40px;
+.hero {
+  text-align: center;
+  padding: 60px 20px 30px;
 }
 
-.hero h1{
-  font-size:24px;
-  font-weight:800;
-  white-space:nowrap;
+.hero h2 {
+  font-size: clamp(28px, 6vw, 48px);
+  font-weight: 800;
+  white-space: nowrap;
+  text-shadow: 0 0 20px rgba(0,255,150,0.6);
 }
 
-.hero h1 span{
-  color:#2df59d;
+.hero h2 span {
+  color: #21f5a8;
 }
 
-.hero p{
-  margin-top:10px;
-  font-size:14px;
-  opacity:.8;
+.hero p {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #cfcfcf;
 }
 
-.cta{
-  margin-top:20px;
+.cta {
+  margin-top: 30px;
+  display: inline-block;
+  background: linear-gradient(135deg,#1effa3,#19d18b);
+  color: #000;
+  font-weight: bold;
+  padding: 18px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 18px;
+  box-shadow: 0 0 25px rgba(30,255,163,0.6);
+  transition: 0.3s;
 }
 
-.cta button{
-  background:#2df59d;
-  color:#000;
-  border:none;
-  padding:14px 28px;
-  border-radius:50px;
-  font-size:15px;
-  font-weight:700;
-  cursor:pointer;
+.cta:hover {
+  transform: scale(1.05);
 }
 
-/* SECTION TITLE */
-
-.section-title{
-  text-align:center;
-  padding:40px 16px 10px;
+/* SEZIONE CONSIGLI */
+.section {
+  text-align: center;
+  padding: 60px 20px 20px;
 }
 
-.section-title h2{
-  font-size:18px;
-  white-space:nowrap;
+.section h3 {
+  font-size: 26px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-.section-title p{
-  margin-top:8px;
-  font-size:13px;
-  opacity:.6;
+.section p {
+  margin-top: 10px;
+  color: #bdbdbd;
 }
 
 /* CARDS */
-
-.cards{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  padding:25px 10px;
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
 }
 
-.card{
-  background:linear-gradient(145deg,#0f1b2d,#12233a);
-  border-radius:18px;
-
-  width:30%;
-  min-width:100px;
-  height:150px;
-
-  padding:14px;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-
-  text-align:left;
+.card {
+  width: 280px;
+  height: 260px;
+  background: linear-gradient(145deg,#0c1f38,#0e2a4a);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: 0 0 20px rgba(0,255,150,0.1);
+  transition: 0.3s;
 }
 
-.card h3{
-  font-size:13px;
-  line-height:1.2;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 30px rgba(0,255,150,0.3);
 }
 
-.card p{
-  font-size:11px;
-  opacity:.7;
-  line-height:1.3;
+.card h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
-/* FOOTER */
-
-.footer-text{
-  text-align:center;
-  padding:50px 16px 100px;
-  font-size:16px;
+.card p {
+  font-size: 14px;
+  color: #bfbfbf;
 }
 
-.footer-text span{
-  color:#2df59d;
-  font-weight:700;
+/* FRASE FINALE */
+.statement {
+  text-align: center;
+  padding: 60px 20px 100px;
+  font-size: 22px;
+  line-height: 1.6;
 }
 
-/* MENU */
-
-.bottom-menu{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:#0c1626;
-  display:flex;
-  justify-content:space-around;
-  padding:10px 0;
-  font-size:12px;
+.statement span {
+  color: #21f5a8;
+  font-weight: bold;
 }
 
-.bottom-menu div{
-  text-align:center;
-  opacity:.7;
+/* MENU IN BASSO */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
 }
 
-.bottom-menu .active{
-  color:#2df59d;
-  opacity:1;
+.bottom-nav div {
+  text-align: center;
+  font-size: 13px;
+  color: #aaa;
 }
 
+.bottom-nav div.active {
+  color: #21f5a8;
+}
 </style>
 </head>
 
@@ -179,59 +190,54 @@ body{
 
 <div class="header">
   <div>☰</div>
-  <div class="logo-center">
-    <img src="logo.png">
-    FantaStef
+  <div class="header-center">
+    <img src="logo.png" class="logo">
+    <h1>FantaStef</h1>
   </div>
   <div>⚙️</div>
 </div>
 
 <div class="hero">
-  <h1>HERE WE… <span>GOL!</span></h1>
+  <h2>HERE WE… <span>GOL!</span></h2>
   <p>La FantaRevolution è qui.</p>
-  <div class="cta">
-    <button>FantaConsigli di giornata</button>
-  </div>
+  <a href="#" class="cta">FantaConsigli di giornata</a>
 </div>
 
-<div class="section-title">
-  <h2>FantaConsigli – 24ª giornata</h2>
+<div class="section">
+  <h3>FantaConsigli – 24ª giornata</h3>
   <p>I migliori nomi di giornata secondo il nostro algoritmo.</p>
 </div>
 
 <div class="cards">
-
   <div class="card">
-    <h3>Algoritmo Schieramento</h3>
-    <p>Scopri chi far giocare.</p>
+    <h4>Algoritmo Schieramento</h4>
+    <p>Inserisci la tua rosa e scopri chi far giocare.</p>
   </div>
 
   <div class="card">
-    <h3>FantaConsigli Partita per Partita</h3>
-    <p>Shorts settimanali.</p>
+    <h4>FantaConsigli Partita per Partita</h4>
+    <p>Shorts settimanali con analisi dettagliata.</p>
   </div>
 
   <div class="card">
-    <h3>Dream Team di Giornata</h3>
-    <p>I top assoluti.</p>
+    <h4>Dream Team di Giornata</h4>
+    <p>I top assoluti selezionati dall’algoritmo.</p>
   </div>
-
 </div>
 
-<div class="footer-text">
-  Il fantacalcio non è <span>solo fortuna</span>.<br><br>
+<div class="statement">
+  Il fantacalcio non è <span>solo fortuna</span>.<br>
   È analisi, contesto e scelte lucide.<br><br>
   FantaStef è il tuo <span>vantaggio competitivo</span>.
 </div>
 
-<div class="bottom-menu">
-  <div class="active">🏠<br>HOME</div>
-  <div>📊<br>CONSIGLI</div>
-  <div>🔴<br>LIVE</div>
-  <div>⭐<br>VOTI</div>
-  <div>📈<br>STATS</div>
+<div class="bottom-nav">
+  <div class="active">HOME</div>
+  <div>CONSIGLI</div>
+  <div>LIVE</div>
+  <div>VOTI</div>
+  <div>STATS</div>
 </div>
 
 </body>
 </html>
-
