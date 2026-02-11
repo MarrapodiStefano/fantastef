@@ -22,26 +22,24 @@ body{
     color:white;
 }
 
-/* ===== CONTENITORE CENTRALE (1200px + quasi trasparente) ===== */
-
 .main-wrapper{
     width:100%;
-    max-width:1750px; /* <<< ALLARGATO */
-    background:rgba(5,15,30,0.35); /* <<< MOLTO PIÙ TRASPARENTE */
+    max-width:1750px; /* TUO VALORE */
+    background:rgba(5,15,30,0.35);
     backdrop-filter:blur(4px);
     min-height:100vh;
     position:relative;
     padding-bottom:110px;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 
 .header{
     height:80px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 50px;
+    padding:0 60px;
     background:linear-gradient(to bottom,rgba(10,25,45,0.8),rgba(10,25,45,0.4));
 }
 
@@ -59,53 +57,78 @@ body{
     border-radius:50%;
 }
 
-/* ===== HERO ===== */
+/* HERO */
 
 .hero{
     text-align:center;
-    padding:100px 60px 70px;
+    padding:120px 80px 90px;
 }
 
 .hero h1{
-    font-size:60px;
+    font-size:64px;
     font-weight:800;
 }
 
 .hero h1 span{
-    color:#2df59a;
+    color:#3bf0a1;
 }
 
 .hero p{
     margin-top:25px;
     font-size:22px;
-    color:#e0e6ed;
+    color:#d6dee8;
 }
 
+/* ===== NUOVA BOX VERDE STILE MOCKUP ===== */
+
 .cta{
-    margin-top:50px;
+    margin-top:55px;
 }
 
 .cta button{
-    padding:22px 80px;
-    border-radius:50px;
-    border:none;
+    padding:22px 90px;
+    border-radius:60px;
+    border:1px solid #1e6f42;
     font-size:22px;
     font-weight:700;
     cursor:pointer;
-    color:black;
-    background:linear-gradient(90deg,#1fe089,#39f0a6);
-    box-shadow:0 0 40px rgba(45,245,154,0.6);
+    color:white;
+    background:linear-gradient(
+        to bottom,
+        #3fae5d 0%,
+        #2e8c4a 50%,
+        #246f3b 100%
+    );
+    box-shadow:
+        inset 0 2px 0 rgba(255,255,255,0.3),
+        0 8px 25px rgba(0,0,0,0.6);
+    transition:all 0.25s ease;
 }
 
-/* ===== SEZIONE TITOLO ===== */
+.cta button:hover{
+    transform:translateY(-2px);
+    box-shadow:
+        inset 0 2px 0 rgba(255,255,255,0.35),
+        0 12px 35px rgba(0,0,0,0.7);
+}
+
+/* Freccia */
+
+.cta button::after{
+    content:" ›";
+    font-weight:900;
+    margin-left:8px;
+}
+
+/* SECTION TITLE */
 
 .section-title{
     text-align:center;
-    padding:80px 60px 40px;
+    padding:90px 80px 50px;
 }
 
 .section-title h2{
-    font-size:38px;
+    font-size:40px;
     margin-bottom:20px;
 }
 
@@ -115,28 +138,28 @@ body{
 }
 
 .green-divider{
-    width:160px;
-    height:6px;
-    background:linear-gradient(90deg,#1fe089,#39f0a6);
-    margin:35px auto;
+    width:200px;
+    height:5px;
+    background:linear-gradient(90deg,#2af598,#009efd);
+    margin:40px auto;
     border-radius:10px;
 }
 
-/* ===== CARDS ===== */
+/* CARDS */
 
 .cards{
     display:flex;
     justify-content:center;
-    gap:40px;
-    padding:40px 60px 100px;
+    gap:50px;
+    padding:60px 100px 120px;
 }
 
 .card{
     flex:1;
-    height:280px;
-    background:linear-gradient(145deg,rgba(15,42,71,0.85),rgba(11,31,54,0.85));
+    height:300px;
+    background:linear-gradient(145deg,rgba(15,42,71,0.9),rgba(11,31,54,0.9));
     border-radius:30px;
-    padding:40px;
+    padding:45px;
     display:flex;
     flex-direction:column;
     justify-content:space-between;
@@ -152,7 +175,7 @@ body{
     color:#cfd8e3;
 }
 
-/* ===== MENU ===== */
+/* MENU */
 
 .bottom-menu{
     position:absolute;
@@ -162,7 +185,7 @@ body{
     background:linear-gradient(to top,rgba(0,8,20,0.95),rgba(0,27,51,0.95));
     display:flex;
     justify-content:space-around;
-    padding:18px 0 22px;
+    padding:20px 0 25px;
 }
 
 .bottom-menu div{
@@ -204,7 +227,7 @@ body{
         <p>La FantaRevolution è qui.</p>
 
         <div class="cta">
-            <button>FantaConsigli di giornata</button>
+            <button>Vedi i Consigli della Giornata</button>
         </div>
     </div>
 
