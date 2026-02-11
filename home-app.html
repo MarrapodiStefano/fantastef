@@ -6,107 +6,99 @@
 <title>FantaStef</title>
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: url("stadium-bg.png") center center / cover no-repeat fixed;
+    background-color: #000;
 }
 
-body{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-    background:url("stadium-bg.png") center center / cover no-repeat fixed;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    color:white;
-}
-
-.main-wrapper{
-    width:100%;
-    max-width:1750px;
-    background:rgba(5,15,30,0.35);
-    backdrop-filter:blur(4px);
-    min-height:100vh;
-    position:relative;
-    padding-bottom:110px;
+/* CONTENITORE PRINCIPALE */
+.main-wrapper {
+    max-width: 1750px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: rgba(10, 20, 30, 0.78);
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 60px rgba(0,0,0,0.9);
+    display: flex;
+    flex-direction: column;
 }
 
 /* HEADER */
-
-.header{
-    height:80px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 60px;
-    background:linear-gradient(to bottom,rgba(10,25,45,0.8),rgba(10,25,45,0.4));
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 30px;
+    position: relative;
 }
 
-.logo-area{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-weight:600;
-    font-size:26px;
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.logo-area img{
-    width:42px;
-    height:42px;
-    border-radius:50%;
+.logo-title img {
+    width: 42px;
+    height: 42px;
+}
+
+.logo-title h1 {
+    color: white;
+    font-size: 26px;
+    margin: 0;
+    font-weight: 600;
 }
 
 /* HERO */
-
-.hero{
-    text-align:center;
-    padding:120px 80px 90px;
+.hero {
+    text-align: center;
+    padding: 60px 20px 40px 20px;
+    color: white;
 }
 
-.hero h1{
-    font-size:64px;
-    font-weight:800;
+.hero h2 {
+    font-size: 56px;
+    margin: 0;
+    font-weight: 800;
 }
 
-.hero h1 span{
-    color:#34e38a;
+.hero h2 span {
+    color: #38c172;
 }
 
-.hero p{
-    margin-top:25px;
-    font-size:22px;
-    color:#d6dee8;
+.hero p {
+    font-size: 20px;
+    color: #ccc;
+    margin-top: 15px;
 }
 
-/* ===== CTA STILE MOCKUP AVANZATO ===== */
-
-.cta{
-    margin-top:50px;
-}
-
+/* CTA BUTTON */
 .cta-button {
     display: inline-block;
-    padding: 14px 46px;
+    margin-top: 35px;
+    padding: 14px 60px;
     border-radius: 40px;
     font-size: 20px;
     font-weight: 700;
     text-decoration: none;
-    color: #ffffff;
+    color: #fff;
 
     background: linear-gradient(
         to bottom,
-        #5fae3f 0%,
-        #3f8f2b 45%,
-        #2f7d1f 55%,
-        #256b19 100%
+        #4fa63c 0%,
+        #3a8f2d 45%,
+        #2c7a21 55%,
+        #1f6318 100%
     );
 
     box-shadow:
-        0 4px 0 #1e5513,
-        0 12px 25px rgba(0, 255, 120, 0.25),
-        inset 0 2px 4px rgba(255,255,255,0.35),
-        inset 0 -3px 6px rgba(0,0,0,0.4);
+        0 4px 0 #1a4f14,
+        0 15px 30px rgba(0,255,120,0.25),
+        inset 0 3px 6px rgba(255,255,255,0.35),
+        inset 0 -4px 8px rgba(0,0,0,0.4);
 
     transition: all 0.2s ease;
 }
@@ -114,103 +106,64 @@ body{
 .cta-button:hover {
     transform: translateY(2px);
     box-shadow:
-        0 2px 0 #1e5513,
-        0 8px 18px rgba(0,255,120,0.2),
-        inset 0 2px 4px rgba(255,255,255,0.35),
-        inset 0 -3px 6px rgba(0,0,0,0.4);
+        0 2px 0 #1a4f14,
+        0 10px 20px rgba(0,255,120,0.2),
+        inset 0 3px 6px rgba(255,255,255,0.35),
+        inset 0 -4px 8px rgba(0,0,0,0.4);
 }
 
-
-/* Freccia */
-
-.cta button::after{
-    content:"  ›";
-    font-weight:900;
-    margin-left:6px;
+/* DIVISORE VERDE */
+.section-divider {
+    width: 180px;
+    height: 5px;
+    background: linear-gradient(to right, #00ff88, #2ecc71);
+    margin: 35px auto;
+    border-radius: 10px;
 }
 
-/* SECTION TITLE */
-
-.section-title{
-    text-align:center;
-    padding:90px 80px 50px;
+/* SEZIONI */
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 60px 60px 100px 60px;
 }
 
-.section-title h2{
-    font-size:40px;
-    margin-bottom:20px;
+.card {
+    width: 360px;
+    height: 420px;
+    background: linear-gradient(145deg, #0e2b45, #0a2035);
+    border-radius: 28px;
+    padding: 30px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.7);
 }
 
-.section-title p{
-    font-size:20px;
-    color:#e0e6ed;
+.card h3 {
+    font-size: 22px;
+    margin: 0;
 }
 
-.green-divider{
-    width:220px;
-    height:4px;
-    background:linear-gradient(90deg,#37f09d,#1ea864);
-    margin:35px auto;
-    border-radius:10px;
+.card p {
+    font-size: 16px;
+    color: #ccc;
 }
 
-/* CARDS */
-
-.cards{
-    display:flex;
-    justify-content:center;
-    gap:50px;
-    padding:60px 100px 120px;
+/* MENU INFERIORE */
+.bottom-menu {
+    display: flex;
+    justify-content: space-around;
+    padding: 18px 0;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    font-size: 14px;
 }
 
-.card{
-    flex:1;
-    height:300px;
-    background:linear-gradient(145deg,rgba(15,42,71,0.9),rgba(11,31,54,0.9));
-    border-radius:30px;
-    padding:45px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    text-align:center;
-}
-
-.card h3{
-    font-size:22px;
-}
-
-.card p{
-    font-size:18px;
-    color:#cfd8e3;
-}
-
-/* MENU */
-
-.bottom-menu{
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:linear-gradient(to top,rgba(0,8,20,0.95),rgba(0,27,51,0.95));
-    display:flex;
-    justify-content:space-around;
-    padding:20px 0 25px;
-}
-
-.bottom-menu div{
-    text-align:center;
-    font-size:15px;
-    color:#cfd8e3;
-}
-
-.bottom-menu .active{
-    color:#2df59a;
-}
-
-.bottom-menu span{
-    display:block;
-    font-size:28px;
-    margin-bottom:6px;
+.bottom-menu div {
+    text-align: center;
 }
 
 </style>
@@ -221,32 +174,20 @@ body{
 <div class="main-wrapper">
 
     <div class="header">
-        <div style="font-size:24px;">☰</div>
-
-        <div class="logo-area">
-            <img src="logo.png">
-            FantaStef
+        <div class="logo-title">
+            <img src="logo.png" alt="Logo">
+            <h1>FantaStef</h1>
         </div>
-
-        <div style="font-size:24px;">⚙</div>
     </div>
 
     <div class="hero">
-        <h1>HERE WE... <span>GOL!</span></h1>
-        <p>La FantaRevolution è qui.</p>
-
-        <div class="cta">
-            <button>Vedi i Consigli della Giornata</button>
-        </div>
+        <h2>Schiera con <span>criterio.</span></h2>
+        <p>Vantaggio Competitivo Nel Fantacalcio</p>
+        <a href="#" class="cta-button">Vedi I Consigli della Giornata</a>
+        <div class="section-divider"></div>
     </div>
 
-    <div class="section-title">
-        <h2>FantaConsigli – 24ª giornata</h2>
-        <p>I migliori nomi di giornata secondo il nostro algoritmo.</p>
-        <div class="green-divider"></div>
-    </div>
-
-    <div class="cards">
+    <div class="cards-container">
         <div class="card">
             <h3>Algoritmo Schieramento</h3>
             <p>Scopri chi far giocare.</p>
@@ -264,15 +205,14 @@ body{
     </div>
 
     <div class="bottom-menu">
-        <div class="active"><span>🏠</span>HOME</div>
-        <div><span>📊</span>CONSIGLI</div>
-        <div><span>🔴</span>LIVE</div>
-        <div><span>⭐</span>VOTI</div>
-        <div><span>📈</span>STATS</div>
+        <div>🏠<br>HOME</div>
+        <div>📊<br>CONSIGLI</div>
+        <div>🔴<br>LIVE</div>
+        <div>⭐<br>VOTI</div>
+        <div>📈<br>STATS</div>
     </div>
 
 </div>
 
 </body>
 </html>
-
