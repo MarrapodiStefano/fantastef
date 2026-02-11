@@ -16,6 +16,7 @@ body{
   font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
   background:linear-gradient(180deg,#0a0f1c,#05101d);
   color:#fff;
+  overflow-x:hidden;
 }
 
 /* HEADER */
@@ -26,9 +27,6 @@ body{
   align-items:center;
   padding:14px 24px;
   background:#0c1626;
-  position:sticky;
-  top:0;
-  z-index:100;
 }
 
 .logo-center{
@@ -49,11 +47,11 @@ body{
 
 .hero{
   text-align:center;
-  padding:70px 20px 50px;
+  padding:60px 20px 40px;
 }
 
 .hero h1{
-  font-size:clamp(30px,5vw,48px);
+  font-size:clamp(26px,4vw,48px);
   font-weight:800;
   white-space:nowrap;
 }
@@ -63,21 +61,21 @@ body{
 }
 
 .hero p{
-  margin-top:16px;
-  font-size:18px;
+  margin-top:12px;
+  font-size:16px;
   opacity:.8;
 }
 
 .cta{
-  margin-top:30px;
+  margin-top:24px;
 }
 
 .cta button{
   background:#2df59d;
   border:none;
-  padding:18px 40px;
+  padding:16px 36px;
   border-radius:50px;
-  font-size:18px;
+  font-size:16px;
   font-weight:700;
   cursor:pointer;
 }
@@ -86,105 +84,106 @@ body{
 
 .section-title{
   text-align:center;
-  padding:50px 20px 10px;
+  padding:40px 20px 10px;
 }
 
 .section-title h2{
-  font-size:clamp(24px,4vw,32px);
+  font-size:clamp(20px,3vw,30px);
   white-space:nowrap;
 }
 
 .section-title p{
-  margin-top:12px;
+  margin-top:10px;
   opacity:.6;
+  font-size:14px;
 }
 
-/* CARDS STATICHE AFFIANCATE */
+/* CARD GRID */
 
 .cards{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
-  gap:24px;
-  padding:40px 8%;
+  gap:18px;
+  padding:30px 6%;
 }
 
 .card{
   background:linear-gradient(145deg,#0f1b2d,#12233a);
-  padding:30px;
+  padding:22px;
   border-radius:20px;
+  transition:0.3s;
   text-align:left;
 }
 
 .card h3{
-  margin-bottom:12px;
-  font-size:20px;
+  font-size:clamp(14px,2.2vw,20px);
+  margin-bottom:10px;
 }
 
 .card p{
+  font-size:clamp(11px,1.8vw,14px);
   opacity:.7;
-  font-size:15px;
 }
 
-/* MOTTO */
+/* FOOTER TEXT */
 
-.motto{
+.footer-text{
   text-align:center;
   padding:60px 20px 120px;
-  font-size:22px;
-  line-height:1.6;
+  font-size:18px;
 }
 
-.motto span{
+.footer-text span{
   color:#2df59d;
-  font-weight:600;
+  font-weight:700;
 }
 
-/* MENU BOTTOM */
+/* MENU BASSO */
 
-.bottom-nav{
+.bottom-menu{
   position:fixed;
   bottom:0;
-  left:0;
   width:100%;
   background:#0c1626;
   display:flex;
   justify-content:space-around;
-  padding:12px 0 14px;
-  border-top:1px solid rgba(255,255,255,.08);
+  padding:12px 0;
+  font-size:13px;
 }
 
-.bottom-nav div{
+.bottom-menu div{
   text-align:center;
-  font-size:13px;
   opacity:.7;
 }
 
-.bottom-nav .active{
+.bottom-menu .active{
   color:#2df59d;
   opacity:1;
 }
 
-/* MOBILE FIX */
+/* RESPONSIVE FINE-TUNING */
 
-@media(max-width:900px){
+@media(max-width:768px){
+
   .cards{
-    grid-template-columns:repeat(3, 1fr);
-    padding:30px 20px;
-    gap:16px;
+    padding:20px 4%;
+    gap:12px;
   }
 
   .card{
-    padding:18px;
+    padding:16px;
   }
 
-  .hero h1{
-    font-size:28px;
+  .card h3{
+    font-size:13px;
   }
 
-  .section-title h2{
-    font-size:20px;
+  .card p{
+    font-size:11px;
   }
+
 }
+
 </style>
 </head>
 
@@ -192,33 +191,28 @@ body{
 
 <div class="header">
   <div>☰</div>
-
   <div class="logo-center">
-    <img src="logo.png" alt="logo">
+    <img src="logo.png">
     FantaStef
   </div>
-
-  <div>⚙</div>
+  <div>⚙️</div>
 </div>
 
-
-<section class="hero">
+<div class="hero">
   <h1>HERE WE… <span>GOL!</span></h1>
   <p>La FantaRevolution è qui.</p>
-
   <div class="cta">
     <button>FantaConsigli di giornata</button>
   </div>
-</section>
+</div>
 
-
-<section class="section-title">
+<div class="section-title">
   <h2>FantaConsigli – 24ª giornata</h2>
   <p>I migliori nomi di giornata secondo il nostro algoritmo.</p>
-</section>
+</div>
 
+<div class="cards">
 
-<section class="cards">
   <div class="card">
     <h3>Algoritmo Schieramento</h3>
     <p>Inserisci la tua rosa e scopri chi far giocare.</p>
@@ -233,17 +227,16 @@ body{
     <h3>Dream Team di Giornata</h3>
     <p>I top assoluti selezionati dall’algoritmo.</p>
   </div>
-</section>
 
+</div>
 
-<section class="motto">
-  Il fantacalcio non è <span>solo fortuna</span>.<br>
+<div class="footer-text">
+  Il fantacalcio non è <span>solo fortuna</span>.<br><br>
   È analisi, contesto e scelte lucide.<br><br>
   FantaStef è il tuo <span>vantaggio competitivo</span>.
-</section>
+</div>
 
-
-<div class="bottom-nav">
+<div class="bottom-menu">
   <div class="active">🏠<br>HOME</div>
   <div>📊<br>CONSIGLI</div>
   <div>🔴<br>LIVE</div>
@@ -253,4 +246,3 @@ body{
 
 </body>
 </html>
-
