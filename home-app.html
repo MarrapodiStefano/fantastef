@@ -22,11 +22,11 @@ body{
     color:white;
 }
 
-/* ===== CONTENITORE CENTRALE COME MOCKUP ===== */
+/* ===== CONTENITORE CENTRALE (PIÙ LARGO) ===== */
 
 .main-wrapper{
     width:100%;
-    max-width:480px;
+    max-width:1000px;   /* <<< PRIMA ERA 480px */
     background:rgba(5,15,30,0.85);
     backdrop-filter:blur(6px);
     min-height:100vh;
@@ -37,25 +37,25 @@ body{
 /* ===== HEADER ===== */
 
 .header{
-    height:70px;
+    height:80px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 20px;
+    padding:0 40px;
     background:linear-gradient(to bottom,#0b1c2f,#0a1626);
 }
 
 .logo-area{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:12px;
     font-weight:600;
-    font-size:20px;
+    font-size:24px;
 }
 
 .logo-area img{
-    width:36px;
-    height:36px;
+    width:40px;
+    height:40px;
     border-radius:50%;
 }
 
@@ -63,11 +63,11 @@ body{
 
 .hero{
     text-align:center;
-    padding:60px 20px 40px;
+    padding:80px 40px 60px;
 }
 
 .hero h1{
-    font-size:38px;
+    font-size:52px;
     font-weight:800;
 }
 
@@ -76,47 +76,49 @@ body{
 }
 
 .hero p{
-    margin-top:15px;
+    margin-top:20px;
+    font-size:20px;
     color:#cfd8e3;
 }
 
 .cta{
-    margin-top:30px;
+    margin-top:40px;
 }
 
 .cta button{
-    padding:18px 40px;
-    border-radius:40px;
+    padding:20px 60px;
+    border-radius:50px;
     border:none;
-    font-size:18px;
+    font-size:20px;
     font-weight:700;
     cursor:pointer;
     color:black;
     background:linear-gradient(90deg,#1fe089,#39f0a6);
-    box-shadow:0 0 25px rgba(45,245,154,0.6);
+    box-shadow:0 0 30px rgba(45,245,154,0.6);
 }
 
 /* ===== SEZIONE TITOLO ===== */
 
 .section-title{
     text-align:center;
-    padding:50px 20px 20px;
+    padding:70px 40px 30px;
 }
 
 .section-title h2{
-    font-size:26px;
-    margin-bottom:10px;
+    font-size:32px;
+    margin-bottom:15px;
 }
 
 .section-title p{
+    font-size:18px;
     color:#cfd8e3;
 }
 
 .green-divider{
-    width:100px;
-    height:4px;
+    width:140px;
+    height:5px;
     background:linear-gradient(90deg,#1fe089,#39f0a6);
-    margin:20px auto;
+    margin:30px auto;
     border-radius:10px;
 }
 
@@ -125,16 +127,16 @@ body{
 .cards{
     display:flex;
     justify-content:center;
-    gap:15px;
-    padding:20px;
+    gap:30px;
+    padding:30px 40px 80px;
 }
 
 .card{
     flex:1;
-    height:210px;
+    height:260px;
     background:linear-gradient(145deg,#0f2a47,#0b1f36);
-    border-radius:25px;
-    padding:20px;
+    border-radius:30px;
+    padding:30px;
     display:flex;
     flex-direction:column;
     justify-content:space-between;
@@ -142,31 +144,31 @@ body{
 }
 
 .card h3{
-    font-size:15px;
+    font-size:20px;
 }
 
 .card p{
-    font-size:13px;
+    font-size:16px;
     color:#cfd8e3;
 }
 
-/* ===== FOOTER MENU ===== */
+/* ===== MENU DENTRO IL CONTENITORE ===== */
 
 .bottom-menu{
-    position:fixed;
+    position:absolute;      /* <<< PRIMA ERA fixed */
     bottom:0;
     left:0;
-    width:100%;
+    width:100%;             /* Ora prende la larghezza del wrapper */
     background:linear-gradient(to top,#000814,#001b33);
     display:flex;
     justify-content:space-around;
-    padding:10px 0 15px;
+    padding:15px 0 20px;
     border-top:1px solid rgba(255,255,255,0.05);
 }
 
 .bottom-menu div{
     text-align:center;
-    font-size:12px;
+    font-size:14px;
     color:#cfd8e3;
 }
 
@@ -176,25 +178,8 @@ body{
 
 .bottom-menu span{
     display:block;
-    font-size:22px;
-    margin-bottom:3px;
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media(max-width:480px){
-    .hero h1{
-        font-size:32px;
-    }
-
-    .cards{
-        gap:10px;
-        padding:15px;
-    }
-
-    .card{
-        height:200px;
-    }
+    font-size:26px;
+    margin-bottom:5px;
 }
 
 </style>
@@ -205,14 +190,14 @@ body{
 <div class="main-wrapper">
 
     <div class="header">
-        <div style="font-size:22px;">☰</div>
+        <div style="font-size:24px;">☰</div>
 
         <div class="logo-area">
             <img src="logo.png">
             FantaStef
         </div>
 
-        <div style="font-size:22px;">⚙</div>
+        <div style="font-size:24px;">⚙</div>
     </div>
 
     <div class="hero">
@@ -247,14 +232,14 @@ body{
         </div>
     </div>
 
-</div>
+    <div class="bottom-menu">
+        <div class="active"><span>🏠</span>HOME</div>
+        <div><span>📊</span>CONSIGLI</div>
+        <div><span>🔴</span>LIVE</div>
+        <div><span>⭐</span>VOTI</div>
+        <div><span>📈</span>STATS</div>
+    </div>
 
-<div class="bottom-menu">
-    <div class="active"><span>🏠</span>HOME</div>
-    <div><span>📊</span>CONSIGLI</div>
-    <div><span>🔴</span>LIVE</div>
-    <div><span>⭐</span>VOTI</div>
-    <div><span>📈</span>STATS</div>
 </div>
 
 </body>
