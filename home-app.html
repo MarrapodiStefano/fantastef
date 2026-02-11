@@ -24,7 +24,7 @@ body{
 
 .main-wrapper{
     width:100%;
-    max-width:1750px; /* TUO VALORE */
+    max-width:1750px;
     background:rgba(5,15,30,0.35);
     backdrop-filter:blur(4px);
     min-height:100vh;
@@ -70,7 +70,7 @@ body{
 }
 
 .hero h1 span{
-    color:#3bf0a1;
+    color:#34e38a;
 }
 
 .hero p{
@@ -79,45 +79,54 @@ body{
     color:#d6dee8;
 }
 
-/* ===== NUOVA BOX VERDE STILE MOCKUP ===== */
+/* ===== CTA STILE MOCKUP AVANZATO ===== */
 
 .cta{
-    margin-top:55px;
+    margin-top:50px;
 }
 
 .cta button{
-    padding:22px 90px;
-    border-radius:60px;
-    border:1px solid #1e6f42;
-    font-size:22px;
+    padding:16px 75px;   /* RIDOTTA ALTEZZA */
+    border-radius:55px;
+    border:1px solid #1f5f38;
+    font-size:20px;
     font-weight:700;
     cursor:pointer;
-    color:white;
-    background:linear-gradient(
-        to bottom,
-        #3fae5d 0%,
-        #2e8c4a 50%,
-        #246f3b 100%
-    );
+    color:#ffffff;
+
+    /* Gradiente più realistico */
+    background:
+        linear-gradient(
+            to bottom,
+            #4be08f 0%,
+            #33c977 35%,
+            #26a95f 60%,
+            #1e7f47 100%
+        );
+
+    /* Luce interna + profondità */
     box-shadow:
-        inset 0 2px 0 rgba(255,255,255,0.3),
-        0 8px 25px rgba(0,0,0,0.6);
+        inset 0 2px 4px rgba(255,255,255,0.35),
+        inset 0 -4px 8px rgba(0,0,0,0.35),
+        0 10px 25px rgba(0,0,0,0.55);
+
     transition:all 0.25s ease;
 }
 
 .cta button:hover{
     transform:translateY(-2px);
     box-shadow:
-        inset 0 2px 0 rgba(255,255,255,0.35),
-        0 12px 35px rgba(0,0,0,0.7);
+        inset 0 2px 6px rgba(255,255,255,0.4),
+        inset 0 -4px 10px rgba(0,0,0,0.4),
+        0 14px 35px rgba(0,0,0,0.65);
 }
 
 /* Freccia */
 
 .cta button::after{
-    content:" ›";
+    content:"  ›";
     font-weight:900;
-    margin-left:8px;
+    margin-left:6px;
 }
 
 /* SECTION TITLE */
@@ -138,10 +147,10 @@ body{
 }
 
 .green-divider{
-    width:200px;
-    height:5px;
-    background:linear-gradient(90deg,#2af598,#009efd);
-    margin:40px auto;
+    width:220px;
+    height:4px;
+    background:linear-gradient(90deg,#37f09d,#1ea864);
+    margin:35px auto;
     border-radius:10px;
 }
 
@@ -266,3 +275,4 @@ body{
 
 </body>
 </html>
+
