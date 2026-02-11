@@ -1,252 +1,226 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <title>FantaStef</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FantaStef</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#000000" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/manifest.json" />
+body {
+  background: #0b1118;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: white;
+  padding-bottom: 90px;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+/* HEADER */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background: #0f1a24;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
 
-    body {
-      margin: 0;
-      background: #0b0f14;
-      color: #ffffff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      padding-bottom: 90px;
-    }
+.header-left,
+.header-right {
+  font-size: 22px;
+  opacity: 0.8;
+}
 
-    /* HEADER */
-    .header {
-      position: sticky;
-      top: 0;
-      background: #121821;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      z-index: 100;
-    }
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 700;
+}
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+.header-center img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
 
-    .logo-area img {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-    }
+/* HERO */
+.hero {
+  padding-top: 110px;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  background: radial-gradient(circle at top, #13202e 0%, #0b1118 70%);
+}
 
-    .logo-area span {
-      font-size: 20px;
-      font-weight: 700;
-    }
+.hero h1 {
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
 
-    /* HERO */
-    .hero {
-      padding: 60px 20px;
-      text-align: center;
-      background: linear-gradient(to bottom, #111722, #0b0f14);
-    }
+.hero h1 span {
+  color: #22ff9c;
+}
 
-    .hero h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
+.hero p {
+  font-size: 18px;
+  opacity: 0.8;
+  margin-bottom: 25px;
+}
 
-    .hero p {
-      color: #8affc1;
-      margin-bottom: 25px;
-      font-size: 16px;
-    }
+.cta {
+  display: inline-block;
+  background: #22ff9c;
+  color: #000;
+  padding: 16px 32px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+}
 
-    .hero button {
-      background: #16ff9a;
-      border: none;
-      padding: 16px 28px;
-      border-radius: 40px;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-    }
+/* SEZIONE CONSIGLI */
+.section {
+  margin-top: 60px;
+  padding: 0 20px;
+}
 
-    /* SEZIONE CONSIGLI */
-    .section {
-      padding: 30px 20px;
-    }
+.section h2 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
 
-    .section h2 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
+.section p {
+  text-align: center;
+  opacity: 0.7;
+  margin-bottom: 30px;
+}
 
-    .section p {
-      text-align: center;
-      color: #bbbbbb;
-      margin-bottom: 20px;
-    }
+/* CARD ESEMPIO */
+.card {
+  background: #111a24;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 16px;
+}
 
-    /* CARD */
-    .cards {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+.card h3 {
+  margin-bottom: 10px;
+}
 
-    .card {
-      background: #151c26;
-      border-radius: 16px;
-      padding: 20px;
-    }
+.card p {
+  opacity: 0.7;
+}
 
-    .card h3 {
-      margin-top: 0;
-    }
+/* MENU BOTTOM */
+.bottom-menu {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 75px;
+  background: #111a24;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
 
-    .card button {
-      margin-top: 12px;
-      background: #16ff9a;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.menu-item {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.7;
+}
 
-    /* FRASE FINALE */
-    .quote {
-      padding: 40px 20px;
-      text-align: center;
-      font-size: 18px;
-      line-height: 1.6;
-    }
+.menu-item span {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 3px;
+}
 
-    .highlight {
-      color: #16ff9a;
-      font-weight: bold;
-    }
-
-    /* MENU IN BASSO */
-    .bottom-menu {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #121821;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .menu-item {
-      text-align: center;
-      font-size: 12px;
-      color: #bbbbbb;
-    }
-
-    .menu-item span {
-      display: block;
-      font-size: 22px;
-      margin-bottom: 4px;
-    }
-
-    .menu-item.active {
-      color: #16ff9a;
-    }
-
-  </style>
+.menu-active {
+  color: #22ff9c;
+  opacity: 1;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div>☰</div>
-    <div class="logo-area">
-      <img src="logo.png" />
-      <span>FantaStef</span>
-    </div>
-    <div>⚙️</div>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">☰</div>
+
+  <div class="header-center">
+    <img src="logo.png" alt="Logo">
+    FantaStef
   </div>
 
-  <!-- HERO -->
-  <div class="hero">
-    <h1>HERE WE… GOL!</h1>
-    <p>La FantaRevolution è qui.</p>
-    <button>FantaConsigli di giornata</button>
+  <div class="header-right">⚙️</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>HERE WE… <span>GOL!</span></h1>
+  <p>La FantaRevolution è qui.</p>
+  <a href="consigli.html" class="cta">FantaConsigli di giornata</a>
+</div>
+
+<!-- SEZIONE CONSIGLI -->
+<div class="section">
+  <h2>FantaConsigli – 24ª giornata</h2>
+  <p>I migliori nomi di giornata secondo il nostro algoritmo.</p>
+
+  <div class="card">
+    <h3>Algoritmo Schieramento</h3>
+    <p>Inserisci la tua rosa e scopri chi far giocare.</p>
   </div>
 
-  <!-- CONSIGLI -->
-  <div class="section">
-    <h2>FantaConsigli – 24ª giornata</h2>
-    <p>I migliori nomi di giornata secondo il nostro algoritmo.</p>
+  <div class="card">
+    <h3>FantaConsigli Partita per Partita</h3>
+    <p>Guarda gli shorts della settimana.</p>
   </div>
 
-  <!-- CARDS -->
-  <div class="section">
-    <div class="cards">
-      <div class="card">
-        <h3>Algoritmo Schieramento</h3>
-        <p>Inserisci la tua rosa e scopri chi far giocare.</p>
-        <button>Apri Analisi</button>
-      </div>
-
-      <div class="card">
-        <h3>FantaConsigli Partita per Partita</h3>
-        <p>Shorts settimanali con analisi dettagliata.</p>
-        <button>Guarda Shorts</button>
-      </div>
-
-      <div class="card">
-        <h3>Dream Team di Giornata</h3>
-        <p>La miglior formazione ideale della giornata.</p>
-        <button>Guarda Shorts</button>
-      </div>
-    </div>
+  <div class="card">
+    <h3>Dream Team di Giornata</h3>
+    <p>I top assoluti selezionati dall’algoritmo.</p>
   </div>
+</div>
 
-  <!-- FRASE -->
-  <div class="quote">
-    Il fantacalcio non è <span class="highlight">solo fortuna</span>.<br />
-    È analisi, contesto e scelte lucide.<br /><br />
-    FantaStef è il tuo <span class="highlight">vantaggio competitivo</span>.
+<!-- MENU BOTTOM -->
+<div class="bottom-menu">
+  <div class="menu-item menu-active">
+    <span>🏠</span>
+    HOME
   </div>
-
-  <!-- MENU IN BASSO -->
-  <div class="bottom-menu">
-    <div class="menu-item active">
-      <span>🏠</span>
-      HOME
-    </div>
-    <div class="menu-item">
-      <span>📊</span>
-      CONSIGLI
-    </div>
-    <div class="menu-item">
-      <span>🔴</span>
-      LIVE
-    </div>
-    <div class="menu-item">
-      <span>⭐</span>
-      VOTI
-    </div>
-    <div class="menu-item">
-      <span>📈</span>
-      STATS
-    </div>
+  <div class="menu-item">
+    <span>📊</span>
+    CONSIGLI
   </div>
+  <div class="menu-item">
+    <span>🔴</span>
+    LIVE
+  </div>
+  <div class="menu-item">
+    <span>⭐</span>
+    VOTI
+  </div>
+  <div class="menu-item">
+    <span>📈</span>
+    STATS
+  </div>
+</div>
 
 </body>
 </html>
