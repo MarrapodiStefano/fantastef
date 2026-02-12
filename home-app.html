@@ -266,14 +266,27 @@ body{
 
 .bottom-menu{
     position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:linear-gradient(to top,rgba(0,8,20,0.95),rgba(0,27,51,0.95));
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+    width:95%;
+
+    background:rgba(10,20,35,0.45);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:25px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+
     display:flex;
     justify-content:space-around;
-    padding:10px 0 12px;
+    padding:14px 0 18px;
 }
+
 
 .bottom-menu div{
     text-align:center;
