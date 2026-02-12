@@ -367,19 +367,20 @@ body{
 
     /* CARDS */
 
-    .cards{
-        display:flex;
-        flex-direction:column;
-        gap:25px;
-        padding:30px 20px 120px;
-    }
+  .cards{
+    display:flex;
+    flex-direction:row;
+    gap:20px;
+    padding:40px 20px 120px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+}
 
-    .card{
-        width:100%;
-        height:auto;
-        padding:30px;
-        border-radius:25px;
-    }
+.card{
+    min-width:80%;
+    flex:0 0 auto;
+    scroll-snap-align:center;
+}
 
     .card h3{
         font-size:18px;
