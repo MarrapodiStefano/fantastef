@@ -30,13 +30,11 @@ body{
     margin:40px auto;
     background:rgba(5,15,30,0.12);
     backdrop-filter:blur(2px);
-    -webkit-backdrop-filter:blur(2px);
     min-height:100vh;
     position:relative;
-    padding-bottom:140px;
-    border-radius:20px;
-    box-shadow:0 0 60px rgba(0,0,0,0.4);
+    padding-bottom:160px;
 }
+
 
 /* HEADER */
 
@@ -226,16 +224,20 @@ body{
 /* MENU FISSO DENTRO CONTENITORE */
 
 .bottom-menu{
-    position:absolute;
+    position:fixed;
     bottom:0;
-    left:0;
+    left:50%;
+    transform:translateX(-50%);
     width:100%;
+    max-width:1400px; /* deve essere uguale al max-width del wrapper */
+    
     background:linear-gradient(to top,rgba(0,8,20,0.95),rgba(0,27,51,0.95));
     display:flex;
     justify-content:space-around;
     padding:15px 0 20px;
-    border-radius:0 0 20px 20px;
+    border-radius:20px 20px 0 0;
 }
+
 
 .bottom-menu div{
     text-align:center;
