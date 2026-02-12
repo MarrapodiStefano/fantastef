@@ -369,17 +369,20 @@ body{
 
 .cards{
     display:flex;
-    gap:20px;
-    padding:40px 20px 120px;
+    gap:16px;
+    padding:40px 0 120px;
     overflow-x:auto;
-    overflow-y:hidden;
     scroll-snap-type:x mandatory;
-    width:100%;
 }
 
 .card{
-    flex:0 0 85%;
-    scroll-snap-align:center;
+    flex:0 0 80%;
+    margin-left:20px;
+    scroll-snap-align:start;
+}
+
+.main-wrapper{
+    overflow:hidden;
 }
 
     .card h3{
