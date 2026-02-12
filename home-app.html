@@ -260,15 +260,17 @@ body{
 
 @media (max-width: 768px) {
 
-    /* Wrapper più stretto e con margini laterali */
-    .main-wrapper{
-        margin:20px 12px;
-        max-width:100%;
-        padding-bottom:140px;
-        border-radius:20px;
+    body{
+        display:block;
     }
 
-    /* Header più compatto */
+    .main-wrapper{
+        max-width:100%;
+        margin:0;
+        padding-bottom:130px;
+        border-radius:0;
+    }
+
     .header{
         height:55px;
         padding:0 20px;
@@ -283,13 +285,12 @@ body{
         height:28px;
     }
 
-    /* HERO */
     .hero{
         padding:30px 20px 30px;
     }
 
     .hero h1{
-        font-size:clamp(32px,8vw,60px);
+        font-size:clamp(28px,9vw,60px);
     }
 
     .hero p{
@@ -297,15 +298,14 @@ body{
     }
 
     .cta button{
-        padding:8px 28px;
-        font-size:16px;
+        width:100%;
+        font-size:18px;
     }
 
     .green-divider{
-        margin:35px auto 0;
+        margin:35px 0 0;
     }
 
-    /* BLOCCO FANTACONSIGLI */
     .fanta-block{
         margin:30px 20px;
         padding:25px;
@@ -319,52 +319,41 @@ body{
         font-size:16px;
     }
 
-    /* TABS */
     .tabs{
         flex-wrap:wrap;
         gap:15px;
-        justify-content:center;
     }
 
     .tab{
-        font-size:14px;
+        font-size:15px;
         padding:6px 14px;
     }
 
-    /* CARDS */
     .cards{
         flex-direction:column;
         gap:25px;
-        padding:30px 20px 100px;
+        padding:30px 20px 40px;
     }
 
     .card{
         height:auto;
-        padding:30px 25px;
-        border-radius:22px;
+        padding:30px;
     }
 
     .card h3{
-        font-size:18px;
+        font-size:20px;
     }
 
     .card p{
-        font-size:15px;
+        font-size:16px;
     }
 
-    /* MENU */
     .bottom-menu{
         max-width:100%;
-        border-radius:18px 18px 0 0;
-        padding:12px 0 15px;
+        border-radius:20px 20px 0 0;
+        padding:12px 0 18px;
     }
 
-    .bottom-menu span{
-        font-size:22px;
-    }
- body{
-        background:red !important;
-    }
 }
 
 </style>
