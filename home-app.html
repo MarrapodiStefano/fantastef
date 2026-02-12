@@ -22,35 +22,36 @@ body{
     color:white;
 }
 
-/* WRAPPER PRINCIPALE */
+/* CONTAINER PRINCIPALE */
 
 .main-wrapper{
     width:100%;
     max-width:1750px;
-    background:transparent;
+    background:rgba(5,15,30,0.12);
+    backdrop-filter:blur(2px);
+    -webkit-backdrop-filter:blur(2px);
     min-height:100vh;
     position:relative;
-    padding-bottom:110px;
+    padding-bottom:140px;
 }
-
 
 /* HEADER */
 
 .header{
-    height:50px;
+    height:65px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:0 60px;
-    background:linear-gradient(to bottom,rgba(10,25,45,0.8),rgba(10,25,45,0.4));
+    background:linear-gradient(to bottom,rgba(10,25,45,0.85),rgba(10,25,45,0.4));
 }
 
 .logo-area{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:10px;
     font-weight:600;
-    font-size:26px;
+    font-size:24px;
 }
 
 .logo-area img{
@@ -63,7 +64,7 @@ body{
 
 .hero{
     text-align:center;
-    padding:20px 80px 60px;
+    padding:40px 80px 50px;
 }
 
 .hero h1{
@@ -79,17 +80,15 @@ body{
 }
 
 .hero p{
-    margin-top:2px;
-    font-size:35px;
-    color:#ffffff;
-     
+    margin-top:5px;
+    font-size:30px;
+    color:#d6dee8;
 }
-
 
 /* CTA */
 
 .cta{
-    margin-top:50px;
+    margin-top:40px;
 }
 
 .cta button{
@@ -118,6 +117,10 @@ body{
     transition:all 0.25s ease;
 }
 
+.cta button:hover{
+    transform:translateY(-2px);
+}
+
 .cta button::after{
     content:"  ›";
     font-weight:900;
@@ -129,8 +132,9 @@ body{
 .green-divider{
     width:100%;
     height:5px;
-    margin:40px auto 0;
+    margin:60px auto 0;
     border-radius:50px;
+
     background:linear-gradient(
         90deg,
         rgba(0,0,0,0) 0%,
@@ -143,102 +147,63 @@ body{
     );
 }
 
-/* CONTENITORE INTERNO FANTACONSIGLI */
+/* BLOCCO FANTACONSIGLI */
 
-.content-container{
-    margin:0px 60px 0;
-    padding:30px 80px 100px;
-    border-radius:35px;
+.fantaconsigli-container{
+    margin:60px 60px 40px;
+    padding:40px;
     background:rgba(10,25,45,0.55);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    box-shadow:
-        0 40px 80px rgba(0,0,0,0.6),
-        inset 0 0 40px rgba(255,255,255,0.03);
+    border-radius:25px;
+    border:1px solid rgba(255,255,255,0.05);
+    box-shadow:0 25px 60px rgba(0,0,0,0.6);
 }
 
-/* SECTION TITLE */
-
-.section-title{
-    text-align:center;
-    margin-bottom:30px;
+.fantaconsigli-container h2{
+    font-size:38px;
+    margin-bottom:15px;
 }
 
-.section-title h2{
-    font-size:40px;
-    margin-bottom:20px;
-}
-
-.section-title p{
+.fantaconsigli-container p{
     font-size:20px;
     color:#e0e6ed;
 }
 
-/* TABS PREMIUM */
+/* TABS */
 
-.roles-tabs{
+.tabs{
     display:flex;
-    justify-content:center;
-    gap:60px;
-    margin:40px 0 50px;
-    position:relative;
-    padding-bottom:18px;
-}
-
-.roles-tabs::after{
-    content:"";
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    height:4px;
-    border-radius:20px;
-    background:linear-gradient(
-        90deg,
-        rgba(0,0,0,0) 0%,
-        #0e3b23 15%,
-        #1f7f4a 35%,
-        #39ff9c 50%,
-        #1f7f4a 65%,
-        #0e3b23 85%,
-        rgba(0,0,0,0) 100%
-    );
+    gap:30px;
+    margin-top:40px;
+    border-bottom:2px solid rgba(255,255,255,0.1);
+    padding-bottom:15px;
 }
 
 .tab{
-    font-size:18px;
-    font-weight:600;
-    color:#cfd8e3;
-    cursor:pointer;
     padding:10px 18px;
-    border-radius:14px;
-    transition:all 0.35s ease;
-}
-
-.tab:hover{
-    color:#ffffff;
-    background:rgba(57,255,156,0.05);
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:600;
+    transition:all 0.3s ease;
+    position:relative;
 }
 
 .tab.active{
-    color:#39ff9c;
-    background:linear-gradient(
-        to bottom,
-        rgba(57,255,156,0.12),
-        rgba(57,255,156,0.05)
-    );
-    box-shadow:
-        0 0 12px rgba(57,255,156,0.25),
-        inset 0 0 12px rgba(57,255,156,0.15);
+    background:rgba(46,204,113,0.15);
+    color:#2ecc71;
+    box-shadow:0 0 15px rgba(46,204,113,0.4);
 }
 
-/* CARDS */
+.tab:hover{
+    color:#2ecc71;
+}
+
+/* CARDS ORIGINALI */
 
 .cards{
     display:flex;
     justify-content:center;
     gap:50px;
-    padding-top:40px;
+    padding:40px 100px 80px;
 }
 
 .card{
@@ -262,7 +227,7 @@ body{
     color:#cfd8e3;
 }
 
-/* MENU */
+/* MENU INFERIORE DENTRO CONTAINER */
 
 .bottom-menu{
     position:absolute;
@@ -270,12 +235,12 @@ body{
     left:20px;
     right:20px;
 
-    background:rgba(10,20,35,0.45);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
+    background:rgba(10,20,35,0.6);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
 
-    border:1px solid rgba(255,255,255,0.08);
     border-radius:25px;
+    border:1px solid rgba(255,255,255,0.08);
 
     box-shadow:
         0 10px 30px rgba(0,0,0,0.6),
@@ -298,7 +263,7 @@ body{
 
 .bottom-menu span{
     display:block;
-    font-size:28px;
+    font-size:26px;
     margin-bottom:6px;
 }
 
@@ -309,78 +274,66 @@ body{
 
 <div class="main-wrapper">
 
-<div class="header">
-<div style="font-size:24px;">☰</div>
-<div class="logo-area">
-<img src="logo.png">
-FantaStef
-</div>
-<div style="font-size:35px;">⚙</div>
-</div>
+    <div class="header">
+        <div style="font-size:22px;">☰</div>
 
-<div class="hero">
-<h1>HERE WE... <span>GOL!</span></h1>
-<p>Benvenuto nella FantaRevolution</p>
+        <div class="logo-area">
+            <img src="logo.png">
+            FantaStef
+        </div>
 
-<div class="cta">
-<button>Consigli di Giornata</button>
-</div>
+        <div style="font-size:28px;">⚙</div>
+    </div>
 
-<div class="green-divider"></div>
-</div>
+    <div class="hero">
+        <h1>HERE WE... <span>GOL!</span></h1>
+        <p>Benvenuto nella FantaRevolution</p>
 
-<div class="content-container">
+        <div class="cta">
+            <button>Consigli di Giornata</button>
+        </div>
 
-<div class="section-title">
-<h2>FantaConsigli – 24ª giornata</h2>
-<p>I migliori nomi di giornata secondo il nostro algoritmo.</p>
-</div>
+        <div class="green-divider"></div>
+    </div>
 
-<div class="roles-tabs">
-<div class="tab active">Attaccanti</div>
-<div class="tab">Centrocampisti</div>
-<div class="tab">Difensori</div>
-<div class="tab">Portieri</div>
-</div>
+    <div class="fantaconsigli-container">
+        <h2>FantaConsigli – 24ª giornata</h2>
+        <p>I migliori nomi di giornata secondo il nostro algoritmo.</p>
 
-<div class="cards">
-<div class="card">
-<h3>Algoritmo Schieramento</h3>
-<p>Scopri chi far giocare.</p>
-</div>
+        <div class="tabs">
+            <div class="tab active">Attaccanti</div>
+            <div class="tab">Centrocampisti</div>
+            <div class="tab">Difensori</div>
+            <div class="tab">Portieri</div>
+        </div>
+    </div>
 
-<div class="card">
-<h3>FantaConsigli Partita per Partita</h3>
-<p>Shorts settimanali.</p>
-</div>
+    <div class="cards">
+        <div class="card">
+            <h3>Algoritmo Schieramento</h3>
+            <p>Scopri chi far giocare.</p>
+        </div>
 
-<div class="card">
-<h3>Dream Team di Giornata</h3>
-<p>I top selezionati.</p>
-</div>
-</div>
+        <div class="card">
+            <h3>FantaConsigli Partita per Partita</h3>
+            <p>Shorts settimanali.</p>
+        </div>
 
-</div>
+        <div class="card">
+            <h3>Dream Team di Giornata</h3>
+            <p>I top selezionati.</p>
+        </div>
+    </div>
 
-<div class="bottom-menu">
-<div class="active"><span>🏠</span>HOME</div>
-<div><span>📊</span>CONSIGLI</div>
-<div><span>🔴</span>LIVE</div>
-<div><span>⭐</span>VOTI</div>
-<div><span>📈</span>STATS</div>
-</div>
+    <div class="bottom-menu">
+        <div class="active"><span>🏠</span>HOME</div>
+        <div><span>📊</span>CONSIGLI</div>
+        <div><span>🔴</span>LIVE</div>
+        <div><span>⭐</span>VOTI</div>
+        <div><span>📈</span>STATS</div>
+    </div>
 
 </div>
-
-<script>
-const tabs = document.querySelectorAll(".tab");
-tabs.forEach(tab => {
-tab.addEventListener("click", () => {
-tabs.forEach(t => t.classList.remove("active"));
-tab.classList.add("active");
-});
-});
-</script>
 
 </body>
 </html>
