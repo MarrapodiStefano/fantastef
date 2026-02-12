@@ -273,71 +273,120 @@ body{
     margin-bottom:6px;
 }
 
-/* =====================================================
-   VERSIONE MOBILE PREMIUM
-===================================================== */
+/* ===================================== */
+/* ========= VERSIONE MOBILE ========= */
+/* ===================================== */
 
-@media (max-width:768px){
+@media (max-width: 768px) {
 
-.main-wrapper{
-    margin:20px 12px;
-    max-width:100%;
-    border-radius:25px;
-}
+    /* Wrapper principale */
+    .main-wrapper{
+        margin:20px 12px;
+        max-width:100%;
+        padding-bottom:140px;
+    }
 
-.header{
-    height:55px;
-    padding:0 20px;
-}
+    /* Header */
+    .header{
+        height:55px;
+        padding:0 20px;
+    }
 
-.logo-area{
-    font-size:20px;
-}
+    .logo-area{
+        font-size:20px;
+    }
 
-.hero{
-    padding:30px 20px 30px;
-}
+    .logo-area img{
+        width:28px;
+        height:28px;
+    }
 
-.hero p{
-    font-size:20px;
-}
+    /* Hero */
+    .hero{
+        padding:30px 20px 30px;
+    }
 
-.cta button{
-    font-size:16px;
-    padding:10px 35px;
-}
+    .hero h1{
+        font-size:clamp(32px,9vw,60px);
+        line-height:1.1;
+    }
 
-.fanta-block{
-    margin:30px 20px;
-    padding:25px;
-}
+    .hero p{
+        font-size:18px;
+        margin-top:8px;
+    }
 
-.fanta-block h2{
-    font-size:28px;
-}
+    /* CTA */
+    .cta{
+        margin-top:30px;
+    }
 
-.fanta-block p{
-    font-size:16px;
-}
+    .cta button{
+        width:100%;
+        padding:14px 0;
+        font-size:18px;
+        border-radius:40px;
+    }
 
-.tabs{
-    gap:15px;
-}
+    /* Barra verde */
+    .green-divider{
+        margin:40px auto 0;
+        height:4px;
+    }
 
-.cards{
-    flex-direction:column;
-    padding:30px 20px 100px;
-}
+    /* Blocco FantaConsigli */
+    .fanta-block{
+        margin:30px 12px;
+        padding:25px;
+    }
 
-.card{
-    height:auto;
-    padding:30px;
-}
+    .fanta-block h2{
+        font-size:28px;
+    }
 
-.bottom-menu{
-    max-width:100%;
-    border-radius:20px 20px 0 0;
-}
+    .fanta-block p{
+        font-size:16px;
+        margin-bottom:20px;
+    }
+
+    /* Tabs */
+    .tabs{
+        flex-wrap:wrap;
+        gap:15px;
+    }
+
+    .tab{
+        font-size:14px;
+        padding:6px 14px;
+    }
+
+    /* Cards */
+    .cards{
+        display:flex;
+        flex-direction:column;
+        gap:25px;
+        padding:30px 20px 100px;
+    }
+
+    .card{
+        height:auto;
+        padding:30px;
+        border-radius:25px;
+    }
+
+    .card h3{
+        font-size:20px;
+    }
+
+    .card p{
+        font-size:16px;
+    }
+
+    /* Bottom menu */
+    .bottom-menu{
+        max-width:100%;
+        border-radius:0;
+    }
 
 }
 
