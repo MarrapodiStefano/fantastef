@@ -22,20 +22,19 @@ body{
     color:white;
 }
 
-/* CONTAINER PRINCIPALE */
+/* CONTENITORE PRINCIPALE */
 
 .main-wrapper{
     width:100%;
     max-width:1750px;
-    background:rgba(5,15,30,0.45);
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
-    border:1px solid rgba(255,255,255,0.08);
-    box-shadow:0 0 80px rgba(0,0,0,0.6);
-    
+    background:rgba(5,15,30,0.12);
+    backdrop-filter:blur(2px);
+    -webkit-backdrop-filter:blur(2px);
     min-height:100vh;
     position:relative;
-    padding-bottom:140px;
+    padding-bottom:160px;
+    border-radius:20px;
+    box-shadow:0 0 60px rgba(0,0,0,0.4);
 }
 
 /* HEADER */
@@ -46,15 +45,15 @@ body{
     align-items:center;
     justify-content:space-between;
     padding:0 60px;
-    background:linear-gradient(to bottom,rgba(10,25,45,0.85),rgba(10,25,45,0.4));
+    background:linear-gradient(to bottom,rgba(10,25,45,0.8),rgba(10,25,45,0.4));
 }
 
 .logo-area{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:12px;
     font-weight:600;
-    font-size:24px;
+    font-size:26px;
 }
 
 .logo-area img{
@@ -67,11 +66,11 @@ body{
 
 .hero{
     text-align:center;
-    padding:40px 80px 50px;
+    padding:40px 80px 40px;
 }
 
 .hero h1{
-    font-size: clamp(38px, 5vw, 100px);
+    font-size:clamp(38px,5vw,100px);
     font-weight:800;
 }
 
@@ -79,13 +78,14 @@ body{
     color:#2ecc71;
     text-shadow:
         0 2px 4px rgba(0,0,0,0.6),
-        0 0 12px rgba(31,127,74,0.35);
+        0 0 14px rgba(46,204,113,0.4);
 }
 
 .hero p{
     margin-top:5px;
-    font-size:30px;
+    font-size:28px;
     color:#d6dee8;
+    text-shadow:0 0 8px rgba(46,204,113,0.4);
 }
 
 /* CTA */
@@ -135,7 +135,7 @@ body{
 .green-divider{
     width:100%;
     height:5px;
-    margin:60px auto 0;
+    margin:50px auto 0;
     border-radius:50px;
 
     background:linear-gradient(
@@ -152,61 +152,53 @@ body{
 
 /* BLOCCO FANTACONSIGLI */
 
-.fantaconsigli-container{
-    margin:60px 60px 40px;
+.fanta-block{
+    margin:50px 80px;
     padding:40px;
     background:rgba(10,25,45,0.55);
     border-radius:25px;
-    border:1px solid rgba(255,255,255,0.05);
-    box-shadow:0 25px 60px rgba(0,0,0,0.6);
+    backdrop-filter:blur(4px);
+    box-shadow:0 0 30px rgba(0,0,0,0.5);
 }
 
-.fantaconsigli-container h2{
-    font-size:38px;
+.fanta-block h2{
+    font-size:40px;
     margin-bottom:15px;
 }
 
-.fantaconsigli-container p{
+.fanta-block p{
     font-size:20px;
     color:#e0e6ed;
+    margin-bottom:30px;
 }
 
 /* TABS */
 
 .tabs{
     display:flex;
-    gap:30px;
-    margin-top:40px;
-    border-bottom:2px solid rgba(255,255,255,0.1);
-    padding-bottom:15px;
+    gap:40px;
 }
 
 .tab{
-    padding:10px 18px;
-    border-radius:20px;
+    padding:8px 20px;
+    border-radius:30px;
     cursor:pointer;
-    font-weight:600;
     transition:all 0.3s ease;
-    position:relative;
 }
 
 .tab.active{
     background:rgba(46,204,113,0.15);
-    color:#2ecc71;
-    box-shadow:0 0 15px rgba(46,204,113,0.4);
-}
-
-.tab:hover{
+    box-shadow:0 0 15px rgba(46,204,113,0.6);
     color:#2ecc71;
 }
 
-/* CARDS ORIGINALI */
+/* CARDS */
 
 .cards{
     display:flex;
     justify-content:center;
     gap:50px;
-    padding:40px 100px 80px;
+    padding:60px 100px 120px;
 }
 
 .card{
@@ -230,20 +222,20 @@ body{
     color:#cfd8e3;
 }
 
-/* MENU INFERIORE DENTRO CONTAINER */
+/* MENU FISSO DENTRO CONTENITORE */
 
 .bottom-menu{
     position:fixed;
     bottom:0;
-    left:50px;
+    left:50%;
     transform:translateX(-50%);
     width:100%;
     max-width:1750px;
 
-    background:linear-gradient(to top,rgba(0,8,20,0.95));
+    background:linear-gradient(to top,rgba(0,8,20,0.95),rgba(0,27,51,0.95));
     display:flex;
     justify-content:space-around;
-    padding:20px 0 25px;
+    padding:15px 0 20px;
 }
 
 .bottom-menu div{
@@ -258,7 +250,7 @@ body{
 
 .bottom-menu span{
     display:block;
-    font-size:26px;
+    font-size:28px;
     margin-bottom:6px;
 }
 
@@ -291,7 +283,7 @@ body{
         <div class="green-divider"></div>
     </div>
 
-    <div class="fantaconsigli-container">
+    <div class="fanta-block">
         <h2>FantaConsigli – 24ª giornata</h2>
         <p>I migliori nomi di giornata secondo il nostro algoritmo.</p>
 
@@ -320,14 +312,14 @@ body{
         </div>
     </div>
 
-    <div class="bottom-menu">
-        <div class="active"><span>🏠</span>HOME</div>
-        <div><span>📊</span>CONSIGLI</div>
-        <div><span>🔴</span>LIVE</div>
-        <div><span>⭐</span>VOTI</div>
-        <div><span>📈</span>STATS</div>
-    </div>
+</div>
 
+<div class="bottom-menu">
+    <div class="active"><span>🏠</span>HOME</div>
+    <div><span>📊</span>CONSIGLI</div>
+    <div><span>🔴</span>LIVE</div>
+    <div><span>⭐</span>VOTI</div>
+    <div><span>📈</span>STATS</div>
 </div>
 
 </body>
