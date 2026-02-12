@@ -227,16 +227,16 @@ body{
 
 .bottom-menu{
     position:fixed;
-    bottom:0;
+    bottom:40px;               /* uguale al margin del wrapper */
     left:50%;
     transform:translateX(-50%);
     width:100%;
-    max-width:1750px;
-
+    max-width:1400px;          /* stesso max-width del wrapper */
     background:linear-gradient(to top,rgba(0,8,20,0.95),rgba(0,27,51,0.95));
     display:flex;
     justify-content:space-around;
     padding:15px 0 20px;
+    border-radius:0 0 20px 20px;
 }
 
 .bottom-menu div{
