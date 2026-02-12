@@ -367,18 +367,18 @@ body{
 
     /* CARDS */
 
-  .cards{
+.cards{
     display:flex;
-    flex-direction:row;
     gap:20px;
     padding:40px 20px 120px;
     overflow-x:auto;
+    overflow-y:hidden;
     scroll-snap-type:x mandatory;
+    width:100%;
 }
 
 .card{
-    min-width:80%;
-    flex:0 0 auto;
+    flex:0 0 85%;
     scroll-snap-align:center;
 }
 
