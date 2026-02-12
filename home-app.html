@@ -22,7 +22,9 @@ body{
     color:white;
 }
 
-/* CONTENITORE PRINCIPALE */
+/* ===============================
+   WRAPPER CENTRALE
+================================ */
 
 .main-wrapper{
     width:100%;
@@ -30,21 +32,23 @@ body{
     margin:40px auto;
     background:rgba(5,15,30,0.20);
     backdrop-filter:blur(2px);
+    border-radius:30px;
     min-height:100vh;
-    position:relative;
     padding-bottom:160px;
 }
 
-
-/* HEADER */
+/* ===============================
+   HEADER
+================================ */
 
 .header{
     height:65px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 60px;
-    background:linear-gradient(to bottom,rgba(10,25,45,0.8),rgba(10,25,45,0.4));
+    padding:0 40px;
+    background:linear-gradient(to bottom,rgba(10,25,45,0.9),rgba(10,25,45,0.4));
+    border-radius:30px 30px 0 0;
 }
 
 .logo-area{
@@ -61,11 +65,13 @@ body{
     border-radius:50%;
 }
 
-/* HERO */
+/* ===============================
+   HERO
+================================ */
 
 .hero{
     text-align:center;
-    padding:40px 80px 40px;
+    padding:40px 60px 40px;
 }
 
 .hero h1{
@@ -87,14 +93,16 @@ body{
     text-shadow:0 0 8px rgba(46,204,113,0.4);
 }
 
-/* CTA */
+/* ===============================
+   CTA
+================================ */
 
 .cta{
     margin-top:40px;
 }
 
 .cta button{
-    padding:8px 50px;
+    padding:10px 55px;
     border-radius:55px;
     border:1px solid #28b463;
     font-size:20px;
@@ -129,7 +137,9 @@ body{
     margin-left:6px;
 }
 
-/* BARRA VERDE */
+/* ===============================
+   BARRA VERDE
+================================ */
 
 .green-divider{
     width:100%;
@@ -149,14 +159,16 @@ body{
     );
 }
 
-/* BLOCCO FANTACONSIGLI */
+/* ===============================
+   BLOCCO FANTACONSIGLI
+================================ */
 
 .fanta-block{
-    margin:50px 80px;
+    margin:50px 60px;
     padding:40px;
-    background:rgba(10,25,45,0.55);
+    background:rgba(10,25,45,0.65);
     border-radius:25px;
-    backdrop-filter:blur(4px);
+    backdrop-filter:blur(6px);
     box-shadow:0 0 30px rgba(0,0,0,0.5);
 }
 
@@ -171,11 +183,14 @@ body{
     margin-bottom:30px;
 }
 
-/* TABS */
+/* ===============================
+   TABS
+================================ */
 
 .tabs{
     display:flex;
-    gap:40px;
+    gap:30px;
+    flex-wrap:wrap;
 }
 
 .tab{
@@ -187,25 +202,27 @@ body{
 
 .tab.active{
     background:rgba(46,204,113,0.15);
-    box-shadow:0 0 15px rgba(46,204,113,0.6);
+    box-shadow:0 0 20px rgba(46,204,113,0.7);
     color:#2ecc71;
 }
 
-/* CARDS */
+/* ===============================
+   CARDS
+================================ */
 
 .cards{
     display:flex;
     justify-content:center;
-    gap:50px;
-    padding:60px 100px 120px;
+    gap:40px;
+    padding:60px;
 }
 
 .card{
     flex:1;
-    height:300px;
+    height:280px;
     background:linear-gradient(145deg,rgba(15,42,71,0.9),rgba(11,31,54,0.9));
     border-radius:30px;
-    padding:45px;
+    padding:40px;
     display:flex;
     flex-direction:column;
     justify-content:space-between;
@@ -221,7 +238,9 @@ body{
     color:#cfd8e3;
 }
 
-/* MENU FISSO DENTRO CONTENITORE */
+/* ===============================
+   MENU FIXED
+================================ */
 
 .bottom-menu{
     position:fixed;
@@ -229,15 +248,14 @@ body{
     left:50%;
     transform:translateX(-50%);
     width:100%;
-    max-width:1200px; /* deve essere uguale al max-width del wrapper */
-    
+    max-width:1200px;
+
     background:linear-gradient(to top,rgba(0,8,20,0.95),rgba(0,27,51,0.95));
     display:flex;
     justify-content:space-around;
     padding:15px 0 20px;
     border-radius:20px 20px 0 0;
 }
-
 
 .bottom-menu div{
     text-align:center;
@@ -251,108 +269,75 @@ body{
 
 .bottom-menu span{
     display:block;
-    font-size:28px;
+    font-size:26px;
     margin-bottom:6px;
 }
-/* ========================= */
-/* VERSIONE MOBILE PREMIUM  */
-/* ========================= */
 
-@media (max-width: 768px) {
+/* =====================================================
+   VERSIONE MOBILE PREMIUM
+===================================================== */
 
-    body{
-        display:block;
-    }
+@media (max-width:768px){
 
-    .main-wrapper{
-        max-width:100%;
-        margin:0;
-        padding-bottom:130px;
-        border-radius:0;
-    }
+.main-wrapper{
+    margin:20px 12px;
+    max-width:100%;
+    border-radius:25px;
+}
 
-    .header{
-        height:55px;
-        padding:0 20px;
-    }
+.header{
+    height:55px;
+    padding:0 20px;
+}
 
-    .logo-area{
-        font-size:20px;
-    }
+.logo-area{
+    font-size:20px;
+}
 
-    .logo-area img{
-        width:28px;
-        height:28px;
-    }
+.hero{
+    padding:30px 20px 30px;
+}
 
-    .hero{
-        padding:30px 20px 30px;
-    }
+.hero p{
+    font-size:20px;
+}
 
-    .hero h1{
-        font-size:clamp(28px,9vw,60px);
-    }
+.cta button{
+    font-size:16px;
+    padding:10px 35px;
+}
 
-    .hero p{
-        font-size:18px;
-    }
+.fanta-block{
+    margin:30px 20px;
+    padding:25px;
+}
 
-    .cta button{
-        width:100%;
-        font-size:18px;
-    }
+.fanta-block h2{
+    font-size:28px;
+}
 
-    .green-divider{
-        margin:35px 0 0;
-    }
+.fanta-block p{
+    font-size:16px;
+}
 
-    .fanta-block{
-        margin:30px 20px;
-        padding:25px;
-    }
+.tabs{
+    gap:15px;
+}
 
-    .fanta-block h2{
-        font-size:26px;
-    }
+.cards{
+    flex-direction:column;
+    padding:30px 20px 100px;
+}
 
-    .fanta-block p{
-        font-size:16px;
-    }
+.card{
+    height:auto;
+    padding:30px;
+}
 
-    .tabs{
-        flex-wrap:wrap;
-        gap:15px;
-    }
-
-    .tab{
-        font-size:15px;
-        padding:6px 14px;
-    }
-
-    .cards{
-        flex-direction:column;
-        gap:25px;
-        padding:30px 20px 40px;
-    }
-
-    .card{
-        height:auto;
-        padding:30px;
-    }
-
-    .card h3{
-        font-size:20px;
-    }
-
-    .card p{
-        font-size:16px;
-    }
-
-    .bottom-menu{
-        max-width:100%;
-        border-radius:20px 20px 0 0;
-        padding:12px 0 18px;
-    }
+.bottom-menu{
+    max-width:100%;
+    border-radius:20px 20px 0 0;
+}
 
 }
 
