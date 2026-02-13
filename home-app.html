@@ -184,30 +184,25 @@ body{
 
     .cards{
         display:flex;
-        flex-wrap:wrap;
+        flex-wrap:nowrap;       /* NIENTE ANDARE A CAPO */
         justify-content:center;
-        gap:30px;
-        margin-top:40px;
+        gap:25px;
+        margin-top:50px;
     }
 
     .card{
-        width:42%;           /* due per riga */
-        max-width:320px;
-        height:300px;        /* più basse */
-    }
-
-    .card:nth-child(3){
-        width:60%;           /* terza centrata sotto */
-        max-width:360px;
+        width:240px;            /* più compatte */
+        height:300px;
     }
 
     .card h3{
-        font-size:20px;
+        font-size:18px;
     }
 
     .card p{
-        font-size:14px;
+        font-size:13px;
     }
+
 }
 
 /* ================= MOBILE PREMIUM SLIDER ================= */
