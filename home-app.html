@@ -113,13 +113,14 @@ body{
 
 .cards{
     display:flex;
-    justify-content:space-between;
-    gap:20px;
+    justify-content:center;   /* le centra */
+    gap:40px;                 /* più aria tra le card */
+    margin-top:80px;          /* le abbassa sotto il testo */
+    flex-wrap:wrap;           /* adattamento su schermi medi */
 }
 
 .card{
-    flex:1 1 320px;
-    max-width:380px;
+    flex:1;
     height:420px;
     border-radius:28px;
     padding:30px;
@@ -194,6 +195,22 @@ body{
     .cards{
         margin-top:80px;
     }
+}
+
+/* ================= LAPTOP / SCHERMI MEDI ================= */
+
+@media (max-width:1200px){
+
+    .cards{
+        justify-content:center;
+        gap:25px;
+    }
+
+    .card{
+        width:320px;
+        height:380px;
+    }
+
 }
 /* ================= MOBILE PREMIUM SLIDER ================= */
 
