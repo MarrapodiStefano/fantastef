@@ -113,41 +113,38 @@ body{
 
 .cards{
     display:flex;
-    justify-content:center;   /* centratura */
-    align-items:center;
-    gap:40px;
+    justify-content:space-between;
+    gap:20px;
 }
 
 .card{
-    flex:0 0 380px;           /* larghezza fissa elegante */
-    height:420px;             /* più alte per effetto premium */
+    flex:1;
+    height:420px;
     border-radius:28px;
     padding:30px;
     background:linear-gradient(135deg,#0f2a45,#123a5c);
     display:flex;
     flex-direction:column;
-    justify-content:flex-end; /* testo in basso */
+    justify-content:flex-end;
     align-items:flex-start;
     text-align:left;
     cursor:pointer;
     transition:all 0.3s ease;
+    position:relative;
+    overflow:hidden;
 }
 
-/* Effetto hover elegante desktop */
-
-.card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 25px 40px rgba(0,0,0,0.5);
+.card.active{
     border:3px solid #2ecc71;
 }
 
 .card h3{
-    font-size:26px;
+    font-size:28px;
     margin-bottom:10px;
 }
 
 .card p{
-    font-size:15px;
+    font-size:16px;
     opacity:0.8;
 }
 
