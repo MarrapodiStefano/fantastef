@@ -7,7 +7,7 @@
 
 <style>
 
-/* RESET */
+/* ================= RESET ================= */
 
 *{
     margin:0;
@@ -21,12 +21,12 @@ body{
     color:white;
 }
 
-/* WRAPPER */
+/* ================= WRAPPER ================= */
 
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-    padding:120px 20px 120px 20px;
+    padding:120px 20px 140px 20px;
 }
 
 /* ================= HEADER ================= */
@@ -69,11 +69,11 @@ body{
     animation:logoGlow 3s infinite ease-in-out;
 }
 
-/* Glow animato */
+/* Glow animato logo */
 
 @keyframes logoGlow{
     0%,100%{box-shadow:0 0 0 rgba(46,204,113,0);}
-    50%{box-shadow:0 0 20px rgba(46,204,113,0.8);}
+    50%{box-shadow:0 0 18px rgba(46,204,113,0.7);}
 }
 
 /* LINEA VERDE SOTTILE */
@@ -90,7 +90,7 @@ body{
     z-index:999;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 
 .hero{
     text-align:center;
@@ -145,13 +145,7 @@ body{
     opacity:0.8;
 }
 
-/* DOTS */
-
-.slider-dots{
-    display:none;
-}
-
-/* ================= MOBILE PREMIUM ================= */
+/* ================= MOBILE PREMIUM SLIDER ================= */
 
 @media (max-width:768px){
 
@@ -187,11 +181,19 @@ body{
         height:8px;
         border-radius:50%;
         background:rgba(255,255,255,0.4);
+        transition:0.3s;
     }
 
     .slider-dots span.active{
         background:#2ecc71;
+        transform:scale(1.3);
     }
+}
+
+/* DOTS NASCOSTI SU DESKTOP */
+
+.slider-dots{
+    display:none;
 }
 
 /* ================= BOTTOM MENU ================= */
@@ -222,6 +224,7 @@ body{
     display:block;
     font-size:22px;
     margin-bottom:4px;
+    text-shadow:0 0 10px rgba(46,204,113,0.7);
 }
 
 /* ================= MODAL VIDEO ================= */
@@ -275,10 +278,7 @@ body{
 
     <section class="cards">
 
-        <!-- ====== PRIMA CARD CON SHORT ====== -->
-        <!-- CAMBIA QUI IL LINK DEL VIDEO -->
-        <!-- Sostituisci l'ID dopo embed/ -->
-        <div class="card" onclick="openVideo()">
+        <div class="card active" onclick="openVideo()">
             <h3>🎬 Reel Esclusivo</h3>
             <p>Guarda lo short in anteprima.</p>
         </div>
@@ -295,6 +295,12 @@ body{
 
     </section>
 
+    <div class="slider-dots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+    </div>
+
 </div>
 
 <div class="bottom-menu">
@@ -302,8 +308,6 @@ body{
     <div><span>📊</span>Consigli</div>
     <div><span>⭐</span>Top</div>
 </div>
-
-<!-- VIDEO MODAL -->
 
 <div class="video-modal" id="videoModal">
     <div class="close-btn" onclick="closeVideo()">✕</div>
@@ -324,19 +328,42 @@ window.addEventListener("scroll", function(){
     header.classList.toggle("shrink", window.scrollY > 50);
 });
 
+/* SLIDER ACTIVE CARD */
+
+const cards = document.querySelectorAll('.card');
+const dots = document.querySelectorAll('.slider-dots span');
+const container = document.querySelector('.cards');
+
+function updateActiveCard(){
+    let containerCenter = container.scrollLeft + container.offsetWidth / 2;
+
+    cards.forEach((card, index)=>{
+        let cardCenter = card.offsetLeft + card.offsetWidth / 2;
+
+        if(Math.abs(containerCenter - cardCenter) < card.offsetWidth/2){
+            card.classList.add('active');
+            if(dots[index]) dots[index].classList.add('active');
+        }else{
+            card.classList.remove('active');
+            if(dots[index]) dots[index].classList.remove('active');
+        }
+    });
+}
+
+container.addEventListener('scroll', updateActiveCard);
+window.addEventListener('load', updateActiveCard);
+
 /* VIDEO */
 
 function openVideo(){
-    document.getElementById("videoModal").style.display = "flex";
-
-    // ====== QUI CAMBI IL LINK VIDEO ======
-    document.getElementById("youtubeFrame").src =
+    document.getElementById("videoModal").style.display="flex";
+    document.getElementById("youtubeFrame").src=
     "https://www.youtube.com/embed/-DmT9bhRsxI?autoplay=1";
 }
 
 function closeVideo(){
-    document.getElementById("videoModal").style.display = "none";
-    document.getElementById("youtubeFrame").src = "";
+    document.getElementById("videoModal").style.display="none";
+    document.getElementById("youtubeFrame").src="";
 }
 
 </script>
