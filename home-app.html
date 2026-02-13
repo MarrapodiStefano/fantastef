@@ -178,19 +178,27 @@ body{
     display:none;
 }
 
-/* ================= TABLET CLEAN FIX ================= */
+/* ================= TABLET DEFINITIVO ================= */
 
 @media (max-width:1024px) and (min-width:769px){
 
     .cards{
+        display:flex;
+        flex-wrap:wrap;
         justify-content:center;
         gap:30px;
-        margin-top:50px;
+        margin-top:40px;
     }
 
     .card{
-        width:280px;
-        height:340px;
+        width:42%;           /* due per riga */
+        max-width:320px;
+        height:300px;        /* più basse */
+    }
+
+    .card:nth-child(3){
+        width:60%;           /* terza centrata sotto */
+        max-width:360px;
     }
 
     .card h3{
@@ -200,7 +208,6 @@ body{
     .card p{
         font-size:14px;
     }
-
 }
 
 /* ================= MOBILE PREMIUM SLIDER ================= */
