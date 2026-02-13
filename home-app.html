@@ -188,9 +188,8 @@ body{
         overflow-x:auto;
         scroll-snap-type:x mandatory;
         -webkit-overflow-scrolling:touch;
-        justify-content:flex-start;
-        gap:20px;
-        padding:0 10%;
+        padding:0;
+        gap:0;
     }
 
     .cards::-webkit-scrollbar{
@@ -198,15 +197,18 @@ body{
     }
 
     .card{
-        flex:0 0 80%;
-        scroll-snap-align:center;
+        flex:0 0 100%;
+        width:100%;
         height:360px;
+        scroll-snap-align:center;
         border:3px solid transparent;
     }
 
     .card.active{
         border:3px solid #2ecc71;
     }
+
+}
 
     .slider-dots{
         display:flex;
