@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fantastef – Home</title>
+<title>Fantastef</title>
 
 <style>
 
-/* =========================
-   RESET
-========================= */
+/* ======================
+   RESET BASE
+====================== */
 
 *{
     margin:0;
@@ -21,25 +21,22 @@
 body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     background:url("stadium-bg.png") center center / cover no-repeat fixed;
-    min-height:100vh;
     color:white;
 }
 
-
-/* =========================
-   CONTENITORE PRINCIPALE
-========================= */
+/* ======================
+   WRAPPER
+====================== */
 
 .main-wrapper{
-    max-width:1200px;
-    margin:0 auto;
-    padding:40px 20px 120px;
+    max-width:1750px;
+    margin:auto;
+    padding:40px 20px 120px 20px;
 }
 
-
-/* =========================
+/* ======================
    HERO
-========================= */
+====================== */
 
 .hero{
     text-align:center;
@@ -47,23 +44,23 @@ body{
 }
 
 .hero h1{
-    font-size:clamp(32px,5vw,60px);
-    margin-bottom:15px;
+    font-size:clamp(38px,5vw,100px);
+    font-weight:800;
 }
 
-.hero span{
+.hero h1 span{
     color:#2ecc71;
 }
 
 .hero p{
-    font-size:18px;
-    opacity:0.9;
+    font-size:20px;
+    margin-top:15px;
+    opacity:0.85;
 }
 
-
-/* =========================
+/* ======================
    CARDS DESKTOP
-========================= */
+====================== */
 
 .cards{
     display:flex;
@@ -73,56 +70,48 @@ body{
 
 .card{
     flex:1;
-    min-width:0;
-    height:240px;
-    background:rgba(10,25,50,0.85);
+    height:260px;
     border-radius:28px;
-    padding:30px 20px;
-
+    padding:30px;
+    background:linear-gradient(135deg,#0f2a45,#123a5c);
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-
     text-align:center;
-    backdrop-filter:blur(10px);
-    transition:transform 0.3s ease;
-}
-
-.card:hover{
-    transform:translateY(-6px);
+    transition:all 0.3s ease;
 }
 
 .card h3{
-    font-size:24px;
+    font-size:28px;
     margin-bottom:15px;
 }
 
 .card p{
-    font-size:15px;
-    max-width:90%;
-    opacity:0.9;
+    font-size:16px;
+    opacity:0.8;
 }
 
+/* ======================
+   DOTS
+====================== */
 
-/* =========================
-   MOBILE VERSION
-========================= */
+.slider-dots{
+    display:none;
+}
+
+/* ======================
+   MOBILE PREMIUM SLIDER
+====================== */
 
 @media (max-width:768px){
 
-    .main-wrapper{
-        padding:30px 0 120px;
-    }
-
     .cards{
-        flex-wrap:nowrap;
         overflow-x:auto;
-        gap:20px;
-        padding:0 20px;
-
         scroll-snap-type:x mandatory;
         -webkit-overflow-scrolling:touch;
+        gap:20px;
+        padding:0 20px;
     }
 
     .cards::-webkit-scrollbar{
@@ -130,48 +119,38 @@ body{
     }
 
     .card{
-        flex:0 0 80%;
+        flex:0 0 85%;
         height:220px;
         scroll-snap-align:center;
+        border:2px solid transparent;
     }
 
-    .card h3{
-        font-size:22px;
+    .card.active{
+        transform:scale(1.05);
+        border:2px solid #2ecc71;
+        box-shadow:0 0 30px rgba(46,204,113,0.6);
     }
 
-    .card p{
-        font-size:14px;
+    .slider-dots{
+        display:flex;
+        justify-content:center;
+        gap:10px;
+        margin-top:20px;
     }
 
-}
+    .slider-dots span{
+        width:8px;
+        height:8px;
+        border-radius:50%;
+        background:rgba(255,255,255,0.4);
+        transition:all 0.3s ease;
+    }
 
+    .slider-dots span.active{
+        background:#2ecc71;
+        transform:scale(1.3);
+    }
 
-/* =========================
-   BOTTOM MENU
-========================= */
-
-.bottom-menu{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:rgba(0,0,20,0.9);
-    backdrop-filter:blur(10px);
-    display:flex;
-    justify-content:space-around;
-    padding:15px 0;
-    font-size:14px;
-}
-
-.bottom-menu a{
-    color:white;
-    text-decoration:none;
-    opacity:0.8;
-}
-
-.bottom-menu a.active{
-    color:#2ecc71;
-    opacity:1;
 }
 
 </style>
@@ -181,17 +160,14 @@ body{
 
 <div class="main-wrapper">
 
-    <!-- HERO -->
-    <div class="hero">
-        <h1>HERE WE… <span>GOL!</span></h1>
+    <section class="hero">
+        <h1>HERE WE... <span>GOL!</span></h1>
         <p>La FantaRevolution è qui.</p>
-    </div>
+    </section>
 
+    <section class="cards">
 
-    <!-- CARDS -->
-    <div class="cards">
-
-        <div class="card">
+        <div class="card active">
             <h3>Algoritmo Schieramento</h3>
             <p>Scopri chi far giocare.</p>
         </div>
@@ -206,19 +182,42 @@ body{
             <p>I top selezionati.</p>
         </div>
 
+    </section>
+
+    <div class="slider-dots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
     </div>
 
 </div>
 
+<script>
 
-<!-- MENU -->
-<div class="bottom-menu">
-    <a href="#" class="active">HOME</a>
-    <a href="#">CONSIGLI</a>
-    <a href="#">LIVE</a>
-    <a href="#">VOTI</a>
-    <a href="#">STATS</a>
-</div>
+const cards = document.querySelectorAll('.card');
+const dots = document.querySelectorAll('.slider-dots span');
+const container = document.querySelector('.cards');
+
+function updateActiveCard() {
+    let containerCenter = container.scrollLeft + container.offsetWidth / 2;
+
+    cards.forEach((card, index) => {
+        let cardCenter = card.offsetLeft + card.offsetWidth / 2;
+
+        if (Math.abs(containerCenter - cardCenter) < card.offsetWidth / 2) {
+            card.classList.add('active');
+            dots[index].classList.add('active');
+        } else {
+            card.classList.remove('active');
+            dots[index].classList.remove('active');
+        }
+    });
+}
+
+container.addEventListener('scroll', updateActiveCard);
+window.addEventListener('load', updateActiveCard);
+
+</script>
 
 </body>
 </html>
