@@ -107,8 +107,8 @@ body{
 
 .card{
     flex:0 0 auto;
-    width:360px;
-    height:380px;
+    width:clamp(280px, 25vw, 360px);
+    aspect-ratio: 4 / 5;   /* proporzione elegante */
     border-radius:28px;
     padding:30px;
     background:linear-gradient(135deg,#0f2a45,#123a5c);
@@ -178,29 +178,6 @@ body{
     display:none;
 }
 
-/* ================= LAPTOP ADJUST ================= */
-
-@media (max-width:1400px) and (min-width:769px){
-
-    .cards{
-        gap:30px;
-        margin-top:60px;
-    }
-
-    .card{
-        width:320px;      /* prima era 380px */
-        height:360px;     /* prima era 420px */
-    }
-
-    .card h3{
-        font-size:22px;
-    }
-
-    .card p{
-        font-size:14px;
-    }
-
-}
 
 /* ================= MOBILE PREMIUM SLIDER ================= */
 
@@ -223,7 +200,7 @@ body{
 .card{
     flex:0 0 100%;
     width:100%;
-    height:420px;
+    aspect-ratio: 4 / 5;
     scroll-snap-align:center;
     border:3px solid transparent;
 }
