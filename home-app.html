@@ -109,11 +109,11 @@ body{
     .cards{
         display:flex;
         overflow-x:auto;
-        overflow-y:hidden;              /* blocca movimento verticale */
+        overflow-y:hidden;
         scroll-snap-type:x mandatory;
         -webkit-overflow-scrolling:touch;
-        gap:0;
-        padding:0 10%;
+        padding:0;
+        margin-top:40px;
     }
 
     .cards::-webkit-scrollbar{
@@ -121,35 +121,40 @@ body{
     }
 
     .card{
-        flex:0 0 80%;                   /* 1 card visibile */
-        margin:0 10%;
-        height:260px;
+        flex:0 0 100%;                /* 1 card piena */
         scroll-snap-align:center;
+        height:260px;
         border-radius:28px;
-        overflow:hidden;                /* 🔥 elimina alone angoli */
-        transition:all .3s ease;
+        margin:0;
+        overflow:hidden;
         border:3px solid transparent;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+        transition:all .3s ease;
     }
 
     .card.active{
         border:3px solid #2ecc71;
-        box-shadow:0 0 25px rgba(46,204,113,0.6);
+        box-shadow:0 0 30px rgba(46,204,113,0.6);
         transform:scale(1.02);
     }
 
     .card h3{
-        font-size:22px;
+        font-size:24px;
     }
 
     .card p{
-        font-size:15px;
+        font-size:16px;
     }
 
     .dots{
         display:flex;
         justify-content:center;
         gap:8px;
-        margin-top:15px;
+        margin-top:20px;
     }
 
     .dot{
@@ -157,7 +162,7 @@ body{
         height:8px;
         border-radius:50%;
         background:rgba(255,255,255,0.4);
-        transition:all .3s ease;
+        transition:.3s;
     }
 
     .dot.active{
