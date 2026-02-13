@@ -17,7 +17,7 @@
 
 body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-    background:url("stadium-bg.png") center center / cover no-repeat fixed;
+    background:url("stadium-bg.png") center center / cover no-repeat;
     color:white;
 }
 
@@ -119,24 +119,28 @@ body{
 
 .card{
     flex:1;
-    height:380px;
+    height:420px;
     border-radius:28px;
     padding:30px;
     background:linear-gradient(135deg,#0f2a45,#123a5c);
     display:flex;
     flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+    justify-content:flex-end;
+    align-items:flex-start;
+    text-align:left;
     cursor:pointer;
     transition:all 0.3s ease;
     position:relative;
     overflow:hidden;
 }
 
+.card.active{
+    border:3px solid #2ecc71;
+}
+
 .card h3{
     font-size:28px;
-    margin-bottom:15px;
+    margin-bottom:10px;
 }
 
 .card p{
@@ -144,36 +148,39 @@ body{
     opacity:0.8;
 }
 
-/* ================= VIDEO CARD PREMIUM ================= */
+/* ================= VIDEO THUMB PREMIUM ================= */
 
 .video-card{
-    background:url("https://img.youtube.com/vi/-DmT9bhRsxI/maxresdefault.jpg") center center / cover no-repeat;
+    background-image:url("https://img.youtube.com/vi/-DmT9bhRsxI/maxresdefault.jpg");
+    background-size:cover;
+    background-position:center;
 }
 
 .video-overlay{
     position:absolute;
     inset:0;
-    background:rgba(0,0,0,0.45);
-}
-
-.video-content{
-    position:relative;
-    z-index:2;
+    background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
 }
 
 .play-icon{
     position:absolute;
     top:50%;
     left:50%;
-    transform:translate(-50%, -50%);
-    font-size:60px;
-    color:white;
-    z-index:2;
-    transition:0.3s ease;
+    transform:translate(-50%,-50%);
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-.video-card:hover .play-icon{
-    transform:translate(-50%, -50%) scale(1.15);
+.play-icon::after{
+    content:"";
+    border-left:20px solid white;
+    border-top:12px solid transparent;
+    border-bottom:12px solid transparent;
 }
 
 /* ================= DOTS DESKTOP OFF ================= */
@@ -186,6 +193,10 @@ body{
 
 @media (max-width:768px){
 
+    body{
+        background-attachment:scroll;
+    }
+
     .cards{
         overflow-x:auto;
         scroll-snap-type:x mandatory;
@@ -197,9 +208,11 @@ body{
     }
 
     .card{
-        flex:0 0 100%;
+        flex:0 0 85%;
+        margin:0 auto;
         scroll-snap-align:center;
         border:3px solid transparent;
+        height:380px;
     }
 
     .card.active{
@@ -307,70 +320,58 @@ body{
 
 <div class="main-wrapper">
 
-    <section class="hero">
-        <h1>HERE WE... <span>GOL!</span></h1>
-        <p>La FantaRevolution è qui.</p>
-    </section>
+<section class="hero">
+    <h1>HERE WE... <span>GOL!</span></h1>
+    <p>La FantaRevolution è qui.</p>
+</section>
 
-    <section class="cards">
+<section class="cards">
 
-        <!-- VIDEO CARD -->
-        <div class="card video-card active" onclick="openVideo()">
-            <div class="video-overlay"></div>
-            <div class="video-content">
-                <h3>Reel Esclusivo</h3>
-                <p>Guarda lo short in anteprima.</p>
-            </div>
-            <div class="play-icon">▶</div>
-        </div>
-
-        <div class="card">
-            <h3>FantaConsigli</h3>
-            <p>Shorts settimanali.</p>
-        </div>
-
-        <div class="card">
-            <h3>Dream Team</h3>
-            <p>I top selezionati.</p>
-        </div>
-
-    </section>
-
-    <div class="slider-dots">
-        <span class="active"></span>
-        <span></span>
-        <span></span>
+    <div class="card video-card active" onclick="openVideo()">
+        <div class="video-overlay"></div>
+        <div class="play-icon"></div>
+        <h3>Reel Esclusivo</h3>
+        <p>Guarda lo short in anteprima.</p>
     </div>
+
+    <div class="card">
+        <h3>FantaConsigli</h3>
+        <p>Shorts settimanali.</p>
+    </div>
+
+    <div class="card">
+        <h3>Dream Team</h3>
+        <p>I top selezionati.</p>
+    </div>
+
+</section>
+
+<div class="slider-dots">
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+</div>
 
 </div>
 
 <div class="bottom-menu">
-
     <div class="bottom-item">
         <svg viewBox="0 0 24 24"><path d="M3 10L12 3l9 7v10H3z"/></svg>
         Home
     </div>
-
     <div class="bottom-item">
         <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20V6"/></svg>
         Consigli
     </div>
-
     <div class="bottom-item">
         <svg viewBox="0 0 24 24"><path d="M12 17l-5 3 1-6-4-4 6-.5L12 3l2 6.5 6 .5-4 4 1 6z"/></svg>
         Top
     </div>
-
 </div>
 
 <div class="video-modal" id="videoModal">
     <div class="close-btn" onclick="closeVideo()">✕</div>
-    <iframe id="youtubeFrame"
-        src=""
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-    </iframe>
+    <iframe id="youtubeFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 <script>
@@ -392,10 +393,10 @@ function updateActiveCard(){
 
         if(Math.abs(containerCenter - cardCenter) < card.offsetWidth/2){
             card.classList.add('active');
-            if(dots[index]) dots[index].classList.add('active');
+            dots[index].classList.add('active');
         }else{
             card.classList.remove('active');
-            if(dots[index]) dots[index].classList.remove('active');
+            dots[index].classList.remove('active');
         }
     });
 }
