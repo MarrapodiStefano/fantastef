@@ -179,29 +179,33 @@ body{
     display:none;
 }
 
-/* ================= TABLET DEFINITIVO ================= */
-
 @media (max-width:1024px) and (min-width:769px){
 
-    .cards{
+    .main-wrapper{
         display:flex;
-        flex-wrap:nowrap;       /* NIENTE ANDARE A CAPO */
+        flex-direction:column;
         justify-content:center;
-        gap:25px;
-        margin-top:50px;
+        min-height:100vh;
+    }
+
+    .cards{
+        justify-content:center;
+        gap:30px;
+        margin-top:40px;
+        flex-wrap:wrap;
     }
 
     .card{
-        width:240px;            /* più compatte */
-        height:300px;
+        width:260px;
+        height:320px;
     }
 
     .card h3{
-        font-size:18px;
+        font-size:20px;
     }
 
     .card p{
-        font-size:13px;
+        font-size:14px;
     }
 
 }
