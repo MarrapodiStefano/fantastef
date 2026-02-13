@@ -179,33 +179,39 @@ body{
     display:none;
 }
 
+/* ================= TABLET SLIDER (come mobile ma più grande) ================= */
+
 @media (max-width:1024px) and (min-width:769px){
 
-    .main-wrapper{
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        min-height:100vh;
+    .cards{
+        overflow-x:auto;
+        scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
+        justify-content:flex-start;
+        padding:0 20px;
     }
 
-    .cards{
-        justify-content:center;
-        gap:30px;
-        margin-top:40px;
-        flex-wrap:wrap;
+    .cards::-webkit-scrollbar{
+        display:none;
     }
 
     .card{
-        width:260px;
-        height:320px;
+        flex:0 0 80%;
+        width:80%;
+        height:380px;
+        scroll-snap-align:center;
+        border:3px solid transparent;
     }
 
-    .card h3{
-        font-size:20px;
+    .card.active{
+        border:3px solid #2ecc71;
     }
 
-    .card p{
-        font-size:14px;
+    .slider-dots{
+        display:flex;
+        justify-content:center;
+        gap:10px;
+        margin-top:20px;
     }
 
 }
