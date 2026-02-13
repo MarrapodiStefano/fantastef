@@ -191,10 +191,21 @@ body{
     display:none;
 }
 
-@media (min-width:769px){
+/* ================= LAPTOP RANGE FIX ================= */
+
+@media (min-width:769px) and (max-width:1200px){
+
     .cards{
+        justify-content:center;
+        gap:25px;
         margin-top:80px;
     }
+
+    .card{
+        width:320px;
+        height:380px;
+    }
+
 }
 
 /* ================= MOBILE PREMIUM SLIDER ================= */
