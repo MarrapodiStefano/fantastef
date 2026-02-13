@@ -73,8 +73,6 @@ body{
     50%{box-shadow:0 0 20px rgba(46,204,113,0.8);}
 }
 
-/* LINEA VERDE SOTTILE */
-
 .header-line{
     position:fixed;
     top:85px;
@@ -84,14 +82,13 @@ body{
     max-width:1750px;
     height:1px;
     background:#2ecc71;
-    z-index:999;
 }
 
 /* ================= HERO ================= */
 
 .hero{
     text-align:center;
-    margin-bottom:60px;
+    margin-bottom:50px;
 }
 
 .hero h1{
@@ -107,89 +104,64 @@ body{
 
 .cards{
     display:flex;
+    justify-content:space-between;
     gap:20px;
 }
 
-/* CARD BASE */
+/* DESKTOP */
 
 .card{
     flex:1;
+    height:260px;
     border-radius:28px;
     position:relative;
     overflow:hidden;
     cursor:pointer;
+    background:linear-gradient(135deg,#0f2a45,#123a5c);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
     transition:all 0.3s ease;
+    border:3px solid transparent;
 }
 
-/* Vertical 9:16 ratio */
-.card::before{
-    content:"";
-    display:block;
-    padding-top:160%; /* più alta che larga */
+.card.active{
+    border:3px solid #2ecc71;
 }
 
-/* Background image */
-
-.card-bg{
-    position:absolute;
-    inset:0;
-    background-size:cover;
-    background-position:center;
-}
-
-/* Overlay scuro */
-
-.card-overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
-}
-
-/* Contenuto */
-
-.card-content{
-    position:absolute;
-    bottom:20px;
-    left:20px;
-    right:20px;
-}
-
-.card-content h3{
+.card h3{
     font-size:22px;
-    margin-bottom:6px;
 }
 
-.card-content p{
+.card p{
     font-size:14px;
     opacity:0.8;
 }
 
-/* Play button */
+/* ================= MOBILE ================= */
 
-.play-btn{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:65px;
-    height:65px;
-    border-radius:50%;
-    background:rgba(0,0,0,0.6);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
+@media (max-width:768px){
 
-.play-btn svg{
-    width:26px;
-    height:26px;
-    fill:#2ecc71;
-}
+    .cards{
+        overflow-x:auto;
+        scroll-snap-type:x mandatory;
+        justify-content:center;
+        padding:0 20px;
+    }
 
-/* Active border */
+    .cards::-webkit-scrollbar{
+        display:none;
+    }
 
-.card.active{
-    border:3px solid #2ecc71;
+    .card{
+        flex:0 0 60%; /* RIDOTTE DEL 50% */
+        height:360px; /* più alte che larghe */
+        scroll-snap-align:center;
+        margin:0 10px;
+    }
+
 }
 
 /* ================= DOTS ================= */
@@ -199,21 +171,6 @@ body{
 }
 
 @media (max-width:768px){
-
-    .cards{
-        overflow-x:auto;
-        scroll-snap-type:x mandatory;
-    }
-
-    .cards::-webkit-scrollbar{
-        display:none;
-    }
-
-    .card{
-        flex:0 0 80%;
-        scroll-snap-align:center;
-        border:3px solid transparent;
-    }
 
     .slider-dots{
         display:flex;
@@ -227,6 +184,7 @@ body{
         height:8px;
         border-radius:50%;
         background:rgba(255,255,255,0.4);
+        transition:0.3s;
     }
 
     .slider-dots span.active{
@@ -250,6 +208,7 @@ body{
     display:flex;
     justify-content:space-around;
     align-items:center;
+    z-index:1000;
 }
 
 .bottom-item{
@@ -294,47 +253,19 @@ body{
 
 <section class="cards">
 
-    <!-- CARD 1 VIDEO -->
-    <div class="card active" onclick="openVideo()">
-        <div class="card-bg"
-        style="background-image:url('https://img.youtube.com/vi/-DmT9bhRsxI/maxresdefault.jpg')">
-        </div>
-        <div class="card-overlay"></div>
-
-        <div class="play-btn">
-            <svg viewBox="0 0 24 24">
-                <polygon points="5,3 19,12 5,21"></polygon>
-            </svg>
-        </div>
-
-        <div class="card-content">
-            <h3>Reel Esclusivo</h3>
-            <p>Guarda lo short in anteprima.</p>
-        </div>
+    <div class="card active">
+        <h3>Reel Esclusivo</h3>
+        <p>Guarda lo short in anteprima.</p>
     </div>
 
-    <!-- CARD 2 -->
     <div class="card">
-        <div class="card-bg"
-        style="background-image:url('stadium-bg.png')">
-        </div>
-        <div class="card-overlay"></div>
-        <div class="card-content">
-            <h3>FantaConsigli</h3>
-            <p>Shorts settimanali.</p>
-        </div>
+        <h3>FantaConsigli</h3>
+        <p>Shorts settimanali.</p>
     </div>
 
-    <!-- CARD 3 -->
     <div class="card">
-        <div class="card-bg"
-        style="background-image:url('stadium-bg.png')">
-        </div>
-        <div class="card-overlay"></div>
-        <div class="card-content">
-            <h3>Dream Team</h3>
-            <p>I top selezionati.</p>
-        </div>
+        <h3>Dream Team</h3>
+        <p>I top selezionati.</p>
     </div>
 
 </section>
@@ -347,10 +278,55 @@ body{
 
 </div>
 
+<div class="bottom-menu">
+
+    <div class="bottom-item">
+        <svg viewBox="0 0 24 24"><path d="M3 10L12 3l9 7v10H3z"/></svg>
+        Home
+    </div>
+
+    <div class="bottom-item">
+        <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20V6"/></svg>
+        Consigli
+    </div>
+
+    <div class="bottom-item">
+        <svg viewBox="0 0 24 24"><path d="M12 17l-5 3 1-6-4-4 6-.5L12 3l2 6.5 6 .5-4 4 1 6z"/></svg>
+        Top
+    </div>
+
+</div>
+
 <script>
-function openVideo(){
-    window.open("https://youtube.com/shorts/-DmT9bhRsxI","_blank");
+
+window.addEventListener("scroll", function(){
+    const header = document.querySelector(".header");
+    header.classList.toggle("shrink", window.scrollY > 50);
+});
+
+const cards = document.querySelectorAll('.card');
+const dots = document.querySelectorAll('.slider-dots span');
+const container = document.querySelector('.cards');
+
+function updateActiveCard(){
+    let containerCenter = container.scrollLeft + container.offsetWidth / 2;
+
+    cards.forEach((card, index)=>{
+        let cardCenter = card.offsetLeft + card.offsetWidth / 2;
+
+        if(Math.abs(containerCenter - cardCenter) < card.offsetWidth/2){
+            card.classList.add('active');
+            dots[index].classList.add('active');
+        }else{
+            card.classList.remove('active');
+            dots[index].classList.remove('active');
+        }
+    });
 }
+
+container.addEventListener('scroll', updateActiveCard);
+window.addEventListener('load', updateActiveCard);
+
 </script>
 
 </body>
