@@ -21,6 +21,12 @@ body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     background:url("stadium-bg.png") center center / cover no-repeat fixed;
     color:white;
+    opacity:0;
+    animation:pageFade 0.8s ease forwards;
+}
+
+@keyframes pageFade{
+    to{opacity:1;}
 }
 
 /* ======================
@@ -45,47 +51,45 @@ body{
     width:100%;
     max-width:1750px;
     height:80px;
-    background:rgba(0,0,0,0.7);
-    backdrop-filter:blur(10px);
     display:flex;
     align-items:center;
     justify-content:center;
-    z-index:1000;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(10px);
     transition:all 0.3s ease;
+    z-index:1000;
+    opacity:0;
+    animation:topBarEnter 0.7s ease 0.2s forwards;
+}
+
+@keyframes topBarEnter{
+    to{opacity:1;}
 }
 
 .top-bar.shrink{
     height:60px;
-    background:rgba(0,0,0,0.85);
 }
 
-.logo-area{
+.top-bar-content{
     display:flex;
     align-items:center;
     gap:12px;
-    font-size:24px;
+    font-size:22px;
     font-weight:600;
 }
 
-.logo-area img{
-    width:36px;
-    height:36px;
-    border-radius:50%;
+.top-bar-content img{
+    width:32px;
+    height:32px;
 }
 
-.top-line{
+.top-bar-line{
     position:absolute;
     bottom:0;
     left:0;
     width:100%;
-    height:1.5px;
+    height:2px;
     background:#2ecc71;
-    box-shadow:0 0 6px rgba(46,204,113,0.6);
-}
-
-.top-bar.shrink .top-line{
-    height:1px;
-    box-shadow:0 0 4px rgba(46,204,113,0.5);
 }
 
 /* ======================
@@ -95,6 +99,16 @@ body{
 .hero{
     text-align:center;
     margin-bottom:60px;
+    opacity:0;
+    transform:translateY(30px);
+    animation:heroEnter 0.9s ease 0.3s forwards;
+}
+
+@keyframes heroEnter{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 .hero h1{
@@ -134,6 +148,25 @@ body{
     align-items:center;
     text-align:center;
     transition:all 0.3s ease;
+    opacity:0;
+    transform:translateY(40px);
+}
+
+.card:nth-child(1){
+    animation:cardEnter 0.7s ease 0.6s forwards;
+}
+.card:nth-child(2){
+    animation:cardEnter 0.7s ease 0.8s forwards;
+}
+.card:nth-child(3){
+    animation:cardEnter 0.7s ease 1s forwards;
+}
+
+@keyframes cardEnter{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 .card h3{
@@ -155,19 +188,17 @@ body{
 }
 
 /* ======================
-   MOBILE SLIDER
+   MOBILE PREMIUM SLIDER
 ====================== */
 
 @media (max-width:768px){
 
     .cards{
-        display:flex;
         overflow-x:auto;
         overflow-y:hidden;
         scroll-snap-type:x mandatory;
         -webkit-overflow-scrolling:touch;
         touch-action:pan-x;
-        padding:0;
     }
 
     .cards::-webkit-scrollbar{
@@ -186,7 +217,6 @@ body{
 
     .card.active{
         border:3px solid #2ecc71;
-        box-shadow:none;
     }
 
     .slider-dots{
@@ -222,29 +252,35 @@ body{
     transform:translateX(-50%);
     width:100%;
     max-width:1750px;
-    background:rgba(0,0,0,0.9);
+    height:70px;
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(10px);
     display:flex;
     justify-content:space-around;
-    padding:12px 0 18px;
-    backdrop-filter:blur(10px);
+    align-items:center;
+    z-index:1000;
 }
 
 .bottom-menu div{
-    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
     font-size:12px;
     color:white;
+    opacity:0.6;
+    transition:all 0.3s ease;
 }
 
-.bottom-menu span{
-    display:block;
-    font-size:22px;
-    margin-bottom:4px;
+.bottom-menu div.active{
     color:#2ecc71;
-    text-shadow:0 0 8px rgba(46,204,113,0.7);
+    opacity:1;
 }
 
-.bottom-menu .active{
-    color:#2ecc71;
+.bottom-menu svg{
+    width:24px;
+    height:24px;
+    margin-bottom:5px;
+    stroke:currentColor;
 }
 
 </style>
@@ -253,11 +289,11 @@ body{
 <body>
 
 <div class="top-bar">
-    <div class="logo-area">
-        <img src="logo.png">
+    <div class="top-bar-content">
+        <img src="logo.png" alt="logo">
         FantaStef
     </div>
-    <div class="top-line"></div>
+    <div class="top-bar-line"></div>
 </div>
 
 <div class="main-wrapper">
@@ -295,18 +331,37 @@ body{
 </div>
 
 <div class="bottom-menu">
-    <div class="active"><span>🏠</span>HOME</div>
-    <div><span>📊</span>CONSIGLI</div>
-    <div><span>🔴</span>LIVE</div>
-    <div><span>⭐</span>STATS</div>
+    <div class="active">
+        <svg fill="none" viewBox="0 0 24 24"><path d="M3 10L12 3l9 7v11H3z" stroke-width="2"/></svg>
+        HOME
+    </div>
+    <div>
+        <svg fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke-width="2"/></svg>
+        CONSIGLI
+    </div>
+    <div>
+        <svg fill="none" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" stroke-width="2"/></svg>
+        LIVE
+    </div>
 </div>
 
 <script>
 
+/* SHRINK HEADER */
+window.addEventListener("scroll", function(){
+    const topBar = document.querySelector(".top-bar");
+    if(window.scrollY > 50){
+        topBar.classList.add("shrink");
+    }else{
+        topBar.classList.remove("shrink");
+    }
+});
+
+/* SLIDER ACTIVE CARD */
+
 const cards = document.querySelectorAll('.card');
 const dots = document.querySelectorAll('.slider-dots span');
 const container = document.querySelector('.cards');
-const topBar = document.querySelector('.top-bar');
 
 function updateActiveCard() {
     let containerCenter = container.scrollLeft + container.offsetWidth / 2;
@@ -316,24 +371,16 @@ function updateActiveCard() {
 
         if (Math.abs(containerCenter - cardCenter) < card.offsetWidth / 2) {
             card.classList.add('active');
-            dots[index].classList.add('active');
+            if(dots[index]) dots[index].classList.add('active');
         } else {
             card.classList.remove('active');
-            dots[index].classList.remove('active');
+            if(dots[index]) dots[index].classList.remove('active');
         }
     });
 }
 
 container.addEventListener('scroll', updateActiveCard);
 window.addEventListener('load', updateActiveCard);
-
-window.addEventListener('scroll', function(){
-    if(window.scrollY > 50){
-        topBar.classList.add('shrink');
-    } else {
-        topBar.classList.remove('shrink');
-    }
-});
 
 </script>
 
