@@ -405,9 +405,13 @@ container.addEventListener('scroll', updateActiveCard);
 window.addEventListener('load', updateActiveCard);
 
 function openVideo(){
-    document.getElementById("videoModal").style.display="flex";
-    document.getElementById("youtubeFrame").src=
-    "https://www.youtube.com/embed/-DmT9bhRsxI?autoplay=1";
+    const modal = document.getElementById("videoModal");
+    const frame = document.getElementById("youtubeFrame");
+
+    modal.style.display="flex";
+
+    frame.src =
+    "https://www.youtube.com/embed/-DmT9bhRsxI?autoplay=1&mute=1&playsinline=1&rel=0";
 }
 
 function closeVideo(){
