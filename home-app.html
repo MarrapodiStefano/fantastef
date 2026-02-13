@@ -121,34 +121,78 @@ body{
     flex:1;
     height:260px;
     border-radius:28px;
-    padding:30px;
-    background:linear-gradient(135deg,#0f2a45,#123a5c);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+    overflow:hidden;
+    position:relative;
     cursor:pointer;
     transition:all 0.3s ease;
 }
 
-.card h3{
-    font-size:28px;
-    margin-bottom:15px;
+/* ===== PREMIUM THUMBNAIL CARD ===== */
+
+.card.video-card{
+    background:url("https://img.youtube.com/vi/-DmT9bhRsxI/maxresdefault.jpg") center center / cover no-repeat;
 }
 
-.card p{
-    font-size:16px;
-    opacity:0.8;
+.card-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.3));
 }
 
-/* ================= DOTS (DESKTOP OFF) ================= */
+.card-content{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    right:20px;
+    z-index:2;
+}
+
+.card-content h3{
+    font-size:24px;
+    margin-bottom:6px;
+}
+
+.card-content p{
+    font-size:14px;
+    opacity:0.85;
+}
+
+/* PLAY BUTTON */
+
+.play-button{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:3;
+    transition:all 0.3s ease;
+}
+
+.play-button svg{
+    width:30px;
+    height:30px;
+    fill:#2ecc71;
+}
+
+/* Glow al tap */
+
+.card:active{
+    box-shadow:0 0 25px rgba(46,204,113,0.7);
+    transform:scale(0.98);
+}
+
+/* ================= DOTS ================= */
 
 .slider-dots{
     display:none;
 }
-
-/* ================= MOBILE PREMIUM SLIDER ================= */
 
 @media (max-width:768px){
 
@@ -172,8 +216,6 @@ body{
         border:3px solid #2ecc71;
     }
 
-    /* ===== DOTS MOBILE ===== */
-
     .slider-dots{
         display:flex;
         justify-content:center;
@@ -195,7 +237,7 @@ body{
     }
 }
 
-/* ================= BOTTOM MENU MINIMAL GLOW ================= */
+/* ================= BOTTOM MENU ================= */
 
 .bottom-menu{
     position:fixed;
@@ -275,36 +317,50 @@ body{
 
 <div class="main-wrapper">
 
-    <section class="hero">
-        <h1>HERE WE... <span>GOL!</span></h1>
-        <p>La FantaRevolution è qui.</p>
-    </section>
+<section class="hero">
+    <h1>HERE WE... <span>GOL!</span></h1>
+    <p>La FantaRevolution è qui.</p>
+</section>
 
-    <section class="cards">
+<section class="cards">
 
-        <div class="card active" onclick="openVideo()">
+    <!-- CARD VIDEO PREMIUM -->
+    <div class="card video-card active" onclick="openVideo()">
+        <div class="card-overlay"></div>
+
+        <div class="play-button">
+            <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"/>
+            </svg>
+        </div>
+
+        <div class="card-content">
             <h3>Reel Esclusivo</h3>
             <p>Guarda lo short in anteprima.</p>
         </div>
+    </div>
 
-        <div class="card">
+    <div class="card">
+        <div class="card-content">
             <h3>FantaConsigli</h3>
             <p>Shorts settimanali.</p>
         </div>
+    </div>
 
-        <div class="card">
+    <div class="card">
+        <div class="card-content">
             <h3>Dream Team</h3>
             <p>I top selezionati.</p>
         </div>
-
-    </section>
-
-    <!-- DOTS -->
-    <div class="slider-dots">
-        <span class="active"></span>
-        <span></span>
-        <span></span>
     </div>
+
+</section>
+
+<div class="slider-dots">
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+</div>
 
 </div>
 
@@ -338,34 +394,6 @@ body{
 </div>
 
 <script>
-
-window.addEventListener("scroll", function(){
-    const header = document.querySelector(".header");
-    header.classList.toggle("shrink", window.scrollY > 50);
-});
-
-const cards = document.querySelectorAll('.card');
-const dots = document.querySelectorAll('.slider-dots span');
-const container = document.querySelector('.cards');
-
-function updateActiveCard(){
-    let containerCenter = container.scrollLeft + container.offsetWidth / 2;
-
-    cards.forEach((card, index)=>{
-        let cardCenter = card.offsetLeft + card.offsetWidth / 2;
-
-        if(Math.abs(containerCenter - cardCenter) < card.offsetWidth/2){
-            card.classList.add('active');
-            dots[index].classList.add('active');
-        }else{
-            card.classList.remove('active');
-            dots[index].classList.remove('active');
-        }
-    });
-}
-
-container.addEventListener('scroll', updateActiveCard);
-window.addEventListener('load', updateActiveCard);
 
 function openVideo(){
     document.getElementById("videoModal").style.display="flex";
