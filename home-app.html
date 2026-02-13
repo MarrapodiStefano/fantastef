@@ -108,36 +108,80 @@ body{
     gap:20px;
 }
 
-/* DESKTOP */
-
 .card{
     flex:1;
     height:260px;
     border-radius:28px;
-    position:relative;
     overflow:hidden;
+    position:relative;
     cursor:pointer;
-    background:linear-gradient(135deg,#0f2a45,#123a5c);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
     transition:all 0.3s ease;
     border:3px solid transparent;
+    display:flex;
+    align-items:flex-end;
+    padding:20px;
 }
 
 .card.active{
     border:3px solid #2ecc71;
 }
 
-.card h3{
+/* DEFAULT CARD */
+
+.card.default{
+    background:linear-gradient(135deg,#0f2a45,#123a5c);
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    flex-direction:column;
+}
+
+.card.default h3{
     font-size:22px;
 }
 
-.card p{
+.card.default p{
     font-size:14px;
     opacity:0.8;
+}
+
+/* VIDEO CARD */
+
+.card.video{
+    background:url("https://img.youtube.com/vi/-DmT9bhRsxI/hqdefault.jpg") center center / cover no-repeat;
+}
+
+.card.video::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+}
+
+.card-content{
+    position:relative;
+    z-index:2;
+}
+
+.play-icon{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:70px;
+    height:70px;
+    background:rgba(0,0,0,0.6);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+}
+
+.play-icon svg{
+    width:30px;
+    height:30px;
+    fill:#2ecc71;
 }
 
 /* ================= MOBILE ================= */
@@ -156,12 +200,11 @@ body{
     }
 
     .card{
-        flex:0 0 60%; /* RIDOTTE DEL 50% */
-        height:360px; /* più alte che larghe */
+        flex:0 0 70%;
+        height:380px;
         scroll-snap-align:center;
         margin:0 10px;
     }
-
 }
 
 /* ================= DOTS ================= */
@@ -253,17 +296,29 @@ body{
 
 <section class="cards">
 
-    <div class="card active">
-        <h3>Reel Esclusivo</h3>
-        <p>Guarda lo short in anteprima.</p>
+    <!-- VIDEO CARD -->
+    <div class="card video active" onclick="openVideo()">
+
+        <div class="play-icon">
+            <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"></polygon>
+            </svg>
+        </div>
+
+        <div class="card-content">
+            <h3>Reel Esclusivo</h3>
+            <p>Guarda lo short in anteprima.</p>
+        </div>
+
     </div>
 
-    <div class="card">
+    <!-- NORMAL CARDS -->
+    <div class="card default">
         <h3>FantaConsigli</h3>
         <p>Shorts settimanali.</p>
     </div>
 
-    <div class="card">
+    <div class="card default">
         <h3>Dream Team</h3>
         <p>I top selezionati.</p>
     </div>
@@ -326,6 +381,10 @@ function updateActiveCard(){
 
 container.addEventListener('scroll', updateActiveCard);
 window.addEventListener('load', updateActiveCard);
+
+function openVideo(){
+    window.open("https://www.youtube.com/watch?v=-DmT9bhRsxI","_blank");
+}
 
 </script>
 
