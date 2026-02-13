@@ -70,7 +70,7 @@ body{
 
 @keyframes logoGlow{
     0%,100%{box-shadow:0 0 0 rgba(46,204,113,0);}
-    50%{box-shadow:0 0 18px rgba(46,204,113,0.8);}
+    50%{box-shadow:0 0 20px rgba(46,204,113,0.8);}
 }
 
 /* LINEA VERDE SOTTILE */
@@ -119,7 +119,7 @@ body{
 
 .card{
     flex:1;
-    height:360px;
+    height:380px;
     border-radius:28px;
     padding:30px;
     background:linear-gradient(135deg,#0f2a45,#123a5c);
@@ -130,19 +130,53 @@ body{
     text-align:center;
     cursor:pointer;
     transition:all 0.3s ease;
+    position:relative;
+    overflow:hidden;
 }
 
 .card h3{
-    font-size:26px;
+    font-size:28px;
     margin-bottom:15px;
 }
 
 .card p{
-    font-size:15px;
+    font-size:16px;
     opacity:0.8;
 }
 
-/* ================= DOTS (DESKTOP OFF) ================= */
+/* ================= VIDEO CARD PREMIUM ================= */
+
+.video-card{
+    background:url("https://img.youtube.com/vi/-DmT9bhRsxI/maxresdefault.jpg") center center / cover no-repeat;
+}
+
+.video-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+}
+
+.video-content{
+    position:relative;
+    z-index:2;
+}
+
+.play-icon{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    font-size:60px;
+    color:white;
+    z-index:2;
+    transition:0.3s ease;
+}
+
+.video-card:hover .play-icon{
+    transform:translate(-50%, -50%) scale(1.15);
+}
+
+/* ================= DOTS DESKTOP OFF ================= */
 
 .slider-dots{
     display:none;
@@ -156,7 +190,6 @@ body{
         overflow-x:auto;
         scroll-snap-type:x mandatory;
         -webkit-overflow-scrolling:touch;
-        display:flex;
     }
 
     .cards::-webkit-scrollbar{
@@ -164,9 +197,7 @@ body{
     }
 
     .card{
-        flex:0 0 85%;
-        margin:0 7.5%;
-        height:400px;
+        flex:0 0 100%;
         scroll-snap-align:center;
         border:3px solid transparent;
     }
@@ -196,33 +227,7 @@ body{
     }
 }
 
-/* ================= VIDEO MODAL ================= */
-
-.video-modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.95);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:2000;
-}
-
-.video-modal iframe{
-    width:90%;
-    height:70%;
-    border-radius:16px;
-}
-
-.close-btn{
-    position:absolute;
-    top:20px;
-    right:25px;
-    font-size:30px;
-    cursor:pointer;
-}
-
-/* ================= BOTTOM MENU MINIMAL GLOW ================= */
+/* ================= BOTTOM MENU ================= */
 
 .bottom-menu{
     position:fixed;
@@ -258,6 +263,32 @@ body{
     filter:drop-shadow(0 0 8px rgba(46,204,113,0.6));
 }
 
+/* ================= VIDEO MODAL ================= */
+
+.video-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:2000;
+}
+
+.video-modal iframe{
+    width:90%;
+    height:80%;
+    border-radius:12px;
+}
+
+.close-btn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    font-size:28px;
+    cursor:pointer;
+}
+
 </style>
 </head>
 
@@ -276,51 +307,60 @@ body{
 
 <div class="main-wrapper">
 
-<section class="hero">
-    <h1>HERE WE... <span>GOL!</span></h1>
-    <p>La FantaRevolution è qui.</p>
-</section>
+    <section class="hero">
+        <h1>HERE WE... <span>GOL!</span></h1>
+        <p>La FantaRevolution è qui.</p>
+    </section>
 
-<section class="cards">
+    <section class="cards">
 
-    <div class="card active" onclick="openVideo()">
-        <h3>Reel Esclusivo</h3>
-        <p>Guarda lo short in anteprima.</p>
+        <!-- VIDEO CARD -->
+        <div class="card video-card active" onclick="openVideo()">
+            <div class="video-overlay"></div>
+            <div class="video-content">
+                <h3>Reel Esclusivo</h3>
+                <p>Guarda lo short in anteprima.</p>
+            </div>
+            <div class="play-icon">▶</div>
+        </div>
+
+        <div class="card">
+            <h3>FantaConsigli</h3>
+            <p>Shorts settimanali.</p>
+        </div>
+
+        <div class="card">
+            <h3>Dream Team</h3>
+            <p>I top selezionati.</p>
+        </div>
+
+    </section>
+
+    <div class="slider-dots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
     </div>
-
-    <div class="card">
-        <h3>FantaConsigli</h3>
-        <p>Shorts settimanali.</p>
-    </div>
-
-    <div class="card">
-        <h3>Dream Team</h3>
-        <p>I top selezionati.</p>
-    </div>
-
-</section>
-
-<div class="slider-dots">
-    <span class="active"></span>
-    <span></span>
-    <span></span>
-</div>
 
 </div>
 
 <div class="bottom-menu">
+
     <div class="bottom-item">
         <svg viewBox="0 0 24 24"><path d="M3 10L12 3l9 7v10H3z"/></svg>
         Home
     </div>
+
     <div class="bottom-item">
         <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20V6"/></svg>
         Consigli
     </div>
+
     <div class="bottom-item">
         <svg viewBox="0 0 24 24"><path d="M12 17l-5 3 1-6-4-4 6-.5L12 3l2 6.5 6 .5-4 4 1 6z"/></svg>
         Top
     </div>
+
 </div>
 
 <div class="video-modal" id="videoModal">
@@ -352,10 +392,10 @@ function updateActiveCard(){
 
         if(Math.abs(containerCenter - cardCenter) < card.offsetWidth/2){
             card.classList.add('active');
-            dots[index].classList.add('active');
+            if(dots[index]) dots[index].classList.add('active');
         }else{
             card.classList.remove('active');
-            dots[index].classList.remove('active');
+            if(dots[index]) dots[index].classList.remove('active');
         }
     });
 }
@@ -366,7 +406,7 @@ window.addEventListener('load', updateActiveCard);
 function openVideo(){
     document.getElementById("videoModal").style.display="flex";
     document.getElementById("youtubeFrame").src=
-    "https://www.youtube.com/embed/-DmT9bhRsxI?autoplay=1&rel=0";
+    "https://www.youtube.com/embed/-DmT9bhRsxI?autoplay=1";
 }
 
 function closeVideo(){
