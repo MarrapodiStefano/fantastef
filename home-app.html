@@ -178,19 +178,26 @@ body{
     display:none;
 }
 
-/* ================= LAPTOP RANGE FIX ================= */
+/* ================= LAPTOP ADJUST ================= */
 
-@media (min-width:769px) and (max-width:1200px){
+@media (max-width:1400px) and (min-width:769px){
 
     .cards{
-        justify-content:center;
-        gap:25px;
-        margin-top:80px;
+        gap:30px;
+        margin-top:60px;
     }
 
     .card{
-        width:320px;
-        height:380px;
+        width:320px;      /* prima era 380px */
+        height:360px;     /* prima era 420px */
+    }
+
+    .card h3{
+        font-size:22px;
+    }
+
+    .card p{
+        font-size:14px;
     }
 
 }
