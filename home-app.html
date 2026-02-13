@@ -107,11 +107,12 @@ body{
 @media (max-width:768px){
 
     .cards{
+        display:flex;
         overflow-x:auto;
+        overflow-y:hidden; /* BLOCCA movimento verticale */
         scroll-snap-type:x mandatory;
         -webkit-overflow-scrolling:touch;
-        gap:20px;
-        padding:0 20px;
+        padding:0;
     }
 
     .cards::-webkit-scrollbar{
@@ -119,16 +120,16 @@ body{
     }
 
     .card{
-        flex:0 0 85%;
-        height:220px;
+        flex:0 0 100%; /* UNA SOLA CARD VISIBILE */
+        height:240px;
         scroll-snap-align:center;
-        border:2px solid transparent;
+        border:3px solid transparent;
+        margin:0;
     }
 
     .card.active{
-        transform:scale(1.05);
-        border:2px solid #2ecc71;
-        box-shadow:0 0 30px rgba(46,204,113,0.6);
+        border:3px solid #2ecc71;
+        box-shadow:0 0 25px rgba(46,204,113,0.7);
     }
 
     .slider-dots{
