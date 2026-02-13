@@ -21,7 +21,6 @@ body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     background:url("stadium-bg.png") center center / cover no-repeat fixed;
     color:white;
-    overflow-x:hidden;
 }
 
 /* ======================
@@ -31,7 +30,29 @@ body{
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-    padding:40px 20px 140px 20px;
+    padding:40px 20px 160px 20px;
+}
+
+/* ======================
+   HEADER
+====================== */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin-bottom:40px;
+}
+
+.header img{
+    width:34px;
+    height:34px;
+}
+
+.header h2{
+    font-size:26px;
+    font-weight:600;
 }
 
 /* ======================
@@ -158,50 +179,48 @@ body{
 }
 
 /* ======================
-   BOTTOM MENU NEON
+   BOTTOM NAV PREMIUM
 ====================== */
 
-.bottom-menu{
+.bottom-nav{
     position:fixed;
     bottom:0;
-    left:50%;
-    transform:translateX(-50%);
+    left:0;
     width:100%;
-    max-width:1750px;
-    height:75px;
     background:rgba(5,15,30,0.95);
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(10px);
     display:flex;
     justify-content:space-around;
-    align-items:center;
-    z-index:1000;
+    padding:12px 0 16px 0;
+    border-top:1px solid rgba(46,204,113,0.3);
 }
 
-.bottom-item{
+.bottom-nav a{
+    text-decoration:none;
     display:flex;
     flex-direction:column;
     align-items:center;
+    gap:4px;
     font-size:11px;
-    color:#2ecc71;
-    cursor:pointer;
-    transition:all 0.3s ease;
+    color:white;
+    opacity:0.8;
 }
 
-.bottom-item svg{
+.bottom-nav svg{
     width:24px;
     height:24px;
     stroke:#2ecc71;
-    stroke-width:2;
     fill:none;
-    transition:all 0.3s ease;
+    stroke-width:2;
+    filter:drop-shadow(0 0 6px rgba(46,204,113,0.6));
 }
 
-.bottom-item.active svg{
-    filter:drop-shadow(0 0 8px #2ecc71);
+.bottom-nav a.active{
+    opacity:1;
 }
 
-.bottom-item.active{
-    font-weight:600;
+.bottom-nav a.active svg{
+    filter:drop-shadow(0 0 10px rgba(46,204,113,1));
 }
 
 </style>
@@ -210,6 +229,11 @@ body{
 <body>
 
 <div class="main-wrapper">
+
+    <div class="header">
+        <img src="logo.png" alt="logo">
+        <h2>FantaStef</h2>
+    </div>
 
     <section class="hero">
         <h1>HERE WE... <span>GOL!</span></h1>
@@ -243,37 +267,37 @@ body{
 
 </div>
 
-<!-- BOTTOM MENU -->
+<!-- BOTTOM NAV -->
 
-<div class="bottom-menu">
+<div class="bottom-nav">
 
-    <div class="bottom-item active">
+    <a href="#" class="active">
         <svg viewBox="0 0 24 24">
-            <path d="M3 10L12 3L21 10V21H3Z"/>
+            <path d="M3 10L12 3L21 10V21H14V14H10V21H3Z"/>
         </svg>
-        Home
-    </div>
+        <span>Home</span>
+    </a>
 
-    <div class="bottom-item">
+    <a href="#">
         <svg viewBox="0 0 24 24">
             <path d="M4 20V10M10 20V4M16 20V14M22 20V8"/>
         </svg>
-        Consigli
-    </div>
+        <span>Consigli</span>
+    </a>
 
-    <div class="bottom-item">
+    <a href="#">
         <svg viewBox="0 0 24 24">
-            <path d="M12 17L18 21L16 14L22 9L14 8L12 1L10 8L2 9L8 14L6 21Z"/>
+            <circle cx="12" cy="12" r="6"/>
         </svg>
-        Voti
-    </div>
+        <span>Live</span>
+    </a>
 
-    <div class="bottom-item">
+    <a href="#">
         <svg viewBox="0 0 24 24">
-            <path d="M4 18L10 12L14 16L20 8"/>
+            <path d="M12 2L15 9H22L17 13L19 21L12 17L5 21L7 13L2 9H9Z"/>
         </svg>
-        Stats
-    </div>
+        <span>Voti</span>
+    </a>
 
 </div>
 
