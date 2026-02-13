@@ -122,7 +122,14 @@ body{
     position:relative;
     overflow:hidden;
 }
+@media (max-width:1400px) and (min-width:769px){
 
+    .card{
+        width:clamp(240px, 22vw, 300px);
+        aspect-ratio: 4 / 5;
+    }
+
+}
 .card.active{
     border:3px solid #2ecc71;
 }
