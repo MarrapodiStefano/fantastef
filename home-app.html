@@ -106,9 +106,9 @@ body{
 }
 
 .card{
-    flex:0 0 auto;      /* BLOCCA il flex */
-    width:360px;        /* larghezza controllata */
-    height:380px;       /* altezza ridotta */
+    flex:0 0 auto;
+    width:clamp(280px, 22vw, 360px);
+    height:clamp(300px, 45vh, 380px);
     border-radius:28px;
     padding:30px;
     background:linear-gradient(135deg,#0f2a45,#123a5c);
