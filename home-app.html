@@ -103,89 +103,93 @@ body{
     color:#2ecc71;
 }
 
-.hero p{
-    font-size:20px;
-    margin-top:15px;
-    opacity:0.85;
-}
-
-/* ================= CARDS DESKTOP ================= */
+/* ================= CARDS ================= */
 
 .cards{
     display:flex;
-    justify-content:space-between;
     gap:20px;
 }
 
+/* CARD BASE */
+
 .card{
     flex:1;
-    height:260px;
     border-radius:28px;
-    overflow:hidden;
     position:relative;
+    overflow:hidden;
     cursor:pointer;
     transition:all 0.3s ease;
 }
 
-/* ===== PREMIUM THUMBNAIL CARD ===== */
-
-.card.video-card{
-    background:url("https://img.youtube.com/vi/-DmT9bhRsxI/maxresdefault.jpg") center center / cover no-repeat;
+/* Vertical 9:16 ratio */
+.card::before{
+    content:"";
+    display:block;
+    padding-top:160%; /* più alta che larga */
 }
+
+/* Background image */
+
+.card-bg{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+}
+
+/* Overlay scuro */
 
 .card-overlay{
     position:absolute;
     inset:0;
-    background:linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.3));
+    background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
 }
+
+/* Contenuto */
 
 .card-content{
     position:absolute;
     bottom:20px;
     left:20px;
     right:20px;
-    z-index:2;
 }
 
 .card-content h3{
-    font-size:24px;
+    font-size:22px;
     margin-bottom:6px;
 }
 
 .card-content p{
     font-size:14px;
-    opacity:0.85;
+    opacity:0.8;
 }
 
-/* PLAY BUTTON */
+/* Play button */
 
-.play-button{
+.play-btn{
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    width:70px;
-    height:70px;
+    width:65px;
+    height:65px;
     border-radius:50%;
     background:rgba(0,0,0,0.6);
     display:flex;
     justify-content:center;
     align-items:center;
-    z-index:3;
-    transition:all 0.3s ease;
 }
 
-.play-button svg{
-    width:30px;
-    height:30px;
+.play-btn svg{
+    width:26px;
+    height:26px;
     fill:#2ecc71;
 }
 
-/* Glow al tap */
+/* Active border */
 
-.card:active{
-    box-shadow:0 0 25px rgba(46,204,113,0.7);
-    transform:scale(0.98);
+.card.active{
+    border:3px solid #2ecc71;
 }
 
 /* ================= DOTS ================= */
@@ -199,7 +203,6 @@ body{
     .cards{
         overflow-x:auto;
         scroll-snap-type:x mandatory;
-        -webkit-overflow-scrolling:touch;
     }
 
     .cards::-webkit-scrollbar{
@@ -207,13 +210,9 @@ body{
     }
 
     .card{
-        flex:0 0 100%;
+        flex:0 0 80%;
         scroll-snap-align:center;
         border:3px solid transparent;
-    }
-
-    .card.active{
-        border:3px solid #2ecc71;
     }
 
     .slider-dots{
@@ -228,7 +227,6 @@ body{
         height:8px;
         border-radius:50%;
         background:rgba(255,255,255,0.4);
-        transition:0.3s;
     }
 
     .slider-dots span.active{
@@ -237,7 +235,7 @@ body{
     }
 }
 
-/* ================= BOTTOM MENU ================= */
+/* ================= BOTTOM ================= */
 
 .bottom-menu{
     position:fixed;
@@ -252,7 +250,6 @@ body{
     display:flex;
     justify-content:space-around;
     align-items:center;
-    z-index:1000;
 }
 
 .bottom-item{
@@ -271,32 +268,6 @@ body{
     fill:none;
     margin-bottom:4px;
     filter:drop-shadow(0 0 8px rgba(46,204,113,0.6));
-}
-
-/* ================= VIDEO MODAL ================= */
-
-.video-modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.95);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:2000;
-}
-
-.video-modal iframe{
-    width:90%;
-    height:80%;
-    border-radius:12px;
-}
-
-.close-btn{
-    position:absolute;
-    top:20px;
-    right:20px;
-    font-size:28px;
-    cursor:pointer;
 }
 
 </style>
@@ -319,18 +290,20 @@ body{
 
 <section class="hero">
     <h1>HERE WE... <span>GOL!</span></h1>
-    <p>La FantaRevolution è qui.</p>
 </section>
 
 <section class="cards">
 
-    <!-- CARD VIDEO PREMIUM -->
-    <div class="card video-card active" onclick="openVideo()">
+    <!-- CARD 1 VIDEO -->
+    <div class="card active" onclick="openVideo()">
+        <div class="card-bg"
+        style="background-image:url('https://img.youtube.com/vi/-DmT9bhRsxI/maxresdefault.jpg')">
+        </div>
         <div class="card-overlay"></div>
 
-        <div class="play-button">
+        <div class="play-btn">
             <svg viewBox="0 0 24 24">
-                <polygon points="5,3 19,12 5,21"/>
+                <polygon points="5,3 19,12 5,21"></polygon>
             </svg>
         </div>
 
@@ -340,14 +313,24 @@ body{
         </div>
     </div>
 
+    <!-- CARD 2 -->
     <div class="card">
+        <div class="card-bg"
+        style="background-image:url('stadium-bg.png')">
+        </div>
+        <div class="card-overlay"></div>
         <div class="card-content">
             <h3>FantaConsigli</h3>
             <p>Shorts settimanali.</p>
         </div>
     </div>
 
+    <!-- CARD 3 -->
     <div class="card">
+        <div class="card-bg"
+        style="background-image:url('stadium-bg.png')">
+        </div>
+        <div class="card-overlay"></div>
         <div class="card-content">
             <h3>Dream Team</h3>
             <p>I top selezionati.</p>
@@ -364,48 +347,10 @@ body{
 
 </div>
 
-<div class="bottom-menu">
-
-    <div class="bottom-item">
-        <svg viewBox="0 0 24 24"><path d="M3 10L12 3l9 7v10H3z"/></svg>
-        Home
-    </div>
-
-    <div class="bottom-item">
-        <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20V6"/></svg>
-        Consigli
-    </div>
-
-    <div class="bottom-item">
-        <svg viewBox="0 0 24 24"><path d="M12 17l-5 3 1-6-4-4 6-.5L12 3l2 6.5 6 .5-4 4 1 6z"/></svg>
-        Top
-    </div>
-
-</div>
-
-<div class="video-modal" id="videoModal">
-    <div class="close-btn" onclick="closeVideo()">✕</div>
-    <iframe id="youtubeFrame"
-        src=""
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-    </iframe>
-</div>
-
 <script>
-
 function openVideo(){
-    document.getElementById("videoModal").style.display="flex";
-    document.getElementById("youtubeFrame").src=
-    "https://www.youtube.com/embed/-DmT9bhRsxI?autoplay=1";
+    window.open("https://youtube.com/shorts/-DmT9bhRsxI","_blank");
 }
-
-function closeVideo(){
-    document.getElementById("videoModal").style.display="none";
-    document.getElementById("youtubeFrame").src="";
-}
-
 </script>
 
 </body>
