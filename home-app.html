@@ -113,15 +113,15 @@ body{
 
 .cards{
     display:flex;
-    justify-content:center;   /* le centra */
-    gap:40px;                 /* più aria tra le card */
-    margin-top:80px;          /* le abbassa sotto il testo */
-    flex-wrap:wrap;           /* adattamento su schermi medi */
+    justify-content:center;
+    gap:40px;
+    margin-top:40px;
 }
 
 .card{
     flex:1;
     height:420px;
+    width:clamp(300px, 28vw, 380px);
     border-radius:28px;
     padding:30px;
     background:linear-gradient(135deg,#0f2a45,#123a5c);
