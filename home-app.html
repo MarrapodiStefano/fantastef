@@ -3,13 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fantastef</title>
+<title>FantaStef</title>
 
 <style>
 
-/* ======================
-   RESET BASE
-====================== */
+/* ================= RESET ================= */
 
 *{
     margin:0;
@@ -24,99 +22,73 @@ body{
     overflow-x:hidden;
 }
 
-/* ======================
-   TOP BAR
-====================== */
+/* ================= WRAPPER ================= */
 
-.top-bar{
+.main-wrapper{
+    max-width:1750px;
+    margin:auto;
+    padding:120px 20px 160px 20px;
+}
+
+/* ================= HEADER ================= */
+
+.header{
     position:fixed;
     top:0;
     left:0;
     width:100%;
-    height:70px;
-    background:rgba(5,15,30,0.75);
+    background:rgba(5,15,30,0.85);
     backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
     display:flex;
     justify-content:center;
-    align-items:center;
+    z-index:1000;
     transition:all 0.3s ease;
-    z-index:999;
+    border-bottom:1px solid rgba(46,204,113,0.25);
 }
 
-.top-bar.shrink{
-    height:55px;
-}
-
-.top-bar::after{
-    content:"";
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    height:3px;
-    background:linear-gradient(90deg,#0e3b23,#2ecc71,#0e3b23);
-}
-
-.top-bar-content{
+.header-inner{
     width:100%;
     max-width:1750px;
-    padding:0 20px;
+    padding:20px 30px;
     display:flex;
     align-items:center;
-    justify-content:center;
-    gap:10px;
-    font-size:22px;
-    font-weight:600;
+    justify-content:space-between;
+    transition:all 0.3s ease;
 }
 
-/* Logo glow */
+.header.shrink .header-inner{
+    padding:10px 30px;
+}
 
-.top-bar-content img{
-    width:32px;
-    height:32px;
-    animation:logoGlow 3s ease-in-out infinite;
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:700;
+    font-size:24px;
+}
+
+.logo-area img{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    animation:logoGlow 3s infinite alternate;
 }
 
 @keyframes logoGlow{
-    0%{
-        filter:drop-shadow(0 0 0px rgba(46,204,113,0));
+    from{
+        filter:drop-shadow(0 0 5px rgba(46,204,113,0.4));
     }
-    50%{
-        filter:drop-shadow(0 0 12px rgba(46,204,113,0.6));
-    }
-    100%{
-        filter:drop-shadow(0 0 0px rgba(46,204,113,0));
+    to{
+        filter:drop-shadow(0 0 15px rgba(46,204,113,0.8));
     }
 }
 
-/* ======================
-   WRAPPER
-====================== */
-
-.main-wrapper{
-    max-width:1750px;
-    margin:120px auto 0 auto;
-    padding:40px 20px 160px 20px;
-}
-
-/* ======================
-   HERO
-====================== */
+/* ================= HERO ================= */
 
 .hero{
     text-align:center;
     margin-bottom:60px;
-    opacity:0;
-    transform:translateY(40px);
-    animation:fadeInUp 0.8s ease forwards;
-}
-
-@keyframes fadeInUp{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
 }
 
 .hero h1{
@@ -134,9 +106,7 @@ body{
     opacity:0.85;
 }
 
-/* ======================
-   CARDS DESKTOP
-====================== */
+/* ================= CARDS DESKTOP ================= */
 
 .cards{
     display:flex;
@@ -148,7 +118,7 @@ body{
     flex:1;
     height:260px;
     border-radius:28px;
-    padding:30px;
+    padding:0;
     background:linear-gradient(135deg,#0f2a45,#123a5c);
     display:flex;
     flex-direction:column;
@@ -156,6 +126,12 @@ body{
     align-items:center;
     text-align:center;
     transition:all 0.3s ease;
+    overflow:hidden;
+    position:relative;
+}
+
+.card-content{
+    padding:30px;
 }
 
 .card h3{
@@ -168,27 +144,40 @@ body{
     opacity:0.8;
 }
 
-/* ======================
-   DOTS
-====================== */
+/* ================= VIDEO THUMB ================= */
+
+.video-thumb{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    cursor:pointer;
+}
+
+.video-thumb::after{
+    content:"▶";
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:60px;
+    color:white;
+    text-shadow:0 0 20px rgba(0,0,0,0.7);
+}
+
+/* ================= MOBILE SLIDER ================= */
 
 .slider-dots{
     display:none;
 }
-
-/* ======================
-   MOBILE PREMIUM SLIDER
-====================== */
 
 @media (max-width:768px){
 
     .cards{
         display:flex;
         overflow-x:auto;
-        overflow-y:hidden;
         scroll-snap-type:x mandatory;
         -webkit-overflow-scrolling:touch;
-        touch-action:pan-x;
     }
 
     .cards::-webkit-scrollbar{
@@ -200,8 +189,6 @@ body{
         height:240px;
         scroll-snap-align:center;
         border:3px solid transparent;
-        border-radius:28px;
-        overflow:hidden;
     }
 
     .card.active{
@@ -221,19 +208,36 @@ body{
         height:8px;
         border-radius:50%;
         background:rgba(255,255,255,0.4);
-        transition:all 0.3s ease;
     }
 
     .slider-dots span.active{
         background:#2ecc71;
         transform:scale(1.3);
     }
-
 }
 
-/* ======================
-   BOTTOM MENU
-====================== */
+/* ================= MODAL VIDEO ================= */
+
+.video-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.9);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:2000;
+}
+
+.video-modal video{
+    width:90%;
+    max-width:900px;
+}
+
+.video-modal.active{
+    display:flex;
+}
+
+/* ================= BOTTOM MENU ================= */
 
 .bottom-menu{
     position:fixed;
@@ -242,40 +246,18 @@ body{
     transform:translateX(-50%);
     width:100%;
     max-width:1750px;
-    background:rgba(5,15,30,0.9);
+    background:rgba(5,15,30,0.95);
     backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
     display:flex;
     justify-content:space-around;
-    padding:15px 0;
-    z-index:1000;
+    padding:14px 0;
+    border-top:1px solid rgba(46,204,113,0.2);
 }
 
-.bottom-menu a{
-    text-decoration:none;
-    color:#cfd8e3;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    font-size:12px;
-    transition:all 0.3s ease;
-}
-
-.bottom-menu a svg{
-    width:22px;
-    height:22px;
-    margin-bottom:4px;
-    stroke:#2ecc71;
-    fill:none;
-    stroke-width:2;
-}
-
-.bottom-menu a.active{
+.bottom-menu i{
+    font-size:22px;
     color:#2ecc71;
-}
-
-.bottom-menu a.active svg{
-    filter:drop-shadow(0 0 6px rgba(46,204,113,0.8));
+    text-shadow:0 0 8px rgba(46,204,113,0.6);
 }
 
 </style>
@@ -283,12 +265,12 @@ body{
 
 <body>
 
-<!-- TOP BAR -->
-
-<div class="top-bar" id="topBar">
-    <div class="top-bar-content">
-        <img src="logo.png">
-        FantaStef
+<div class="header">
+    <div class="header-inner">
+        <div class="logo-area">
+            <img src="logo.png">
+            FantaStef
+        </div>
     </div>
 </div>
 
@@ -301,19 +283,26 @@ body{
 
     <section class="cards">
 
+        <!-- CARD 1 CON REEL -->
         <div class="card active">
-            <h3>Algoritmo Schieramento</h3>
-            <p>Scopri chi far giocare.</p>
+            <div class="video-thumb" 
+                 style="background-image:url('thumbnail1.jpg');"
+                 onclick="openVideo()">
+            </div>
         </div>
 
         <div class="card">
-            <h3>FantaConsigli Partita per Partita</h3>
-            <p>Shorts settimanali.</p>
+            <div class="card-content">
+                <h3>FantaConsigli</h3>
+                <p>Shorts settimanali.</p>
+            </div>
         </div>
 
         <div class="card">
-            <h3>Dream Team di Giornata</h3>
-            <p>I top selezionati.</p>
+            <div class="card-content">
+                <h3>Dream Team</h3>
+                <p>I top selezionati.</p>
+            </div>
         </div>
 
     </section>
@@ -326,60 +315,39 @@ body{
 
 </div>
 
-<!-- BOTTOM MENU -->
+<!-- MODAL VIDEO -->
+<div class="video-modal" id="videoModal" onclick="closeVideo()">
+    <video id="reelVideo" src="reel1.mp4" controls autoplay></video>
+</div>
 
 <div class="bottom-menu">
-    <a href="#" class="active">
-        <svg viewBox="0 0 24 24"><path d="M3 10L12 3l9 7v10H3z"/></svg>
-        Home
-    </a>
-    <a href="#">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
-        Consigli
-    </a>
-    <a href="#">
-        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-        Live
-    </a>
+    <i>⌂</i>
+    <i>★</i>
+    <i>▶</i>
+    <i>⚽</i>
 </div>
 
 <script>
 
-/* Shrink header */
-
-window.addEventListener('scroll', function(){
-    const header = document.getElementById('topBar');
-    if(window.scrollY > 40){
-        header.classList.add('shrink');
-    } else {
-        header.classList.remove('shrink');
-    }
+/* HEADER SHRINK */
+window.addEventListener("scroll",function(){
+    const header=document.querySelector(".header");
+    header.classList.toggle("shrink",window.scrollY>50);
 });
 
-/* Slider active card */
-
-const cards = document.querySelectorAll('.card');
-const dots = document.querySelectorAll('.slider-dots span');
-const container = document.querySelector('.cards');
-
-function updateActiveCard() {
-    let containerCenter = container.scrollLeft + container.offsetWidth / 2;
-
-    cards.forEach((card, index) => {
-        let cardCenter = card.offsetLeft + card.offsetWidth / 2;
-
-        if (Math.abs(containerCenter - cardCenter) < card.offsetWidth / 2) {
-            card.classList.add('active');
-            if(dots[index]) dots[index].classList.add('active');
-        } else {
-            card.classList.remove('active');
-            if(dots[index]) dots[index].classList.remove('active');
-        }
-    });
+/* VIDEO MODAL */
+function openVideo(){
+    document.getElementById("videoModal").classList.add("active");
+    document.getElementById("reelVideo").play();
 }
 
-container.addEventListener('scroll', updateActiveCard);
-window.addEventListener('load', updateActiveCard);
+function closeVideo(){
+    const modal=document.getElementById("videoModal");
+    const video=document.getElementById("reelVideo");
+    video.pause();
+    video.currentTime=0;
+    modal.classList.remove("active");
+}
 
 </script>
 
