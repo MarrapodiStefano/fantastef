@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FantaStef</title>
+<title>Fantastef</title>
 
 <style>
 
-/* ================= RESET ================= */
+/* RESET */
 
 *{
     margin:0;
@@ -19,15 +19,14 @@ body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     background:url("stadium-bg.png") center center / cover no-repeat fixed;
     color:white;
-    overflow-x:hidden;
 }
 
-/* ================= WRAPPER ================= */
+/* WRAPPER */
 
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-    padding:120px 20px 160px 20px;
+    padding:120px 20px 120px 20px;
 }
 
 /* ================= HEADER ================= */
@@ -35,56 +34,63 @@ body{
 .header{
     position:fixed;
     top:0;
-    left:0;
-    width:100%;
-    background:rgba(5,15,30,0.85);
-    backdrop-filter:blur(10px);
-    display:flex;
-    justify-content:center;
-    z-index:1000;
-    transition:all 0.3s ease;
-    border-bottom:1px solid rgba(46,204,113,0.25);
-}
-
-.header-inner{
+    left:50%;
+    transform:translateX(-50%);
     width:100%;
     max-width:1750px;
-    padding:20px 30px;
+    height:85px;
     display:flex;
     align-items:center;
     justify-content:space-between;
+    padding:0 40px;
+    background:rgba(10,20,35,0.85);
+    backdrop-filter:blur(6px);
+    z-index:1000;
     transition:all 0.3s ease;
 }
 
-.header.shrink .header-inner{
-    padding:10px 30px;
+.header.shrink{
+    height:60px;
+    background:rgba(10,20,35,0.95);
 }
 
 .logo-area{
     display:flex;
     align-items:center;
     gap:12px;
-    font-weight:700;
     font-size:24px;
+    font-weight:600;
 }
 
 .logo-area img{
-    width:36px;
-    height:36px;
+    width:40px;
+    height:40px;
     border-radius:50%;
-    animation:logoGlow 3s infinite alternate;
+    animation:logoGlow 3s infinite ease-in-out;
 }
+
+/* Glow animato */
 
 @keyframes logoGlow{
-    from{
-        filter:drop-shadow(0 0 5px rgba(46,204,113,0.4));
-    }
-    to{
-        filter:drop-shadow(0 0 15px rgba(46,204,113,0.8));
-    }
+    0%,100%{box-shadow:0 0 0 rgba(46,204,113,0);}
+    50%{box-shadow:0 0 20px rgba(46,204,113,0.8);}
 }
 
-/* ================= HERO ================= */
+/* LINEA VERDE SOTTILE */
+
+.header-line{
+    position:fixed;
+    top:85px;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:1750px;
+    height:2px;
+    background:#2ecc71;
+    z-index:999;
+}
+
+/* HERO */
 
 .hero{
     text-align:center;
@@ -118,20 +124,15 @@ body{
     flex:1;
     height:260px;
     border-radius:28px;
-    padding:0;
+    padding:30px;
     background:linear-gradient(135deg,#0f2a45,#123a5c);
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
+    cursor:pointer;
     transition:all 0.3s ease;
-    overflow:hidden;
-    position:relative;
-}
-
-.card-content{
-    padding:30px;
 }
 
 .card h3{
@@ -144,37 +145,17 @@ body{
     opacity:0.8;
 }
 
-/* ================= VIDEO THUMB ================= */
-
-.video-thumb{
-    position:absolute;
-    inset:0;
-    background-size:cover;
-    background-position:center;
-    cursor:pointer;
-}
-
-.video-thumb::after{
-    content:"▶";
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-size:60px;
-    color:white;
-    text-shadow:0 0 20px rgba(0,0,0,0.7);
-}
-
-/* ================= MOBILE SLIDER ================= */
+/* DOTS */
 
 .slider-dots{
     display:none;
 }
 
+/* ================= MOBILE PREMIUM ================= */
+
 @media (max-width:768px){
 
     .cards{
-        display:flex;
         overflow-x:auto;
         scroll-snap-type:x mandatory;
         -webkit-overflow-scrolling:touch;
@@ -186,14 +167,12 @@ body{
 
     .card{
         flex:0 0 100%;
-        height:240px;
         scroll-snap-align:center;
         border:3px solid transparent;
     }
 
     .card.active{
         border:3px solid #2ecc71;
-        box-shadow:none;
     }
 
     .slider-dots{
@@ -212,8 +191,37 @@ body{
 
     .slider-dots span.active{
         background:#2ecc71;
-        transform:scale(1.3);
     }
+}
+
+/* ================= BOTTOM MENU ================= */
+
+.bottom-menu{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:1750px;
+    height:70px;
+    background:rgba(10,20,35,0.95);
+    backdrop-filter:blur(6px);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:1000;
+}
+
+.bottom-menu div{
+    text-align:center;
+    font-size:13px;
+    color:#2ecc71;
+}
+
+.bottom-menu span{
+    display:block;
+    font-size:22px;
+    margin-bottom:4px;
 }
 
 /* ================= MODAL VIDEO ================= */
@@ -228,36 +236,18 @@ body{
     z-index:2000;
 }
 
-.video-modal video{
+.video-modal iframe{
     width:90%;
-    max-width:900px;
+    height:80%;
+    border-radius:12px;
 }
 
-.video-modal.active{
-    display:flex;
-}
-
-/* ================= BOTTOM MENU ================= */
-
-.bottom-menu{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:100%;
-    max-width:1750px;
-    background:rgba(5,15,30,0.95);
-    backdrop-filter:blur(10px);
-    display:flex;
-    justify-content:space-around;
-    padding:14px 0;
-    border-top:1px solid rgba(46,204,113,0.2);
-}
-
-.bottom-menu i{
-    font-size:22px;
-    color:#2ecc71;
-    text-shadow:0 0 8px rgba(46,204,113,0.6);
+.close-btn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    font-size:30px;
+    cursor:pointer;
 }
 
 </style>
@@ -266,13 +256,15 @@ body{
 <body>
 
 <div class="header">
-    <div class="header-inner">
-        <div class="logo-area">
-            <img src="logo.png">
-            FantaStef
-        </div>
+    <div>☰</div>
+    <div class="logo-area">
+        <img src="logo.png">
+        FantaStef
     </div>
+    <div>⚙</div>
 </div>
+
+<div class="header-line"></div>
 
 <div class="main-wrapper">
 
@@ -283,70 +275,68 @@ body{
 
     <section class="cards">
 
-        <!-- CARD 1 CON REEL -->
-        <div class="card active">
-            <div class="video-thumb" 
-                 style="background-image:url('thumbnail1.jpg');"
-                 onclick="openVideo()">
-            </div>
+        <!-- ====== PRIMA CARD CON SHORT ====== -->
+        <!-- CAMBIA QUI IL LINK DEL VIDEO -->
+        <!-- Sostituisci l'ID dopo embed/ -->
+        <div class="card" onclick="openVideo()">
+            <h3>🎬 Reel Esclusivo</h3>
+            <p>Guarda lo short in anteprima.</p>
         </div>
 
         <div class="card">
-            <div class="card-content">
-                <h3>FantaConsigli</h3>
-                <p>Shorts settimanali.</p>
-            </div>
+            <h3>FantaConsigli</h3>
+            <p>Shorts settimanali.</p>
         </div>
 
         <div class="card">
-            <div class="card-content">
-                <h3>Dream Team</h3>
-                <p>I top selezionati.</p>
-            </div>
+            <h3>Dream Team</h3>
+            <p>I top selezionati.</p>
         </div>
 
     </section>
 
-    <div class="slider-dots">
-        <span class="active"></span>
-        <span></span>
-        <span></span>
-    </div>
-
-</div>
-
-<!-- MODAL VIDEO -->
-<div class="video-modal" id="videoModal" onclick="closeVideo()">
-    <video id="reelVideo" src="reel1.mp4" controls autoplay></video>
 </div>
 
 <div class="bottom-menu">
-    <i>⌂</i>
-    <i>★</i>
-    <i>▶</i>
-    <i>⚽</i>
+    <div><span>🏠</span>Home</div>
+    <div><span>📊</span>Consigli</div>
+    <div><span>⭐</span>Top</div>
+</div>
+
+<!-- VIDEO MODAL -->
+
+<div class="video-modal" id="videoModal">
+    <div class="close-btn" onclick="closeVideo()">✕</div>
+    <iframe id="youtubeFrame"
+        src=""
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+    </iframe>
 </div>
 
 <script>
 
-/* HEADER SHRINK */
-window.addEventListener("scroll",function(){
-    const header=document.querySelector(".header");
-    header.classList.toggle("shrink",window.scrollY>50);
+/* SHRINK HEADER */
+
+window.addEventListener("scroll", function(){
+    const header = document.querySelector(".header");
+    header.classList.toggle("shrink", window.scrollY > 50);
 });
 
-/* VIDEO MODAL */
+/* VIDEO */
+
 function openVideo(){
-    document.getElementById("videoModal").classList.add("active");
-    document.getElementById("reelVideo").play();
+    document.getElementById("videoModal").style.display = "flex";
+
+    // ====== QUI CAMBI IL LINK VIDEO ======
+    document.getElementById("youtubeFrame").src =
+    "https://www.youtube.com/embed/-DmT9bhRsxI?autoplay=1";
 }
 
 function closeVideo(){
-    const modal=document.getElementById("videoModal");
-    const video=document.getElementById("reelVideo");
-    video.pause();
-    video.currentTime=0;
-    modal.classList.remove("active");
+    document.getElementById("videoModal").style.display = "none";
+    document.getElementById("youtubeFrame").src = "";
 }
 
 </script>
