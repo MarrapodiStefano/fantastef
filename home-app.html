@@ -25,50 +25,13 @@ body{
 }
 
 /* ======================
-   HEADER
-====================== */
-
-.top-header{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:70px;
-    background:rgba(5,15,30,0.85);
-    backdrop-filter:blur(8px);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:1000;
-}
-
-.header-inner{
-    width:100%;
-    max-width:1750px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-}
-
-.header-inner img{
-    height:32px;
-}
-
-.header-inner h2{
-    font-size:22px;
-    font-weight:700;
-    letter-spacing:1px;
-}
-
-/* ======================
    WRAPPER
 ====================== */
 
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-    padding:120px 20px 140px 20px; /* spazio per header + bottom */
+    padding:40px 20px 140px 20px;
 }
 
 /* ======================
@@ -130,12 +93,16 @@ body{
 }
 
 /* ======================
-   MOBILE SLIDER
+   DOTS
 ====================== */
 
 .slider-dots{
     display:none;
 }
+
+/* ======================
+   MOBILE PREMIUM SLIDER
+====================== */
 
 @media (max-width:768px){
 
@@ -146,7 +113,7 @@ body{
         scroll-snap-type:x mandatory;
         -webkit-overflow-scrolling:touch;
         touch-action:pan-x;
-        padding:0 20px;
+        padding:0;
     }
 
     .cards::-webkit-scrollbar{
@@ -165,6 +132,7 @@ body{
 
     .card.active{
         border:3px solid #2ecc71;
+        box-shadow:none;
     }
 
     .slider-dots{
@@ -186,10 +154,11 @@ body{
         background:#2ecc71;
         transform:scale(1.3);
     }
+
 }
 
 /* ======================
-   BOTTOM MENU PREMIUM
+   BOTTOM MENU NEON
 ====================== */
 
 .bottom-menu{
@@ -199,13 +168,12 @@ body{
     transform:translateX(-50%);
     width:100%;
     max-width:1750px;
-    height:70px;
+    height:75px;
     background:rgba(5,15,30,0.95);
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(12px);
     display:flex;
     justify-content:space-around;
     align-items:center;
-    border-top:1px solid rgba(255,255,255,0.08);
     z-index:1000;
 }
 
@@ -213,37 +181,33 @@ body{
     display:flex;
     flex-direction:column;
     align-items:center;
-    font-size:12px;
+    font-size:11px;
     color:#2ecc71;
     cursor:pointer;
-    transition:all 0.2s ease;
+    transition:all 0.3s ease;
 }
 
-.bottom-item span{
-    font-size:22px;
-    margin-bottom:4px;
+.bottom-item svg{
+    width:24px;
+    height:24px;
+    stroke:#2ecc71;
+    stroke-width:2;
+    fill:none;
+    transition:all 0.3s ease;
 }
 
-.bottom-item:hover{
-    opacity:0.8;
+.bottom-item.active svg{
+    filter:drop-shadow(0 0 8px #2ecc71);
 }
 
 .bottom-item.active{
-    font-weight:700;
+    font-weight:600;
 }
 
 </style>
 </head>
 
 <body>
-
-<!-- HEADER -->
-<div class="top-header">
-    <div class="header-inner">
-        <img src="logo.png" alt="Fantastef Logo">
-        <h2>FantaStef</h2>
-    </div>
-</div>
 
 <div class="main-wrapper">
 
@@ -280,23 +244,37 @@ body{
 </div>
 
 <!-- BOTTOM MENU -->
+
 <div class="bottom-menu">
+
     <div class="bottom-item active">
-        <span>🏠</span>
+        <svg viewBox="0 0 24 24">
+            <path d="M3 10L12 3L21 10V21H3Z"/>
+        </svg>
         Home
     </div>
+
     <div class="bottom-item">
-        <span>📊</span>
+        <svg viewBox="0 0 24 24">
+            <path d="M4 20V10M10 20V4M16 20V14M22 20V8"/>
+        </svg>
         Consigli
     </div>
+
     <div class="bottom-item">
-        <span>⭐</span>
+        <svg viewBox="0 0 24 24">
+            <path d="M12 17L18 21L16 14L22 9L14 8L12 1L10 8L2 9L8 14L6 21Z"/>
+        </svg>
         Voti
     </div>
+
     <div class="bottom-item">
-        <span>📈</span>
+        <svg viewBox="0 0 24 24">
+            <path d="M4 18L10 12L14 16L20 8"/>
+        </svg>
         Stats
     </div>
+
 </div>
 
 <script>
@@ -306,11 +284,9 @@ const dots = document.querySelectorAll('.slider-dots span');
 const container = document.querySelector('.cards');
 
 function updateActiveCard() {
-
     let containerCenter = container.scrollLeft + container.offsetWidth / 2;
 
     cards.forEach((card, index) => {
-
         let cardCenter = card.offsetLeft + card.offsetWidth / 2;
 
         if (Math.abs(containerCenter - cardCenter) < card.offsetWidth / 2) {
@@ -320,7 +296,6 @@ function updateActiveCard() {
             card.classList.remove('active');
             dots[index].classList.remove('active');
         }
-
     });
 }
 
