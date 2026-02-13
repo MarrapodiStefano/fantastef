@@ -17,7 +17,7 @@
 
 body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-    background:url("stadium-bg.png") center center / cover no-repeat fixed;
+    background:url("stadium-bg.png") center center / cover no-repeat;
     color:white;
 }
 
@@ -26,7 +26,7 @@ body{
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-    padding:100px 20px 140px 20px;
+    padding:90px 20px 140px 20px;
 }
 
 /* ================= HEADER ================= */
@@ -50,27 +50,27 @@ body{
 }
 
 .header.shrink{
-    height:55px;
+    height:50px;
 }
 
 .logo-area{
     display:flex;
     align-items:center;
     gap:12px;
-    font-size:22px;
+    font-size:24px;
     font-weight:600;
 }
 
 .logo-area img{
-    width:38px;
-    height:38px;
+    width:42px;
+    height:42px;
     border-radius:50%;
     animation:logoGlow 3s infinite ease-in-out;
 }
 
 @keyframes logoGlow{
     0%,100%{box-shadow:0 0 0 rgba(46,204,113,0);}
-    50%{box-shadow:0 0 18px rgba(46,204,113,0.8);}
+    50%{box-shadow:0 0 20px rgba(46,204,113,0.8);}
 }
 
 /* LINEA VERDE SOTTILE */
@@ -91,11 +91,11 @@ body{
 
 .hero{
     text-align:center;
-    margin-bottom:60px;
+    margin-bottom:20px;
 }
 
 .hero h1{
-    font-size:clamp(48px,6vw,110px);
+    font-size:clamp(40px ,5vw,120px);
     font-weight:800;
 }
 
@@ -104,54 +104,83 @@ body{
 }
 
 .hero p{
-    font-size:22px;
-    margin-top:5px;
+    font-size:20px;
+    margin-top:0px;
     opacity:0.85;
 }
 
-/* =========================================================
-   DESKTOP NETFLIX STYLE (MODIFICATO SOLO QUI)
-========================================================= */
-
-/* ================= CARDS DESKTOP FIXED ================= */
+/* ================= CARDS DESKTOP ================= */
 
 .cards{
     display:flex;
-    justify-content:center;
-    gap:40px;
-    max-width:1200px;
-    margin:0 auto;
+    justify-content:space-between;
+    gap:20px;
 }
 
 .card{
-    flex:0 0 340px;
+    flex:1;
     height:420px;
-}
-
-.card{
-    flex:0 0 380px;
-    height:430px;
     border-radius:28px;
     padding:30px;
     background:linear-gradient(135deg,#0f2a45,#123a5c);
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
+    align-items:flex-start;
     text-align:left;
-    position:relative;
-    overflow:hidden;
     cursor:pointer;
     transition:all 0.3s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.card.active{
+    border:3px solid #2ecc71;
 }
 
 .card h3{
-    font-size:26px;
+    font-size:28px;
     margin-bottom:10px;
 }
 
 .card p{
     font-size:16px;
     opacity:0.8;
+}
+
+/* ================= VIDEO THUMB PREMIUM ================= */
+
+.video-card{
+    background-image:url("https://img.youtube.com/vi/-DmT9bhRsxI/maxresdefault.jpg");
+    background-size:cover;
+    background-position:center;
+}
+
+.video-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+}
+
+.play-icon{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.play-icon::after{
+    content:"";
+    border-left:20px solid white;
+    border-top:12px solid transparent;
+    border-bottom:12px solid transparent;
 }
 
 /* ================= DOTS DESKTOP OFF ================= */
@@ -164,6 +193,10 @@ body{
 
 @media (max-width:768px){
 
+    body{
+        background-attachment:scroll;
+    }
+
     .cards{
         overflow-x:auto;
         scroll-snap-type:x mandatory;
@@ -174,12 +207,12 @@ body{
         display:none;
     }
 
-    .card{
-        flex:0 0 100%;
-        height:430px;
-        scroll-snap-align:center;
-        border:3px solid transparent;
-    }
+   .card{
+    flex:0 0 100%;
+    max-width:100%;
+    scroll-snap-align:center;
+    border:3px solid transparent;
+}
 
     .card.active{
         border:3px solid #2ecc71;
@@ -206,7 +239,7 @@ body{
     }
 }
 
-/* ================= BOTTOM MENU MINIMAL GLOW ================= */
+/* ================= BOTTOM MENU ================= */
 
 .bottom-menu{
     position:fixed;
@@ -286,35 +319,37 @@ body{
 
 <div class="main-wrapper">
 
-    <section class="hero">
-        <h1>HERE WE... <span>GOL!</span></h1>
-        <p>La FantaRevolution è qui.</p>
-    </section>
+<section class="hero">
+    <h1>HERE WE... <span>GOL!</span></h1>
+    <p>La FantaRevolution è qui.</p>
+</section>
 
-    <section class="cards">
+<section class="cards">
 
-        <div class="card active" onclick="openVideo()">
-            <h3>Reel Esclusivo</h3>
-            <p>Guarda lo short in anteprima.</p>
-        </div>
-
-        <div class="card">
-            <h3>FantaConsigli</h3>
-            <p>Shorts settimanali.</p>
-        </div>
-
-        <div class="card">
-            <h3>Dream Team</h3>
-            <p>I top selezionati.</p>
-        </div>
-
-    </section>
-
-    <div class="slider-dots">
-        <span class="active"></span>
-        <span></span>
-        <span></span>
+    <div class="card video-card active" onclick="openVideo()">
+        <div class="video-overlay"></div>
+        <div class="play-icon"></div>
+        <h3>Dream Team di giornata</h3>
+        <p>Guarda lo short in anteprima.</p>
     </div>
+
+    <div class="card">
+        <h3>FantaConsigli</h3>
+        <p>Shorts settimanali.</p>
+    </div>
+
+    <div class="card">
+        <h3>Dream Team</h3>
+        <p>I top selezionati.</p>
+    </div>
+
+</section>
+
+<div class="slider-dots">
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+</div>
 
 </div>
 
@@ -335,12 +370,7 @@ body{
 
 <div class="video-modal" id="videoModal">
     <div class="close-btn" onclick="closeVideo()">✕</div>
-    <iframe id="youtubeFrame"
-        src=""
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-    </iframe>
+    <iframe id="youtubeFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 <script>
@@ -362,10 +392,10 @@ function updateActiveCard(){
 
         if(Math.abs(containerCenter - cardCenter) < card.offsetWidth/2){
             card.classList.add('active');
-            if(dots[index]) dots[index].classList.add('active');
+            dots[index].classList.add('active');
         }else{
             card.classList.remove('active');
-            if(dots[index]) dots[index].classList.remove('active');
+            dots[index].classList.remove('active');
         }
     });
 }
@@ -376,7 +406,7 @@ window.addEventListener('load', updateActiveCard);
 function openVideo(){
     document.getElementById("videoModal").style.display="flex";
     document.getElementById("youtubeFrame").src=
-    "https://www.youtube.com/embed/-DmT9bhRsxI?rel=0";
+    "https://www.youtube.com/embed/-DmT9bhRsxI?autoplay=1";
 }
 
 function closeVideo(){
