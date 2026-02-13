@@ -389,29 +389,52 @@ const cards = document.querySelectorAll('.card');
 const dots = document.querySelectorAll('.slider-dots span');
 const container = document.querySelector('.cards');
 
+/* ================= MOBILE ACTIVE (SCROLL) ================= */
+
 function updateActiveCard(){
-    let containerCenter = container.scrollLeft + container.offsetWidth / 2;
+    if(window.innerWidth <= 768){   // SOLO MOBILE
 
-    cards.forEach((card, index)=>{
-        let cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        let containerCenter = container.scrollLeft + container.offsetWidth / 2;
 
-        if(Math.abs(containerCenter - cardCenter) < card.offsetWidth/2){
-            card.classList.add('active');
-            dots[index].classList.add('active');
-        }else{
-            card.classList.remove('active');
-            dots[index].classList.remove('active');
-        }
-    });
+        cards.forEach((card, index)=>{
+            let cardCenter = card.offsetLeft + card.offsetWidth / 2;
+
+            if(Math.abs(containerCenter - cardCenter) < card.offsetWidth/2){
+                card.classList.add('active');
+                if(dots[index]) dots[index].classList.add('active');
+            }else{
+                card.classList.remove('active');
+                if(dots[index]) dots[index].classList.remove('active');
+            }
+        });
+
+    }
 }
 
 container.addEventListener('scroll', updateActiveCard);
 window.addEventListener('load', updateActiveCard);
 
+/* ================= DESKTOP ACTIVE (CLICK) ================= */
+
+cards.forEach(card => {
+    card.addEventListener("click", function(){
+
+        if(window.innerWidth > 768){   // SOLO DESKTOP
+
+            cards.forEach(c => c.classList.remove("active"));
+            this.classList.add("active");
+
+        }
+
+    });
+});
+
+/* ================= VIDEO ================= */
+
 function openVideo(){
     document.getElementById("videoModal").style.display="flex";
     document.getElementById("youtubeFrame").src=
-    "https://www.youtube.com/embed/-DmT9bhRsxI?autoplay=1";
+    "https://www.youtube.com/embed/-DmT9bhRsxI";
 }
 
 function closeVideo(){
