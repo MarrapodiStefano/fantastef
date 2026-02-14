@@ -270,6 +270,12 @@ body{
         border:3px solid #2ecc71;
     }
 
+.card.oracolo-activate{
+    transform:scale(1.05);
+    box-shadow:0 0 40px rgba(46,204,113,0.9);
+    transition:all 0.25s ease;
+}
+
     .slider-dots{
         display:flex;
         justify-content:center;
@@ -497,7 +503,7 @@ body{
         <p>Guarda lo short in anteprima.</p>
     </div>
 
-    <div class="card oracolo-card" onclick="openAlgoritmo()">
+    <div class="card oracolo-card" onclick="openOracolo(this)">
 
     <div class="oracolo-container">
         <img src="oracolo.png" class="oracolo-img">
@@ -631,13 +637,22 @@ function openVideo(){
     "https://www.youtube.com/embed/-DmT9bhRsxI";
 }
 
+function openOracolo(cardElement){
+
+    // Effetto attivazione
+    cardElement.classList.add("oracolo-activate");
+
+    // Dopo 250ms apre la modal (qui metteremo la tua futura modal algoritmo)
+    setTimeout(function(){
+        cardElement.classList.remove("oracolo-activate");
+        alert("Qui si aprirà la finestra dell’Oracolo 🔮");
+    }, 250);
+
+}
+
 function closeVideo(){
     document.getElementById("videoModal").style.display="none";
     document.getElementById("youtubeFrame").src="";
-}
-
-function openAlgoritmo(){
-    alert("Qui si aprirà l'Oracolo 👁");
 }
 
 </script>
