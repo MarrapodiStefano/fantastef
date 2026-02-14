@@ -19,7 +19,7 @@ body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     background:url("stadium-bg.png") center center / cover no-repeat;
     color:white;
-    min-height:100vh;
+    min-height:100vh;   /* AGGIUNGI QUESTA RIGA */
 }
 
 /* ================= WRAPPER ================= */
@@ -27,7 +27,7 @@ body{
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-    padding:90px 20px 140px 20px;
+    padding:100px 20px 140px 20px; /* compensazione header */
 }
 
 /* ================= HEADER ================= */
@@ -82,50 +82,18 @@ body{
     margin-bottom:20px;
 }
 
-/* ================= HERO TYPEWRITER ================= */
-
 .hero h1{
     font-size:clamp(40px ,5vw,120px);
     font-weight:800;
-    overflow:hidden;
-    white-space:nowrap;
-    border-right:3px solid #2ecc71;
-    width:0;
-
-    animation:
-        typing 3.5s steps(20,end) forwards,
-        blink 0.8s step-end 0s 6,
-        hideCursor 0.1s forwards;
-
-    animation-delay:
-        0s,
-        0s,
-        3.6s;
 }
 
 .hero h1 span{
     color:#2ecc71;
 }
 
-@keyframes typing{
-    0%{width:0;}
-    45%{width:60%;}
-    75%{width:60%;}
-    100%{width:100%;}
-}
-
-@keyframes blink{
-    0%,100%{border-color:transparent;}
-    50%{border-color:#2ecc71;}
-}
-
-@keyframes hideCursor{
-    to{border-right:0;}
-}
-
 .hero p{
     font-size:20px;
-    margin-top:10px;
+    margin-top:0px;
     opacity:0.85;
 }
 
@@ -161,16 +129,16 @@ body{
 }
 
 .card h3{
-    font-size:26px;
+    font-size:28px;
     margin-bottom:10px;
 }
 
 .card p{
-    font-size:15px;
-    opacity:0.85;
+    font-size:16px;
+    opacity:0.8;
 }
 
-/* ================= VIDEO CARD ================= */
+/* ================= VIDEO THUMB PREMIUM ================= */
 
 .video-card{
     background-image:url("https://img.youtube.com/vi/-DmT9bhRsxI/maxresdefault.jpg");
@@ -205,34 +173,13 @@ body{
     border-bottom:12px solid transparent;
 }
 
-/* ================= ALGORITMO CARD ================= */
+/* ================= DOTS DESKTOP OFF ================= */
 
-.algoritmo-card{
-    justify-content:flex-start;
+.slider-dots{
+    display:none;
 }
 
-.algoritmo-meta{
-    font-size:14px;
-    opacity:0.7;
-    margin-bottom:20px;
-}
-
-.algoritmo-content{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:auto;
-}
-
-.alg-item{
-    display:flex;
-    justify-content:space-between;
-    font-size:15px;
-    border-bottom:1px solid rgba(255,255,255,0.1);
-    padding-bottom:6px;
-}
-
-/* ================= TABLET SLIDER ================= */
+/* ================= TABLET SLIDER (come mobile ma più grande) ================= */
 
 @media (max-width:1024px) and (min-width:769px){
 
@@ -260,11 +207,23 @@ body{
     .card.active{
         border:3px solid #2ecc71;
     }
+
+    .slider-dots{
+        display:flex;
+        justify-content:center;
+        gap:10px;
+        margin-top:20px;
+    }
+
 }
 
-/* ================= MOBILE ================= */
+/* ================= MOBILE PREMIUM SLIDER ================= */
 
 @media (max-width:768px){
+
+    body{
+        background-attachment:scroll;
+    }
 
     .cards{
         overflow-x:auto;
@@ -276,15 +235,35 @@ body{
         display:none;
     }
 
-    .card{
-        flex:0 0 100%;
-        width:100%;
-        scroll-snap-align:center;
-        border:3px solid transparent;
-    }
+   .card{
+    flex:0 0 100%;
+    width:100%;
+    scroll-snap-align:center;
+    border:3px solid transparent;
+}
 
     .card.active{
         border:3px solid #2ecc71;
+    }
+
+    .slider-dots{
+        display:flex;
+        justify-content:center;
+        gap:10px;
+        margin-top:20px;
+    }
+
+    .slider-dots span{
+        width:8px;
+        height:8px;
+        border-radius:50%;
+        background:rgba(255,255,255,0.4);
+        transition:0.3s;
+    }
+
+    .slider-dots span.active{
+        background:#2ecc71;
+        transform:scale(1.3);
     }
 }
 
@@ -312,6 +291,17 @@ body{
     align-items:center;
     font-size:12px;
     color:#2ecc71;
+    opacity:0.5;               /* tutte semi-spente */
+    transition:all 0.3s ease;
+}
+
+.bottom-item.active{
+    opacity:1;                 /* quella attiva brillante */
+    transform:translateY(-3px); /* leggermente sollevata */
+}
+
+.bottom-item.active svg{
+    filter:drop-shadow(0 0 12px rgba(46,204,113,0.9));
 }
 
 .bottom-item svg{
@@ -350,6 +340,52 @@ body{
     cursor:pointer;
 }
 
+/* ================= HERO TYPEWRITER EFFECT (PAUSA DOPO WE…) ================= */
+
+.hero h1{
+    font-size:clamp(40px ,5vw,120px);
+    font-weight:800;
+
+    overflow:hidden;
+    white-space:nowrap;
+    border-right:3px solid #2ecc71;
+    width:0;
+
+    animation:
+        typing 3.5s steps(20,end) forwards,
+        blink 0.8s step-end 0s 6,
+        hideCursor 0.1s forwards;
+
+    animation-delay:
+        0s,
+        0s,
+        3.6s;
+}
+
+.hero h1 span{
+    color:#2ecc71;
+}
+
+/* Scrittura con pausa integrata */
+@keyframes typing{
+    0%   { width:0; }
+    45%  { width:60%; }   /* HERE WE… */
+    75%  { width:60%; }   /* PAUSA */
+    100% { width:100%; }  /* GOL! */
+}
+
+/* Lampeggio cursore */
+@keyframes blink{
+    0%,100%{ border-color:transparent; }
+    50%{ border-color:#2ecc71; }
+}
+
+/* Nasconde cursore */
+@keyframes hideCursor{
+    to{ border-right:0; }
+}
+
+
 </style>
 </head>
 
@@ -373,7 +409,6 @@ body{
 
 <section class="cards">
 
-    <!-- CARD A -->
     <div class="card video-card active" onclick="openVideo()">
         <div class="video-overlay"></div>
         <div class="play-icon"></div>
@@ -381,31 +416,28 @@ body{
         <p>Guarda lo short in anteprima.</p>
     </div>
 
-    <!-- CARD B ALGORITMO -->
-    <div class="card algoritmo-card">
-        <h3>Algoritmo Giornata</h3>
-        <p class="algoritmo-meta">Caricamento dati...</p>
-
-        <div class="algoritmo-content">
-            <div class="alg-item"><span>🔥 ATT</span><strong id="topAtt">--</strong></div>
-            <div class="alg-item"><span>⭐ CEN</span><strong id="topCen">--</strong></div>
-            <div class="alg-item"><span>🛡 DIF</span><strong id="topDif">--</strong></div>
-            <div class="alg-item"><span>🧤 POR</span><strong id="topPor">--</strong></div>
-        </div>
-    </div>
-
-    <!-- CARD C -->
     <div class="card">
         <h3>FantaConsigli</h3>
         <p>Shorts settimanali.</p>
     </div>
 
+    <div class="card">
+        <h3>Dream Team</h3>
+        <p>I top selezionati.</p>
+    </div>
+
 </section>
+
+<div class="slider-dots">
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+</div>
 
 </div>
 
 <div class="bottom-menu">
-    <div class="bottom-item">
+    <div class="bottom-item active">
         <svg viewBox="0 0 24 24"><path d="M3 10L12 3l9 7v10H3z"/></svg>
         Home
     </div>
@@ -426,7 +458,57 @@ body{
 
 <script>
 
-/* VIDEO */
+window.addEventListener("scroll", function(){
+    const header = document.querySelector(".header");
+    header.classList.toggle("shrink", window.scrollY > 50);
+});
+
+const cards = document.querySelectorAll('.card');
+const dots = document.querySelectorAll('.slider-dots span');
+const container = document.querySelector('.cards');
+
+/* ================= MOBILE ACTIVE (SCROLL) ================= */
+
+function updateActiveCard(){
+    if(window.innerWidth <= 768){   // SOLO MOBILE
+
+        let containerCenter = container.scrollLeft + container.offsetWidth / 2;
+
+        cards.forEach((card, index)=>{
+            let cardCenter = card.offsetLeft + card.offsetWidth / 2;
+
+            if(Math.abs(containerCenter - cardCenter) < card.offsetWidth/2){
+                card.classList.add('active');
+                if(dots[index]) dots[index].classList.add('active');
+            }else{
+                card.classList.remove('active');
+                if(dots[index]) dots[index].classList.remove('active');
+            }
+        });
+
+    }
+}
+
+container.addEventListener('scroll', updateActiveCard);
+window.addEventListener('load', updateActiveCard);
+
+/* ================= DESKTOP ACTIVE (CLICK) ================= */
+
+cards.forEach(card => {
+    card.addEventListener("click", function(){
+
+        if(window.innerWidth > 768){   // SOLO DESKTOP
+
+            cards.forEach(c => c.classList.remove("active"));
+            this.classList.add("active");
+
+        }
+
+    });
+});
+
+/* ================= VIDEO ================= */
+
 function openVideo(){
     document.getElementById("videoModal").style.display="flex";
     document.getElementById("youtubeFrame").src=
@@ -437,40 +519,6 @@ function closeVideo(){
     document.getElementById("videoModal").style.display="none";
     document.getElementById("youtubeFrame").src="";
 }
-
-/* ALGORITMO JSON */
-fetch("consigli_giornata.json")
-.then(response => response.json())
-.then(data => {
-
-    document.querySelector(".algoritmo-meta").innerText =
-        "Giornata " + data.giornata + " • Agg. " + data.aggiornamento;
-
-    if(data.ruoli.attaccanti.top.length > 0){
-        document.getElementById("topAtt").innerText =
-            data.ruoli.attaccanti.top[0].nome;
-    }
-
-    if(data.ruoli.centrocampisti.top.length > 0){
-        document.getElementById("topCen").innerText =
-            data.ruoli.centrocampisti.top[0].nome;
-    }
-
-    if(data.ruoli.difensori.top.length > 0){
-        document.getElementById("topDif").innerText =
-            data.ruoli.difensori.top[0].nome;
-    }
-
-    if(data.ruoli.portieri.top.length > 0){
-        document.getElementById("topPor").innerText =
-            data.ruoli.portieri.top[0].nome;
-    }
-
-})
-.catch(error=>{
-    document.querySelector(".algoritmo-meta").innerText =
-        "Errore caricamento dati";
-});
 
 </script>
 
