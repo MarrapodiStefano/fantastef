@@ -477,6 +477,90 @@ body{
     opacity:0.8;
 }
 
+/* ================= ORACOLO MODAL ================= */
+
+.oracolo-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(8px);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:3000;
+}
+
+.oracolo-box{
+    width:90%;
+    max-width:420px;
+    background:linear-gradient(180deg,#0f1f2f,#0a1624);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 0 40px rgba(46,204,113,0.3);
+    animation:fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn{
+    from{ transform:scale(0.9); opacity:0; }
+    to{ transform:scale(1); opacity:1; }
+}
+
+.oracolo-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.close-oracolo{
+    cursor:pointer;
+    font-size:22px;
+}
+
+.oracolo-info{
+    font-size:14px;
+    opacity:0.7;
+    margin-bottom:15px;
+}
+
+.oracolo-section{
+    margin-bottom:15px;
+    padding:10px;
+    border-radius:12px;
+}
+
+.top-section{
+    background:linear-gradient(90deg,#1e7f3b,#2ecc71);
+}
+
+.buoni-section{
+    background:linear-gradient(90deg,#b88a00,#f1c40f);
+}
+
+.rischio-section{
+    background:linear-gradient(90deg,#8b1a1a,#e74c3c);
+}
+
+.oracolo-section h3{
+    margin-bottom:8px;
+}
+
+.oracolo-section div{
+    font-size:14px;
+    margin-bottom:4px;
+}
+
+.oracolo-close-btn{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    background:#1f2f3f;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
 </style>
 </head>
 
@@ -554,6 +638,38 @@ body{
     <iframe id="youtubeFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
+<!-- ================= ORACOLO MODAL ================= -->
+
+<div class="oracolo-modal" id="oracoloModal">
+    <div class="oracolo-box">
+
+        <div class="oracolo-header">
+            <h2>Consigli dell’Algoritmo</h2>
+            <span class="close-oracolo" onclick="closeOracolo()">✕</span>
+        </div>
+
+        <div class="oracolo-info" id="modal-giornata"></div>
+
+        <div class="oracolo-section top-section">
+            <h3>🏆 Top</h3>
+            <div id="modal-top"></div>
+        </div>
+
+        <div class="oracolo-section buoni-section">
+            <h3>👍 Buoni</h3>
+            <div id="modal-buoni"></div>
+        </div>
+
+        <div class="oracolo-section rischio-section">
+            <h3>⚠ Rischiosi</h3>
+            <div id="modal-rischio"></div>
+        </div>
+
+        <button class="oracolo-close-btn" onclick="closeOracolo()">Chiudi</button>
+
+    </div>
+</div>
+
 <script>
 
 window.addEventListener("scroll", function(){
@@ -611,26 +727,37 @@ fetch("consigli_giornata.json")
 .then(response => response.json())
 .then(data => {
 
-    document.getElementById("alg-giornata").innerText =
+    document.getElementById("modal-giornata").innerText =
         "Giornata " + data.giornata +
         " • Agg. " + data.aggiornamento;
 
-    let topContainer = document.getElementById("alg-top");
+    // TOP
+    let topContainer = document.getElementById("modal-top");
+    data.ruoli.attaccanti.top.slice(0,3).forEach(player=>{
+        let div=document.createElement("div");
+        div.innerText = player.nome + " (" + player.squadra + ") - " + player.voto;
+        topContainer.appendChild(div);
+    });
 
-    data.ruoli.attaccanti.top.slice(0,3).forEach(player => {
+    // BUONI
+    let buoniContainer = document.getElementById("modal-buoni");
+    data.ruoli.attaccanti.buoni.slice(0,3).forEach(player=>{
+        let div=document.createElement("div");
+        div.innerText = player.nome + " (" + player.squadra + ") - " + player.voto;
+        buoniContainer.appendChild(div);
+    });
 
-        let riga = document.createElement("div");
-        riga.innerText =
-            player.nome + " (" + player.squadra + ") - " + player.voto;
-
-        topContainer.appendChild(riga);
-
+    // RISCHIOSI
+    let rischioContainer = document.getElementById("modal-rischio");
+    data.ruoli.attaccanti.rischiosi.slice(0,3).forEach(player=>{
+        let div=document.createElement("div");
+        div.innerText = player.nome + " (" + player.squadra + ") - " + player.voto;
+        rischioContainer.appendChild(div);
     });
 
 })
-.catch(error => {
-    document.getElementById("alg-giornata").innerText =
-        "Errore caricamento dati";
+.catch(error=>{
+    document.getElementById("modal-giornata").innerText="Errore caricamento dati";
 });
 
 /* ================= VIDEO ================= */
@@ -643,15 +770,19 @@ function openVideo(){
 
 function openOracolo(cardElement){
 
-    // Effetto attivazione
     cardElement.classList.add("oracolo-activate");
 
-    // Dopo 250ms apre la modal (qui metteremo la tua futura modal algoritmo)
     setTimeout(function(){
-        cardElement.classList.remove("oracolo-activate");
-        alert("Qui si aprirà la finestra dell’Oracolo 🔮");
-    }, 250);
 
+        cardElement.classList.remove("oracolo-activate");
+
+        document.getElementById("oracoloModal").style.display="flex";
+
+    }, 250);
+}
+
+function closeOracolo(){
+    document.getElementById("oracoloModal").style.display="none";
 }
 
 function closeVideo(){
