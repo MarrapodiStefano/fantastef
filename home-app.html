@@ -329,80 +329,46 @@ body{
     cursor:pointer;
 }
 
-/* ================= HERO CINEMATIC TYPEWRITER ================= */
+/* ================= HERO TYPEWRITER EFFECT ================= */
 
 .hero h1{
     font-size:clamp(40px ,5vw,120px);
     font-weight:800;
+
+    overflow:hidden;
     white-space:nowrap;
-}
-
-/* ===== PRIMA PARTE ===== */
-
-.part1{
-    display:inline-block;
-    overflow:hidden;
     border-right:3px solid #2ecc71;
     width:0;
 
     animation:
-        typing1 1.5s steps(12,end) forwards,
-        blink1 0.8s step-end 0s 3,
-        hideCursor1 0.1s forwards;
+        typing 2s steps(20, end) forwards,
+        blink 0.8s step-end 0s 4,
+        hideCursor 0.1s forwards;
 
     animation-delay:
         0s,
         0s,
-        1.6s;
+        2.2s; /* il cursore sparisce dopo la scrittura */
 }
 
-/* ===== SECONDA PARTE (DOPO PAUSA) ===== */
-
-.part2{
-    display:inline-block;
-    overflow:hidden;
+.hero h1 span{
     color:#2ecc71;
-    border-right:3px solid #2ecc71;
-    width:0;
-
-    animation:
-        typing2 1s steps(6,end) forwards,
-        blink2 0.8s step-end 0s 3,
-        hideCursor2 0.1s forwards;
-
-    animation-delay:
-        3.5s,   /* 1.5s scrittura + 2s pausa */
-        3.5s,
-        4.6s;
 }
 
-/* ===== KEYFRAMES ===== */
-
-@keyframes typing1{
+/* Animazione scrittura */
+@keyframes typing{
     from{ width:0; }
     to{ width:100%; }
 }
 
-@keyframes typing2{
-    from{ width:0; }
-    to{ width:100%; }
-}
-
-@keyframes blink1{
+/* Lampeggio cursore */
+@keyframes blink{
     0%,100%{ border-color:transparent; }
     50%{ border-color:#2ecc71; }
 }
 
-@keyframes blink2{
-    0%,100%{ border-color:transparent; }
-    50%{ border-color:#2ecc71; }
-}
-
-@keyframes hideCursor1{
-    to{ border-right:0; }
-}
-
-@keyframes hideCursor2{
+/* Nasconde il cursore definitivamente */
+@keyframes hideCursor{
     to{ border-right:0; }
 }
 
