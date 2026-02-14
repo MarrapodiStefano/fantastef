@@ -530,15 +530,27 @@ body{
 }
 
 .top-section{
-    background:linear-gradient(90deg,#1e7f3b,#2ecc71);
+    background:linear-gradient(180deg,#143e26,#0f2f1d);
+    border:1px solid rgba(46,204,113,0.3);
+    box-shadow:
+        0 0 25px rgba(46,204,113,0.15) inset,
+        0 10px 25px rgba(0,0,0,0.4);
 }
 
 .buoni-section{
-    background:linear-gradient(90deg,#b88a00,#f1c40f);
+    background:linear-gradient(180deg,#4a3800,#2c2200);
+    border:1px solid rgba(241,196,15,0.3);
+    box-shadow:
+        0 0 25px rgba(241,196,15,0.15) inset,
+        0 10px 25px rgba(0,0,0,0.4);
 }
 
 .rischio-section{
-    background:linear-gradient(90deg,#8b1a1a,#e74c3c);
+    background:linear-gradient(180deg,#3a0f0f,#1e0909);
+    border:1px solid rgba(231,76,60,0.3);
+    box-shadow:
+        0 0 25px rgba(231,76,60,0.15) inset,
+        0 10px 25px rgba(0,0,0,0.4);
 }
 
 .oracolo-section h3{
@@ -550,6 +562,53 @@ body{
     margin-bottom:4px;
     transition:opacity 0.25s ease, transform 0.25s ease;
 }
+
+/* ================= PLAYER ROW PREMIUM ================= */
+
+.player-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.player-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.player-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.player-name{
+    font-size:16px;
+    font-weight:600;
+}
+
+.player-team{
+    font-size:12px;
+    opacity:0.6;
+    margin-top:2px;
+}
+
+.player-voto{
+    font-size:18px;
+    font-weight:700;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+}
+
+.dot-green{ background:#2ecc71; }
+.dot-yellow{ background:#f1c40f; }
+.dot-red{ background:#e74c3c; }
 
 /* Animazione contenuto algoritmo */
 
@@ -827,25 +886,58 @@ rischioBox.classList.add("alg-content");
             .sort((a,b)=> b.voto - a.voto);
 
         topList.forEach(player=>{
-            let div=document.createElement("div");
-            div.innerText =
-                player.nome + " (" + player.squadra + ") - " + player.voto;
-            topBox.appendChild(div);
-        });
+    let row = document.createElement("div");
+    row.className = "player-row";
+
+    row.innerHTML = `
+        <div class="player-left">
+            <span class="dot dot-green"></span>
+            <div class="player-info">
+                <div class="player-name">${player.nome}</div>
+                <div class="player-team">${player.squadra}</div>
+            </div>
+        </div>
+        <div class="player-voto">${player.voto}</div>
+    `;
+
+    topBox.appendChild(row);
+});
 
         buoniList.forEach(player=>{
-            let div=document.createElement("div");
-            div.innerText =
-                player.nome + " (" + player.squadra + ") - " + player.voto;
-            buoniBox.appendChild(div);
-        });
+    let row = document.createElement("div");
+    row.className = "player-row";
+
+    row.innerHTML = `
+        <div class="player-left">
+            <span class="dot dot-yellow"></span>
+            <div class="player-info">
+                <div class="player-name">${player.nome}</div>
+                <div class="player-team">${player.squadra}</div>
+            </div>
+        </div>
+        <div class="player-voto">${player.voto}</div>
+    `;
+
+    topBox.appendChild(row);
+});
 
         rischioList.forEach(player=>{
-            let div=document.createElement("div");
-            div.innerText =
-                player.nome + " (" + player.squadra + ") - " + player.voto;
-            rischioBox.appendChild(div);
-        });
+    let row = document.createElement("div");
+    row.className = "player-row";
+
+    row.innerHTML = `
+        <div class="player-left">
+            <span class="dot dot-red"></span>
+            <div class="player-info">
+                <div class="player-name">${player.nome}</div>
+                <div class="player-team">${player.squadra}</div>
+            </div>
+        </div>
+        <div class="player-voto">${player.voto}</div>
+    `;
+
+    topBox.appendChild(row);
+});
 
         topBox.classList.remove("alg-hidden");
         buoniBox.classList.remove("alg-hidden");
