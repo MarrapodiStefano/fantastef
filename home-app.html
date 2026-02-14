@@ -395,6 +395,50 @@ body{
     to{ border-right:0; }
 }
 
+/* ================= ORACOLO CARD ================= */
+
+.oracolo-container{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -60%);
+    width:140px;
+    height:140px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.oracolo-img{
+    width:100%;
+    height:auto;
+    animation:rotateOracolo 20s linear infinite,
+               glowOracolo 3s ease-in-out infinite;
+}
+
+@keyframes rotateOracolo{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+}
+
+@keyframes glowOracolo{
+    0%,100%{ filter:drop-shadow(0 0 5px #2ecc71); }
+    50%{ filter:drop-shadow(0 0 20px #2ecc71); }
+}
+
+.oracolo-title{
+    width:100%;
+    text-align:center;
+    font-size:26px;
+    margin-top:auto;
+}
+
+.oracolo-sub{
+    width:100%;
+    text-align:center;
+    font-size:14px;
+    opacity:0.8;
+}
 
 </style>
 </head>
@@ -426,10 +470,15 @@ body{
         <p>Guarda lo short in anteprima.</p>
     </div>
 
-    <div class="card" id="card-algoritmo">
-    <h3 id="alg-titolo">Algoritmo</h3>
-    <p id="alg-giornata">Caricamento...</p>
-    <div id="alg-top"></div>
+    <div class="card" onclick="openAlgoritmo()">
+
+    <div class="oracolo-container">
+        <img src="oracolo.png" class="oracolo-img">
+    </div>
+
+    <h3 class="oracolo-title">L’Oracolo</h3>
+    <p class="oracolo-sub">Scopri le previsioni dell’algoritmo</p>
+
 </div>
 
   <div class="card">
@@ -558,6 +607,10 @@ function openVideo(){
 function closeVideo(){
     document.getElementById("videoModal").style.display="none";
     document.getElementById("youtubeFrame").src="";
+}
+
+function openAlgoritmo(){
+    alert("Qui si aprirà l'Oracolo 👁");
 }
 
 </script>
