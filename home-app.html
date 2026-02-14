@@ -813,6 +813,65 @@ fetch("consigli_giornata.json")
     document.getElementById("modal-giornata").innerText="Errore caricamento dati";
 });
 
+let algoritmoData = null;
+let ruoloAttivo = "attaccanti";
+
+fetch("consigli_giornata.json")
+.then(response => response.json())
+.then(data => {
+
+    algoritmoData = data;
+
+    document.getElementById("modal-giornata").innerText =
+        "Giornata " + data.giornata +
+        " • Agg. " + data.aggiornamento;
+
+    caricaRuolo("attaccanti");
+
+})
+.catch(error => {
+    document.getElementById("modal-giornata").innerText =
+        "Errore caricamento dati";
+});
+
+function caricaRuolo(ruolo){
+
+    ruoloAttivo = ruolo;
+
+    const topBox = document.getElementById("modal-top");
+    topBox.innerHTML = "";
+
+    if(!algoritmoData.ruoli[ruolo]) return;
+
+    algoritmoData.ruoli[ruolo].top.forEach(player => {
+
+        let riga = document.createElement("div");
+        riga.innerText =
+            player.nome + " (" + player.squadra + ") - " + player.voto;
+
+        topBox.appendChild(riga);
+
+    });
+
+}
+
+document.querySelectorAll(".alg-tab").forEach(tab => {
+
+    tab.addEventListener("click", function(){
+
+        document.querySelectorAll(".alg-tab")
+        .forEach(t => t.classList.remove("active"));
+
+        this.classList.add("active");
+
+        const ruolo = this.getAttribute("data-ruolo");
+
+        caricaRuolo(ruolo);
+
+    });
+
+});
+
 /* ================= VIDEO ================= */
 
 function openVideo(){
