@@ -804,7 +804,6 @@ function caricaRuolo(ruolo){
     const buoniBox = document.getElementById("modal-buoni");
     const rischioBox = document.getElementById("modal-rischio");
 
-    // 🔥 PULIZIA TOTALE
     topBox.innerHTML = "";
     buoniBox.innerHTML = "";
     rischioBox.innerHTML = "";
@@ -813,29 +812,50 @@ function caricaRuolo(ruolo){
 
     const dati = algoritmoData.ruoli[ruolo];
 
-    // TOP
-    dati.top.forEach(player => {
-        let riga = document.createElement("div");
-        riga.innerText =
-            player.nome + " (" + player.squadra + ") - " + player.voto;
-        topBox.appendChild(riga);
-    });
+    // 🔥 TOP
+    if(dati.top && dati.top.length > 0){
+        dati.top
+        .sort((a,b)=> b.voto - a.voto)
+        .forEach(player => {
 
-    // BUONI
-    dati.buoni.forEach(player => {
-        let riga = document.createElement("div");
-        riga.innerText =
-            player.nome + " (" + player.squadra + ") - " + player.voto;
-        buoniBox.appendChild(riga);
-    });
+            let div = document.createElement("div");
+            div.innerText =
+                player.nome + " (" + player.squadra + ") - " + player.voto;
 
-    // RISCHIOSI
-    dati.rischiosi.forEach(player => {
-        let riga = document.createElement("div");
-        riga.innerText =
-            player.nome + " (" + player.squadra + ") - " + player.voto;
-        rischioBox.appendChild(riga);
-    });
+            topBox.appendChild(div);
+
+        });
+    }
+
+    // 🟡 BUONI
+    if(dati.buoni && dati.buoni.length > 0){
+        dati.buoni
+        .sort((a,b)=> b.voto - a.voto)
+        .forEach(player => {
+
+            let div = document.createElement("div");
+            div.innerText =
+                player.nome + " (" + player.squadra + ") - " + player.voto;
+
+            buoniBox.appendChild(div);
+
+        });
+    }
+
+    // 🔴 RISCHIOSI
+    if(dati.rischiosi && dati.rischiosi.length > 0){
+        dati.rischiosi
+        .sort((a,b)=> b.voto - a.voto)
+        .forEach(player => {
+
+            let div = document.createElement("div");
+            div.innerText =
+                player.nome + " (" + player.squadra + ") - " + player.voto;
+
+            rischioBox.appendChild(div);
+
+        });
+    }
 
 }
 
