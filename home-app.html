@@ -424,15 +424,25 @@ body{
 }
 
 .oracolo-img{
-    width:100%;
-    height:auto;
-    animation:rotateOracolo 20s linear infinite,
-               glowOracolo 3s ease-in-out infinite;
+    width:140px;
+    animation:
+        rotateOracolo 18s linear infinite,
+        glowPulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(46,204,113,0.6));
 }
 
 @keyframes rotateOracolo{
     from{ transform:rotate(0deg); }
     to{ transform:rotate(360deg); }
+}
+
+@keyframes glowPulse{
+    0%,100%{
+        filter: drop-shadow(0 0 8px rgba(46,204,113,0.4));
+    }
+    50%{
+        filter: drop-shadow(0 0 20px rgba(46,204,113,0.9));
+    }
 }
 
 @keyframes glowOracolo{
