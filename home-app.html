@@ -912,7 +912,8 @@ rischioBox.classList.add("alg-content");
     topBox.appendChild(row);
 });
 
-        buoniList.forEach(player=>{
+
+buoniList.forEach(player=>{
     let row = document.createElement("div");
     row.className = "player-row";
 
@@ -927,10 +928,11 @@ rischioBox.classList.add("alg-content");
         <div class="player-voto">${player.voto}</div>
     `;
 
-    topBox.appendChild(row);
+    buoniBox.appendChild(row);   // ✅ QUI CAMBIA
 });
 
-        rischioList.forEach(player=>{
+
+rischioList.forEach(player=>{
     let row = document.createElement("div");
     row.className = "player-row";
 
@@ -945,7 +947,7 @@ rischioBox.classList.add("alg-content");
         <div class="player-voto">${player.voto}</div>
     `;
 
-    topBox.appendChild(row);
+    rischioBox.appendChild(row);   // ✅ QUI CAMBIA
 });
 
         topBox.classList.remove("alg-hidden");
