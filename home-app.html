@@ -550,6 +550,16 @@ body{
     margin-bottom:4px;
 }
 
+/* Animazione contenuto algoritmo */
+.alg-content{
+    transition:opacity 0.25s ease, transform 0.25s ease;
+}
+
+.alg-hidden{
+    opacity:0;
+    transform:translateY(10px);
+}
+
 .oracolo-close-btn{
     width:100%;
     padding:10px;
@@ -806,15 +816,19 @@ function caricaRuolo(ruolo){
     const buoniBox = document.getElementById("modal-buoni");
     const rischioBox = document.getElementById("modal-rischio");
 
+topBox.classList.add("alg-content");
+buoniBox.classList.add("alg-content");
+rischioBox.classList.add("alg-content");
+
     // Reset
     topBox.innerHTML = "";
     buoniBox.innerHTML = "";
     rischioBox.innerHTML = "";
 
     // Animazione fade
-    topBox.style.opacity = 0;
-    buoniBox.style.opacity = 0;
-    rischioBox.style.opacity = 0;
+    topBox.classList.add("alg-hidden");
+    buoniBox.classList.add("alg-hidden");
+    rischioBox.classList.add("alg-hidden");
 
     setTimeout(()=>{
 
@@ -849,10 +863,9 @@ function caricaRuolo(ruolo){
             rischioBox.appendChild(div);
         });
 
-        topBox.style.opacity = 1;
-        buoniBox.style.opacity = 1;
-        rischioBox.style.opacity = 1;
-
+        topBox.classList.remove("alg-hidden");
+        buoniBox.classList.remove("alg-hidden");
+        rischioBox.classList.remove("alg-hidden");
     },150);
 }
 
