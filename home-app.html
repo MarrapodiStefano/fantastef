@@ -789,48 +789,54 @@ function caricaRuolo(ruolo){
     const buoniBox = document.getElementById("modal-buoni");
     const rischioBox = document.getElementById("modal-rischio");
 
+    // Reset
     topBox.innerHTML = "";
     buoniBox.innerHTML = "";
     rischioBox.innerHTML = "";
 
-    // FUNZIONE ORDINAMENTO SICURO
-    function ordinaPerVoto(lista){
-        return [...lista].sort((a,b) => b.voto - a.voto);
-    }
+    // Animazione fade
+    topBox.style.opacity = 0;
+    buoniBox.style.opacity = 0;
+    rischioBox.style.opacity = 0;
 
-    // TOP
-    ordinaPerVoto(algoritmoData.ruoli[ruolo].top)
-    .forEach(player => {
+    setTimeout(()=>{
 
-        let riga = document.createElement("div");
-        riga.innerText =
-            player.nome + " (" + player.squadra + ") - " + player.voto;
+        // ORDINAMENTO DECRESCENTE PER VOTO
+        const topList = [...algoritmoData.ruoli[ruolo].top]
+            .sort((a,b)=> b.voto - a.voto);
 
-        topBox.appendChild(riga);
-    });
+        const buoniList = [...algoritmoData.ruoli[ruolo].buoni]
+            .sort((a,b)=> b.voto - a.voto);
 
-    // BUONI
-    ordinaPerVoto(algoritmoData.ruoli[ruolo].buoni)
-    .forEach(player => {
+        const rischioList = [...algoritmoData.ruoli[ruolo].rischiosi]
+            .sort((a,b)=> b.voto - a.voto);
 
-        let riga = document.createElement("div");
-        riga.innerText =
-            player.nome + " (" + player.squadra + ") - " + player.voto;
+        topList.forEach(player=>{
+            let div=document.createElement("div");
+            div.innerText =
+                player.nome + " (" + player.squadra + ") - " + player.voto;
+            topBox.appendChild(div);
+        });
 
-        buoniBox.appendChild(riga);
-    });
+        buoniList.forEach(player=>{
+            let div=document.createElement("div");
+            div.innerText =
+                player.nome + " (" + player.squadra + ") - " + player.voto;
+            buoniBox.appendChild(div);
+        });
 
-    // RISCHIOSI
-    ordinaPerVoto(algoritmoData.ruoli[ruolo].rischiosi)
-    .forEach(player => {
+        rischioList.forEach(player=>{
+            let div=document.createElement("div");
+            div.innerText =
+                player.nome + " (" + player.squadra + ") - " + player.voto;
+            rischioBox.appendChild(div);
+        });
 
-        let riga = document.createElement("div");
-        riga.innerText =
-            player.nome + " (" + player.squadra + ") - " + player.voto;
+        topBox.style.opacity = 1;
+        buoniBox.style.opacity = 1;
+        rischioBox.style.opacity = 1;
 
-        rischioBox.appendChild(riga);
-    });
-
+    },150);
 }
 
 document.querySelectorAll(".alg-tab").forEach(tab => {
