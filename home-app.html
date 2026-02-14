@@ -124,6 +124,20 @@ body{
     overflow:hidden;
 }
 
+/* ================= ORACOLO STYLE ================= */
+
+.oracolo-card{
+    background:
+        radial-gradient(circle at center, rgba(46,204,113,0.15) 0%, rgba(10,30,50,0.9) 60%),
+        linear-gradient(135deg,#0a1f33,#123a5c);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
 .card.active{
     border:3px solid #2ecc71;
 }
@@ -470,7 +484,7 @@ body{
         <p>Guarda lo short in anteprima.</p>
     </div>
 
-    <div class="card" onclick="openAlgoritmo()">
+    <div class="card oracolo-card" onclick="openAlgoritmo()">
 
     <div class="oracolo-container">
         <img src="oracolo.png" class="oracolo-img">
