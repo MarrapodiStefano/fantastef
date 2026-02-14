@@ -329,7 +329,7 @@ body{
     cursor:pointer;
 }
 
-/* ================= HERO TYPEWRITER EFFECT ================= */
+/* ================= HERO TYPEWRITER EFFECT (PAUSA DOPO WE…) ================= */
 
 .hero h1{
     font-size:clamp(40px ,5vw,120px);
@@ -341,24 +341,26 @@ body{
     width:0;
 
     animation:
-        typing 2s steps(20, end) forwards,
-        blink 0.8s step-end 0s 4,
+        typing 3.5s steps(20,end) forwards,
+        blink 0.8s step-end 0s 6,
         hideCursor 0.1s forwards;
 
     animation-delay:
         0s,
         0s,
-        2.2s; /* il cursore sparisce dopo la scrittura */
+        3.6s;
 }
 
 .hero h1 span{
     color:#2ecc71;
 }
 
-/* Animazione scrittura */
+/* Scrittura con pausa integrata */
 @keyframes typing{
-    from{ width:0; }
-    to{ width:100%; }
+    0%   { width:0; }
+    45%  { width:60%; }   /* HERE WE… */
+    75%  { width:60%; }   /* PAUSA */
+    100% { width:100%; }  /* GOL! */
 }
 
 /* Lampeggio cursore */
@@ -367,7 +369,7 @@ body{
     50%{ border-color:#2ecc71; }
 }
 
-/* Nasconde il cursore definitivamente */
+/* Nasconde cursore */
 @keyframes hideCursor{
     to{ border-right:0; }
 }
