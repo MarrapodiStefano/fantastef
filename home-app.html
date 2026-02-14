@@ -421,10 +421,11 @@ body{
         <p>Shorts settimanali.</p>
     </div>
 
-    <div class="card">
-        <h3>Dream Team</h3>
-        <p>I top selezionati.</p>
-    </div>
+   <div class="card" id="card-algoritmo">
+    <h3 id="alg-titolo">Algoritmo</h3>
+    <p id="alg-giornata">Caricamento...</p>
+    <div id="alg-top"></div>
+</div>
 
 </section>
 
@@ -505,6 +506,34 @@ cards.forEach(card => {
         }
 
     });
+});
+
+/* ================= ALGORITMO JSON ================= */
+
+fetch("consigli_giornata.json")
+.then(response => response.json())
+.then(data => {
+
+    document.getElementById("alg-giornata").innerText =
+        "Giornata " + data.giornata +
+        " • Agg. " + data.aggiornamento;
+
+    let topContainer = document.getElementById("alg-top");
+
+    data.ruoli.attaccanti.top.slice(0,3).forEach(player => {
+
+        let riga = document.createElement("div");
+        riga.innerText =
+            player.nome + " (" + player.squadra + ") - " + player.voto;
+
+        topContainer.appendChild(riga);
+
+    });
+
+})
+.catch(error => {
+    document.getElementById("alg-giornata").innerText =
+        "Errore caricamento dati";
 });
 
 /* ================= VIDEO ================= */
