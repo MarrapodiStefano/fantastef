@@ -329,47 +329,46 @@ body{
     cursor:pointer;
 }
 
-/* ================= HERO TYPEWRITER EFFECT (PAUSA DOPO WE…) ================= */
+/* ================= HERO TYPEWRITER FIXED CENTER ================= */
 
 .hero h1{
     font-size:clamp(40px ,5vw,120px);
     font-weight:800;
+}
 
+.typing{
+    display:inline-block;
     overflow:hidden;
     white-space:nowrap;
     border-right:3px solid #2ecc71;
     width:0;
-
     animation:
         typing 3.5s steps(20,end) forwards,
         blink 0.8s step-end 0s 6,
         hideCursor 0.1s forwards;
-
     animation-delay:
         0s,
         0s,
         3.6s;
 }
 
-.hero h1 span{
+.hero h1 span span{
     color:#2ecc71;
 }
 
-/* Scrittura con pausa integrata */
+/* Scrittura con pausa */
 @keyframes typing{
     0%   { width:0; }
-    45%  { width:60%; }   /* HERE WE… */
-    75%  { width:60%; }   /* PAUSA */
-    100% { width:100%; }  /* GOL! */
+    45%  { width:60%; }
+    75%  { width:60%; }
+    100% { width:100%; }
 }
 
-/* Lampeggio cursore */
 @keyframes blink{
     0%,100%{ border-color:transparent; }
     50%{ border-color:#2ecc71; }
 }
 
-/* Nasconde cursore */
 @keyframes hideCursor{
     to{ border-right:0; }
 }
@@ -392,7 +391,7 @@ body{
 <div class="main-wrapper">
 
 <section class="hero">
-    <h1>HERE WE... <span>GOL!</span></h1>
+    <h1><span class="typing">HERE WE... <span>GOL!</span></span></h1>
 </h1>
     <p>La FantaRevolution è qui.</p>
 </section>
