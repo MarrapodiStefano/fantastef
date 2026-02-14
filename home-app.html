@@ -774,44 +774,6 @@ cards.forEach(card => {
     });
 });
 
-/* ================= ALGORITMO JSON ================= */
-
-fetch("consigli_giornata.json")
-.then(response => response.json())
-.then(data => {
-
-    document.getElementById("modal-giornata").innerText =
-        "Giornata " + data.giornata +
-        " • Agg. " + data.aggiornamento;
-
-    // TOP
-    let topContainer = document.getElementById("modal-top");
-    data.ruoli.attaccanti.top.slice(0,3).forEach(player=>{
-        let div=document.createElement("div");
-        div.innerText = player.nome + " (" + player.squadra + ") - " + player.voto;
-        topContainer.appendChild(div);
-    });
-
-    // BUONI
-    let buoniContainer = document.getElementById("modal-buoni");
-    data.ruoli.attaccanti.buoni.slice(0,3).forEach(player=>{
-        let div=document.createElement("div");
-        div.innerText = player.nome + " (" + player.squadra + ") - " + player.voto;
-        buoniContainer.appendChild(div);
-    });
-
-    // RISCHIOSI
-    let rischioContainer = document.getElementById("modal-rischio");
-    data.ruoli.attaccanti.rischiosi.slice(0,3).forEach(player=>{
-        let div=document.createElement("div");
-        div.innerText = player.nome + " (" + player.squadra + ") - " + player.voto;
-        rischioContainer.appendChild(div);
-    });
-
-})
-.catch(error=>{
-    document.getElementById("modal-giornata").innerText="Errore caricamento dati";
-});
 
 let algoritmoData = null;
 let ruoloAttivo = "attaccanti";
@@ -839,18 +801,40 @@ function caricaRuolo(ruolo){
     ruoloAttivo = ruolo;
 
     const topBox = document.getElementById("modal-top");
+    const buoniBox = document.getElementById("modal-buoni");
+    const rischioBox = document.getElementById("modal-rischio");
+
+    // 🔥 PULIZIA TOTALE
     topBox.innerHTML = "";
+    buoniBox.innerHTML = "";
+    rischioBox.innerHTML = "";
 
     if(!algoritmoData.ruoli[ruolo]) return;
 
-    algoritmoData.ruoli[ruolo].top.forEach(player => {
+    const dati = algoritmoData.ruoli[ruolo];
 
+    // TOP
+    dati.top.forEach(player => {
         let riga = document.createElement("div");
         riga.innerText =
             player.nome + " (" + player.squadra + ") - " + player.voto;
-
         topBox.appendChild(riga);
+    });
 
+    // BUONI
+    dati.buoni.forEach(player => {
+        let riga = document.createElement("div");
+        riga.innerText =
+            player.nome + " (" + player.squadra + ") - " + player.voto;
+        buoniBox.appendChild(riga);
+    });
+
+    // RISCHIOSI
+    dati.rischiosi.forEach(player => {
+        let riga = document.createElement("div");
+        riga.innerText =
+            player.nome + " (" + player.squadra + ") - " + player.voto;
+        rischioBox.appendChild(riga);
     });
 
 }
