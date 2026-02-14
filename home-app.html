@@ -778,6 +778,23 @@ cards.forEach(card => {
 let algoritmoData = null;
 let ruoloAttivo = "attaccanti";
 
+fetch("consigli_giornata.json")
+.then(response => response.json())
+.then(data => {
+
+    algoritmoData = data;
+
+    document.getElementById("modal-giornata").innerText =
+        "Giornata " + data.giornata +
+        " • Agg. " + data.aggiornamento;
+
+    caricaRuolo("attaccanti");
+
+})
+.catch(error => {
+    document.getElementById("modal-giornata").innerText =
+        "Errore caricamento dati";
+});
 
 function caricaRuolo(ruolo){
 
