@@ -158,6 +158,13 @@ body{
     margin-bottom:15px;
 }
 
+<div class="alg-tabs">
+    <span class="alg-tab active" data-ruolo="attaccanti">Attaccanti</span>
+    <span class="alg-tab" data-ruolo="centrocampisti">Centrocampisti</span>
+    <span class="alg-tab" data-ruolo="difensori">Difensori</span>
+    <span class="alg-tab" data-ruolo="portieri">Portieri</span>
+</div>
+
 #alg-top div{
     margin-bottom:6px;
     font-size:16px;
@@ -559,6 +566,28 @@ body{
     color:white;
     font-weight:bold;
     cursor:pointer;
+}
+
+/* ================= ALGORITMO TABS ================= */
+
+.alg-tabs{
+    display:flex;
+    justify-content:space-between;
+    margin:15px 0 20px 0;
+    font-size:14px;
+}
+
+.alg-tab{
+    cursor:pointer;
+    opacity:0.6;
+    transition:all 0.2s ease;
+}
+
+.alg-tab.active{
+    opacity:1;
+    font-weight:600;
+    border-bottom:2px solid #2ecc71;
+    padding-bottom:4px;
 }
 
 </style>
