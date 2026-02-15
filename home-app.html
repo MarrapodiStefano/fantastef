@@ -583,8 +583,8 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    height:58px;       /* altezza controllata */
-    padding:0 14px;    /* solo orizzontale */
+    height:56px;              /* altezza fissa e compatta */
+    padding:0 14px;
     border-bottom:1px solid rgba(255,255,255,0.10);
 }
 
@@ -605,26 +605,31 @@ body{
     background:#2ecc71;
 }
 
+
 .player-info{
     display:flex;
     flex-direction:column;
     justify-content:center;
+    height:100%;
 }
+
 
 .player-name{
     font-weight:600;
-    font-size:17px;
-    line-height:1;
+    font-size:16px;
+    line-height:16px;         /* altezza reale controllata */
 }
+
 
 .player-team{
     font-size:11px;
     opacity:0.8;
-    margin-top:1px;
-    line-height:1;
+    line-height:11px;         /* niente spazio extra */
+    margin-top:2px;
 }
 
-.player-vote{
+
+.player-voto{
     font-weight:700;
     font-size:16px;
 }
