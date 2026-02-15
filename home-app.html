@@ -1068,19 +1068,43 @@ topBox.appendChild(row);
 
 });
 
-        buoniList.forEach(player=>{
-            let div=document.createElement("div");
-            div.innerText =
-                player.nome + " (" + player.squadra + ") - " + player.voto;
-            buoniBox.appendChild(div);
-        });
+buoniList.forEach(player=>{
 
-        rischioList.forEach(player=>{
-            let div=document.createElement("div");
-            div.innerText =
-                player.nome + " (" + player.squadra + ") - " + player.voto;
-            rischioBox.appendChild(div);
-        });
+    let row = document.createElement("div");
+    row.classList.add("player-row");
+
+    row.innerHTML = `
+        <div class="player-left">
+            <div class="player-dot"></div>
+            <div class="player-info">
+                <div class="player-name">${player.nome}</div>
+                <div class="player-team">${player.squadra}</div>
+            </div>
+        </div>
+        <div class="player-voto">${player.voto}</div>
+    `;
+
+    buoniBox.appendChild(row);
+});
+
+rischioList.forEach(player=>{
+
+    let row = document.createElement("div");
+    row.classList.add("player-row");
+
+    row.innerHTML = `
+        <div class="player-left">
+            <div class="player-dot"></div>
+            <div class="player-info">
+                <div class="player-name">${player.nome}</div>
+                <div class="player-team">${player.squadra}</div>
+            </div>
+        </div>
+        <div class="player-voto">${player.voto}</div>
+    `;
+
+    rischioBox.appendChild(row);
+});
 
         topBox.classList.remove("alg-hidden");
         buoniBox.classList.remove("alg-hidden");
