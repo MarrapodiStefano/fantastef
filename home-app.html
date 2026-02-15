@@ -572,6 +572,47 @@ body{
     border-radius:12px;
 }
 
+.player-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 8px;
+    border-bottom:1px solid rgba(255,255,255,0.15);
+}
+
+.player-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.player-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#2ecc71;
+}
+
+.player-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.player-name{
+    font-weight:600;
+    font-size:14px;
+}
+
+.player-team{
+    font-size:12px;
+    opacity:0.6;
+}
+
+.player-vote{
+    font-weight:700;
+    font-size:16px;
+}
+
 .top-section{
     background:linear-gradient(90deg,#1e7f3b,#2ecc71);
 }
@@ -872,11 +913,24 @@ rischioBox.classList.add("alg-content");
             .sort((a,b)=> b.voto - a.voto);
 
         topList.forEach(player=>{
-            let div=document.createElement("div");
-            div.innerText =
-                player.nome + " (" + player.squadra + ") - " + player.voto;
-            topBox.appendChild(div);
-        });
+
+    let row = document.createElement("div");
+    row.className = "player-row";
+
+    row.innerHTML = `
+        <div class="player-left">
+            <span class="player-dot"></span>
+            <div class="player-info">
+                <div class="player-name">${player.nome}</div>
+                <div class="player-team">${player.squadra}</div>
+            </div>
+        </div>
+        <div class="player-vote">${player.voto}</div>
+    `;
+
+    topBox.appendChild(row);
+
+});
 
         buoniList.forEach(player=>{
             let div=document.createElement("div");
