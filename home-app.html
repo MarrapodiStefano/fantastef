@@ -165,9 +165,30 @@ body{
 /* ================= VIDEO THUMB PREMIUM ================= */
 
 .video-card{
+    position:relative;
+    background:
+        radial-gradient(circle at center, rgba(46,204,113,0.25) 0%, rgba(10,30,50,0.95) 60%),
+        linear-gradient(135deg,#0a1f33,#123a5c);
+
+    overflow:hidden;
+}
+
+.video-bg{
+    position:absolute;
+    inset:0;
     background-image:url("https://img.youtube.com/vi/-DmT9bhRsxI/maxresdefault.jpg");
     background-size:cover;
     background-position:center;
+    opacity:0.35;
+    filter:blur(2px) brightness(0.8);
+}
+
+.video-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    margin-top:auto;
+    width:100%;
 }
 
 .video-overlay{
@@ -851,12 +872,17 @@ text-shadow:0 0 12px rgba(255,255,255,0.4);
 
 <section class="cards">
 
-    <div class="card video-card active" onclick="openVideo()">
-        <div class="video-overlay"></div>
+   <div class="card video-card active" onclick="openVideo()">
+
+    <div class="video-bg"></div>
+
+    <div class="video-content">
         <div class="play-icon"></div>
-        <h3>Dream Team di giornata</h3>
-        <p>Guarda lo short in anteprima.</p>
+        <h3>Dream Team</h3>
+        <p>Lo short della giornata</p>
     </div>
+
+</div>
 
     <div class="card oracolo-card" onclick="openOracolo(this)">
 
