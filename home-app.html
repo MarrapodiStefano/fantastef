@@ -140,6 +140,7 @@ body{
 
 .card.active{
     border:3px solid #2ecc71;
+    box-shadow:0 0 40px rgba(46,204,113,0.6);
 }
 
 .card h3{
@@ -167,27 +168,16 @@ body{
 .video-card{
     position:relative;
     background:
-        radial-gradient(circle at center, rgba(46,204,113,0.15) 0%, rgba(10,30,50,0.9) 60%),
-        linear-gradient(135deg,#0a1f33,#123a5c);
+        linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)),
+        url("dreamteam-logo.png") center center / contain no-repeat,
+        radial-gradient(circle at center, rgba(46,204,113,0.25) 0%, rgba(10,30,50,0.9) 70%);
 
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-end;
     align-items:center;
     text-align:center;
     overflow:hidden;
-}
-
-.dreamteam-img{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:75%;
-    max-width:280px;
-    opacity:0.95;
-    filter:drop-shadow(0 0 35px rgba(46,204,113,0.9));
-    z-index:1;
 }
 
 .video-content{
@@ -875,8 +865,6 @@ text-shadow:0 0 12px rgba(255,255,255,0.4);
 <section class="cards">
 
    <div class="card video-card active" onclick="openVideo()">
-
-   <img src="dreamteam-logo.png" class="dreamteam-img">
 
     <div class="video-content">
         <div class="play-icon"></div>
