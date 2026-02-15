@@ -482,12 +482,15 @@ body{
 .oracolo-modal{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.8);
-    backdrop-filter:blur(8px);
-    display:none;
 
+    display:none;
     justify-content:center;
-    align-items:center;   /* 🔥 torna center */
+    align-items:center;
+
+    padding:20px;   /* 👈 crea margine laterale reale */
+
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(8px);
 
     z-index:3000;
 }
