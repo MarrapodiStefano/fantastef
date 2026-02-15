@@ -857,23 +857,21 @@ text-shadow:0 0 12px rgba(255,255,255,0.4);
     transition:all 0.25s ease;
 }
 
-/* ================= DREAM TEAM ACTIVE GLOW ================= */
+/* /* ================= DREAM TEAM LOGO PULSE ================= */
 
-@keyframes dreamGlow {
+@keyframes dreamLogoPulse {
     0%,100%{
-        box-shadow:
-            0 0 20px rgba(46,204,113,0.4),
-            0 0 40px rgba(46,204,113,0.2);
+        transform:scale(1);
+        filter:drop-shadow(0 0 15px rgba(46,204,113,0.5));
     }
     50%{
-        box-shadow:
-            0 0 35px rgba(46,204,113,0.9),
-            0 0 70px rgba(46,204,113,0.6);
+        transform:scale(1.05);
+        filter:drop-shadow(0 0 35px rgba(46,204,113,0.9));
     }
 }
 
-.video-card.active{
-    animation:dreamGlow 2.5s ease-in-out infinite;
+.video-card.active .dreamteam-img{
+    animation:dreamLogoPulse 2.2s ease-in-out infinite;
 }
 
 </style>
