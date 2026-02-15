@@ -190,11 +190,16 @@ body{
 }
 
 .play-icon{
-    width:70px;
-    height:70px;
-    margin:0 auto 15px auto;
+    position:absolute;
+    bottom:95px; /* distanza dal fondo */
+    left:50%;
+    transform:translateX(-50%);
+    
+    width:55px;
+    height:55px;
+
     border-radius:50%;
-    background:rgba(0,0,0,0.7);
+    background:rgba(0,0,0,0.75);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -205,9 +210,9 @@ body{
 
 .play-icon::after{
     content:"";
-    border-left:20px solid white;
-    border-top:12px solid transparent;
-    border-bottom:12px solid transparent;
+    border-left:16px solid white;
+    border-top:9px solid transparent;
+    border-bottom:9px solid transparent;
 }
 
 /* ================= DOTS DESKTOP OFF ================= */
