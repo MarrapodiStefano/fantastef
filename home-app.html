@@ -167,13 +167,23 @@ body{
 .video-card{
     position:relative;
     background:
-        linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3)),
-        url("https://img.youtube.com/vi/-DmT9bhRsxI/maxresdefault.jpg");
+        radial-gradient(circle at center, rgba(46,204,113,0.15) 0%, rgba(10,30,50,0.9) 60%),
+        linear-gradient(135deg,#0a1f33,#123a5c);
 
-    background-size:cover;
-    background-position:center;
-    border-radius:28px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
     overflow:hidden;
+}
+
+.dreamteam-img{
+    position:absolute;
+    width:70%;
+    max-width:260px;
+    opacity:0.95;
+    filter:drop-shadow(0 0 25px rgba(46,204,113,0.8));
 }
 
 .video-content{
@@ -875,7 +885,7 @@ text-shadow:0 0 12px rgba(255,255,255,0.4);
 
    <div class="card video-card active" onclick="openVideo()">
 
-    <div class="video-bg"></div>
+    <img src="dreamteam.png" class="dreamteam-img">
 
     <div class="video-content">
         <div class="play-icon"></div>
