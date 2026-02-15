@@ -583,7 +583,7 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:10px 14px;
+    padding:8px 14px;
     border-bottom:1px solid rgba(255,255,255,0.10);
 }
 
@@ -612,15 +612,15 @@ body{
 
 .player-name{
     font-weight:600;
-    font-size:18px;
-    line-height:1.1;
+    font-size:17px;
+    line-height:1.2;
 }
 
 .player-team{
     font-size:11px;
     opacity:0.8;
     margin-top:2px;
-    line-height:1.1;
+    line-height:1.2;
 }
 
 .player-vote{
@@ -931,7 +931,7 @@ row.classList.add("player-row");
 row.innerHTML = `
     <div class="player-left">
         <div class="player-dot"></div>
-        <div>
+        <div class="player-info">
             <div class="player-name">${player.nome}</div>
             <div class="player-team">${player.squadra}</div>
         </div>
