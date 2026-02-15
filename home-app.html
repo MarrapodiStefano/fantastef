@@ -585,6 +585,10 @@ body{
     border-bottom:none;
 }
 
+.player-row:first-child{
+    padding-top:12px;   /* crea aria sopra il primo nome */
+}
+
 .player-left{
     display:flex;
     align-items:center;
@@ -634,8 +638,8 @@ body{
 }
 
 .oracolo-section h3{
-    margin:0;
-    padding:14px 0 14px 0;   /* 👈 altezza controllata */
+    margin-bottom:8px;              /* meno distanza totale */
+    padding-bottom:10px;            /* spazio sopra la linea */
     border-bottom:1px solid rgba(255,255,255,0.18);
     font-size:18px;
     letter-spacing:0.3px;
