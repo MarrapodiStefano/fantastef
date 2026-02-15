@@ -199,31 +199,31 @@ body{
 }
 
 .play-icon{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-
-    width:60px;
-    height:60px;
-
+    width:70px;
+    height:70px;
+    margin:0 auto 15px auto;
     border-radius:50%;
-    background:rgba(0,0,0,0.75);
+
+    background:rgba(0,0,0,0.35);   /* più trasparente */
+    
     display:flex;
     justify-content:center;
     align-items:center;
-    backdrop-filter:blur(6px);
-    border:2px solid rgba(46,204,113,0.8);
-    box-shadow:0 0 20px rgba(46,204,113,0.6);
 
-    z-index:3;
+    backdrop-filter:blur(4px);     /* meno blur */
+    
+    border:2px solid rgba(46,204,113,0.5);  /* meno forte */
+    
+    box-shadow:0 0 12px rgba(46,204,113,0.4); /* glow più leggero */
+
+    transition:all 0.3s ease;
 }
 
 .play-icon::after{
     content:"";
-    border-left:16px solid white;
-    border-top:9px solid transparent;
-    border-bottom:9px solid transparent;
+    border-left:20px solid rgba(255,255,255,0.85); /* leggermente trasparente */
+    border-top:12px solid transparent;
+    border-bottom:12px solid transparent;
 }
 
 /* ================= DOTS DESKTOP OFF ================= */
