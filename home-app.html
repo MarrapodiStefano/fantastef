@@ -889,8 +889,21 @@ text-shadow:0 0 12px rgba(255,255,255,0.4);
     }
 }
 
-.video-card.active .dreamteam-img{
-    animation:dreamLogoPulse 2.2s ease-in-out infinite;
+@media (min-width:769px){
+
+    .video-card{
+        animation:dreamCardPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes dreamCardPulse{
+        0%,100%{
+            box-shadow:0 0 20px rgba(46,204,113,0.3);
+        }
+        50%{
+            box-shadow:0 0 45px rgba(46,204,113,0.6);
+        }
+    }
+
 }
 
 </style>
