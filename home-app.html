@@ -210,13 +210,33 @@ body{
     height:60px;
     border-radius:50%;
 
-    background:rgba(0,0,0,0.25);
+    background:rgba(0,0,0,0.6);
     display:flex;
     justify-content:center;
     align-items:center;
 
     border:2px solid rgba(46,204,113,0.5);
     box-shadow:0 0 12px rgba(46,204,113,0.4);
+
+    opacity:0;
+    transition:opacity 0.25s ease, transform 0.25s ease;
+}
+
+@media (min-width:769px){
+
+    .video-card:hover .play-icon{
+        opacity:1;
+        transform:translate(-50%, -50%) scale(1.05);
+    }
+
+}
+
+@media (max-width:768px){
+
+    .video-card.active .play-icon{
+        opacity:1;
+    }
+
 }
 
 .play-icon::after{
