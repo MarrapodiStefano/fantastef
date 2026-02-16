@@ -210,7 +210,7 @@ body{
     height:60px;
     border-radius:50%;
 
-    background:rgba(0,0,0,0.6);
+    background:rgba(0,0,0,0.35);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -218,8 +218,8 @@ body{
     border:2px solid rgba(46,204,113,0.5);
     box-shadow:0 0 12px rgba(46,204,113,0.4);
 
-    opacity:0;
-    transition:opacity 0.25s ease, transform 0.25s ease;
+    opacity:0;   /* 👈 AGGIUNGI */
+    transition:opacity 0.25s ease, transform 0.25s ease; /* 👈 AGGIUNGI */
 }
 
 @media (min-width:769px){
@@ -233,7 +233,7 @@ body{
 
 @media (max-width:768px){
 
-    .video-card .play-icon{
+    .video-card.active .play-icon{
         opacity:1;
     }
 
