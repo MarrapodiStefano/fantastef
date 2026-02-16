@@ -206,8 +206,8 @@ body{
     left:50%;
     transform:translate(-50%, -50%);
     
-    width:60px;
-    height:60px;
+    width:70px;
+    height:70px;
     border-radius:50%;
 
     background:rgba(0,0,0,0.35);
@@ -217,31 +217,13 @@ body{
 
     border:2px solid rgba(46,204,113,0.5);
     box-shadow:0 0 12px rgba(46,204,113,0.4);
-
-    opacity:0;   /* 👈 AGGIUNGI */
-    transition:opacity 0.25s ease, transform 0.25s ease; /* 👈 AGGIUNGI */
-}
-
-@media (min-width:769px){
-
-    .video-card:hover .play-icon{
-        opacity:1;
-        transform:translate(-50%, -50%) scale(1.05);
-    }
-
-}
-
-@media (max-width:768px){
-    .video-card:active .play-icon{
-        opacity:1;
-    }
 }
 
 .play-icon::after{
     content:"";
-    border-left:18px solid rgba(255,255,255,0.8);
-    border-top:10px solid transparent;
-    border-bottom:10px solid transparent;
+    border-left:20px solid rgba(255,255,255,0.85); /* leggermente trasparente */
+    border-top:12px solid transparent;
+    border-bottom:12px solid transparent;
 }
 
 /* ================= DOTS DESKTOP OFF ================= */
@@ -276,9 +258,8 @@ body{
     }
 
     .card.active{
-    border:3px solid #2ecc71;
-    box-shadow:0 0 40px rgba(46,204,113,0.6);
-}
+        border:3px solid #2ecc71;
+    }
 
     .slider-dots{
         display:flex;
@@ -889,6 +870,10 @@ text-shadow:0 0 12px rgba(255,255,255,0.4);
     }
 }
 
+.video-card.active .dreamteam-img{
+    animation:dreamLogoPulse 2.2s ease-in-out infinite;
+}
+
 </style>
 </head>
 
@@ -912,7 +897,7 @@ text-shadow:0 0 12px rgba(255,255,255,0.4);
 
 <section class="cards">
 
-    <div class="card video-card" onclick="openVideo()">
+   <div class="card video-card active" onclick="openVideo()">
 
     <img src="dreamteam-logo.png" class="dreamteam-img">
 
