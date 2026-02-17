@@ -103,11 +103,12 @@ h1{
 }
 
 .animated-title{
-    font-size:32px;
+    font-size:clamp(22px, 7vw, 32px);
     font-weight:800;
     letter-spacing:1px;
-    display:inline-block;
-    overflow:hidden;
+    display:block;
+    text-align:center;
+    white-space:nowrap;   /* 👈 QUESTO È IL PUNTO CHIAVE */
 }
 
 .animated-title span{
