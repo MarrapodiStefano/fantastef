@@ -388,12 +388,14 @@ button{
 </div>
 
 
-
 window.onload = function(){
-    showWord();
+    animateTitle();
 };
 
-// ===== ANIMAZIONE OMBRA =====
+<script>
+
+
+// ===== ANIMAZIONE TITOLO =====
 
 const sequence = ["THIS", "THAT", "OR", "THIS OR THAT?"];
 let seqIndex = 0;
@@ -413,20 +415,21 @@ function animateTitle(){
         seqIndex++;
 
         if(seqIndex < sequence.length){
-            setTimeout(animateTitle, 1800);
+            setTimeout(animateTitle, 1600);
         }
 
-    }, 600);
+    }, 400);
 }
 
 function colorize(text){
+
     let result = "";
     let letterIndex = 0;
 
     for(let i=0; i<text.length; i++){
 
         if(text[i] === " "){
-            result += " ";
+            result += "&nbsp;";
             continue;
         }
 
@@ -442,35 +445,33 @@ function colorize(text){
     return result;
 }
 
-window.onload = function(){
-    animateTitle();
-};
+window.addEventListener("load", animateTitle);
 
-<script>
+// ===== COMPARATORE =====
 
 let ruoloAttivo = "attaccanti";
 
+document.querySelectorAll(".alg-tab").forEach(tab => {
+    tab.addEventListener("click", function(){
+        document.querySelectorAll(".alg-tab")
+        .forEach(t => t.classList.remove("active"));
+        this.classList.add("active");
+        ruoloAttivo = this.getAttribute("data-ruolo");
+    });
+});
 
-function colorize(text){
-
-    let result = "";
-
-    for(let i = 0; i < text.length; i++){
-
-        if(text[i] === " "){
-            result += " ";
-            continue;
-        }
-
-        if(i % 2 === 0){
-            result += `<span style="color:#2ecc71">${text[i]}</span>`;
-        }else{
-            result += `<span style="color:white">${text[i]}</span>`;
-        }
-    }
-
-    return result;
+function confronta(){
+    ...
 }
+
+function resetComparatore(){
+    ...
+}
+
+</script>
+
+let ruoloAttivo = "attaccanti";
+
 
 window.addEventListener("load", showWord);
 
