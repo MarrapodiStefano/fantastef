@@ -405,15 +405,25 @@ button{
     </div>
 </div>
 
+
+
+window.onload = function(){
+    showWord();
+};
+
+<script>
+
+let ruoloAttivo = "attaccanti";
+
 // ================= ANIMAZIONE TITOLO =================
 
 const words = ["THIS", "THAT", "OR", "THIS OR THAT?"];
 let index = 0;
-const wordElement = document.getElementById("word");
 
 function showWord() {
 
-    // Fade out
+    const wordElement = document.getElementById("word");
+
     wordElement.style.opacity = 0;
 
     setTimeout(() => {
@@ -442,13 +452,7 @@ function colorize(text){
     return result;
 }
 
-window.onload = function(){
-    showWord();
-};
-
-<script>
-
-let ruoloAttivo = "attaccanti";
+window.addEventListener("load", showWord);
 
 document.querySelectorAll(".alg-tab").forEach(tab => {
     tab.addEventListener("click", function(){
