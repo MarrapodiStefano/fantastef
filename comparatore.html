@@ -228,6 +228,23 @@ button{
     filter:drop-shadow(0 0 8px rgba(46,204,113,0.6));
 }
 
+.reset-btn{
+    width:100%;
+    margin-top:20px;
+    padding:10px;
+    border:none;
+    border-radius:14px;
+    background:#1f2f3f;
+    color:#2ecc71;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.25s ease;
+}
+
+.reset-btn:hover{
+    background:#243547;
+}
+
 </style>
 </head>
 
@@ -271,6 +288,10 @@ button{
     <span id="perc1">50%</span>
     <span id="perc2">50%</span>
 </div>
+
+<button class="reset-btn" onclick="resetComparatore()">
+    Reset
+</button>
 
 </div>
 </div>
@@ -323,6 +344,19 @@ function confronta(){
         barGreen.style.width = perc2 + "%";
     }
 
+}
+
+function resetComparatore(){
+
+    document.getElementById("player1").value = "";
+    document.getElementById("player2").value = "";
+
+    document.getElementById("perc1").innerText = "50%";
+    document.getElementById("perc2").innerText = "50%";
+
+    let barGreen = document.getElementById("barGreen");
+    barGreen.style.width = "0%";
+    barGreen.style.left = "0";
 }
 
 </script>
