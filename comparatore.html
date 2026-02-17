@@ -374,18 +374,14 @@ function confronta(){
     document.getElementById("perc1").innerText = perc1+"%";
     document.getElementById("perc2").innerText = perc2+"%";
 
-    let bar = document.getElementById("barFill");
-    bar.style.width = perc1+"%";
+    let bar = document.getElementById("barra");
+    bar.style.width = perc1 + "%";
 
-    // 🎨 Cambio colore in base alla differenza
-    let diff = Math.abs(perc1-perc2);
-
-    if(diff < 10){
-        bar.style.background = "linear-gradient(90deg,#f1c40f,#d4ac0d)";
-    }else{
+    if(perc1 >= perc2){
         bar.style.background = "linear-gradient(90deg,#2ecc71,#27ae60)";
+    }else{
+        bar.style.background = "linear-gradient(90deg,#f1c40f,#d4ac0d)";
     }
-
 }
 
 </script>
