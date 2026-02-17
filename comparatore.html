@@ -102,6 +102,52 @@ h1{
     margin-bottom:4px;
 }
 
+.animated-title{
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:1px;
+    display:inline-block;
+    overflow:hidden;
+}
+
+.animated-title span{
+    display:inline-block;
+    opacity:0;
+    transform:translateX(-80px) rotate(-180deg);
+    animation:letterIn 0.6s forwards;
+}
+
+/* Alternanza colori */
+.animated-title span:nth-child(odd){
+    color:#2ecc71; /* verde pulsante */
+}
+
+.animated-title span:nth-child(even){
+    color:white;
+}
+
+/* Ritardo progressivo */
+.animated-title span:nth-child(1){animation-delay:0.05s;}
+.animated-title span:nth-child(2){animation-delay:0.1s;}
+.animated-title span:nth-child(3){animation-delay:0.15s;}
+.animated-title span:nth-child(4){animation-delay:0.2s;}
+.animated-title span:nth-child(5){animation-delay:0.25s;}
+.animated-title span:nth-child(6){animation-delay:0.3s;}
+.animated-title span:nth-child(7){animation-delay:0.35s;}
+.animated-title span:nth-child(8){animation-delay:0.4s;}
+.animated-title span:nth-child(9){animation-delay:0.45s;}
+.animated-title span:nth-child(10){animation-delay:0.5s;}
+.animated-title span:nth-child(11){animation-delay:0.55s;}
+.animated-title span:nth-child(12){animation-delay:0.6s;}
+.animated-title span:nth-child(13){animation-delay:0.65s;}
+
+@keyframes letterIn{
+    to{
+        opacity:1;
+        transform:translateX(0) rotate(0deg);
+    }
+}
+
 .subtitle{
     font-size:16px;
     opacity:0.7;
@@ -301,7 +347,21 @@ button{
 <div class="container">
 
 <div class="title-box">
-    <h1>THIS OR THAT?</h1>
+    <h1 class="animated-title">
+  <span>T</span>
+  <span>H</span>
+  <span>I</span>
+  <span>S</span>
+  <span>&nbsp;</span>
+  <span>O</span>
+  <span>R</span>
+  <span>&nbsp;</span>
+  <span>T</span>
+  <span>H</span>
+  <span>A</span>
+  <span>T</span>
+  <span>?</span>
+</h1>
     <p class="subtitle">CHIEDILO AL COMPARATORE</p>
 </div>
 
