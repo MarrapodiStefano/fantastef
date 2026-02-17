@@ -131,21 +131,37 @@ h1{
 
 button{
     width:100%;
-    padding:12px;
+    padding:16px;
     border:none;
-    border-radius:12px;
-    background:#2ecc71;
+    border-radius:20px;
+
+    background:linear-gradient(90deg,#2ecc71,#27ae60);
     color:#0a1624;
-    font-weight:bold;
+
+    font-weight:700;
+    font-size:16px;
+    letter-spacing:0.5px;
+
     cursor:pointer;
-    margin-bottom:30px;
-    transition:0.2s;
+    margin-bottom:35px;
+
+    box-shadow:
+        0 6px 20px rgba(46,204,113,0.35),
+        inset 0 0 10px rgba(255,255,255,0.2);
+
+    transition:all 0.25s ease;
 }
 
 button:hover{
-    background:#28b463;
+    transform:translateY(-2px);
+    box-shadow:
+        0 10px 25px rgba(46,204,113,0.5),
+        inset 0 0 12px rgba(255,255,255,0.3);
 }
 
+button:active{
+    transform:scale(0.98);
+}
 /* ================= BARRA ================= */
 
 .bar-container{
