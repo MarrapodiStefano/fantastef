@@ -200,18 +200,23 @@ button:active{
     z-index:5;
 }
 
-.bar-fill-left{
-    height:100%;
-    background:linear-gradient(90deg,#2ecc71,#27ae60);
-    width:50%;
-    transition:width 0.6s ease;
+.bar-container{
+    position:relative;
+    width:100%;
+    height:22px;
+    border-radius:20px;
+    overflow:hidden;
+    background:linear-gradient(90deg,#f1c40f,#f39c12); /* base gialla */
+    margin-top:20px;
 }
 
-.bar-fill-right{
+.bar-fill{
+    position:absolute;
+    top:0;
     height:100%;
-    background:linear-gradient(90deg,#f1c40f,#f39c12);
-    width:50%;
-    transition:width 0.6s ease;
+    width:0%;
+    background:linear-gradient(90deg,#2ecc71,#27ae60);
+    transition:all 0.6s ease;
 }
 
 
@@ -315,8 +320,7 @@ button:active{
 <button onclick="confronta()">Confronta</button>
 
 <div class="bar-container">
-    <div class="bar-fill-left" id="barLeft"></div>
-    <div class="bar-fill-right" id="barRight"></div>
+    <div class="bar-fill" id="barFill"></div>
 </div>
 
 <div class="percent-row">
@@ -386,11 +390,23 @@ function confronta(){
     document.getElementById("perc1").innerText = perc1+"%";
     document.getElementById("perc2").innerText = perc2+"%";
 
-    let barLeft = document.getElementById("barLeft");
-    let barRight = document.getElementById("barRight");
+    let bar = document.getElementById("barFill");
 
-    barLeft.style.width = perc1 + "%";
-    barRight.style.width = perc2 + "%";
+if(perc1 > perc2){
+    // Vince giocatore 1 → riempie da sinistra
+    bar.style.left = "0";
+    bar.style.width = perc1 + "%";
+}
+else if(perc2 > perc1){
+    // Vince giocatore 2 → riempie da destra
+    bar.style.left = (100 - perc2) + "%";
+    bar.style.width = perc2 + "%";
+}
+else{
+    // Pareggio
+    bar.style.left = "25%";
+    bar.style.width = "50%";
+}
 
 }
 </script>
