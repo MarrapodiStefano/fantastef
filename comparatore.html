@@ -101,19 +101,21 @@ h1{
     margin-bottom:4px;
 }
 
-.animated-title{
+.shadow-title{
     font-size:32px;
     font-weight:800;
-    letter-spacing:2px;
-    transition:opacity 0.7s ease;
+    letter-spacing:3px;
 }
 
-.animated-title span{
-    display:inline-block;
+.shadow-title span{
     opacity:0;
-    transform:translateX(-80px) rotate(-180deg);
-    animation:letterIn 0.6s forwards;
-    margin-right:4px;   /* 👈 SPAZIO TRA LETTERE */
+    filter:blur(8px);
+    transition:opacity 0.8s ease, filter 0.8s ease;
+}
+
+.shadow-title.show span{
+    opacity:1;
+    filter:blur(0px);
 }
 
 /* Alternanza colori */
@@ -140,12 +142,6 @@ h1{
 .animated-title span:nth-child(12){animation-delay:0.6s;}
 .animated-title span:nth-child(13){animation-delay:0.65s;}
 
-@keyframes letterIn{
-    to{
-        opacity:1;
-        transform:translateX(0) rotate(0deg);
-    }
-}
 
 .subtitle{
     font-size:16px;
@@ -346,9 +342,9 @@ button{
 <div class="container">
 
 <div class="title-box">
-    <h1 class="animated-title">
-        <span id="word"></span>
-    </h1>
+   <h1 class="shadow-title">
+    <span id="titleText"></span>
+</h1>
     <p class="subtitle">Chiedilo al Comparatore FantaStef</p>
 </div>
 
@@ -412,34 +408,63 @@ window.onload = function(){
     showWord();
 };
 
+// ===== ANIMAZIONE OMBRA =====
+
+const sequence = ["THIS", "THAT", "OR", "THIS OR THAT?"];
+let seqIndex = 0;
+
+const titleElement = document.getElementById("titleText");
+const shadowTitle = document.querySelector(".shadow-title");
+
+function animateTitle(){
+
+    shadowTitle.classList.remove("show");
+
+    setTimeout(()=>{
+
+        titleElement.innerHTML = colorize(sequence[seqIndex]);
+        shadowTitle.classList.add("show");
+
+        seqIndex++;
+
+        if(seqIndex < sequence.length){
+            setTimeout(animateTitle, 1800);
+        }
+
+    }, 600);
+}
+
+function colorize(text){
+    let result = "";
+    let letterIndex = 0;
+
+    for(let i=0; i<text.length; i++){
+
+        if(text[i] === " "){
+            result += " ";
+            continue;
+        }
+
+        if(letterIndex % 2 === 0){
+            result += `<span style="color:#2ecc71">${text[i]}</span>`;
+        }else{
+            result += `<span style="color:white">${text[i]}</span>`;
+        }
+
+        letterIndex++;
+    }
+
+    return result;
+}
+
+window.onload = function(){
+    animateTitle();
+};
+
 <script>
 
 let ruoloAttivo = "attaccanti";
 
-// ================= ANIMAZIONE TITOLO =================
-
-const words = ["THIS", "THAT", "OR", "THIS OR THAT?"];
-let index = 0;
-
-function showWord() {
-
-    const wordElement = document.getElementById("word");
-
-    wordElement.style.opacity = 0;
-
-    setTimeout(() => {
-
-        wordElement.innerHTML = colorize(words[index]);
-        wordElement.style.opacity = 1;
-
-        index++;
-
-        if(index < words.length){
-            setTimeout(showWord, 1400);
-        }
-
-    }, 400);
-}
 
 function colorize(text){
 
