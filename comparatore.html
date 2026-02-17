@@ -384,8 +384,8 @@ document.querySelectorAll(".alg-tab").forEach(tab => {
 });
 
 function confronta(){
-    
-    // Chiude la tastiera
+
+    // Chiude tastiera
     document.activeElement.blur();
 
     let voto1 = parseFloat((Math.random()*3+6).toFixed(1));
@@ -408,6 +408,23 @@ function confronta(){
         barGreen.style.left = perc1 + "%";
         barGreen.style.width = perc2 + "%";
     }
+
+    // -------- EFFETTO VINCITORE --------
+
+    let input1 = document.getElementById("player1");
+    let input2 = document.getElementById("player2");
+
+    input1.classList.remove("input-winner","input-loser");
+    input2.classList.remove("input-winner","input-loser");
+
+    if(perc1 > perc2){
+        input1.classList.add("input-winner");
+        input2.classList.add("input-loser");
+    }else if(perc2 > perc1){
+        input2.classList.add("input-winner");
+        input1.classList.add("input-loser");
+    }
+
 }
 
     // -------- EFFETTO VINCITORE --------
