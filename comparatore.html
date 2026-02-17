@@ -94,13 +94,13 @@ body{
     letter-spacing:3px;
 }
 
-.shadow-title span{
+.shadow-title{
     opacity:0;
     filter:blur(8px);
     transition:opacity 0.8s ease, filter 0.8s ease;
 }
 
-.shadow-title.show span{
+.shadow-title.show{
     opacity:1;
     filter:blur(0px);
 }
@@ -290,9 +290,7 @@ button{
 <div class="container">
 
 <div class="title-box">
-   <h1 class="shadow-title">
-        <span id="titleText"></span>
-   </h1>
+   <h1 class="shadow-title" id="titleText"></h1>
    <p class="subtitle">Chiedilo al Comparatore FantaStef</p>
 </div>
 
