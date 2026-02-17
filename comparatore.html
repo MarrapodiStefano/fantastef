@@ -373,15 +373,11 @@ function confronta(){
     document.getElementById("perc1").innerText = perc1+"%";
     document.getElementById("perc2").innerText = perc2+"%";
 
-    let bar = document.getElementById("barra");
-    bar.style.width = perc1 + "%";
+    let barLeft = document.getElementById("barLeft");
+let barRight = document.getElementById("barRight");
 
-    if(perc1 >= perc2){
-        bar.style.background = "linear-gradient(90deg,#2ecc71,#27ae60)";
-    }else{
-        bar.style.background = "linear-gradient(90deg,#f1c40f,#d4ac0d)";
-    }
-}
+barLeft.style.width = perc1 + "%";
+barRight.style.width = perc2 + "%";
 
 </script>
 
