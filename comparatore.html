@@ -362,12 +362,12 @@ function confronta(){
         return;
     }
 
-    let voto1 = (Math.random()*3+6).toFixed(1);
-    let voto2 = (Math.random()*3+6).toFixed(1);
+    let voto1 = parseFloat((Math.random()*3+6).toFixed(1));
+    let voto2 = parseFloat((Math.random()*3+6).toFixed(1));
 
-    let totale = parseFloat(voto1)+parseFloat(voto2);
+    let totale = voto1 + voto2;
 
-    let perc1 = Math.round((voto1/totale)*100);
+    let perc1 = Math.round((voto1 / totale) * 100);
     let perc2 = 100 - perc1;
 
     document.getElementById("perc1").innerText = perc1+"%";
