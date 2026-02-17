@@ -164,24 +164,36 @@ button:active{
 }
 /* ================= BARRA ================= */
 
+/* ================= BAR ================= */
+
 .bar-container{
-    position:relative;
     width:100%;
-    height:40px;
+    height:26px;
     background:#1f2f3f;
     border-radius:20px;
     overflow:hidden;
-    margin-bottom:15px;
+    position:relative;
+    margin-bottom:12px;
 }
 
 .bar-fill{
-    position:absolute;
-    left:0;
-    top:0;
     height:100%;
     width:50%;
+    border-radius:20px;
     background:linear-gradient(90deg,#2ecc71,#27ae60);
-    transition:width 0.4s ease;
+    transition:width 0.6s ease, background 0.6s ease;
+}
+
+/* Glow centrale */
+.bar-container::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:0;
+    transform:translateX(-50%);
+    width:2px;
+    height:100%;
+    background:rgba(255,255,255,0.3);
 }
 
 .names{
@@ -318,22 +330,36 @@ document.querySelectorAll(".alg-tab").forEach(tab => {
 
 function confronta(){
 
-    const voto1 = Math.random() * 3 + 6;
-    const voto2 = Math.random() * 3 + 6;
+    let nome1 = document.getElementById("player1").value;
+    let nome2 = document.getElementById("player2").value;
 
-    const percentuale = (voto1 / (voto1 + voto2)) * 100;
+    if(!nome1 || !nome2){
+        alert("Inserisci due giocatori");
+        return;
+    }
 
-    document.getElementById("barra").style.width = percentuale + "%";
+    let voto1 = (Math.random()*3+6).toFixed(1);
+    let voto2 = (Math.random()*3+6).toFixed(1);
 
-    document.getElementById("nome1").innerText =
-        document.getElementById("player1").value || "Giocatore 1";
+    let totale = parseFloat(voto1)+parseFloat(voto2);
 
-    document.getElementById("nome2").innerText =
-        document.getElementById("player2").value || "Giocatore 2";
+    let perc1 = Math.round((voto1/totale)*100);
+    let perc2 = 100 - perc1;
 
-    document.getElementById("risultato").innerText =
-        voto1 > voto2 ? "Vantaggio " + document.getElementById("player1").value
-                      : "Vantaggio " + document.getElementById("player2").value;
+    document.getElementById("perc1").innerText = perc1+"%";
+    document.getElementById("perc2").innerText = perc2+"%";
+
+    let bar = document.getElementById("barFill");
+    bar.style.width = perc1+"%";
+
+    // 🎨 Cambio colore in base alla differenza
+    let diff = Math.abs(perc1-perc2);
+
+    if(diff < 10){
+        bar.style.background = "linear-gradient(90deg,#f1c40f,#d4ac0d)";
+    }else{
+        bar.style.background = "linear-gradient(90deg,#2ecc71,#27ae60)";
+    }
 
 }
 
