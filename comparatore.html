@@ -249,6 +249,19 @@ button:active{
     margin-bottom:4px;
 }
 
+.percent-row{
+    display:flex;
+    justify-content:space-between;
+    font-weight:600;
+    font-size:16px;
+    margin-top:10px;
+    margin-bottom:25px;
+}
+
+.percent-row span{
+    transition:all 0.3s ease;
+}
+
 </style>
 </head>
 
@@ -285,6 +298,11 @@ button:active{
 
 <div class="bar-container">
     <div class="bar-fill" id="barra"></div>
+</div>
+
+<div class="percent-row">
+    <span id="perc1">50%</span>
+    <span id="perc2">50%</span>
 </div>
 
 <div class="names">
