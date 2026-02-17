@@ -323,8 +323,17 @@ button{
 <script>
 
 function confronta(){
-    
+
+    // Chiude tastiera
     document.activeElement.blur();
+
+    // Riporta la pagina in alto dolcemente
+    setTimeout(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }, 100);
 
     let voto1 = parseFloat((Math.random()*3+6).toFixed(1));
     let voto2 = parseFloat((Math.random()*3+6).toFixed(1));
