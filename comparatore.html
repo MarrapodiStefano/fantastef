@@ -348,16 +348,8 @@ button{
 
 function confronta(){
 
-    // Chiude tastiera
+    // Chiude la tastiera su Safari
     document.activeElement.blur();
-
-    // Riporta la pagina in alto dolcemente
-    setTimeout(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }, 100);
 
     let voto1 = parseFloat((Math.random()*3+6).toFixed(1));
     let voto2 = parseFloat((Math.random()*3+6).toFixed(1));
@@ -367,8 +359,8 @@ function confronta(){
     let perc1 = Math.round((voto1 / totale) * 100);
     let perc2 = 100 - perc1;
 
-    document.getElementById("perc1").innerText = perc1+"%";
-    document.getElementById("perc2").innerText = perc2+"%";
+    document.getElementById("perc1").innerText = perc1 + "%";
+    document.getElementById("perc2").innerText = perc2 + "%";
 
     let barGreen = document.getElementById("barGreen");
 
@@ -378,6 +370,23 @@ function confronta(){
     }else{
         barGreen.style.left = perc1 + "%";
         barGreen.style.width = perc2 + "%";
+    }
+
+    // -------- EFFETTO VINCITORE --------
+
+    let input1 = document.getElementById("player1");
+    let input2 = document.getElementById("player2");
+
+    // pulizia vecchie classi
+    input1.classList.remove("input-winner","input-loser");
+    input2.classList.remove("input-winner","input-loser");
+
+    if(perc1 > perc2){
+        input1.classList.add("input-winner");
+        input2.classList.add("input-loser");
+    }else if(perc2 > perc1){
+        input2.classList.add("input-winner");
+        input1.classList.add("input-loser");
     }
 
 }
@@ -393,6 +402,12 @@ function resetComparatore(){
     let barGreen = document.getElementById("barGreen");
     barGreen.style.width = "0%";
     barGreen.style.left = "0";
+    
+    document.getElementById("player1")
+.classList.remove("input-winner","input-loser");
+
+document.getElementById("player2")
+.classList.remove("input-winner","input-loser");
 }
 
 </script>
