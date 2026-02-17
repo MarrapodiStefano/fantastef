@@ -385,8 +385,11 @@ document.querySelectorAll(".alg-tab").forEach(tab => {
 
 function confronta(){
 
-    // Chiude la tastiera su Safari
     document.activeElement.blur();
+
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 50);
 
     let voto1 = parseFloat((Math.random()*3+6).toFixed(1));
     let voto2 = parseFloat((Math.random()*3+6).toFixed(1));
@@ -396,8 +399,8 @@ function confronta(){
     let perc1 = Math.round((voto1 / totale) * 100);
     let perc2 = 100 - perc1;
 
-    document.getElementById("perc1").innerText = perc1 + "%";
-    document.getElementById("perc2").innerText = perc2 + "%";
+    document.getElementById("perc1").innerText = perc1+"%";
+    document.getElementById("perc2").innerText = perc2+"%";
 
     let barGreen = document.getElementById("barGreen");
 
@@ -408,6 +411,7 @@ function confronta(){
         barGreen.style.left = perc1 + "%";
         barGreen.style.width = perc2 + "%";
     }
+}
 
     // -------- EFFETTO VINCITORE --------
 
