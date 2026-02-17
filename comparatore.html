@@ -348,6 +348,21 @@ button{
 
 <script>
 
+let ruoloAttivo = "attaccanti";
+
+document.querySelectorAll(".alg-tab").forEach(tab => {
+    tab.addEventListener("click", function(){
+
+        document.querySelectorAll(".alg-tab")
+        .forEach(t => t.classList.remove("active"));
+
+        this.classList.add("active");
+
+        ruoloAttivo = this.getAttribute("data-ruolo");
+
+    });
+});
+
 function confronta(){
 
     // Chiude la tastiera su Safari
