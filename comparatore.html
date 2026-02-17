@@ -32,16 +32,7 @@ body{
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-    padding:0 20px;
-
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-body{
-    overflow:hidden;
+    padding:110px 20px 120px 20px;
 }
 
 /* ================= HEADER ================= */
@@ -331,6 +322,8 @@ button{
 <script>
 
 function confronta(){
+    
+    document.activeElement.blur();
 
     let voto1 = parseFloat((Math.random()*3+6).toFixed(1));
     let voto2 = parseFloat((Math.random()*3+6).toFixed(1));
