@@ -442,14 +442,23 @@ function showWord() {
 }
 
 function colorize(text){
+
     let result = "";
+
     for(let i = 0; i < text.length; i++){
+
+        if(text[i] === " "){
+            result += " ";
+            continue;
+        }
+
         if(i % 2 === 0){
             result += `<span style="color:#2ecc71">${text[i]}</span>`;
         }else{
             result += `<span style="color:white">${text[i]}</span>`;
         }
     }
+
     return result;
 }
 
