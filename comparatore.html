@@ -83,22 +83,9 @@ body{
     0 20px 60px rgba(46,204,113,0.35);
 }
 
-h1{
-    text-align:center;
-    margin-bottom:30px;
-    font-size:26px;
-}
-
 .title-box{
     text-align:center;
     margin-bottom:15px;
-}
-
-.title-box h1{
-    font-size:32px;
-    font-weight:800;
-    letter-spacing:1px;
-    margin-bottom:4px;
 }
 
 .shadow-title{
@@ -117,16 +104,6 @@ h1{
     opacity:1;
     filter:blur(0px);
 }
-
-/* Alternanza colori */
-.animated-title span:nth-child(odd){
-    color:#2ecc71; /* verde pulsante */
-}
-
-.animated-title span:nth-child(even){
-    color:white;
-}
-
 
 .subtitle{
     font-size:16px;
@@ -177,7 +154,6 @@ h1{
     transition:all 0.3s ease;
 }
 
-/* Vincitore */
 .input-winner{
     border:2px solid #2ecc71;
     box-shadow:
@@ -185,7 +161,6 @@ h1{
         0 0 35px rgba(46,204,113,0.4);
 }
 
-/* Perdente */
 .input-loser{
     opacity:0.5;
 }
@@ -276,10 +251,6 @@ button{
     transform:translateY(-3px);
 }
 
-.bottom-item.active svg{
-    filter:drop-shadow(0 0 12px rgba(46,204,113,0.9));
-}
-
 .bottom-item svg{
     width:22px;
     height:22px;
@@ -287,7 +258,6 @@ button{
     stroke-width:2;
     fill:none;
     margin-bottom:4px;
-    filter:drop-shadow(0 0 8px rgba(46,204,113,0.6));
 }
 
 .reset-btn{
@@ -300,13 +270,7 @@ button{
     color:#2ecc71;
     font-weight:600;
     cursor:pointer;
-    transition:all 0.25s ease;
 }
-
-.reset-btn:hover{
-    background:#243547;
-}
-
 
 </style>
 </head>
@@ -323,14 +287,13 @@ button{
 </div>
 
 <div class="main-wrapper">
-
 <div class="container">
 
 <div class="title-box">
    <h1 class="shadow-title">
-    <span id="titleText"></span>
-</h1>
-    <p class="subtitle">Chiedilo al Comparatore FantaStef</p>
+        <span id="titleText"></span>
+   </h1>
+   <p class="subtitle">Chiedilo al Comparatore FantaStef</p>
 </div>
 
 <div class="alg-tabs">
@@ -357,45 +320,20 @@ button{
     <span id="perc2">50%</span>
 </div>
 
-<button class="reset-btn" onclick="resetComparatore()">
-    Reset
-</button>
+<button class="reset-btn" onclick="resetComparatore()">Reset</button>
 
 </div>
 </div>
 
 <div class="bottom-menu">
-    <div class="bottom-item">
-        <svg viewBox="0 0 24 24">
-            <path d="M3 10L12 3l9 7v10H3z"/>
-        </svg>
-        Home
-    </div>
-
-    <div class="bottom-item active">
-        <svg viewBox="0 0 24 24">
-            <path d="M4 20V10M10 20V4M16 20v-8M22 20V6"/>
-        </svg>
-        Comparatore
-    </div>
-
-    <div class="bottom-item">
-        <svg viewBox="0 0 24 24">
-            <path d="M12 17l-5 3 1-6-4-4 6-.5L12 3l2 6.5 6 .5-4 4 1 6z"/>
-        </svg>
-        Top
-    </div>
+    <div class="bottom-item">Home</div>
+    <div class="bottom-item active">Comparatore</div>
+    <div class="bottom-item">Top</div>
 </div>
-
-
-window.onload = function(){
-    animateTitle();
-};
 
 <script>
 
-
-// ===== ANIMAZIONE TITOLO =====
+/* ================= ANIMAZIONE TITOLO ================= */
 
 const sequence = ["THIS", "THAT", "OR", "THIS OR THAT?"];
 let seqIndex = 0;
@@ -447,7 +385,7 @@ function colorize(text){
 
 window.addEventListener("load", animateTitle);
 
-// ===== COMPARATORE =====
+/* ================= COMPARATORE ================= */
 
 let ruoloAttivo = "attaccanti";
 
@@ -457,34 +395,6 @@ document.querySelectorAll(".alg-tab").forEach(tab => {
         .forEach(t => t.classList.remove("active"));
         this.classList.add("active");
         ruoloAttivo = this.getAttribute("data-ruolo");
-    });
-});
-
-function confronta(){
-    ...
-}
-
-function resetComparatore(){
-    ...
-}
-
-</script>
-
-let ruoloAttivo = "attaccanti";
-
-
-window.addEventListener("load", showWord);
-
-document.querySelectorAll(".alg-tab").forEach(tab => {
-    tab.addEventListener("click", function(){
-
-        document.querySelectorAll(".alg-tab")
-        .forEach(t => t.classList.remove("active"));
-
-        this.classList.add("active");
-
-        ruoloAttivo = this.getAttribute("data-ruolo");
-
     });
 });
 
@@ -513,7 +423,6 @@ function confronta(){
         barGreen.style.width = perc2 + "%";
     }
 
-    // EFFETTO VINCITORE
     let input1 = document.getElementById("player1");
     let input2 = document.getElementById("player2");
 
@@ -527,7 +436,6 @@ function confronta(){
         input2.classList.add("input-winner");
         input1.classList.add("input-loser");
     }
-
 }
 
 function resetComparatore(){
@@ -541,12 +449,12 @@ function resetComparatore(){
     let barGreen = document.getElementById("barGreen");
     barGreen.style.width = "0%";
     barGreen.style.left = "0";
-    
-    document.getElementById("player1")
-.classList.remove("input-winner","input-loser");
 
-document.getElementById("player2")
-.classList.remove("input-winner","input-loser");
+    document.getElementById("player1")
+    .classList.remove("input-winner","input-loser");
+
+    document.getElementById("player2")
+    .classList.remove("input-winner","input-loser");
 }
 
 </script>
