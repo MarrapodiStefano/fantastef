@@ -108,21 +108,25 @@ h1{
     text-shadow:0 0 10px rgba(46,204,113,0.6);
 }
 
+
 /* ================= INPUTS ================= */
 
 .inputs{
     display:flex;
-    gap:10px;
+    gap:12px;
     margin-bottom:25px;
+    width:100%;
 }
 
-input{
-    flex:1;
-    padding:10px;
-    border-radius:10px;
+.inputs input{
+    width:100%;
+    min-width:0;           /* fondamentale per evitare overflow */
+    padding:14px;
+    border-radius:14px;
     border:none;
-    background:#1f2f3f;
+    background:#243547;
     color:white;
+    font-size:15px;
 }
 
 button{
