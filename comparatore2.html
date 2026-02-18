@@ -407,6 +407,30 @@ button{
     cursor:pointer;
 }
 
+.analisi-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:20px;
+    background:transparent;
+    color:#2ecc71;
+    font-weight:700;
+    font-size:14px;
+    margin-bottom:15px;
+    border:1px solid #2ecc71;
+    cursor:pointer;
+    opacity:0;
+    transform:translateY(10px);
+    transition:all 0.3s ease;
+    display:none;
+}
+
+.analisi-btn.show{
+    display:block;
+    opacity:1;
+    transform:translateY(0);
+}
+
 </style>
 </head>
 
@@ -457,6 +481,10 @@ button{
 <span id="perc1">50%</span>
 <span id="perc2">50%</span>
 </div>
+
+<button id="analisiBtn" class="analisi-btn" onclick="openDuello()">
+ANALISI DEI DATI
+</button>
 
 <button class="reset-btn" onclick="resetComparatore()">Reset</button>
 
@@ -623,8 +651,9 @@ p2.classList.add("input-winner");
 p1.classList.add("input-loser");
 }
 
-setTimeout(()=>{openDuello();},600);
-}
+setTimeout(()=>{
+    document.getElementById("analisiBtn").classList.add("show");
+},600);
 
 function resetComparatore(){
 document.getElementById("player1").value="";
@@ -634,6 +663,8 @@ document.getElementById("perc2").innerText="50%";
 document.getElementById("barGreen").style.width="0%";
 document.getElementById("barGreen").style.left="0";
 }
+
+document.getElementById("analisiBtn").classList.remove("show");
 
 function openDuello(){
 document.getElementById("duelloOverlay").classList.add("active");
