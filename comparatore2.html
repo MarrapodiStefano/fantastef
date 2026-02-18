@@ -654,24 +654,24 @@ p1.classList.add("input-loser");
 setTimeout(()=>{
     document.getElementById("analisiBtn").classList.add("show");
 },600);
-
-function resetComparatore(){
-document.getElementById("player1").value="";
-document.getElementById("player2").value="";
-document.getElementById("perc1").innerText="50%";
-document.getElementById("perc2").innerText="50%";
-document.getElementById("barGreen").style.width="0%";
-document.getElementById("barGreen").style.left="0";
 }
 
-document.getElementById("analisiBtn").classList.remove("show");
+function resetComparatore(){
+    document.getElementById("player1").value="";
+    document.getElementById("player2").value="";
+    document.getElementById("perc1").innerText="50%";
+    document.getElementById("perc2").innerText="50%";
+    document.getElementById("barGreen").style.width="0%";
+    document.getElementById("barGreen").style.left="0";
+    document.getElementById("analisiBtn").classList.remove("show");
+}
 
 function openDuello(){
-document.getElementById("duelloOverlay").classList.add("active");
+    document.getElementById("duelloOverlay").classList.add("active");
 }
 
 function closeDuello(){
-document.getElementById("duelloOverlay").classList.remove("active");
+    document.getElementById("duelloOverlay").classList.remove("active");
 }
 
 </script>
