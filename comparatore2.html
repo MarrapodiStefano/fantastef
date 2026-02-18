@@ -83,6 +83,8 @@ body{
     0 20px 60px rgba(46,204,113,0.35);
 }
 
+/* ================= TITLE ================= */
+
 .title-box{
     text-align:center;
     margin-bottom:15px;
@@ -102,12 +104,7 @@ body{
 .shadow-title span{
     opacity:0;
     transition:opacity 0.6s ease;
-    margin: 0 6px;
-}
-
-.shadow-title.show{
-    opacity:1;
-    transform:scale(1);
+    margin:0 6px;
 }
 
 .subtitle{
@@ -161,13 +158,25 @@ body{
 
 .input-winner{
     border:2px solid #2ecc71;
-    box-shadow:
-        0 0 15px rgba(46,204,113,0.8),
-        0 0 35px rgba(46,204,113,0.4);
+    box-shadow:0 0 15px rgba(46,204,113,0.8),
+               0 0 35px rgba(46,204,113,0.4);
 }
 
 .input-loser{
     opacity:0.5;
+}
+
+.input-error{
+    border:2px solid #e74c3c !important;
+    animation:shakeGlow 0.4s ease;
+}
+
+@keyframes shakeGlow{
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-4px);}
+    50%{transform:translateX(4px);}
+    75%{transform:translateX(-4px);}
+    100%{transform:translateX(0);}
 }
 
 /* ================= BUTTON ================= */
@@ -201,8 +210,8 @@ button{
     position:absolute;
     top:0;
     height:100%;
-    background:linear-gradient(90deg,#2ecc71,#27ae60);
     width:0%;
+    background:linear-gradient(90deg,#2ecc71,#27ae60);
     transition:all 0.6s ease;
 }
 
@@ -223,89 +232,21 @@ button{
     font-weight:600;
 }
 
-/* ================= BOTTOM MENU ================= */
-
-.bottom-menu{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:100%;
-    max-width:1750px;
-    height:65px;
-    background:rgba(10,20,35,0.95);
-    backdrop-filter:blur(6px);
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    z-index:1000;
-}
-
-.bottom-item{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    font-size:12px;
-    color:#2ecc71;
-    opacity:0.5;
-    transition:all 0.3s ease;
-}
-
-.bottom-item.active{
-    opacity:1;
-    transform:translateY(-3px);
-}
-
-.bottom-item svg{
-    width:22px;
-    height:22px;
-    stroke:#2ecc71;
-    stroke-width:2;
-    fill:none;
-    margin-bottom:4px;
-}
-
-.reset-btn{
-    width:100%;
-    margin-top:20px;
-    padding:10px;
-    border:none;
-    border-radius:14px;
-    background:#1f2f3f;
-    color:#2ecc71;
-    font-weight:600;
-    cursor:pointer;
-}
-
-/* ===== EFFETTO CAMPO VUOTO ===== */
-
-@keyframes shakeGlow {
-    0% { transform:translateX(0); box-shadow:0 0 0px rgba(231,76,60,0); }
-    25% { transform:translateX(-4px); box-shadow:0 0 10px rgba(231,76,60,0.7); }
-    50% { transform:translateX(4px); box-shadow:0 0 15px rgba(231,76,60,0.9); }
-    75% { transform:translateX(-4px); box-shadow:0 0 10px rgba(231,76,60,0.7); }
-    100% { transform:translateX(0); box-shadow:0 0 0px rgba(231,76,60,0); }
-}
-
-.input-error{
-    border:2px solid #e74c3c !important;
-    animation:shakeGlow 0.4s ease;
-}
-
 /* ================= DUELLO PRO ================= */
 
 .duello-overlay{
     position:fixed;
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
+    inset:0;
     background:rgba(0,0,0,0.6);
     backdrop-filter:blur(4px);
     display:none;
     justify-content:center;
     align-items:center;
     z-index:2000;
+}
+
+.duello-overlay.active{
+    display:flex;
 }
 
 .duello-card{
@@ -316,10 +257,7 @@ button{
     padding:28px;
     box-shadow:0 20px 60px rgba(0,0,0,0.6),
                0 0 40px rgba(46,204,113,0.2);
-    
     transform:translateY(120px);
-    align-items:flex-end;
-    padding-bottom:40px;
     opacity:0;
     transition:all 0.35s cubic-bezier(.22,1,.36,1);
 }
@@ -348,103 +286,13 @@ button{
     opacity:1;
 }
 
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:scale(0.95);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-/* ===== GRID DUELLO PRO ===== */
-
-.duello-grid{
-    display:grid;
-    grid-template-columns: 1fr 1.2fr 1fr;
-    gap:12px 8px;
-    text-align:center;
+.duello-content{
     font-size:14px;
-}
-
-.dg-header{
-    font-weight:700;
-    font-size:15px;
-    padding-bottom:10px;
-    border-bottom:1px solid rgba(255,255,255,0.15);
-}
-
-.dg-header.center{
-    opacity:0.6;
-}
-
-.dg-label{
-    opacity:0.7;
-    font-weight:600;
-}
-
-.duello-grid > div{
-    padding:6px 0;
-}
-
-/* ===== LAYOUT INTERNO DUELLO ===== */
-
-<div class="duello-content">
-
-    <div class="duello-grid">
-
-        <div class="dg-header">Giocatore 1</div>
-        <div class="dg-header center">VS</div>
-        <div class="dg-header">Giocatore 2</div>
-
-        <div id="fm1">7.12</div>
-        <div class="dg-label">Fantamedia</div>
-        <div id="fm2">6.85</div>
-
-        <div id="pr1">28</div>
-        <div class="dg-label">Presenze</div>
-        <div id="pr2">30</div>
-
-        <div id="g1">14</div>
-        <div class="dg-label">Gol</div>
-        <div id="g2">11</div>
-
-        <div id="a1">6</div>
-        <div class="dg-label">Assist</div>
-        <div id="a2">4</div>
-
-        <div id="am1">3</div>
-        <div class="dg-label">Ammonizioni</div>
-        <div id="am2">5</div>
-
-        <div id="es1">0</div>
-        <div class="dg-label">Espulsioni</div>
-        <div id="es2">1</div>
-
-        <div id="sc1">82%</div>
-        <div class="dg-label">Schierabilità</div>
-        <div id="sc2">74%</div>
-
-    </div>
-
-</div>
-
-.duello-players{
-    display:flex;
-    justify-content:space-between;
-    font-weight:700;
-    font-size:15px;
-    margin-bottom:10px;
-    opacity:0.9;
 }
 
 .duello-row{
     display:flex;
     justify-content:space-between;
-    align-items:center;
-    font-size:14px;
     padding:6px 0;
     border-bottom:1px solid rgba(255,255,255,0.08);
 }
@@ -457,6 +305,59 @@ button{
     display:flex;
     gap:18px;
     font-weight:600;
+}
+
+/* ================= BOTTOM MENU ================= */
+
+.bottom-menu{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:1750px;
+    height:65px;
+    background:rgba(10,20,35,0.95);
+    backdrop-filter:blur(6px);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:1000;
+}
+
+.bottom-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:12px;
+    color:#2ecc71;
+    opacity:0.5;
+}
+
+.bottom-item.active{
+    opacity:1;
+    transform:translateY(-3px);
+}
+
+.bottom-item svg{
+    width:22px;
+    height:22px;
+    stroke:#2ecc71;
+    stroke-width:2;
+    fill:none;
+    margin-bottom:4px;
+}
+
+.reset-btn{
+    width:100%;
+    margin-top:20px;
+    padding:10px;
+    border:none;
+    border-radius:14px;
+    background:#1f2f3f;
+    color:#2ecc71;
+    font-weight:600;
+    cursor:pointer;
 }
 
 </style>
@@ -478,36 +379,36 @@ button{
 
 <div class="title-box">
 <h1 class="shadow-title">
-   <span id="w1">THIS</span>
-   <span id="w2">OR</span>
-   <span id="w3">THAT</span>
-   <span id="w4">?</span>
+<span id="w1">THIS</span>
+<span id="w2">OR</span>
+<span id="w3">THAT</span>
+<span id="w4">?</span>
 </h1>
-   <p class="subtitle">Chiedilo al Comparatore FantaStef</p>
+<p class="subtitle">Chiedilo al Comparatore FantaStef</p>
 </div>
 
 <div class="alg-tabs">
-    <span class="alg-tab active" data-ruolo="attaccanti">Attaccanti</span>
-    <span class="alg-tab" data-ruolo="centrocampisti">Centrocampisti</span>
-    <span class="alg-tab" data-ruolo="difensori">Difensori</span>
-    <span class="alg-tab" data-ruolo="portieri">Portieri</span>
+<span class="alg-tab active" data-ruolo="attaccanti">Attaccanti</span>
+<span class="alg-tab" data-ruolo="centrocampisti">Centrocampisti</span>
+<span class="alg-tab" data-ruolo="difensori">Difensori</span>
+<span class="alg-tab" data-ruolo="portieri">Portieri</span>
 </div>
 
 <div class="inputs">
-    <input type="text" id="player1" placeholder="Giocatore 1">
-    <input type="text" id="player2" placeholder="Giocatore 2">
+<input type="text" id="player1" placeholder="Giocatore 1">
+<input type="text" id="player2" placeholder="Giocatore 2">
 </div>
 
 <button onclick="confronta()">Confronta</button>
 
 <div class="bar-container">
-    <div class="bar-green" id="barGreen"></div>
-    <div class="bar-center"></div>
+<div class="bar-green" id="barGreen"></div>
+<div class="bar-center"></div>
 </div>
 
 <div class="percent-row">
-    <span id="perc1">50%</span>
-    <span id="perc2">50%</span>
+<span id="perc1">50%</span>
+<span id="perc2">50%</span>
 </div>
 
 <button class="reset-btn" onclick="resetComparatore()">Reset</button>
@@ -515,295 +416,164 @@ button{
 </div>
 </div>
 
-<div class="bottom-menu">
-    <div class="bottom-item">
-        <svg viewBox="0 0 24 24">
-            <path d="M3 10L12 3l9 7v10H3z"/>
-        </svg>
-        Home
-    </div>
+<!-- DUELLO OVERLAY -->
 
-    <div class="bottom-item active">
-        <svg viewBox="0 0 24 24">
-            <path d="M4 20V10M10 20V4M16 20v-8M22 20V6"/>
-        </svg>
-        Comparatore
-    </div>
+<div id="duelloOverlay" class="duello-overlay">
+<div class="duello-card">
 
-    <div class="bottom-item">
-        <svg viewBox="0 0 24 24">
-            <path d="M12 17l-5 3 1-6-4-4 6-.5L12 3l2 6.5 6 .5-4 4 1 6z"/>
-        </svg>
-        Top
-    </div>
+<div class="duello-header">
+DUELLO PRO
+<span class="duello-close" onclick="closeDuello()">✕</span>
+</div>
+
+<div class="duello-content">
+
+<div class="duello-row">
+<span>Fantamedia</span>
+<div><span id="fm1">7.12</span><span id="fm2">6.85</span></div>
+</div>
+
+<div class="duello-row">
+<span>Presenze</span>
+<div><span id="pr1">28</span><span id="pr2">30</span></div>
+</div>
+
+<div class="duello-row">
+<span>Gol</span>
+<div><span id="g1">14</span><span id="g2">11</span></div>
+</div>
+
+<div class="duello-row">
+<span>Assist</span>
+<div><span id="a1">6</span><span id="a2">4</span></div>
+</div>
+
+<div class="duello-row">
+<span>Ammonizioni</span>
+<div><span id="am1">3</span><span id="am2">5</span></div>
+</div>
+
+<div class="duello-row">
+<span>Espulsioni</span>
+<div><span id="es1">0</span><span id="es2">1</span></div>
+</div>
+
+<div class="duello-row">
+<span>Schierabilità</span>
+<div><span id="sc1">82%</span><span id="sc2">74%</span></div>
+</div>
+
+</div>
+</div>
 </div>
 
 <script>
 
-
-/* ================= COMPARATORE ================= */
-
-
-/* ================= ANIMAZIONE TITOLO ================= */
-
+/* Animazione titolo */
 document.addEventListener("DOMContentLoaded", function(){
+const w1=document.getElementById("w1");
+const w2=document.getElementById("w2");
+const w3=document.getElementById("w3");
+const w4=document.getElementById("w4");
 
-    const w1 = document.getElementById("w1");
-    const w2 = document.getElementById("w2");
-    const w3 = document.getElementById("w3");
-    const w4 = document.getElementById("w4");
-
-    // THIS
-setTimeout(() => { w1.style.opacity = 1; }, 200);
-setTimeout(() => { w1.style.opacity = 0; }, 900);
-
-// THAT
-setTimeout(() => { w3.style.opacity = 1; }, 1100);
-setTimeout(() => { w3.style.opacity = 0; }, 1800);
-
-// OR
-setTimeout(() => { w2.style.opacity = 1; }, 2000);
-setTimeout(() => { w2.style.opacity = 0; }, 2600);
-
-// ?
-setTimeout(() => { w4.style.opacity = 1; }, 2800);
-setTimeout(() => { w4.style.opacity = 0; }, 3400);
-
-// FINALE
-setTimeout(() => {
-    w1.style.opacity = 1;
-    w2.style.opacity = 1;
-    w3.style.opacity = 1;
-    w4.style.opacity = 1;
-}, 3600);
-
+setTimeout(()=>{w1.style.opacity=1;},200);
+setTimeout(()=>{w1.style.opacity=0;},900);
+setTimeout(()=>{w3.style.opacity=1;},1100);
+setTimeout(()=>{w3.style.opacity=0;},1800);
+setTimeout(()=>{w2.style.opacity=1;},2000);
+setTimeout(()=>{w2.style.opacity=0;},2600);
+setTimeout(()=>{w4.style.opacity=1;},2800);
+setTimeout(()=>{w4.style.opacity=0;},3400);
+setTimeout(()=>{
+w1.style.opacity=1;
+w2.style.opacity=1;
+w3.style.opacity=1;
+w4.style.opacity=1;
+},3600);
 });
 
-/* ================= COMPARATORE ================= */
-
-let ruoloAttivo = "attaccanti";
-
-document.querySelectorAll(".alg-tab").forEach(tab => {
-    tab.addEventListener("click", function(){
-        document.querySelectorAll(".alg-tab")
-        .forEach(t => t.classList.remove("active"));
-        this.classList.add("active");
-        ruoloAttivo = this.getAttribute("data-ruolo");
-    });
-});
-
-// ===== AUDIO CONTEXT GLOBALE =====
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+/* Audio */
+const audioCtx=new (window.AudioContext||window.webkitAudioContext)();
 
 function playClickSound(){
-
-    const oscillator = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-
-    oscillator.type = "triangle"; // più soft
-    oscillator.frequency.setValueAtTime(900, audioCtx.currentTime);
-
-    gainNode.gain.setValueAtTime(0.04, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.07);
-
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-
-    oscillator.start();
-    oscillator.stop(audioCtx.currentTime + 0.07);
+const osc=audioCtx.createOscillator();
+const gain=audioCtx.createGain();
+osc.type="triangle";
+osc.frequency.setValueAtTime(900,audioCtx.currentTime);
+gain.gain.setValueAtTime(0.04,audioCtx.currentTime);
+gain.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+0.07);
+osc.connect(gain);
+gain.connect(audioCtx.destination);
+osc.start();
+osc.stop(audioCtx.currentTime+0.07);
 }
 
 function confronta(){
 
-    document.activeElement.blur();
+document.activeElement.blur();
+playClickSound();
 
-    playClickSound();
+const p1=document.getElementById("player1");
+const p2=document.getElementById("player2");
+const barGreen=document.getElementById("barGreen");
 
-    const p1 = document.getElementById("player1");
-    const p2 = document.getElementById("player2");
-    const barGreen = document.getElementById("barGreen");
+p1.classList.remove("input-error");
+p2.classList.remove("input-error");
 
-    // Rimuove eventuali errori precedenti
-    p1.classList.remove("input-error");
-    p2.classList.remove("input-error");
+let errore=false;
 
-    let errore = false;
+if(p1.value.trim()===""){p1.classList.add("input-error");errore=true;}
+if(p2.value.trim()===""){p2.classList.add("input-error");errore=true;}
 
-    if(p1.value.trim() === ""){
-        p1.classList.add("input-error");
-        errore = true;
-    }
+if(errore)return;
 
-    if(p2.value.trim() === ""){
-        p2.classList.add("input-error");
-        errore = true;
-    }
+const voto1=parseFloat((Math.random()*3+6).toFixed(1));
+const voto2=parseFloat((Math.random()*3+6).toFixed(1));
 
-    // Se c'è errore, blocca tutto
-    if(errore){
-        return;
-    }
+const totale=voto1+voto2;
+const perc1=Math.round((voto1/totale)*100);
+const perc2=100-perc1;
 
-    // ===== LOGICA CONFRONTO =====
+document.getElementById("perc1").innerText=perc1+"%";
+document.getElementById("perc2").innerText=perc2+"%";
 
-    const voto1 = parseFloat((Math.random()*3+6).toFixed(1));
-    const voto2 = parseFloat((Math.random()*3+6).toFixed(1));
+if(perc1>perc2){
+barGreen.style.left="0";
+barGreen.style.width=perc1+"%";
+}else{
+barGreen.style.left=perc1+"%";
+barGreen.style.width=perc2+"%";
+}
 
-    const totale = voto1 + voto2;
+if(perc1>perc2){
+p1.classList.add("input-winner");
+p2.classList.add("input-loser");
+}else{
+p2.classList.add("input-winner");
+p1.classList.add("input-loser");
+}
 
-    const perc1 = Math.round((voto1 / totale) * 100);
-    const perc2 = 100 - perc1;
-
-    document.getElementById("perc1").innerText = perc1 + "%";
-    document.getElementById("perc2").innerText = perc2 + "%";
-
-    // Aggiorna barra
-    if(perc1 > perc2){
-        barGreen.style.left = "0";
-        barGreen.style.width = perc1 + "%";
-    }else{
-        barGreen.style.left = perc1 + "%";
-        barGreen.style.width = perc2 + "%";
-    }
-
-// Apri overlay Duello Pro
-setTimeout(() => {
-    openDuello();
-}, 600);
-
-    // Reset classi precedenti
-    p1.classList.remove("input-winner","input-loser");
-    p2.classList.remove("input-winner","input-loser");
-
-    // Evidenzia vincitore
-    if(perc1 > perc2){
-        p1.classList.add("input-winner");
-        p2.classList.add("input-loser");
-    }else if(perc2 > perc1){
-        p2.classList.add("input-winner");
-        p1.classList.add("input-loser");
-    }
+setTimeout(()=>{openDuello();},600);
 }
 
 function resetComparatore(){
-
-    document.getElementById("player1").value = "";
-    document.getElementById("player2").value = "";
-
-    document.getElementById("perc1").innerText = "50%";
-    document.getElementById("perc2").innerText = "50%";
-
-    let barGreen = document.getElementById("barGreen");
-    barGreen.style.width = "0%";
-    barGreen.style.left = "0";
-
-    document.getElementById("player1")
-    .classList.remove("input-winner","input-loser");
-
-    document.getElementById("player2")
-    .classList.remove("input-winner","input-loser");
+document.getElementById("player1").value="";
+document.getElementById("player2").value="";
+document.getElementById("perc1").innerText="50%";
+document.getElementById("perc2").innerText="50%";
+document.getElementById("barGreen").style.width="0%";
+document.getElementById("barGreen").style.left="0";
 }
 
 function openDuello(){
-    const overlay = document.getElementById("duelloOverlay");
-    overlay.style.display = "flex";
-
-    setTimeout(() => {
-        overlay.classList.add("active");
-    }, 10);
+document.getElementById("duelloOverlay").classList.add("active");
 }
 
 function closeDuello(){
-    const overlay = document.getElementById("duelloOverlay");
-
-    overlay.classList.remove("active");
-
-    setTimeout(() => {
-        overlay.style.display = "none";
-    }, 300);
+document.getElementById("duelloOverlay").classList.remove("active");
 }
 
 </script>
-
-<!-- ================= DUELLO PRO OVERLAY ================= -->
-
-<div id="duelloOverlay" class="duello-overlay">
-
-    <div class="duello-card">
-
-        <div class="duello-header">
-            DUELLO PRO
-            <span class="duello-close" onclick="closeDuello()">✕</span>
-        </div>
-
-        <div class="duello-content">
-
-    <div class="duello-players">
-        <div id="duelloP1">Giocatore 1</div>
-        <div id="duelloP2">Giocatore 2</div>
-    </div>
-
-    <div class="duello-row">
-        <span>Fantamedia</span>
-        <div>
-            <span id="fm1">7.12</span>
-            <span id="fm2">6.85</span>
-        </div>
-    </div>
-
-    <div class="duello-row">
-        <span>Presenze</span>
-        <div>
-            <span id="pr1">28</span>
-            <span id="pr2">30</span>
-        </div>
-    </div>
-
-    <div class="duello-row">
-        <span>Gol</span>
-        <div>
-            <span id="g1">14</span>
-            <span id="g2">11</span>
-        </div>
-    </div>
-
-    <div class="duello-row">
-        <span>Assist</span>
-        <div>
-            <span id="a1">6</span>
-            <span id="a2">4</span>
-        </div>
-    </div>
-
-    <div class="duello-row">
-        <span>Ammonizioni</span>
-        <div>
-            <span id="am1">3</span>
-            <span id="am2">5</span>
-        </div>
-    </div>
-
-    <div class="duello-row">
-        <span>Espulsioni</span>
-        <div>
-            <span id="es1">0</span>
-            <span id="es2">1</span>
-        </div>
-    </div>
-
-    <div class="duello-row">
-        <span>Schierabilità</span>
-        <div>
-            <span id="sc1">82%</span>
-            <span id="sc2">74%</span>
-        </div>
-    </div>
-
-</div>
-
-    </div>
-
-</div>
 
 </body>
 </html>
