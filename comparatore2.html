@@ -573,6 +573,10 @@ if(p2.value.trim()===""){p2.classList.add("input-error");errore=true;}
 
 if(errore)return;
 
+// Aggiorna nomi nel Duello
+document.getElementById("duelloP1").innerText = p1.value;
+document.getElementById("duelloP2").innerText = p2.value;
+
 const voto1=parseFloat((Math.random()*3+6).toFixed(1));
 const voto2=parseFloat((Math.random()*3+6).toFixed(1));
 
