@@ -268,12 +268,29 @@ button{
 }
 
 .duello-header{
+    position:relative;
     display:flex;
-    justify-content:space-between;
+    justify-content:center;
     align-items:center;
     font-weight:700;
     font-size:20px;
     margin-bottom:20px;
+}
+
+.duello-title{
+    text-align:center;
+}
+
+.duello-close{
+    position:absolute;
+    right:0;
+    cursor:pointer;
+    font-size:18px;
+    opacity:0.7;
+}
+
+.duello-close:hover{
+    opacity:1;
 }
 
 .duello-close{
@@ -452,7 +469,7 @@ button{
 <div class="duello-card">
 
 <div class="duello-header">
-DUELLO PRO
+<span class="duello-title">ANALISI DEI DATI</span>
 <span class="duello-close" onclick="closeDuello()">✕</span>
 </div>
 
