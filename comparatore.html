@@ -94,15 +94,19 @@ body{
     letter-spacing:3px;
 }
 
-.shadow-title span{
+.shadow-title{
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:3px;
+    color:white;
     opacity:0;
-    filter:blur(8px);
-    transition:opacity 0.8s ease, filter 0.8s ease;
+    transform:scale(0.95);
+    transition:opacity 0.8s ease, transform 0.8s ease;
 }
 
-.shadow-title.show span{
+.shadow-title.show{
     opacity:1;
-    filter:blur(0px);
+    transform:scale(1);
 }
 
 .subtitle{
@@ -290,9 +294,7 @@ button{
 <div class="container">
 
 <div class="title-box">
-   <h1 class="shadow-title">
-        <span id="titleText"></span>
-   </h1>
+<h1 class="shadow-title" id="titleText"></h1>
    <p class="subtitle">Chiedilo al Comparatore FantaStef</p>
 </div>
 
@@ -350,55 +352,39 @@ button{
 
 <script>
 
-/* ================= ANIMAZIONE TITOLO ================= */
+/* ================= NUOVA ANIMAZIONE TITOLO ================= */
 
-const sequence = ["THIS", "THAT", "OR", "THIS OR THAT?"];
-let seqIndex = 0;
+const words = ["THIS", "THAT", "OR", "?", "THIS OR THAT?"];
+let index = 0;
 
-const titleElement = document.getElementById("titleText");
-const shadowTitle = document.querySelector(".shadow-title");
+const title = document.getElementById("titleText");
 
-function animateTitle(){
+function animateSequence(){
 
-    shadowTitle.classList.remove("show");
+    title.classList.remove("show");
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
-        titleElement.innerHTML = colorize(sequence[seqIndex]);
-        shadowTitle.classList.add("show");
+        title.textContent = words[index];
+        title.classList.add("show");
 
-        seqIndex++;
+        index++;
 
-        if(seqIndex < sequence.length){
-            setTimeout(animateTitle, 1600);
+        if(index < words.length - 1){
+
+            setTimeout(() => {
+                title.classList.remove("show");
+
+                setTimeout(animateSequence, 800);
+
+            }, 1000);
+
         }
 
     }, 400);
 }
 
-function colorize(text){
-
-    let result = "";
-    let letterIndex = 0;
-
-    for(let i=0; i<text.length; i++){
-
-        if(text[i] === " "){
-            result += "&nbsp;";
-            continue;
-        }
-
-        if(letterIndex % 2 === 0){
-            result += `<span style="color:#2ecc71">${text[i]}</span>`;
-        }else{
-            result += `<span style="color:white">${text[i]}</span>`;
-        }
-
-        letterIndex++;
-    }
-
-    return result;
-}
+window.addEventListener("load", animateSequence);
 
 window.addEventListener("load", animateTitle);
 
