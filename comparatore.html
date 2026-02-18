@@ -108,6 +108,11 @@ body{
     justify-content:center;
 }
 
+.shadow-title span{
+    opacity:0;
+    transition:opacity 0.6s ease;
+}
+
 .shadow-title.show{
     opacity:1;
     transform:scale(1);
@@ -298,7 +303,12 @@ button{
 <div class="container">
 
 <div class="title-box">
-<h1 class="shadow-title" id="titleText"></h1>
+<h1 class="shadow-title" id="titleText">
+    <span class="w1">THIS</span>
+    <span class="w2"> OR </span>
+    <span class="w3">THAT</span>
+    <span class="w4">?</span>
+</h1>
    <p class="subtitle">Chiedilo al Comparatore FantaStef</p>
 </div>
 
@@ -356,39 +366,60 @@ button{
 
 <script>
 
-/* ================= NUOVA ANIMAZIONE TITOLO ================= */
+/* ================= ANIMAZIONE PROGRESSIVA ================= */
 
-const words = ["THIS", "THAT", "OR", "?", "THIS OR THAT?"];
-let index = 0;
+window.addEventListener("load", () => {
 
-const title = document.getElementById("titleText");
+    const w1 = document.querySelector(".w1");
+    const w2 = document.querySelector(".w2");
+    const w3 = document.querySelector(".w3");
+    const w4 = document.querySelector(".w4");
 
-function animateSequence(){
+    // THIS
+    setTimeout(() => {
+        w1.style.opacity = 1;
+    }, 300);
 
-    // Mostra parola
-    title.textContent = words[index];
-    title.classList.add("show");
+    setTimeout(() => {
+        w1.style.opacity = 0;
+    }, 1300);
 
-    // Se NON è l’ultima parola
-    if(index < words.length - 1){
+    // THAT
+    setTimeout(() => {
+        w3.style.opacity = 1;
+    }, 2000);
 
-        setTimeout(() => {
+    setTimeout(() => {
+        w3.style.opacity = 0;
+    }, 3000);
 
-            // Sparisce
-            title.classList.remove("show");
+    // OR
+    setTimeout(() => {
+        w2.style.opacity = 1;
+    }, 3700);
 
-            setTimeout(() => {
-                index++;
-                animateSequence();
-            }, 800);
+    setTimeout(() => {
+        w2.style.opacity = 0;
+    }, 4700);
 
-        }, 1000);
+    // ?
+    setTimeout(() => {
+        w4.style.opacity = 1;
+    }, 5400);
 
-    }
+    setTimeout(() => {
+        w4.style.opacity = 0;
+    }, 6400);
 
-}
+    // FINALE COMPLETO
+    setTimeout(() => {
+        w1.style.opacity = 1;
+        w2.style.opacity = 1;
+        w3.style.opacity = 1;
+        w4.style.opacity = 1;
+    }, 7200);
 
-window.addEventListener("load", animateSequence);
+});
 /* ================= COMPARATORE ================= */
 
 let ruoloAttivo = "attaccanti";
