@@ -359,13 +359,77 @@ button{
     }
 }
 
+/* ===== GRID DUELLO PRO ===== */
+
+.duello-grid{
+    display:grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap:12px 8px;
+    text-align:center;
+    font-size:14px;
+}
+
+.dg-header{
+    font-weight:700;
+    font-size:15px;
+    padding-bottom:10px;
+    border-bottom:1px solid rgba(255,255,255,0.15);
+}
+
+.dg-header.center{
+    opacity:0.6;
+}
+
+.dg-label{
+    opacity:0.7;
+    font-weight:600;
+}
+
+.duello-grid > div{
+    padding:6px 0;
+}
+
 /* ===== LAYOUT INTERNO DUELLO ===== */
 
-.duello-content{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-}
+<div class="duello-content">
+
+    <div class="duello-grid">
+
+        <div class="dg-header">Giocatore 1</div>
+        <div class="dg-header center">VS</div>
+        <div class="dg-header">Giocatore 2</div>
+
+        <div id="fm1">7.12</div>
+        <div class="dg-label">Fantamedia</div>
+        <div id="fm2">6.85</div>
+
+        <div id="pr1">28</div>
+        <div class="dg-label">Presenze</div>
+        <div id="pr2">30</div>
+
+        <div id="g1">14</div>
+        <div class="dg-label">Gol</div>
+        <div id="g2">11</div>
+
+        <div id="a1">6</div>
+        <div class="dg-label">Assist</div>
+        <div id="a2">4</div>
+
+        <div id="am1">3</div>
+        <div class="dg-label">Ammonizioni</div>
+        <div id="am2">5</div>
+
+        <div id="es1">0</div>
+        <div class="dg-label">Espulsioni</div>
+        <div id="es2">1</div>
+
+        <div id="sc1">82%</div>
+        <div class="dg-label">Schierabilità</div>
+        <div id="sc2">74%</div>
+
+    </div>
+
+</div>
 
 .duello-players{
     display:flex;
