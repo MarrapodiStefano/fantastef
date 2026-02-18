@@ -277,6 +277,21 @@ button{
     cursor:pointer;
 }
 
+/* ===== EFFETTO CAMPO VUOTO ===== */
+
+@keyframes shakeGlow {
+    0% { transform:translateX(0); box-shadow:0 0 0px rgba(231,76,60,0); }
+    25% { transform:translateX(-4px); box-shadow:0 0 10px rgba(231,76,60,0.7); }
+    50% { transform:translateX(4px); box-shadow:0 0 15px rgba(231,76,60,0.9); }
+    75% { transform:translateX(-4px); box-shadow:0 0 10px rgba(231,76,60,0.7); }
+    100% { transform:translateX(0); box-shadow:0 0 0px rgba(231,76,60,0); }
+}
+
+.input-error{
+    border:2px solid #e74c3c !important;
+    animation:shakeGlow 0.4s ease;
+}
+
 </style>
 </head>
 
@@ -413,6 +428,26 @@ document.querySelectorAll(".alg-tab").forEach(tab => {
 function confronta(){
 
     document.activeElement.blur();
+
+let p1 = document.getElementById("player1");
+let p2 = document.getElementById("player2");
+
+// Rimuove eventuali errori precedenti
+p1.classList.remove("input-error");
+p2.classList.remove("input-error");
+
+if(p1.value.trim() === "" || p2.value.trim() === ""){
+    
+    if(p1.value.trim() === ""){
+        p1.classList.add("input-error");
+    }
+    
+    if(p2.value.trim() === ""){
+        p2.classList.add("input-error");
+    }
+
+    return; // blocca il confronto
+}
 
     let voto1 = parseFloat((Math.random()*3+6).toFixed(1));
     let voto2 = parseFloat((Math.random()*3+6).toFixed(1));
