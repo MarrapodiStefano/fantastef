@@ -425,9 +425,33 @@ document.querySelectorAll(".alg-tab").forEach(tab => {
     });
 });
 
+// ===== CLICK SONORO GENERATO VIA WEB AUDIO =====
+
+function playClickSound(){
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    oscillator.type = "square"; // suono più soft rispetto a sine
+    oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+
+    gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); // volume basso
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 0.08);
+}
+
 function confronta(){
 
     document.activeElement.blur();
+
+    playClickSound();
 
     const p1 = document.getElementById("player1");
     const p2 = document.getElementById("player2");
