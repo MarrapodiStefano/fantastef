@@ -603,7 +603,12 @@ function resetComparatore(){
 }
 
 function openDuello(){
-    document.getElementById("duelloOverlay").style.display = "flex";
+    const overlay = document.getElementById("duelloOverlay");
+    overlay.style.display = "flex";
+
+    setTimeout(() => {
+        overlay.classList.add("active");
+    }, 10);
 }
 
 function closeDuello(){
