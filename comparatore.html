@@ -361,33 +361,30 @@ const title = document.getElementById("titleText");
 
 function animateSequence(){
 
-    title.classList.remove("show");
+    // Mostra parola
+    title.textContent = words[index];
+    title.classList.add("show");
 
-    setTimeout(() => {
+    // Se NON è l’ultima parola
+    if(index < words.length - 1){
 
-        title.textContent = words[index];
-        title.classList.add("show");
+        setTimeout(() => {
 
-        index++;
-
-        if(index < words.length - 1){
+            // Sparisce
+            title.classList.remove("show");
 
             setTimeout(() => {
-                title.classList.remove("show");
+                index++;
+                animateSequence();
+            }, 800);
 
-                setTimeout(animateSequence, 800);
+        }, 1000);
 
-            }, 1000);
+    }
 
-        }
-
-    }, 400);
 }
 
 window.addEventListener("load", animateSequence);
-
-window.addEventListener("load", animateTitle);
-
 /* ================= COMPARATORE ================= */
 
 let ruoloAttivo = "attaccanti";
