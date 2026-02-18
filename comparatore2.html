@@ -612,7 +612,13 @@ function openDuello(){
 }
 
 function closeDuello(){
-    document.getElementById("duelloOverlay").style.display = "none";
+    const overlay = document.getElementById("duelloOverlay");
+
+    overlay.classList.remove("active");
+
+    setTimeout(() => {
+        overlay.style.display = "none";
+    }, 300);
 }
 
 </script>
