@@ -429,39 +429,45 @@ function confronta(){
 
     document.activeElement.blur();
 
-let p1 = document.getElementById("player1");
-let p2 = document.getElementById("player2");
+    const p1 = document.getElementById("player1");
+    const p2 = document.getElementById("player2");
+    const barGreen = document.getElementById("barGreen");
 
-// Rimuove eventuali errori precedenti
-p1.classList.remove("input-error");
-p2.classList.remove("input-error");
+    // Rimuove eventuali errori precedenti
+    p1.classList.remove("input-error");
+    p2.classList.remove("input-error");
 
-if(p1.value.trim() === "" || p2.value.trim() === ""){
-    
+    let errore = false;
+
     if(p1.value.trim() === ""){
         p1.classList.add("input-error");
+        errore = true;
     }
-    
+
     if(p2.value.trim() === ""){
         p2.classList.add("input-error");
+        errore = true;
     }
 
-    return; // blocca il confronto
-}
+    // Se c'è errore, blocca tutto
+    if(errore){
+        return;
+    }
 
-    let voto1 = parseFloat((Math.random()*3+6).toFixed(1));
-    let voto2 = parseFloat((Math.random()*3+6).toFixed(1));
+    // ===== LOGICA CONFRONTO =====
 
-    let totale = voto1 + voto2;
+    const voto1 = parseFloat((Math.random()*3+6).toFixed(1));
+    const voto2 = parseFloat((Math.random()*3+6).toFixed(1));
 
-    let perc1 = Math.round((voto1 / totale) * 100);
-    let perc2 = 100 - perc1;
+    const totale = voto1 + voto2;
+
+    const perc1 = Math.round((voto1 / totale) * 100);
+    const perc2 = 100 - perc1;
 
     document.getElementById("perc1").innerText = perc1 + "%";
     document.getElementById("perc2").innerText = perc2 + "%";
 
-    let barGreen = document.getElementById("barGreen");
-
+    // Aggiorna barra
     if(perc1 > perc2){
         barGreen.style.left = "0";
         barGreen.style.width = perc1 + "%";
@@ -470,18 +476,17 @@ if(p1.value.trim() === "" || p2.value.trim() === ""){
         barGreen.style.width = perc2 + "%";
     }
 
-    let input1 = document.getElementById("player1");
-    let input2 = document.getElementById("player2");
+    // Reset classi precedenti
+    p1.classList.remove("input-winner","input-loser");
+    p2.classList.remove("input-winner","input-loser");
 
-    input1.classList.remove("input-winner","input-loser");
-    input2.classList.remove("input-winner","input-loser");
-
+    // Evidenzia vincitore
     if(perc1 > perc2){
-        input1.classList.add("input-winner");
-        input2.classList.add("input-loser");
+        p1.classList.add("input-winner");
+        p2.classList.add("input-loser");
     }else if(perc2 > perc1){
-        input2.classList.add("input-winner");
-        input1.classList.add("input-loser");
+        p2.classList.add("input-winner");
+        p1.classList.add("input-loser");
     }
 }
 
