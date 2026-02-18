@@ -610,6 +610,26 @@ osc.start();
 osc.stop(audioCtx.currentTime+0.07);
 }
 
+/* Gestione Tabs Ruolo */
+const tabs = document.querySelectorAll(".alg-tab");
+let ruoloSelezionato = "attaccanti";
+
+tabs.forEach(tab => {
+    tab.addEventListener("click", function(){
+
+        // Rimuove active da tutte
+        tabs.forEach(t => t.classList.remove("active"));
+
+        // Attiva quella cliccata
+        this.classList.add("active");
+
+        // Salva ruolo selezionato
+        ruoloSelezionato = this.dataset.ruolo;
+
+        console.log("Ruolo selezionato:", ruoloSelezionato);
+    });
+});
+
 function confronta(){
 
 document.activeElement.blur();
