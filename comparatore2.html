@@ -475,9 +475,9 @@ button{
 
 <div class="duello-grid">
 
-    <div class="dg-header">Giocatore 1</div>
-    <div class="dg-header center">VS</div>
-    <div class="dg-header">Giocatore 2</div>
+   <div class="dg-header" id="duelloP1">Giocatore 1</div>
+   <div class="dg-header center">VS</div>
+   <div class="dg-header" id="duelloP2">Giocatore 2</div>
 
     <div class="dg-value" id="fm1">7.12</div>
     <div class="dg-label">Fantamedia</div>
@@ -572,6 +572,9 @@ if(p1.value.trim()===""){p1.classList.add("input-error");errore=true;}
 if(p2.value.trim()===""){p2.classList.add("input-error");errore=true;}
 
 if(errore)return;
+
+document.getElementById("duelloP1").innerText = p1.value;
+document.getElementById("duelloP2").innerText = p2.value;
 
 const voto1=parseFloat((Math.random()*3+6).toFixed(1));
 const voto2=parseFloat((Math.random()*3+6).toFixed(1));
