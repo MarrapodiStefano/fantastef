@@ -425,26 +425,25 @@ document.querySelectorAll(".alg-tab").forEach(tab => {
     });
 });
 
-// ===== CLICK SONORO GENERATO VIA WEB AUDIO =====
+// ===== AUDIO CONTEXT GLOBALE =====
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 function playClickSound(){
-
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
     const oscillator = audioCtx.createOscillator();
     const gainNode = audioCtx.createGain();
 
-    oscillator.type = "square"; // suono più soft rispetto a sine
-    oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+    oscillator.type = "triangle"; // più soft
+    oscillator.frequency.setValueAtTime(900, audioCtx.currentTime);
 
-    gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); // volume basso
-    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+    gainNode.gain.setValueAtTime(0.04, audioCtx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.07);
 
     oscillator.connect(gainNode);
     gainNode.connect(audioCtx.destination);
 
     oscillator.start();
-    oscillator.stop(audioCtx.currentTime + 0.08);
+    oscillator.stop(audioCtx.currentTime + 0.07);
 }
 
 function confronta(){
