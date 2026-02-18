@@ -359,6 +359,42 @@ button{
     }
 }
 
+/* ===== LAYOUT INTERNO DUELLO ===== */
+
+.duello-content{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.duello-players{
+    display:flex;
+    justify-content:space-between;
+    font-weight:700;
+    font-size:15px;
+    margin-bottom:10px;
+    opacity:0.9;
+}
+
+.duello-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:14px;
+    padding:6px 0;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.duello-row span:first-child{
+    opacity:0.7;
+}
+
+.duello-row div{
+    display:flex;
+    gap:18px;
+    font-weight:600;
+}
+
 </style>
 </head>
 
@@ -637,8 +673,69 @@ function closeDuello(){
         </div>
 
         <div class="duello-content">
-            Contenuto Duello Pro (demo)
+
+    <div class="duello-players">
+        <div id="duelloP1">Giocatore 1</div>
+        <div id="duelloP2">Giocatore 2</div>
+    </div>
+
+    <div class="duello-row">
+        <span>Fantamedia</span>
+        <div>
+            <span id="fm1">7.12</span>
+            <span id="fm2">6.85</span>
         </div>
+    </div>
+
+    <div class="duello-row">
+        <span>Presenze</span>
+        <div>
+            <span id="pr1">28</span>
+            <span id="pr2">30</span>
+        </div>
+    </div>
+
+    <div class="duello-row">
+        <span>Gol</span>
+        <div>
+            <span id="g1">14</span>
+            <span id="g2">11</span>
+        </div>
+    </div>
+
+    <div class="duello-row">
+        <span>Assist</span>
+        <div>
+            <span id="a1">6</span>
+            <span id="a2">4</span>
+        </div>
+    </div>
+
+    <div class="duello-row">
+        <span>Ammonizioni</span>
+        <div>
+            <span id="am1">3</span>
+            <span id="am2">5</span>
+        </div>
+    </div>
+
+    <div class="duello-row">
+        <span>Espulsioni</span>
+        <div>
+            <span id="es1">0</span>
+            <span id="es2">1</span>
+        </div>
+    </div>
+
+    <div class="duello-row">
+        <span>Schierabilità</span>
+        <div>
+            <span id="sc1">82%</span>
+            <span id="sc2">74%</span>
+        </div>
+    </div>
+
+</div>
 
     </div>
 
