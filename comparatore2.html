@@ -554,6 +554,11 @@ function confronta(){
         barGreen.style.width = perc2 + "%";
     }
 
+// Apri overlay Duello Pro
+setTimeout(() => {
+    openDuello();
+}, 600);
+
     // Reset classi precedenti
     p1.classList.remove("input-winner","input-loser");
     p2.classList.remove("input-winner","input-loser");
