@@ -1,0 +1,75 @@
+{
+  "stagione": "2025-2026",
+  "aggiornamento": "2026-02-10",
+
+  "ruoli": {
+
+    "attaccanti": [
+      {
+        "nome": "Martinez L.",
+        "squadra": "Inter",
+        "fantamedia": 7.45,
+        "presenze": 23,
+        "gol": 15,
+        "assist": 4,
+        "ammonizioni": 3,
+        "espulsioni": 0,
+        "schierabilita": 91
+      },
+      {
+        "nome": "Leao",
+        "squadra": "Milan",
+        "fantamedia": 7.12,
+        "presenze": 22,
+        "gol": 9,
+        "assist": 6,
+        "ammonizioni": 4,
+        "espulsioni": 0,
+        "schierabilita": 85
+      }
+    ],
+
+    "centrocampisti": [
+      {
+        "nome": "Calhanoglu",
+        "squadra": "Inter",
+        "fantamedia": 7.08,
+        "presenze": 21,
+        "gol": 7,
+        "assist": 5,
+        "ammonizioni": 5,
+        "espulsioni": 0,
+        "schierabilita": 88
+      }
+    ],
+
+    "difensori": [
+      {
+        "nome": "Dimarco",
+        "squadra": "Inter",
+        "fantamedia": 6.85,
+        "presenze": 20,
+        "gol": 3,
+        "assist": 4,
+        "ammonizioni": 2,
+        "espulsioni": 0,
+        "schierabilita": 84
+      }
+    ],
+
+    "portieri": [
+      {
+        "nome": "Maignan",
+        "squadra": "Milan",
+        "fantamedia": 6.72,
+        "presenze": 24,
+        "gol": 0,
+        "assist": 0,
+        "ammonizioni": 1,
+        "espulsioni": 0,
+        "schierabilita": 92
+      }
+    ]
+
+  }
+}
