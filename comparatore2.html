@@ -548,7 +548,7 @@ ANALISI DEI DATI
 <span class="duello-close" onclick="closeDuello()">✕</span>
 </div>
 
-<div class="duello-grid">
+<div class="duello-grid" id="duelloGrid">
 
    <div class="dg-header" id="duelloP1">Giocatore 1</div>
    <div class="dg-header center">VS</div>
@@ -719,7 +719,87 @@ function resetComparatore(){
     document.getElementById("analisiBtn").classList.remove("show");
 }
 
-function openDuello(){
+async function caricaOverlay(nome1, nome2){
+
+    const grid = document.getElementById("duelloGrid");
+
+    // Svuota la grid
+    grid.innerHTML = `
+        <div class="dg-header">${nome1}</div>
+        <div class="dg-header center">VS</div>
+        <div class="dg-header">${nome2}</div>
+    `;
+
+    // Decide quale file leggere
+    let file = "overlay.json";
+    if(ruoloSelezionato === "portieri"){
+        file = "overlayportieri.json";
+    }
+
+    const response = await fetch(file);
+    const data = await response.json();
+
+    let lista;
+
+    if(ruoloSelezionato === "portieri"){
+        lista = data.portieri;
+    } else {
+        lista = data.ruoli[ruoloSelezionato];
+    }
+
+    const g1 = lista.find(g => g.nome === nome1);
+    const g2 = lista.find(g => g.nome === nome2);
+
+    if(!g1 || !g2){
+        alert("Giocatore non trovato nel JSON");
+        return;
+    }
+
+    let categorie;
+
+    if(ruoloSelezionato === "portieri"){
+        categorie = [
+            ["fantamedia","Fantamedia"],
+            ["presenze","Partite a voto"],
+            ["gol_subiti","Gol subiti"],
+            ["rigori_parati","Rigori parati"],
+            ["clean_sheet","Clean sheet"],
+            ["ammonizioni","Ammonizioni"],
+            ["espulsioni","Espulsioni"],
+            ["schierabilita","Schierabilità"]
+        ];
+    } else {
+        categorie = [
+            ["fantamedia","Fantamedia"],
+            ["presenze","Partite a voto"],
+            ["gol","Gol"],
+            ["assist","Assist"],
+            ["ammonizioni","Ammonizioni"],
+            ["espulsioni","Espulsioni"],
+            ["schierabilita","Schierabilità"]
+        ];
+    }
+
+    categorie.forEach(cat => {
+        const key = cat[0];
+        const label = cat[1];
+
+        grid.innerHTML += `
+            <div class="dg-value">${g1[key]}</div>
+            <div class="dg-label">${label}</div>
+            <div class="dg-value">${g2[key]}</div>
+        `;
+    });
+
+}
+
+async function openDuello(){
+
+    const nome1 = document.getElementById("player1").value.trim();
+    const nome2 = document.getElementById("player2").value.trim();
+
+    await caricaOverlay(nome1, nome2);
+
     document.getElementById("duelloOverlay").classList.add("active");
 }
 
