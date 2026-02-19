@@ -1,0 +1,31 @@
+{
+  "stagione": "2025-2026",
+  "aggiornamento": "2026-02-10",
+
+  "portieri": [
+    {
+      "nome": "Maignan",
+      "squadra": "Milan",
+      "fantamedia": 6.72,
+      "presenze": 24,
+      "gol_subiti": 18,
+      "rigori_parati": 2,
+      "clean_sheet": 11,
+      "ammonizioni": 1,
+      "espulsioni": 0,
+      "schierabilita": 92
+    },
+    {
+      "nome": "Sommer",
+      "squadra": "Inter",
+      "fantamedia": 6.68,
+      "presenze": 23,
+      "gol_subiti": 15,
+      "rigori_parati": 1,
+      "clean_sheet": 12,
+      "ammonizioni": 0,
+      "espulsioni": 0,
+      "schierabilita": 94
+    }
+  ]
+}
