@@ -783,8 +783,8 @@ async function caricaOverlay(nome1, nome2){
         lista = data.ruoli[ruoloSelezionato];
     }
 
-    const g1 = lista.find(g => g.nome === nome1);
-    const g2 = lista.find(g => g.nome === nome2);
+    const g1 = lista.find(g => g.nome.toLowerCase() === nome1.toLowerCase());
+const g2 = lista.find(g => g.nome.toLowerCase() === nome2.toLowerCase());
 
     if(!g1 || !g2){
         alert("Giocatore non trovato nel JSON");
