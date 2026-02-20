@@ -706,14 +706,18 @@ if(!g1 || !g2){
 const voto1 = parseFloat(g1.voto_algoritmo);
 const voto2 = parseFloat(g2.voto_algoritmo);
 
-const totale=voto1+voto2;
-const perc1=Math.round((voto1/totale)*100);
-const perc2=100-perc1;
+const totale = voto1 + voto2;
+
+const perc1Raw = (voto1 / totale) * 100;
+const perc2Raw = (voto2 / totale) * 100;
+
+const perc1 = Math.round(perc1Raw);
+const perc2 = Math.round(perc2Raw);
 
 document.getElementById("perc1").innerText=perc1+"%";
 document.getElementById("perc2").innerText=perc2+"%";
 
-if(perc1>perc2){
+if(perc1Raw > perc2Raw){
 barGreen.style.left="0";
 barGreen.style.width=perc1+"%";
 }else{
