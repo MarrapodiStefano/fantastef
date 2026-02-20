@@ -719,7 +719,13 @@ if(voto1 === voto2){
     p2.classList.add("input-winner");
     p1.classList.add("input-loser");
 }
+const analisiContainer = document.getElementById("analisiContainer");
 
+analisiContainer.innerHTML = `
+    <button onclick="openDuello()">
+        ANALISI DEI DATI
+    </button>
+`;
 } 
 
 
@@ -741,15 +747,7 @@ function resetComparatore(){
     barGreen.style.width = "0%";
     barGreen.style.left = "0";
 
-    const analisiContainer = document.getElementById("analisiContainer");
-
-analisiContainer.innerHTML = `
-    <button onclick="openDuello()">
-        ANALISI DEI DATI
-    </button>
-`;
-
-document.getElementById("analisiContainer").innerHTML = "";
+    document.getElementById("analisiContainer").innerHTML = "";
 }
 
 async function caricaOverlay(nome1, nome2){
