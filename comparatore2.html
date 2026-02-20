@@ -720,20 +720,30 @@ const perc2 = Math.round(perc2Raw);
 document.getElementById("perc1").innerText=perc1+"%";
 document.getElementById("perc2").innerText=perc2+"%";
 
-if(perc1Raw > perc2Raw){
-barGreen.style.left="0";
-barGreen.style.width=perc1+"%";
-}else{
-barGreen.style.left=perc1+"%";
-barGreen.style.width=perc2+"%";
-}
+if(perc1Raw === perc2Raw){
 
-if(perc1>perc2){
-p1.classList.add("input-winner");
-p2.classList.add("input-loser");
+    // Pareggio perfetto
+    barGreen.style.width = "0%";
+    barGreen.style.left = "0";
+
+    p1.classList.remove("input-winner","input-loser");
+    p2.classList.remove("input-winner","input-loser");
+
+}else if(perc1Raw > perc2Raw){
+
+    barGreen.style.left="0";
+    barGreen.style.width=perc1+"%";
+
+    p1.classList.add("input-winner");
+    p2.classList.add("input-loser");
+
 }else{
-p2.classList.add("input-winner");
-p1.classList.add("input-loser");
+
+    barGreen.style.left=perc1+"%";
+    barGreen.style.width=perc2+"%";
+
+    p2.classList.add("input-winner");
+    p1.classList.add("input-loser");
 }
 
 setTimeout(()=>{
