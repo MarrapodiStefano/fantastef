@@ -661,6 +661,8 @@ async function confronta(){
 document.activeElement.blur();
 playClickSound();
 
+document.getElementById("analisiBtn").classList.remove("show");
+
 const p1=document.getElementById("player1");
 const p2=document.getElementById("player2");
 const barGreen=document.getElementById("barGreen");
@@ -752,13 +754,25 @@ setTimeout(()=>{
 }
 
 function resetComparatore(){
-    document.getElementById("player1").value="";
-    document.getElementById("player2").value="";
-    document.getElementById("perc1").innerText="50%";
-    document.getElementById("perc2").innerText="50%";
-    document.getElementById("barGreen").style.width="0%";
-    document.getElementById("barGreen").style.left="0";
-    document.getElementById("analisiBtn").classList.remove("show");
+
+    const p1 = document.getElementById("player1");
+    const p2 = document.getElementById("player2");
+    const barGreen = document.getElementById("barGreen");
+    const analisiBtn = document.getElementById("analisiBtn");
+
+    p1.value = "";
+    p2.value = "";
+
+    p1.classList.remove("input-winner","input-loser","input-error");
+    p2.classList.remove("input-winner","input-loser","input-error");
+
+    document.getElementById("perc1").innerText = "50%";
+    document.getElementById("perc2").innerText = "50%";
+
+    barGreen.style.width = "0%";
+    barGreen.style.left = "0";
+
+    analisiBtn.classList.remove("show");
 }
 
 async function caricaOverlay(nome1, nome2){
