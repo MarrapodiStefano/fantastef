@@ -430,6 +430,11 @@ button{
     cursor:pointer;
 }
 
+.analisi-btn{
+    width:100%;
+    margin-bottom:15px;
+}
+
 </style>
 </head>
 
@@ -722,7 +727,7 @@ if(voto1 === voto2){
 const analisiContainer = document.getElementById("analisiContainer");
 
 analisiContainer.innerHTML = `
-    <button onclick="openDuello()">
+    <button class="analisi-btn" onclick="openDuello()">
         ANALISI DEI DATI
     </button>
 `;
