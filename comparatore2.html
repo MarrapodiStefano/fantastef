@@ -432,9 +432,29 @@ button{
 
 if(voto1 === voto2){
 
+.analisi-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:20px;
+    background:transparent;
+    color:#2ecc71;
+    font-weight:700;
+    font-size:14px;
+    margin-top:20px;
+    margin-bottom:10px;
+    border:1px solid #2ecc71;
+    cursor:pointer;
+
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px);
+    transition:all 0.3s ease;
+}
+
 .analisi-btn.show{
-    display:block;
     opacity:1;
+    visibility:visible;
     transform:translateY(0);
 }
 
