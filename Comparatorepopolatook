@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparatore - FantaStef</title>
+
+<style>
+
+/* ================= RESET ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body{
+    width:100%;
+    overflow-x:hidden;
+}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:url("stadium-bg.png") center center / cover no-repeat;
+    color:white;
+    min-height:100vh;
+}
+
+/* ================= WRAPPER ================= */
+
+.main-wrapper{
+    max-width:1750px;
+    margin:auto;
+    padding:120px 20px 170px 20px;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    position:fixed;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:1750px;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 40px;
+    background:rgba(10,20,35,0.9);
+    backdrop-filter:blur(6px);
+    z-index:1000;
+    border-bottom:1px solid #2ecc71;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:24px;
+    font-weight:600;
+}
+
+.logo-area img{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+    max-width:500px;
+    width:100%;
+    margin:0 auto;
+    background:linear-gradient(180deg,#0f1f2f,#0a1624);
+    padding:30px 25px 50px 25px; /* ← AUMENTA SOLO IL BOTTOM */
+    border-radius:22px;
+    box-shadow:
+    0 0 40px rgba(46,204,113,0.25),
+    0 20px 60px rgba(46,204,113,0.35);
+}
+
+/* ================= TITLE ================= */
+
+.title-box{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.shadow-title{
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:3px;
+    color:white;
+    min-height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.shadow-title span{
+    opacity:0;
+    transition:opacity 0.6s ease;
+    margin:0 6px;
+}
+
+.subtitle{
+    font-size:16px;
+    opacity:0;
+    margin-top:2px;
+    transition:opacity 0.6s ease;
+}
+
+/* ================= TABS ================= */
+
+.alg-tabs{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+.alg-tab{
+    flex:1;
+    text-align:center;
+    padding:8px 4px;
+    cursor:pointer;
+    opacity:0.5;
+}
+
+.alg-tab.active{
+    opacity:1;
+    font-weight:600;
+    border-bottom:2px solid #2ecc71;
+    color:#2ecc71;
+}
+
+/* ================= INPUTS ================= */
+
+.inputs{
+    display:flex;
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.inputs input{
+    width:100%;
+    padding:14px;
+    border-radius:14px;
+    border:none;
+    background:#243547;
+    color:white;
+    font-size:16px;
+    transition:all 0.3s ease;
+}
+
+.input-winner{
+    border:2px solid #2ecc71;
+    box-shadow:0 0 15px rgba(46,204,113,0.8),
+               0 0 35px rgba(46,204,113,0.4);
+}
+
+.input-loser{
+    opacity:0.5;
+}
+
+.input-error{
+    border:2px solid #e74c3c !important;
+    animation:shakeGlow 0.4s ease;
+}
+
+@keyframes shakeGlow{
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-4px);}
+    50%{transform:translateX(4px);}
+    75%{transform:translateX(-4px);}
+    100%{transform:translateX(0);}
+}
+
+/* ================= BUTTON ================= */
+
+button{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:24px;
+    background:linear-gradient(90deg,#2ecc71,#27ae60);
+    color:#0a1624;
+    font-weight:700;
+    font-size:16px;
+    cursor:pointer;
+    margin-bottom:35px;
+    box-shadow:0 0 25px rgba(46,204,113,0.6);
+}
+
+/* ================= BAR ================= */
+
+.bar-container{
+    position:relative;
+    width:100%;
+    height:24px;
+    border-radius:20px;
+    overflow:hidden;
+    background:linear-gradient(90deg,#f1c40f,#f39c12);
+}
+
+.bar-green{
+    position:absolute;
+    top:0;
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#2ecc71,#27ae60);
+    transition:all 0.6s ease;
+}
+
+.bar-center{
+    position:absolute;
+    left:50%;
+    top:0;
+    width:2px;
+    height:100%;
+    background:rgba(255,255,255,0.4);
+    transform:translateX(-50%);
+}
+
+.percent-row{
+    display:flex;
+    justify-content:space-between;
+    margin-top:12px;
+    margin-bottom:25px;  /* ← AGGIUNGI QUESTO */
+    font-weight:600;
+}
+
+/* ================= DUELLO PRO ================= */
+
+.duello-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(4px);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:2000;
+}
+
+.duello-overlay.active{
+    display:flex;
+}
+
+.duello-card{
+    width:92%;
+    max-width:460px;
+    background:linear-gradient(180deg,#0f1f2f,#0a1624);
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.6),
+               0 0 40px rgba(46,204,113,0.2);
+    transform:translateY(120px);
+    opacity:0;
+    transition:all 0.35s cubic-bezier(.22,1,.36,1);
+}
+
+.duello-overlay.active .duello-card{
+    transform:translateY(0);
+    opacity:1;
+}
+
+.duello-header{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:700;
+    font-size:20px;
+    margin-bottom:20px;
+}
+
+.duello-title{
+    text-align:center;
+    color:#2ecc71;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.duello-close{
+    position:absolute;
+    right:0;
+    cursor:pointer;
+    font-size:18px;
+    opacity:0.7;
+}
+
+.duello-close:hover{
+    opacity:1;
+}
+
+.duello-close{
+    cursor:pointer;
+    font-size:18px;
+    opacity:0.7;
+}
+
+.duello-close:hover{
+    opacity:1;
+}
+
+.duello-content{
+    font-size:14px;
+}
+
+.duello-row{
+    display:flex;
+    justify-content:space-between;
+    padding:6px 0;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.duello-row span:first-child{
+    opacity:0.7;
+}
+
+.duello-row div{
+    display:flex;
+    gap:18px;
+    font-weight:600;
+}
+
+/* ===== NUOVA GRID DUELLO PRO ===== */
+
+.duello-grid{
+    display:grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap:14px 10px;
+    text-align:center;
+    font-size:14px;
+}
+
+.dg-header{
+    font-weight:700;
+    font-size:15px;
+    padding-bottom:10px;
+    border-bottom:1px solid rgba(255,255,255,0.15);
+}
+
+.dg-header.center{
+    opacity:0.6;
+}
+
+.dg-label{
+    font-weight:600;
+    opacity:0.7;
+}
+
+.dg-value{
+    font-weight:700;
+}
+
+.duello-close-btn{
+    width:100%;
+    margin-top:45px;
+    padding:14px;
+    border-radius:20px;
+    border:none;
+    background:#1f2f3f;
+    color:#2ecc71;
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+}
+
+.duello-close-btn:active{
+    transform:scale(0.97);
+}
+
+/* ================= BOTTOM MENU ================= */
+
+.bottom-menu{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:1750px;
+    height:65px;
+    background:rgba(10,20,35,0.95);
+    backdrop-filter:blur(6px);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:1000;
+}
+
+.bottom-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:12px;
+    color:#2ecc71;
+    opacity:0.5;
+}
+
+.bottom-item.active{
+    opacity:1;
+    transform:translateY(-3px);
+}
+
+.bottom-item svg{
+    width:22px;
+    height:22px;
+    stroke:#2ecc71;
+    stroke-width:2;
+    fill:none;
+    margin-bottom:4px;
+}
+
+.reset-btn{
+    width:100%;
+    margin-top:10px;
+    padding:10px;
+    border:none;
+    border-radius:14px;
+    background:#1f2f3f;
+    color:#2ecc71;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.analisi-btn{
+    width:100%;
+    margin-bottom:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div>☰</div>
+    <div class="logo-area">
+        <img src="logo.png">
+        FantaStef
+    </div>
+    <div>⚙</div>
+</div>
+
+<div class="main-wrapper">
+<div class="container">
+
+<div class="title-box">
+<h1 class="shadow-title">
+<span id="w1">THIS</span>
+<span id="w2">OR</span>
+<span id="w3">THAT</span>
+<span id="w4">?</span>
+</h1>
+<p class="subtitle">CHIEDILO AL COMPARATORE</p>
+</div>
+
+<div class="alg-tabs">
+<span class="alg-tab active" data-ruolo="attaccanti">Attaccanti</span>
+<span class="alg-tab" data-ruolo="centrocampisti">Centrocampisti</span>
+<span class="alg-tab" data-ruolo="difensori">Difensori</span>
+<span class="alg-tab" data-ruolo="portieri">Portieri</span>
+</div>
+
+<div class="inputs">
+<input type="text" id="player1" placeholder="Giocatore 1">
+<input type="text" id="player2" placeholder="Giocatore 2">
+</div>
+
+<button onclick="confronta()">Confronta</button>
+
+<div class="bar-container">
+<div class="bar-green" id="barGreen"></div>
+<div class="bar-center"></div>
+</div>
+
+<div class="percent-row">
+<span id="perc1">50%</span>
+<span id="perc2">50%</span>
+</div>
+
+<div id="analisiContainer"></div>
+
+<button class="reset-btn" onclick="resetComparatore()">Reset</button>
+
+</div>
+</div>
+
+<div class="bottom-menu">
+    <div class="bottom-item">
+        <svg viewBox="0 0 24 24">
+            <path d="M3 10L12 3l9 7v10H3z"/>
+        </svg>
+        Home
+    </div>
+
+    <div class="bottom-item active">
+        <svg viewBox="0 0 24 24">
+            <path d="M4 20V10M10 20V4M16 20v-8M22 20V6"/>
+        </svg>
+        Comparatore
+    </div>
+
+    <div class="bottom-item">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 17l-5 3 1-6-4-4 6-.5L12 3l2 6.5 6 .5-4 4 1 6z"/>
+        </svg>
+        Top
+    </div>
+</div>
+
+<!-- DUELLO OVERLAY -->
+
+<div id="duelloOverlay" class="duello-overlay">
+<div class="duello-card">
+
+<div class="duello-header">
+<span class="duello-title">ANALISI DEI DATI</span>
+<span class="duello-close" onclick="closeDuello()">✕</span>
+</div>
+
+<div class="duello-grid" id="duelloGrid">
+
+   <div class="dg-header" id="duelloP1">Giocatore 1</div>
+   <div class="dg-header center">VS</div>
+   <div class="dg-header" id="duelloP2">Giocatore 2</div>
+
+    <div class="dg-value" id="fm1">7.12</div>
+    <div class="dg-label">Fantamedia</div>
+    <div class="dg-value" id="fm2">6.85</div>
+
+    <div class="dg-value" id="pr1">28</div>
+    <div class="dg-label">Presenze</div>
+    <div class="dg-value" id="pr2">30</div>
+
+    <div class="dg-value" id="g1">14</div>
+    <div class="dg-label">Gol</div>
+    <div class="dg-value" id="g2">11</div>
+
+    <div class="dg-value" id="a1">6</div>
+    <div class="dg-label">Assist</div>
+    <div class="dg-value" id="a2">4</div>
+
+    <div class="dg-value" id="am1">3</div>
+    <div class="dg-label">Ammonizioni</div>
+    <div class="dg-value" id="am2">5</div>
+
+    <div class="dg-value" id="es1">0</div>
+    <div class="dg-label">Espulsioni</div>
+    <div class="dg-value" id="es2">1</div>
+
+    <div class="dg-value" id="sc1">82%</div>
+    <div class="dg-label">Schierabilità</div>
+    <div class="dg-value" id="sc2">74%</div>
+
+</div>
+
+<button class="duello-close-btn" onclick="closeDuello()">
+CHIUDI
+</button>
+
+</div>
+</div>
+
+<script>
+
+/* Animazione titolo */
+document.addEventListener("DOMContentLoaded", function(){
+const w1=document.getElementById("w1");
+const w2=document.getElementById("w2");
+const w3=document.getElementById("w3");
+const w4=document.getElementById("w4");
+
+setTimeout(()=>{w1.style.opacity=1;},200);
+setTimeout(()=>{w1.style.opacity=0;},900);
+setTimeout(()=>{w3.style.opacity=1;},1100);
+setTimeout(()=>{w3.style.opacity=0;},1800);
+setTimeout(()=>{w2.style.opacity=1;},2000);
+setTimeout(()=>{w2.style.opacity=0;},2600);
+setTimeout(()=>{w4.style.opacity=1;},2800);
+setTimeout(()=>{w4.style.opacity=0;},3400);
+setTimeout(()=>{
+w1.style.opacity=1;
+w2.style.opacity=1;
+w3.style.opacity=1;
+w4.style.opacity=1;
+},3600);
+});
+
+setTimeout(()=>{
+    document.querySelector(".subtitle").style.opacity = 0.7;
+},4600);
+
+/* Audio */
+const audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+
+function playClickSound(){
+const osc=audioCtx.createOscillator();
+const gain=audioCtx.createGain();
+osc.type="triangle";
+osc.frequency.setValueAtTime(900,audioCtx.currentTime);
+gain.gain.setValueAtTime(0.04,audioCtx.currentTime);
+gain.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+0.07);
+osc.connect(gain);
+gain.connect(audioCtx.destination);
+osc.start();
+osc.stop(audioCtx.currentTime+0.07);
+}
+
+/* Gestione Tabs Ruolo */
+const tabs = document.querySelectorAll(".alg-tab");
+let ruoloSelezionato = "attaccanti";
+
+tabs.forEach(tab => {
+    tab.addEventListener("click", function(){
+
+        // Rimuove active da tutte
+        tabs.forEach(t => t.classList.remove("active"));
+
+        // Attiva quella cliccata
+        this.classList.add("active");
+
+        // Salva ruolo selezionato
+        ruoloSelezionato = this.dataset.ruolo;
+
+        console.log("Ruolo selezionato:", ruoloSelezionato);
+    });
+});
+
+async function confronta(){
+
+    document.activeElement.blur();
+    playClickSound();
+
+    const p1 = document.getElementById("player1");
+    const p2 = document.getElementById("player2");
+    const barGreen = document.getElementById("barGreen");
+    const analisiContainer = document.getElementById("analisiContainer");
+
+    p1.classList.remove("input-error","input-winner","input-loser");
+    p2.classList.remove("input-error","input-winner","input-loser");
+
+    let errore = false;
+
+    if(p1.value.trim() === ""){
+        p1.classList.add("input-error");
+        errore = true;
+    }
+
+    if(p2.value.trim() === ""){
+        p2.classList.add("input-error");
+        errore = true;
+    }
+
+    if(errore) return;
+
+    let file = "overlay_movimento.json";
+    if(ruoloSelezionato === "portieri"){
+        file = "overlay_portieri.json";
+    }
+
+    const response = await fetch(file);
+    const data = await response.json();
+
+    let lista;
+    if(ruoloSelezionato === "portieri"){
+        lista = data.portieri;
+    } else {
+        lista = data.ruoli[ruoloSelezionato];
+    }
+
+    const nome1 = p1.value.trim().toLowerCase();
+    const nome2 = p2.value.trim().toLowerCase();
+
+    const g1 = lista.find(g => g.nome.toLowerCase() === nome1);
+    const g2 = lista.find(g => g.nome.toLowerCase() === nome2);
+
+    if(!g1 || !g2){
+        alert("Giocatore non trovato");
+        return;
+    }
+
+    const voto1 = parseFloat(g1.voto_algoritmo);
+    const voto2 = parseFloat(g2.voto_algoritmo);
+
+    const totale = voto1 + voto2;
+
+    const perc1 = Math.round((voto1 / totale) * 100);
+    const perc2 = 100 - perc1;
+
+    document.getElementById("perc1").innerText = perc1 + "%";
+    document.getElementById("perc2").innerText = perc2 + "%";
+
+    if(voto1 === voto2){
+
+        barGreen.style.width = "0%";
+        barGreen.style.left = "0";
+
+    } else if(voto1 > voto2){
+
+        barGreen.style.left = "0";
+        barGreen.style.width = perc1 + "%";
+        p1.classList.add("input-winner");
+        p2.classList.add("input-loser");
+
+    } else {
+
+        barGreen.style.left = perc1 + "%";
+        barGreen.style.width = perc2 + "%";
+        p2.classList.add("input-winner");
+        p1.classList.add("input-loser");
+    }
+
+    // CREA sempre il pulsante analisi dopo il confronto
+    analisiContainer.innerHTML = `
+        <button onclick="openDuello()">
+            ANALISI DEI DATI
+        </button>
+    `;
+}
+
+
+function resetComparatore(){
+
+    const p1 = document.getElementById("player1");
+    const p2 = document.getElementById("player2");
+    const barGreen = document.getElementById("barGreen");
+
+    p1.value = "";
+    p2.value = "";
+
+    p1.classList.remove("input-winner","input-loser","input-error");
+    p2.classList.remove("input-winner","input-loser","input-error");
+
+    document.getElementById("perc1").innerText = "50%";
+    document.getElementById("perc2").innerText = "50%";
+
+    barGreen.style.width = "0%";
+    barGreen.style.left = "0";
+
+    // Rimuove il pulsante analisi
+    document.getElementById("analisiContainer").innerHTML = "";
+}
+
+async function caricaOverlay(nome1, nome2){
+
+    const grid = document.getElementById("duelloGrid");
+
+    // Svuota la grid
+    grid.innerHTML = `
+        <div class="dg-header">${nome1}</div>
+        <div class="dg-header center">VS</div>
+        <div class="dg-header">${nome2}</div>
+    `;
+
+    // Decide quale file leggere
+    let file = "overlay_movimento.json";
+    if(ruoloSelezionato === "portieri"){
+        file = "overlayportieri.json";
+    }
+
+    const response = await fetch(file);
+    const data = await response.json();
+
+    let lista;
+
+    if(ruoloSelezionato === "portieri"){
+        lista = data.portieri;
+    } else {
+        lista = data.ruoli[ruoloSelezionato];
+    }
+
+    const g1 = lista.find(g => g.nome.toLowerCase() === nome1.toLowerCase());
+const g2 = lista.find(g => g.nome.toLowerCase() === nome2.toLowerCase());
+
+    if(!g1 || !g2){
+        alert("Giocatore non trovato nel JSON");
+        return;
+    }
+
+    let categorie;
+
+    if(ruoloSelezionato === "portieri"){
+        categorie = [
+            ["fantamedia","Fantamedia"],
+            ["presenze","Partite a voto"],
+            ["gol_subiti","Gol subiti"],
+            ["rigori_parati","Rigori parati"],
+            ["clean_sheet","Clean sheet"],
+            ["ammonizioni","Ammonizioni"],
+            ["espulsioni","Espulsioni"],
+            ["schierabilita","Schierabilità"]
+        ];
+    } else {
+        categorie = [
+            ["fantamedia","Fantamedia"],
+            ["presenze","Partite a voto"],
+            ["gol","Gol"],
+            ["assist","Assist"],
+            ["ammonizioni","Ammonizioni"],
+            ["espulsioni","Espulsioni"],
+            ["schierabilita","Schierabilità"]
+        ];
+    }
+
+    categorie.forEach(cat => {
+        const key = cat[0];
+        const label = cat[1];
+
+        grid.innerHTML += `
+            <div class="dg-value">${g1[key]}</div>
+            <div class="dg-label">${label}</div>
+            <div class="dg-value">${g2[key]}</div>
+        `;
+    });
+
+}
+
+async function openDuello(){
+
+    const nome1 = document.getElementById("player1").value.trim();
+    const nome2 = document.getElementById("player2").value.trim();
+
+    await caricaOverlay(nome1, nome2);
+
+    document.getElementById("duelloOverlay").classList.add("active");
+}
+
+function closeDuello(){
+    document.getElementById("duelloOverlay").classList.remove("active");
+}
+
+</script>
+
+</body>
+</html>
