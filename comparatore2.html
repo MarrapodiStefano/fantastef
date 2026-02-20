@@ -431,29 +431,11 @@ button{
 }
 
 .analisi-btn{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:20px;
-    background:transparent;
-    color:#2ecc71;
-    font-weight:700;
-    font-size:14px;
-    margin-top:20px;
-    margin-bottom:10px;
-    border:1px solid #2ecc71;
-    cursor:pointer;
-
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(10px);
-    transition:all 0.3s ease;
+    display:none;
 }
 
 .analisi-btn.show{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
+    display:block;
 }
 
 </style>
@@ -662,7 +644,6 @@ async function confronta(){
 document.activeElement.blur();
 playClickSound();
 
-document.getElementById("analisiBtn").classList.remove("show");
 
 const p1=document.getElementById("player1");
 const p2=document.getElementById("player2");
@@ -760,7 +741,6 @@ function resetComparatore(){
     const p1 = document.getElementById("player1");
     const p2 = document.getElementById("player2");
     const barGreen = document.getElementById("barGreen");
-    const analisiBtn = document.getElementById("analisiBtn");
 
     p1.value = "";
     p2.value = "";
@@ -774,7 +754,7 @@ function resetComparatore(){
     barGreen.style.width = "0%";
     barGreen.style.left = "0";
 
-    analisiBtn.classList.remove("show");
+    document.getElementById("analisiBtn").classList.remove("show");
 }
 
 async function caricaOverlay(nome1, nome2){
