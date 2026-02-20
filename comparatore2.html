@@ -636,99 +636,95 @@ tabs.forEach(tab => {
 
 async function confronta(){
 
-document.activeElement.blur();
-playClickSound();
+    document.activeElement.blur();
+    playClickSound();
 
+    const p1 = document.getElementById("player1");
+    const p2 = document.getElementById("player2");
+    const barGreen = document.getElementById("barGreen");
+    const analisiContainer = document.getElementById("analisiContainer");
 
-const p1=document.getElementById("player1");
-const p2=document.getElementById("player2");
-const barGreen=document.getElementById("barGreen");
+    p1.classList.remove("input-error","input-winner","input-loser");
+    p2.classList.remove("input-error","input-winner","input-loser");
 
-p1.classList.remove("input-error");
-p2.classList.remove("input-error");
+    let errore = false;
 
-let errore=false;
+    if(p1.value.trim() === ""){
+        p1.classList.add("input-error");
+        errore = true;
+    }
 
-if(p1.value.trim()===""){p1.classList.add("input-error");errore=true;}
-if(p2.value.trim()===""){p2.classList.add("input-error");errore=true;}
+    if(p2.value.trim() === ""){
+        p2.classList.add("input-error");
+        errore = true;
+    }
 
-if(errore)return;
+    if(errore) return;
 
-let file = "overlay_movimento.json";
+    let file = "overlay_movimento.json";
+    if(ruoloSelezionato === "portieri"){
+        file = "overlay_portieri.json";
+    }
 
-if(ruoloSelezionato === "portieri"){
-    file = "overlay_portieri.json";
+    const response = await fetch(file);
+    const data = await response.json();
+
+    let lista;
+    if(ruoloSelezionato === "portieri"){
+        lista = data.portieri;
+    } else {
+        lista = data.ruoli[ruoloSelezionato];
+    }
+
+    const nome1 = p1.value.trim().toLowerCase();
+    const nome2 = p2.value.trim().toLowerCase();
+
+    const g1 = lista.find(g => g.nome.toLowerCase() === nome1);
+    const g2 = lista.find(g => g.nome.toLowerCase() === nome2);
+
+    if(!g1 || !g2){
+        alert("Giocatore non trovato");
+        return;
+    }
+
+    const voto1 = parseFloat(g1.voto_algoritmo);
+    const voto2 = parseFloat(g2.voto_algoritmo);
+
+    const totale = voto1 + voto2;
+
+    const perc1 = Math.round((voto1 / totale) * 100);
+    const perc2 = 100 - perc1;
+
+    document.getElementById("perc1").innerText = perc1 + "%";
+    document.getElementById("perc2").innerText = perc2 + "%";
+
+    if(voto1 === voto2){
+
+        barGreen.style.width = "0%";
+        barGreen.style.left = "0";
+
+    } else if(voto1 > voto2){
+
+        barGreen.style.left = "0";
+        barGreen.style.width = perc1 + "%";
+        p1.classList.add("input-winner");
+        p2.classList.add("input-loser");
+
+    } else {
+
+        barGreen.style.left = perc1 + "%";
+        barGreen.style.width = perc2 + "%";
+        p2.classList.add("input-winner");
+        p1.classList.add("input-loser");
+    }
+
+    // CREA sempre il pulsante analisi dopo il confronto
+    analisiContainer.innerHTML = `
+        <button onclick="openDuello()">
+            ANALISI DEI DATI
+        </button>
+    `;
 }
-
-const response = await fetch(file);
-const data = await response.json();
-
-let lista;
-
-if(ruoloSelezionato === "portieri"){
-    lista = data.portieri;
-} else {
-    lista = data.ruoli[ruoloSelezionato];
-}
-
-const nome1 = p1.value.trim().toLowerCase();
-const nome2 = p2.value.trim().toLowerCase();
-
-const g1 = lista.find(g => g.nome.toLowerCase() === nome1.toLowerCase());
-const g2 = lista.find(g => g.nome.toLowerCase() === nome2.toLowerCase());
-
-if(!g1 || !g2){
-    console.log("Non trovato:", nome1, nome2);
-    return;
-}
-
-const voto1 = parseFloat(g1.voto_algoritmo);
-const voto2 = parseFloat(g2.voto_algoritmo);
-
-const totale = voto1 + voto2;
-
-const perc1Raw = (voto1 / totale) * 100;
-const perc2Raw = (voto2 / totale) * 100;
-
-const perc1 = Math.round(perc1Raw);
-const perc2 = Math.round(perc2Raw);
-
-document.getElementById("perc1").innerText=perc1+"%";
-document.getElementById("perc2").innerText=perc2+"%";
-
-if(voto1 === voto2){
-
-    // Pareggio perfetto
-    barGreen.style.width = "0%";
-    barGreen.style.left = "0";
-
-    p1.classList.remove("input-winner","input-loser");
-    p2.classList.remove("input-winner","input-loser");
-
-}else if(perc1Raw > perc2Raw){
-
-    barGreen.style.left="0";
-    barGreen.style.width=perc1+"%";
-
-    p1.classList.add("input-winner");
-    p2.classList.add("input-loser");
-
-}else{
-
-    barGreen.style.left=perc1+"%";
-    barGreen.style.width=perc2+"%";
-
-    p2.classList.add("input-winner");
-    p1.classList.add("input-loser");
-}
-const analisiContainer = document.getElementById("analisiContainer");
-
-analisiContainer.innerHTML = `
-    <button class="analisi-btn" onclick="openDuello()">
-        ANALISI DEI DATI
-    </button>
-`;
-} 
 
 
 function resetComparatore(){
@@ -749,6 +745,7 @@ function resetComparatore(){
     barGreen.style.width = "0%";
     barGreen.style.left = "0";
 
+    // Rimuove il pulsante analisi
     document.getElementById("analisiContainer").innerHTML = "";
 }
 
