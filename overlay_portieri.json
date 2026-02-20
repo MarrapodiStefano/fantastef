@@ -1,1 +1,40 @@
-
+{
+  "portieri": [
+    {
+      "nome": "Maignan",
+      "voto_algoritmo": 8.9,
+      "fantamedia": 6.55,
+      "presenze": 32,
+      "gol_subiti": 29,
+      "rigori_parati": 2,
+      "clean_sheet": 14,
+      "ammonizioni": 1,
+      "espulsioni": 0,
+      "schierabilita": "85%"
+    },
+    {
+      "nome": "Sommer",
+      "voto_algoritmo": 8.7,
+      "fantamedia": 6.48,
+      "presenze": 34,
+      "gol_subiti": 27,
+      "rigori_parati": 1,
+      "clean_sheet": 16,
+      "ammonizioni": 0,
+      "espulsioni": 0,
+      "schierabilita": "88%"
+    },
+    {
+      "nome": "Provedel",
+      "voto_algoritmo": 8.3,
+      "fantamedia": 6.30,
+      "presenze": 33,
+      "gol_subiti": 35,
+      "rigori_parati": 3,
+      "clean_sheet": 10,
+      "ammonizioni": 2,
+      "espulsioni": 0,
+      "schierabilita": "78%"
+    }
+  ]
+}
