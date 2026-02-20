@@ -430,17 +430,6 @@ button{
     cursor:pointer;
 }
 
-.analisi-btn{
-    opacity:0;
-    pointer-events:none;
-    transition:opacity 0.25s ease;
-}
-
-.analisi-btn.show{
-    opacity:1;
-    pointer-events:auto;
-}
-
 </style>
 </head>
 
@@ -492,9 +481,7 @@ button{
 <span id="perc2">50%</span>
 </div>
 
-<button id="analisiBtn" class="analisi-btn" onclick="openDuello()">
-ANALISI DEI DATI
-</button>
+<div id="analisiContainer"></div>
 
 <button class="reset-btn" onclick="resetComparatore()">Reset</button>
 
@@ -733,8 +720,6 @@ if(voto1 === voto2){
     p1.classList.add("input-loser");
 }
 
-document.getElementById("analisiBtn").classList.add("show");
-
 } 
 
 
@@ -756,7 +741,15 @@ function resetComparatore(){
     barGreen.style.width = "0%";
     barGreen.style.left = "0";
 
-    document.getElementById("analisiBtn").classList.remove("show");
+    const analisiContainer = document.getElementById("analisiContainer");
+
+analisiContainer.innerHTML = `
+    <button onclick="openDuello()">
+        ANALISI DEI DATI
+    </button>
+`;
+
+document.getElementById("analisiContainer").innerHTML = "";
 }
 
 async function caricaOverlay(nome1, nome2){
