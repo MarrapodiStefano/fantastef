@@ -3,189 +3,189 @@
   "aggiornamento": "2026-02-10",
   "ruoli": {
     "attaccanti": {
-      "top": [{ "nome": "Berardi", "squadra": "Sassuolo", "voto": 9 }
-{ "nome": "Thuram", "squadra": "Inter", "voto": 9 }
-{ "nome": "Malen", "squadra": "Roma", "voto": 9 }
-{ "nome": "Hojlund", "squadra": "Napoli", "voto": 9 }
-{ "nome": "Yildiz", "squadra": "Juventus", "voto": 9 }
-{ "nome": "Kean", "squadra": "Fiorentina", "voto": 8.9 }
-{ "nome": "Scamacca", "squadra": "Atalanta", "voto": 8.7 }
-{ "nome": "Laurientè", "squadra": "Sassuolo", "voto": 8.5 }
-{ "nome": "Castro S.", "squadra": "Bologna", "voto": 8.5 }    
+      "top": [{ "nome": "Berardi", "squadra": "Sassuolo", "voto": 9 },
+{ "nome": "Thuram", "squadra": "Inter", "voto": 9 },
+{ "nome": "Malen", "squadra": "Roma", "voto": 9 },
+{ "nome": "Hojlund", "squadra": "Napoli", "voto": 9 },
+{ "nome": "Yildiz", "squadra": "Juventus", "voto": 9 },
+{ "nome": "Kean", "squadra": "Fiorentina", "voto": 8.9 },
+{ "nome": "Scamacca", "squadra": "Atalanta", "voto": 8.7 },
+{ "nome": "Laurientè", "squadra": "Sassuolo", "voto": 8.5 },
+{ "nome": "Castro S.", "squadra": "Bologna", "voto": 8.5 },    
       ],
-      "buoni": [{ "nome": "Pinamonti", "squadra": "Sassuolo", "voto": 8.2 }
-{ "nome": "Leao", "squadra": "Milan", "voto": 8.2 }
-{ "nome": "Colombo", "squadra": "Genoa", "voto": 8.2 }
-{ "nome": "Moreo", "squadra": "Pisa", "voto": 8.2 }
-{ "nome": "Soulè", "squadra": "Roma", "voto": 8.1 }
-{ "nome": "Esposito Se.", "squadra": "Cagliari", "voto": 7.9 }
-{ "nome": "Solomon", "squadra": "Fiorentina", "voto": 7.8 }
-{ "nome": "Bonny", "squadra": "Inter", "voto": 7.8 }
-{ "nome": "Vardy", "squadra": "Cremonese", "voto": 7.7 }
-{ "nome": "Vitinha O.", "squadra": "Genoa", "voto": 7.7 }       
+      "buoni": [{ "nome": "Pinamonti", "squadra": "Sassuolo", "voto": 8.2 },
+{ "nome": "Leao", "squadra": "Milan", "voto": 8.2 },
+{ "nome": "Colombo", "squadra": "Genoa", "voto": 8.2 },
+{ "nome": "Moreo", "squadra": "Pisa", "voto": 8.2 },
+{ "nome": "Soulè", "squadra": "Roma", "voto": 8.1 },
+{ "nome": "Esposito Se.", "squadra": "Cagliari", "voto": 7.9 },
+{ "nome": "Solomon", "squadra": "Fiorentina", "voto": 7.8 },
+{ "nome": "Bonny", "squadra": "Inter", "voto": 7.8 },
+{ "nome": "Vardy", "squadra": "Cremonese", "voto": 7.7 },
+{ "nome": "Vitinha O.", "squadra": "Genoa", "voto": 7.7 },       
       ],
-      "rischiosi": [{ "nome": "Simeone", "squadra": "Torino", "voto": 7.4 }
-{ "nome": "Nkunku", "squadra": "Milan", "voto": 7 }
-{ "nome": "Sarr A.", "squadra": "Verona", "voto": 6.6 }
-{ "nome": "Noslin", "squadra": "Lazio", "voto": 6.6 }
-{ "nome": "Fullkrug", "squadra": "Milan", "voto": 6.5 }
-{ "nome": "Piccoli", "squadra": "Fiorentina", "voto": 6.5 }
-{ "nome": "Openda", "squadra": "Juventus", "voto": 6.5 }
-{ "nome": "Krstovic", "squadra": "Atalanta", "voto": 6.5 }
-{ "nome": "Cheddira", "squadra": "Lecce", "voto": 6.5 }       
+      "rischiosi": [{ "nome": "Simeone", "squadra": "Torino", "voto": 7.4 },
+{ "nome": "Nkunku", "squadra": "Milan", "voto": 7 },
+{ "nome": "Sarr A.", "squadra": "Verona", "voto": 6.6 },
+{ "nome": "Noslin", "squadra": "Lazio", "voto": 6.6 },
+{ "nome": "Fullkrug", "squadra": "Milan", "voto": 6.5 },
+{ "nome": "Piccoli", "squadra": "Fiorentina", "voto": 6.5 },
+{ "nome": "Openda", "squadra": "Juventus", "voto": 6.5 },
+{ "nome": "Krstovic", "squadra": "Atalanta", "voto": 6.5 },
+{ "nome": "Cheddira", "squadra": "Lecce", "voto": 6.5 },       
       ]
     },
     "centrocampisti": {
-      "top": [{ "nome": "Zielinski", "squadra": "Inter", "voto": 9 }
-{ "nome": "Baturina", "squadra": "Como", "voto": 8.7 }
-{ "nome": "Pulisic", "squadra": "Milan", "voto": 8.5 }
-{ "nome": "Pellegrini Lo.", "squadra": "Roma", "voto": 8.1 }
-{ "nome": "Mandragora", "squadra": "Fiorentina", "voto": 8.1 }
-{ "nome": "Modric", "squadra": "Milan", "voto": 8.1 }
-{ "nome": "Vlasic", "squadra": "Torino", "voto": 8.1 }
-{ "nome": "Ekkelenkamp", "squadra": "Udinese", "voto": 8.1 }
-{ "nome": "Orsolini", "squadra": "Bologna", "voto": 7.9 }
-{ "nome": "Rabiot", "squadra": "Milan", "voto": 7.9 }    
+      "top": [{ "nome": "Zielinski", "squadra": "Inter", "voto": 9 },
+{ "nome": "Baturina", "squadra": "Como", "voto": 8.7 },
+{ "nome": "Pulisic", "squadra": "Milan", "voto": 8.5 },
+{ "nome": "Pellegrini Lo.", "squadra": "Roma", "voto": 8.1 },
+{ "nome": "Mandragora", "squadra": "Fiorentina", "voto": 8.1 },
+{ "nome": "Modric", "squadra": "Milan", "voto": 8.1 },
+{ "nome": "Vlasic", "squadra": "Torino", "voto": 8.1 },
+{ "nome": "Ekkelenkamp", "squadra": "Udinese", "voto": 8.1 },
+{ "nome": "Orsolini", "squadra": "Bologna", "voto": 7.9 },
+{ "nome": "Rabiot", "squadra": "Milan", "voto": 7.9 },    
       ],
-      "buoni": [{ "nome": "Thuram K.", "squadra": "Juventus", "voto": 7.9 }
-{ "nome": "Konè M.", "squadra": "Roma", "voto": 7.9 }
-{ "nome": "Isaksen", "squadra": "Lazio", "voto": 7.9 }
-{ "nome": "Mkhitaryan", "squadra": "Inter", "voto": 7.8 }
-{ "nome": "McKennie", "squadra": "Juventus", "voto": 7.8 }
-{ "nome": "Tramoni M.", "squadra": "Pisa", "voto": 7.8 }
-{ "nome": "Harroui", "squadra": "Verona", "voto": 7.8 }
-{ "nome": "Sucic P.", "squadra": "Inter", "voto": 7.8 }
-{ "nome": "Cataldi", "squadra": "Lazio", "voto": 7.7 }
-{ "nome": "Brescianini", "squadra": "Fiorentina", "voto": 7.7 }
-{ "nome": "Ellertsson", "squadra": "Genoa", "voto": 7.7 }
-{ "nome": "Konè I.", "squadra": "Sassuolo", "voto": 7.7 }
-{ "nome": "Atta", "squadra": "Udinese", "voto": 7.7 }
-{ "nome": "Loftus-Cheek", "squadra": "Milan", "voto": 7.6 }
-{ "nome": "McTominay", "squadra": "Napoli", "voto": 7.6 }  
+      "buoni": [{ "nome": "Thuram K.", "squadra": "Juventus", "voto": 7.9 },
+{ "nome": "Konè M.", "squadra": "Roma", "voto": 7.9 },
+{ "nome": "Isaksen", "squadra": "Lazio", "voto": 7.9 },
+{ "nome": "Mkhitaryan", "squadra": "Inter", "voto": 7.8 },
+{ "nome": "McKennie", "squadra": "Juventus", "voto": 7.8 },
+{ "nome": "Tramoni M.", "squadra": "Pisa", "voto": 7.8 },
+{ "nome": "Harroui", "squadra": "Verona", "voto": 7.8 },
+{ "nome": "Sucic P.", "squadra": "Inter", "voto": 7.8 },
+{ "nome": "Cataldi", "squadra": "Lazio", "voto": 7.7 },
+{ "nome": "Brescianini", "squadra": "Fiorentina", "voto": 7.7 },
+{ "nome": "Ellertsson", "squadra": "Genoa", "voto": 7.7 },
+{ "nome": "Konè I.", "squadra": "Sassuolo", "voto": 7.7 },
+{ "nome": "Atta", "squadra": "Udinese", "voto": 7.7 },
+{ "nome": "Loftus-Cheek", "squadra": "Milan", "voto": 7.6 },
+{ "nome": "McTominay", "squadra": "Napoli", "voto": 7.6 },  
       ],
-      "rischiosi": [{ "nome": "Zaniolo", "squadra": "Udinese", "voto": 7.5 }
-{ "nome": "Malinovskyi", "squadra": "Genoa", "voto": 7.5 }
-{ "nome": "Fagioli", "squadra": "Fiorentina", "voto": 7.5 }
-{ "nome": "Basic", "squadra": "Lazio", "voto": 7.5 }
-{ "nome": "Moro N.", "squadra": "Bologna", "voto": 7.5 }
-{ "nome": "Pisilli", "squadra": "Roma", "voto": 7.5 }
-{ "nome": "Lipani", "squadra": "Sassuolo", "voto": 7.5 }
-{ "nome": "Bernabè", "squadra": "Parma", "voto": 7.5 }
-{ "nome": "Piotrowski", "squadra": "Udinese", "voto": 7.5 }
-{ "nome": "Locatelli", "squadra": "Juventus", "voto": 7.4 }
-{ "nome": "Odgaard", "squadra": "Bologna", "voto": 7.4 }
-{ "nome": "Fofana Y.", "squadra": "Milan", "voto": 7.4 }
-{ "nome": "Adopo", "squadra": "Cagliari", "voto": 7.4 }
-{ "nome": "Loyola", "squadra": "Pisa", "voto": 7.4 }
-{ "nome": "Mazzitelli", "squadra": "Cagliari", "voto": 7.3 }
-{ "nome": "Frattesi", "squadra": "Inter", "voto": 7.3 }
-{ "nome": "Saelemaekers", "squadra": "Milan", "voto": 7.3 }
-{ "nome": "Maldini", "squadra": "Lazio", "voto": 7.3 }
-{ "nome": "Diouf", "squadra": "Inter", "voto": 7.3 }
-{ "nome": "Cristante", "squadra": "Roma", "voto": 7.2 }
-{ "nome": "Zalewski", "squadra": "Atalanta", "voto": 7.2 }
-{ "nome": "Niasse", "squadra": "Verona", "voto": 7.2 }
-{ "nome": "Frendrup", "squadra": "Genoa", "voto": 7.2 }
-{ "nome": "Karlstrom", "squadra": "Udinese", "voto": 7.2 }
-{ "nome": "Taylor K.", "squadra": "Lazio", "voto": 7.2 }
-{ "nome": "Politano", "squadra": "Napoli", "voto": 7.1 }
-{ "nome": "Messias", "squadra": "Genoa", "voto": 7.1 }
-{ "nome": "Luis Henrique", "squadra": "Inter", "voto": 7.1 }
-{ "nome": "Gudmundsson A.", "squadra": "Fiorentina", "voto": 7.1 }
-{ "nome": "Fabbian", "squadra": "Fiorentina", "voto": 7.1 }
-{ "nome": "Samardzic", "squadra": "Atalanta", "voto": 7 }
-{ "nome": "Ederson D.S.", "squadra": "Atalanta", "voto": 7 }
-{ "nome": "Casadei", "squadra": "Torino", "voto": 7 }
-{ "nome": "Sulemana I.", "squadra": "Cagliari", "voto": 7 }
-{ "nome": "Ndour", "squadra": "Fiorentina", "voto": 7 }
-{ "nome": "Zaragoza", "squadra": "Roma", "voto": 7 }
-{ "nome": "Conceicao", "squadra": "Juventus", "voto": 7 }    
+      "rischiosi": [{ "nome": "Zaniolo", "squadra": "Udinese", "voto": 7.5 },
+{ "nome": "Malinovskyi", "squadra": "Genoa", "voto": 7.5 },
+{ "nome": "Fagioli", "squadra": "Fiorentina", "voto": 7.5 },
+{ "nome": "Basic", "squadra": "Lazio", "voto": 7.5 },
+{ "nome": "Moro N.", "squadra": "Bologna", "voto": 7.5 },
+{ "nome": "Pisilli", "squadra": "Roma", "voto": 7.5 },
+{ "nome": "Lipani", "squadra": "Sassuolo", "voto": 7.5 },
+{ "nome": "Bernabè", "squadra": "Parma", "voto": 7.5 },
+{ "nome": "Piotrowski", "squadra": "Udinese", "voto": 7.5 },
+{ "nome": "Locatelli", "squadra": "Juventus", "voto": 7.4 },
+{ "nome": "Odgaard", "squadra": "Bologna", "voto": 7.4 },
+{ "nome": "Fofana Y.", "squadra": "Milan", "voto": 7.4 },
+{ "nome": "Adopo", "squadra": "Cagliari", "voto": 7.4 },
+{ "nome": "Loyola", "squadra": "Pisa", "voto": 7.4 },
+{ "nome": "Mazzitelli", "squadra": "Cagliari", "voto": 7.3 },
+{ "nome": "Frattesi", "squadra": "Inter", "voto": 7.3 },
+{ "nome": "Saelemaekers", "squadra": "Milan", "voto": 7.3 },
+{ "nome": "Maldini", "squadra": "Lazio", "voto": 7.3 },
+{ "nome": "Diouf", "squadra": "Inter", "voto": 7.3 },
+{ "nome": "Cristante", "squadra": "Roma", "voto": 7.2 },
+{ "nome": "Zalewski", "squadra": "Atalanta", "voto": 7.2 },
+{ "nome": "Niasse", "squadra": "Verona", "voto": 7.2 },
+{ "nome": "Frendrup", "squadra": "Genoa", "voto": 7.2 },
+{ "nome": "Karlstrom", "squadra": "Udinese", "voto": 7.2 },
+{ "nome": "Taylor K.", "squadra": "Lazio", "voto": 7.2 },
+{ "nome": "Politano", "squadra": "Napoli", "voto": 7.1 },
+{ "nome": "Messias", "squadra": "Genoa", "voto": 7.1 },
+{ "nome": "Luis Henrique", "squadra": "Inter", "voto": 7.1 },
+{ "nome": "Gudmundsson A.", "squadra": "Fiorentina", "voto": 7.1 },
+{ "nome": "Fabbian", "squadra": "Fiorentina", "voto": 7.1 },
+{ "nome": "Samardzic", "squadra": "Atalanta", "voto": 7 },
+{ "nome": "Ederson D.S.", "squadra": "Atalanta", "voto": 7 },
+{ "nome": "Casadei", "squadra": "Torino", "voto": 7 },
+{ "nome": "Sulemana I.", "squadra": "Cagliari", "voto": 7 },
+{ "nome": "Ndour", "squadra": "Fiorentina", "voto": 7 },
+{ "nome": "Zaragoza", "squadra": "Roma", "voto": 7 },
+{ "nome": "Conceicao", "squadra": "Juventus", "voto": 7 },    
       ]
     },
     "difensori": {
-      "top": [{ "nome": "Dimarco", "squadra": "Inter", "voto": 9 }
-{ "nome": "Spinazzola", "squadra": "Napoli", "voto": 7.4 }
-{ "nome": "Solet", "squadra": "Udinese", "voto": 7.4 }
-{ "nome": "Palestra", "squadra": "Cagliari", "voto": 7.2 }
-{ "nome": "Bastoni", "squadra": "Inter", "voto": 7.1 }
-{ "nome": "Martin", "squadra": "Genoa", "voto": 7.1 }
-{ "nome": "Bisseck", "squadra": "Inter", "voto": 7.1 }
-{ "nome": "Celik", "squadra": "Roma", "voto": 6.9 }
-{ "nome": "Zappa", "squadra": "Cagliari", "voto": 6.8 }
-{ "nome": "Bartesaghi", "squadra": "Milan", "voto": 6.8 }    
+      "top": [{ "nome": "Dimarco", "squadra": "Inter", "voto": 9 },
+{ "nome": "Spinazzola", "squadra": "Napoli", "voto": 7.4 },
+{ "nome": "Solet", "squadra": "Udinese", "voto": 7.4 },
+{ "nome": "Palestra", "squadra": "Cagliari", "voto": 7.2 },
+{ "nome": "Bastoni", "squadra": "Inter", "voto": 7.1 },
+{ "nome": "Martin", "squadra": "Genoa", "voto": 7.1 },
+{ "nome": "Bisseck", "squadra": "Inter", "voto": 7.1 },
+{ "nome": "Celik", "squadra": "Roma", "voto": 6.9 },
+{ "nome": "Zappa", "squadra": "Cagliari", "voto": 6.8 },
+{ "nome": "Bartesaghi", "squadra": "Milan", "voto": 6.8 },   
       ],
-      "buoni": [{ "nome": "Coco", "squadra": "Torino", "voto": 6.8 }
-{ "nome": "Kempf", "squadra": "Como", "voto": 6.8 }
-{ "nome": "Angori", "squadra": "Pisa", "voto": 6.8 }
-{ "nome": "Akanji", "squadra": "Inter", "voto": 6.7 }
-{ "nome": "Maripan", "squadra": "Torino", "voto": 6.7 }
-{ "nome": "Cambiaso", "squadra": "Juventus", "voto": 6.7 }
-{ "nome": "Scalvini", "squadra": "Atalanta", "voto": 6.7 }
-{ "nome": "Baschirotto", "squadra": "Cremonese", "voto": 6.7 }
-{ "nome": "Valeri", "squadra": "Parma", "voto": 6.7 }
-{ "nome": "Dodò", "squadra": "Fiorentina", "voto": 6.7 }
-{ "nome": "Ghilardi", "squadra": "Roma", "voto": 6.7 }
-{ "nome": "Idzes", "squadra": "Sassuolo", "voto": 6.7 }
-{ "nome": "Valle", "squadra": "Como", "voto": 6.7 }
-{ "nome": "Bernasconi", "squadra": "Atalanta", "voto": 6.7 }     
+      "buoni": [{ "nome": "Coco", "squadra": "Torino", "voto": 6.8 },
+{ "nome": "Kempf", "squadra": "Como", "voto": 6.8 },
+{ "nome": "Angori", "squadra": "Pisa", "voto": 6.8 },
+{ "nome": "Akanji", "squadra": "Inter", "voto": 6.7 },
+{ "nome": "Maripan", "squadra": "Torino", "voto": 6.7 },
+{ "nome": "Cambiaso", "squadra": "Juventus", "voto": 6.7 },
+{ "nome": "Scalvini", "squadra": "Atalanta", "voto": 6.7 },
+{ "nome": "Baschirotto", "squadra": "Cremonese", "voto": 6.7 },
+{ "nome": "Valeri", "squadra": "Parma", "voto": 6.7 },
+{ "nome": "Dodò", "squadra": "Fiorentina", "voto": 6.7 },
+{ "nome": "Ghilardi", "squadra": "Roma", "voto": 6.7 },
+{ "nome": "Idzes", "squadra": "Sassuolo", "voto": 6.7 },
+{ "nome": "Valle", "squadra": "Como", "voto": 6.7 },
+{ "nome": "Bernasconi", "squadra": "Atalanta", "voto": 6.7 },    
       ],
-      "rischiosi": [{ "nome": "Luperto", "squadra": "Cremonese", "voto": 6.6 }
-{ "nome": "Buongiorno", "squadra": "Napoli", "voto": 6.6 }
-{ "nome": "Zortea", "squadra": "Bologna", "voto": 6.6 }
-{ "nome": "Vasquez", "squadra": "Genoa", "voto": 6.6 }
-{ "nome": "Ostigard", "squadra": "Genoa", "voto": 6.6 }
-{ "nome": "Kristensen T.", "squadra": "Udinese", "voto": 6.6 }
-{ "nome": "Comuzzo", "squadra": "Fiorentina", "voto": 6.6 }
-{ "nome": "Kelly L.", "squadra": "Juventus", "voto": 6.6 }
-{ "nome": "Acerbi", "squadra": "Inter", "voto": 6.5 }
-{ "nome": "Marusic", "squadra": "Lazio", "voto": 6.5 }
-{ "nome": "Gabbia", "squadra": "Milan", "voto": 6.5 }
-{ "nome": "Tsimikas", "squadra": "Roma", "voto": 6.5 }
-{ "nome": "Bradaric", "squadra": "Verona", "voto": 6.5 }
-{ "nome": "Bertola", "squadra": "Udinese", "voto": 6.5 }
-{ "nome": "Beukema", "squadra": "Napoli", "voto": 6.5 }
-{ "nome": "Marianucci", "squadra": "Torino", "voto": 6.5 }
-{ "nome": "Provstgaard", "squadra": "Lazio", "voto": 6.5 }
-{ "nome": "Canestrelli", "squadra": "Pisa", "voto": 6.5 }
-{ "nome": "Britschgi", "squadra": "Parma", "voto": 6.5 }
-{ "nome": "Djimsiti", "squadra": "Atalanta", "voto": 6.4 }
-{ "nome": "N'Dicka", "squadra": "Roma", "voto": 6.4 }
-{ "nome": "Walukiewicz", "squadra": "Sassuolo", "voto": 6.4 }
-{ "nome": "Gallo", "squadra": "Lecce", "voto": 6.4 }
-{ "nome": "Tomori", "squadra": "Milan", "voto": 6.4 }
-{ "nome": "De Winter", "squadra": "Milan", "voto": 6.4 }
-{ "nome": "Gatti", "squadra": "Juventus", "voto": 6.4 }
-{ "nome": "Lucumì", "squadra": "Bologna", "voto": 6.4 }
-{ "nome": "Ehizibue", "squadra": "Udinese", "voto": 6.4 }
-{ "nome": "Delprato", "squadra": "Parma", "voto": 6.4 }
-{ "nome": "Norton-Cuffy", "squadra": "Genoa", "voto": 6.4 } 
+      "rischiosi": [{ "nome": "Luperto", "squadra": "Cremonese", "voto": 6.6 },
+{ "nome": "Buongiorno", "squadra": "Napoli", "voto": 6.6 },
+{ "nome": "Zortea", "squadra": "Bologna", "voto": 6.6 },
+{ "nome": "Vasquez", "squadra": "Genoa", "voto": 6.6 },
+{ "nome": "Ostigard", "squadra": "Genoa", "voto": 6.6 },
+{ "nome": "Kristensen T.", "squadra": "Udinese", "voto": 6.6 },
+{ "nome": "Comuzzo", "squadra": "Fiorentina", "voto": 6.6 },
+{ "nome": "Kelly L.", "squadra": "Juventus", "voto": 6.6 },
+{ "nome": "Acerbi", "squadra": "Inter", "voto": 6.5 },
+{ "nome": "Marusic", "squadra": "Lazio", "voto": 6.5 },
+{ "nome": "Gabbia", "squadra": "Milan", "voto": 6.5 },
+{ "nome": "Tsimikas", "squadra": "Roma", "voto": 6.5 },
+{ "nome": "Bradaric", "squadra": "Verona", "voto": 6.5 },
+{ "nome": "Bertola", "squadra": "Udinese", "voto": 6.5 },
+{ "nome": "Beukema", "squadra": "Napoli", "voto": 6.5 },
+{ "nome": "Marianucci", "squadra": "Torino", "voto": 6.5 },
+{ "nome": "Provstgaard", "squadra": "Lazio", "voto": 6.5 },
+{ "nome": "Canestrelli", "squadra": "Pisa", "voto": 6.5 },
+{ "nome": "Britschgi", "squadra": "Parma", "voto": 6.5 },
+{ "nome": "Djimsiti", "squadra": "Atalanta", "voto": 6.4 },
+{ "nome": "N'Dicka", "squadra": "Roma", "voto": 6.4 },
+{ "nome": "Walukiewicz", "squadra": "Sassuolo", "voto": 6.4 },
+{ "nome": "Gallo", "squadra": "Lecce", "voto": 6.4 },
+{ "nome": "Tomori", "squadra": "Milan", "voto": 6.4 },
+{ "nome": "De Winter", "squadra": "Milan", "voto": 6.4 },
+{ "nome": "Gatti", "squadra": "Juventus", "voto": 6.4 },
+{ "nome": "Lucumì", "squadra": "Bologna", "voto": 6.4 },
+{ "nome": "Ehizibue", "squadra": "Udinese", "voto": 6.4 },
+{ "nome": "Delprato", "squadra": "Parma", "voto": 6.4 },
+{ "nome": "Norton-Cuffy", "squadra": "Genoa", "voto": 6.4 },
       ]
     },
     "portieri": {
-      "top": [{ "nome": "Svilar", "squadra": "Roma", "voto": 9 }
-{ "nome": "Sommer", "squadra": "Inter", "voto": 8.6 }
-{ "nome": "Butez", "squadra": "Como", "voto": 8.5 }
-{ "nome": "Maignan", "squadra": "Milan", "voto": 8.2 }
-{ "nome": "Carnesecchi", "squadra": "Atalanta", "voto": 8.2 }
-{ "nome": "Milinkovic-Savic V.", "squadra": "Napoli", "voto": 8.1 }     
+      "top": [{ "nome": "Svilar", "squadra": "Roma", "voto": 9 },
+{ "nome": "Sommer", "squadra": "Inter", "voto": 8.6 },
+{ "nome": "Butez", "squadra": "Como", "voto": 8.5 },
+{ "nome": "Maignan", "squadra": "Milan", "voto": 8.2 },
+{ "nome": "Carnesecchi", "squadra": "Atalanta", "voto": 8.2 },
+{ "nome": "Milinkovic-Savic V.", "squadra": "Napoli", "voto": 8.1 },   
       ],
-      "buoni": [{ "nome": "Di Gregorio", "squadra": "Juventus", "voto": 7.8 }
-{ "nome": "Skorupski", "squadra": "Bologna", "voto": 7.7 }
-{ "nome": "Provedel", "squadra": "Lazio", "voto": 7.6 }
-{ "nome": "Bijlow", "squadra": "Genoa", "voto": 7.6 }
-{ "nome": "Meret", "squadra": "Napoli", "voto": 7.5 }
-{ "nome": "Corvi", "squadra": "Parma", "voto": 7.1 }
-{ "nome": "Ravaglia F.", "squadra": "Bologna", "voto": 6.9 }
-{ "nome": "Okoye", "squadra": "Udinese", "voto": 6.9 }  
+      "buoni": [{ "nome": "Di Gregorio", "squadra": "Juventus", "voto": 7.8 },
+{ "nome": "Skorupski", "squadra": "Bologna", "voto": 7.7 },
+{ "nome": "Provedel", "squadra": "Lazio", "voto": 7.6 },
+{ "nome": "Bijlow", "squadra": "Genoa", "voto": 7.6 },
+{ "nome": "Meret", "squadra": "Napoli", "voto": 7.5 },
+{ "nome": "Corvi", "squadra": "Parma", "voto": 7.1 },
+{ "nome": "Ravaglia F.", "squadra": "Bologna", "voto": 6.9 },
+{ "nome": "Okoye", "squadra": "Udinese", "voto": 6.9 },
       ],
-      "rischiosi": [{ "nome": "Nicolas", "squadra": "Pisa", "voto": 6.6 }
-{ "nome": "Audero", "squadra": "Cremonese", "voto": 6.6 }
-{ "nome": "Paleari", "squadra": "Torino", "voto": 6.3 }
-{ "nome": "Falcone", "squadra": "Lecce", "voto": 6.1 }
-{ "nome": "Muric", "squadra": "Sassuolo", "voto": 5.5 }
-{ "nome": "Caprile", "squadra": "Cagliari", "voto": 5.3 }
-{ "nome": "Montipò", "squadra": "Verona", "voto": 5.2 }
-{ "nome": "De Gea", "squadra": "Fiorentina", "voto": 5 }  
+      "rischiosi": [{ "nome": "Nicolas", "squadra": "Pisa", "voto": 6.6 },
+{ "nome": "Audero", "squadra": "Cremonese", "voto": 6.6 },
+{ "nome": "Paleari", "squadra": "Torino", "voto": 6.3 },
+{ "nome": "Falcone", "squadra": "Lecce", "voto": 6.1 },
+{ "nome": "Muric", "squadra": "Sassuolo", "voto": 5.5 },
+{ "nome": "Caprile", "squadra": "Cagliari", "voto": 5.3 },
+{ "nome": "Montipò", "squadra": "Verona", "voto": 5.2 },
+{ "nome": "De Gea", "squadra": "Fiorentina", "voto": 5 },
       ]
     }
   }
