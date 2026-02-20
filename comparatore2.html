@@ -695,8 +695,11 @@ if(ruoloSelezionato === "portieri"){
     lista = data.ruoli[ruoloSelezionato];
 }
 
-const g1 = lista.find(g => g.nome === p1.value.trim());
-const g2 = lista.find(g => g.nome === p2.value.trim());
+const nome1 = p1.value.trim().toLowerCase();
+const nome2 = p2.value.trim().toLowerCase();
+
+const g1 = lista.find(g => g.nome.toLowerCase() === nome1);
+const g2 = lista.find(g => g.nome.toLowerCase() === nome2);
 
 if(!g1 || !g2){
     alert("Giocatore non trovato nel JSON");
