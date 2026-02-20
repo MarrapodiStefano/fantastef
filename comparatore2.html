@@ -704,7 +704,7 @@ const g1 = lista.find(g => g.nome.toLowerCase() === nome1.toLowerCase());
 const g2 = lista.find(g => g.nome.toLowerCase() === nome2.toLowerCase());
 
 if(!g1 || !g2){
-    alert("Giocatore non trovato nel JSON");
+    console.log("Non trovato:", nome1, nome2);
     return;
 }
 
