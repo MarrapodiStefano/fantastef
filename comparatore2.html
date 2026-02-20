@@ -432,16 +432,13 @@ button{
 
 .analisi-btn{
     opacity:0;
-    visibility:hidden;
-    height:0;
-    overflow:hidden;
+    pointer-events:none;
     transition:opacity 0.25s ease;
 }
 
 .analisi-btn.show{
     opacity:1;
-    visibility:visible;
-    height:auto;
+    pointer-events:auto;
 }
 
 </style>
@@ -736,8 +733,6 @@ if(voto1 === voto2){
     p1.classList.add("input-loser");
 }
 
-document.getElementById("analisiBtn").classList.remove("show");
-void document.getElementById("analisiBtn").offsetWidth; // forza reflow
 document.getElementById("analisiBtn").classList.add("show");
 
 } 
