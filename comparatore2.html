@@ -431,11 +431,17 @@ button{
 }
 
 .analisi-btn{
-    display:none;
+    opacity:0;
+    visibility:hidden;
+    height:0;
+    overflow:hidden;
+    transition:opacity 0.25s ease;
 }
 
 .analisi-btn.show{
-    display:block;
+    opacity:1;
+    visibility:visible;
+    height:auto;
 }
 
 </style>
