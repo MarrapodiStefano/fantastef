@@ -758,19 +758,9 @@ if(voto1 === voto2){
 }
 
 setTimeout(()=>{
-
-    const btn = document.getElementById("analisiBtn");
-
-    btn.classList.remove("show");
-
-    // forza reflow
-    void btn.offsetWidth;
-
-    btn.classList.add("show");
-
+    document.getElementById("analisiBtn").classList.add("show");
 },600);
 
-}
 
 function resetComparatore(){
 
