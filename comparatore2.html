@@ -722,18 +722,6 @@ function setupAutoSelect(inputId){
     });
 }
 
-        if(matches.length === 1){
-
-    const nomeCompleto = matches[0].nome;
-
-    // evita di riscrivere se già completo
-    if(nomeCompleto.toLowerCase() !== valore){
-        input.value = nomeCompleto;
-    }
-}
-
-    });
-}
 
 setupAutoSelect("player1");
 setupAutoSelect("player2");
