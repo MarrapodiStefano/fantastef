@@ -693,7 +693,10 @@ function setupAutoSelect(inputId){
 
         const valore = input.value.trim().toLowerCase();
 
-        if(valore.length < 3) return;
+        if(valore.length < 3){
+    aggiornaDatalist();
+    return;
+}
 
         const altroInputId = inputId === "player1" ? "player2" : "player1";
         const altroValore = document.getElementById(altroInputId).value.trim().toLowerCase();
