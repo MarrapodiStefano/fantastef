@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fantastef</title>
+
+<style>
+
+/* ================= RESET ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:url("stadium-bg.png") center center / cover no-repeat;
+    color:white;
+    min-height:100vh;   /* AGGIUNGI QUESTA RIGA */
+}
+
+/* ================= WRAPPER ================= */
+
+.main-wrapper{
+    max-width:1750px;
+    margin:auto;
+    padding:100px 20px 140px 20px; /* compensazione header */
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    position:fixed;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:1750px;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 40px;
+    background:rgba(10,20,35,0.9);
+    backdrop-filter:blur(6px);
+    z-index:1000;
+    transition:all 0.3s ease;
+    border-bottom:1px solid #2ecc71;
+}
+
+.header.shrink{
+    height:50px;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:24px;
+    font-weight:600;
+}
+
+.logo-area img{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    animation:logoGlow 3s infinite ease-in-out;
+}
+
+@keyframes logoGlow{
+    0%,100%{box-shadow:0 0 0 rgba(46,204,113,0);}
+    50%{box-shadow:0 0 20px rgba(46,204,113,0.8);}
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(40px ,5vw,120px);
+    font-weight:800;
+}
+
+.hero h1 span{
+    color:#2ecc71;
+}
+
+.hero p{
+    font-size:20px;
+    margin-top:0px;
+    opacity:0.85;
+}
+
+/* ================= CARDS DESKTOP ================= */
+
+.cards{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin-top:60px;
+}
+
+.card{
+    flex:0 0 auto;
+    width:clamp(280px, 22vw, 360px);
+    height:clamp(300px, 45vh, 380px);
+    border-radius:28px;
+    padding:30px;
+    background:linear-gradient(135deg,#0f2a45,#123a5c);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:flex-start;
+    text-align:left;
+    cursor:pointer;
+    transition:all 0.3s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+/* ================= ORACOLO STYLE ================= */
+
+.oracolo-card{
+    background:
+        radial-gradient(circle at center, rgba(46,204,113,0.15) 0%, rgba(10,30,50,0.9) 60%),
+        linear-gradient(135deg,#0a1f33,#123a5c);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.card.active{
+    border:3px solid #2ecc71;
+    box-shadow:0 0 40px rgba(46,204,113,0.6);
+}
+
+.card h3{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:16px;
+    opacity:0.75;
+}
+
+#alg-giornata{
+    font-size:14px;
+    opacity:0.8;
+    margin-bottom:15px;
+}
+
+#alg-top div{
+    margin-bottom:6px;
+    font-size:16px;
+}
+/* ================= VIDEO THUMB PREMIUM ================= */
+
+.video-card{
+    position:relative;
+    background:
+        linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)),
+        url("dreamteam-logo.png") center center / contain no-repeat,
+        radial-gradient(circle at center, rgba(46,204,113,0.25) 0%, rgba(10,30,50,0.9) 70%);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:center;
+    text-align:center;
+    overflow:hidden;
+}
+
+.dreamteam-img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:1;
+}
+
+.video-content{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:center;
+    padding-bottom:30px;
+    z-index:2;
+}
+
+.play-icon{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    
+    width:60px;
+    height:60px;
+    border-radius:50%;
+
+    background:rgba(0,0,0,0.35);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border:2px solid rgba(46,204,113,0.5);
+    box-shadow:0 0 12px rgba(46,204,113,0.4);
+
+    opacity:0;   /* 👈 AGGIUNGI */
+    transition:opacity 0.25s ease, transform 0.25s ease; /* 👈 AGGIUNGI */
+}
+
+@media (min-width:769px){
+
+    /* Play nascosto di default */
+    .video-card .play-icon{
+        opacity:0;
+    }
+
+    /* Appare solo in hover */
+    .video-card:hover .play-icon{
+        opacity:1;
+        transform:translate(-50%, -50%) scale(1.05);
+    }
+
+}
+
+@media (max-width:768px){
+    .video-card:active .play-icon{
+        opacity:1;
+    }
+}
+
+.play-icon::after{
+    content:"";
+    border-left:18px solid rgba(255,255,255,0.8);
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+}
+
+/* ================= DOTS DESKTOP OFF ================= */
+
+.slider-dots{
+    display:none;
+}
+
+/* ================= TABLET SLIDER (come mobile ma più grande) ================= */
+
+@media (max-width:1024px) and (min-width:769px){
+
+    .cards{
+        display:flex;
+        overflow-x:auto;
+        scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
+        justify-content:flex-start;
+        gap:20px;
+        padding:0 10%;
+    }
+
+    .cards::-webkit-scrollbar{
+        display:none;
+    }
+
+    .card{
+        flex:0 0 80%;
+        scroll-snap-align:center;
+        height:360px;
+        border:3px solid transparent;
+    }
+
+    .card.active{
+    border:3px solid #2ecc71;
+    box-shadow:0 0 40px rgba(46,204,113,0.6);
+}
+
+    .slider-dots{
+        display:flex;
+        justify-content:center;
+        gap:10px;
+        margin-top:20px;
+    }
+
+}
+
+/* ================= MOBILE PREMIUM SLIDER ================= */
+
+@media (max-width:768px){
+
+    body{
+        background-attachment:scroll;
+    }
+
+    .cards{
+        overflow-x:auto;
+        scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
+    }
+
+    .cards::-webkit-scrollbar{
+        display:none;
+    }
+
+   .card{
+    flex:0 0 100%;
+    width:100%;
+    scroll-snap-align:center;
+    border:3px solid transparent;
+}
+
+    .card.active{
+        border:3px solid #2ecc71;
+    }
+
+.card.oracolo-activate{
+    box-shadow:0 0 50px rgba(46,204,113,0.8);
+    transition:box-shadow 0.25s ease;
+}
+
+.card.oracolo-activate .oracolo-container{
+    transform:translate(-50%, -60%) scale(0.92);
+    transition:transform 0.2s ease;
+}
+
+    .slider-dots{
+        display:flex;
+        justify-content:center;
+        gap:10px;
+        margin-top:20px;
+    }
+
+    .slider-dots span{
+        width:8px;
+        height:8px;
+        border-radius:50%;
+        background:rgba(255,255,255,0.4);
+        transition:0.3s;
+    }
+
+    .slider-dots span.active{
+        background:#2ecc71;
+        transform:scale(1.3);
+    }
+}
+
+/* ================= BOTTOM MENU ================= */
+
+.bottom-menu{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:1750px;
+    height:65px;
+    background:rgba(10,20,35,0.95);
+    backdrop-filter:blur(6px);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:1000;
+}
+
+.bottom-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:12px;
+    color:#2ecc71;
+    opacity:0.5;               /* tutte semi-spente */
+    transition:all 0.3s ease;
+}
+
+.bottom-item.active{
+    opacity:1;                 /* quella attiva brillante */
+    transform:translateY(-3px); /* leggermente sollevata */
+}
+
+.bottom-item.active svg{
+    filter:drop-shadow(0 0 12px rgba(46,204,113,0.9));
+}
+
+.bottom-item svg{
+    width:22px;
+    height:22px;
+    stroke:#2ecc71;
+    stroke-width:2;
+    fill:none;
+    margin-bottom:4px;
+    filter:drop-shadow(0 0 8px rgba(46,204,113,0.6));
+}
+
+/* ================= VIDEO MODAL ================= */
+
+.video-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:2000;
+}
+
+.video-modal iframe{
+    width:90%;
+    height:80%;
+    border-radius:12px;
+}
+
+.close-btn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    font-size:28px;
+    cursor:pointer;
+}
+
+/* ================= HERO TYPEWRITER EFFECT (PAUSA DOPO WE…) ================= */
+
+.hero h1{
+    font-size:clamp(40px ,5vw,120px);
+    font-weight:800;
+
+    overflow:hidden;
+    white-space:nowrap;
+    border-right:3px solid #2ecc71;
+    width:0;
+
+    animation:
+        typing 3.5s steps(20,end) forwards,
+        blink 0.8s step-end 0s 6,
+        hideCursor 0.1s forwards;
+
+    animation-delay:
+        0s,
+        0s,
+        3.6s;
+}
+
+.hero h1 span{
+    color:#2ecc71;
+}
+
+/* Scrittura con pausa integrata */
+@keyframes typing{
+    0%   { width:0; }
+    45%  { width:60%; }   /* HERE WE… */
+    75%  { width:60%; }   /* PAUSA */
+    100% { width:100%; }  /* GOL! */
+}
+
+/* Lampeggio cursore */
+@keyframes blink{
+    0%,100%{ border-color:transparent; }
+    50%{ border-color:#2ecc71; }
+}
+
+/* Nasconde cursore */
+@keyframes hideCursor{
+    to{ border-right:0; }
+}
+
+/* ================= ORACOLO CARD ================= */
+
+.oracolo-container{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -60%);
+    width:140px;
+    height:140px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.oracolo-img{
+    width:150px;
+    animation:
+        rotateOracolo 20s linear infinite,
+        glowPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes rotateOracolo{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+}
+
+@keyframes glowPulse{
+    0%,100%{
+        filter:
+            drop-shadow(0 0 10px rgba(46,204,113,0.4))
+            drop-shadow(0 0 20px rgba(46,204,113,0.3));
+    }
+    50%{
+        filter:
+            drop-shadow(0 0 25px rgba(46,204,113,0.9))
+            drop-shadow(0 0 50px rgba(46,204,113,0.7));
+    }
+}
+
+@keyframes glowOracolo{
+    0%,100%{ filter:drop-shadow(0 0 5px #2ecc71); }
+    50%{ filter:drop-shadow(0 0 20px #2ecc71); }
+}
+
+.oracolo-title{
+    width:100%;
+    text-align:center;
+    font-size:26px;
+    margin-top:auto;
+}
+
+.oracolo-sub{
+    width:100%;
+    text-align:center;
+    font-size:14px;
+    opacity:0.8;
+}
+
+/* ================= ORACOLO MODAL ================= */
+
+.oracolo-modal{
+    position:fixed;
+    inset:0;
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;   /* 👈 crea margine laterale reale */
+
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(8px);
+
+    z-index:3000;
+}
+
+.oracolo-box{
+    width:100%;
+    max-width:400px;   /* 👈 larghezza controllata */
+    max-height:85vh;
+
+    background:linear-gradient(180deg,#0f1f2f,#0a1624);
+    border-radius:22px;
+
+    display:flex;
+    flex-direction:column;
+
+    box-shadow:0 0 40px rgba(46,204,113,0.3);
+
+    overflow:hidden;
+}
+
+@keyframes fadeIn{
+    from{ transform:scale(0.9); opacity:0; }
+    to{ transform:scale(1); opacity:1; }
+}
+
+.oracolo-header{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+
+    padding:16px 20px;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.02)
+    );
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(6px);
+}
+
+.oracolo-header h2{
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:0.3px;
+}
+
+.close-oracolo{
+    position:absolute;
+    right:20px;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.close-oracolo{
+    cursor:pointer;
+    font-size:22px;
+}
+
+.oracolo-info{
+    font-size:13px;
+    opacity:0.7;
+    margin:6px 0 4px 0;   /* 👈 ancora più compatto */
+    text-align:center;    /* 👈 lo centriamo già */
+}
+
+.oracolo-scroll{
+    overflow-y:auto;
+    padding:8px 16px 16px 16px;
+    flex:1;
+}
+
+.oracolo-section h3{
+    color:white;
+text-shadow:0 0 12px rgba(255,255,255,0.4);
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:14px 14px 10px 14px;
+    margin:0;
+
+    border-bottom:1px solid rgba(255,255,255,0.18);
+
+    font-size:18px;
+}
+
+.player-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 14px;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.top-section .player-row{
+    background:
+        radial-gradient(circle at 30% 50%, rgba(67,160,71,0.25), transparent 70%),
+        linear-gradient(90deg,#0f3d23 0%, #1b5e20 60%, #0f3d23 100%);
+
+    border-radius:12px;
+    margin:6px 0;
+    padding:10px 14px;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,0.4),
+        0 2px 8px rgba(0,0,0,0.5);
+}
+
+.player-row:last-child{
+    border-bottom:none;
+}
+
+.player-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.player-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+
+    background:radial-gradient(circle, #66ff99 0%, #2ecc71 70%);
+
+    box-shadow:0 0 8px rgba(102,255,153,0.8);
+}
+
+.buoni-section .player-dot{
+    background:radial-gradient(circle, #ffd95e 0%, #f1c40f 70%);
+    box-shadow:0 0 8px rgba(241,196,15,0.8);
+}
+
+.rischio-section .player-dot{
+    background:radial-gradient(circle, #ff6b6b 0%, #e74c3c 70%);
+    box-shadow:0 0 8px rgba(231,76,60,0.8);
+}
+
+.player-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    height:100%;
+}
+
+
+.player-name{
+    font-weight:600;
+    font-size:18px;
+    line-height:1;
+    color:#ffffff;
+    text-shadow:0 0 6px rgba(255,255,255,0.3);
+}
+
+.player-team{
+    font-size:11px;
+    margin-top:2px;
+    line-height:1;
+    color:rgba(255,255,255,0.6);
+}
+
+
+.player-voto{
+    font-weight:700;
+    font-size:16px;
+}
+
+.top-section{
+    padding:10px;
+    border-radius:18px;
+    background:rgba(0,0,0,0.25);
+}
+
+.top-section h3{
+    background:linear-gradient(
+        90deg,
+        #1b5e20 0%,
+        #2e7d32 35%,
+        #43a047 60%,
+        #2e7d32 100%
+    );
+
+    color:white;
+    padding:12px 16px;
+    border-radius:14px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.5),
+        0 0 18px rgba(67,160,71,0.6);
+
+    border:1px solid rgba(255,255,255,0.12);
+}
+
+.buoni-section{
+    padding:10px;
+    border-radius:18px;
+    background:rgba(0,0,0,0.25);
+}
+
+.buoni-section h3{
+    background:linear-gradient(
+        90deg,
+        #7a5a00 0%,
+        #b8860b 35%,
+        #f1c40f 60%,
+        #b8860b 100%
+    );
+
+    color:white;
+    padding:12px 16px;
+    border-radius:14px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.5),
+        0 0 18px rgba(241,196,15,0.6);
+
+    border:1px solid rgba(255,255,255,0.12);
+}
+
+.buoni-section .player-row{
+    background:
+        radial-gradient(circle at 30% 50%, rgba(241,196,15,0.25), transparent 70%),
+        linear-gradient(90deg,#3a2a00 0%, #5c4400 60%, #3a2a00 100%);
+
+    border-radius:12px;
+    margin:6px 0;
+    padding:10px 14px;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,0.4),
+        0 2px 8px rgba(0,0,0,0.5);
+}
+
+.rischio-section{
+    padding:10px;
+    border-radius:18px;
+    background:rgba(0,0,0,0.25);
+}
+
+.rischio-section h3{
+    background:linear-gradient(
+        90deg,
+        #5a0f0f 0%,
+        #8b1a1a 35%,
+        #e74c3c 60%,
+        #8b1a1a 100%
+    );
+
+    color:white;
+    padding:12px 16px;
+    border-radius:14px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.5),
+        0 0 18px rgba(231,76,60,0.6);
+
+    border:1px solid rgba(255,255,255,0.12);
+}
+
+.rischio-section .player-row{
+    background:
+        radial-gradient(circle at 30% 50%, rgba(231,76,60,0.25), transparent 70%),
+        linear-gradient(90deg,#2a0f0f 0%, #4a1414 60%, #2a0f0f 100%);
+
+    border-radius:12px;
+    margin:6px 0;
+    padding:10px 14px;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,0.4),
+        0 2px 8px rgba(0,0,0,0.5);
+}
+
+.oracolo-section > div{
+    transition:opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Animazione contenuto algoritmo */
+
+.oracolo-close-btn{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    background:#1f2f3f;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.alg-content{
+    transition:opacity 0.25s ease, transform 0.25s ease;
+}
+
+.alg-hidden{
+    opacity:0;
+    transform:translateY(10px);
+}
+
+/* ================= ALG TABS ================= */
+
+.alg-tabs{
+    display:flex;
+    justify-content:space-between;
+    margin:2px 0 5px 0;  /* 👈 quasi attaccate */
+    font-size:14px;
+}
+
+.alg-tab{
+    flex:1;
+    text-align:center;
+    padding:6px 4px;
+    cursor:pointer;
+    opacity:0.5;
+    transition:all 0.2s ease;
+}
+
+.alg-tab.active{
+    opacity:1;
+    font-weight:600;
+    border-bottom:2px solid #2ecc71;
+    padding-bottom:4px;
+    color:#2ecc71;
+    text-shadow:0 0 10px rgba(46,204,113,0.6);
+    transition:all 0.25s ease;
+}
+
+/* /* ================= DREAM TEAM LOGO PULSE ================= */
+
+@keyframes dreamLogoPulse {
+    0%,100%{
+        transform:scale(1);
+        filter:drop-shadow(0 0 15px rgba(46,204,113,0.5));
+    }
+    50%{
+        transform:scale(1.05);
+        filter:drop-shadow(0 0 35px rgba(46,204,113,0.9));
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div>☰</div>
+    <div class="logo-area">
+        <img src="logo.png">
+        FantaStef
+    </div>
+    <div>⚙</div>
+</div>
+
+<div class="main-wrapper">
+
+<section class="hero">
+    <h1>HERE WE... <span>GOL!</span></h1>
+    <p>La FantaRevolution è qui.</p>
+</section>
+
+<section class="cards">
+
+    <div class="card video-card" onclick="openVideo()">
+
+    <img src="dreamteam-logo.png" class="dreamteam-img">
+
+    <div class="video-content">
+        <div class="play-icon"></div>
+        <h3>Dream Team</h3>
+        <p>I migliori 11 di giornata in anteprima</p>
+    </div>
+
+</div>
+
+    <div class="card oracolo-card" onclick="openOracolo(this)">
+
+    <div class="oracolo-container">
+        <img src="oracolo.png" class="oracolo-img">
+    </div>
+
+    <h3 class="oracolo-title">L’Oracolo</h3>
+    <p class="oracolo-sub">Scopri le previsioni dell’algoritmo</p>
+
+</div>
+
+  <div class="card">
+    <h3>Dream Team</h3>
+    <p>I top selezionati.</p>
+    
+</div>
+
+</section>
+
+<div class="slider-dots">
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+</div>
+
+</div>
+
+<div class="bottom-menu">
+    <div class="bottom-item active">
+        <svg viewBox="0 0 24 24"><path d="M3 10L12 3l9 7v10H3z"/></svg>
+        Home
+    </div>
+    <div class="bottom-item">
+        <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20V6"/></svg>
+        Consigli
+    </div>
+    <div class="bottom-item">
+        <svg viewBox="0 0 24 24"><path d="M12 17l-5 3 1-6-4-4 6-.5L12 3l2 6.5 6 .5-4 4 1 6z"/></svg>
+        Top
+    </div>
+</div>
+
+<div class="video-modal" id="videoModal">
+    <div class="close-btn" onclick="closeVideo()">✕</div>
+    <iframe id="youtubeFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
+<!-- ================= ORACOLO MODAL ================= -->
+
+<div class="oracolo-modal" id="oracoloModal">
+    <div class="oracolo-box">
+
+        <div class="oracolo-header">
+            <h2>La Profezia dell'Oracolo</h2>
+            <span class="close-oracolo" onclick="closeOracolo()">✕</span>
+        </div>
+
+        <div class="oracolo-info" id="modal-giornata"></div>
+
+<div class="alg-tabs">
+    <span class="alg-tab active" data-ruolo="attaccanti">Attaccanti</span>
+    <span class="alg-tab" data-ruolo="centrocampisti">Centrocampisti</span>
+    <span class="alg-tab" data-ruolo="difensori">Difensori</span>
+    <span class="alg-tab" data-ruolo="portieri">Portieri</span>
+</div>
+
+<div class="oracolo-scroll">
+        
+        <div class="oracolo-section top-section">
+            <h3>🏆 Top</h3>
+            <div id="modal-top"></div>
+        </div>
+
+        <div class="oracolo-section buoni-section">
+            <h3>👍 Buoni</h3>
+            <div id="modal-buoni"></div>
+        </div>
+
+        <div class="oracolo-section rischio-section">
+            <h3>⚠ Rischiosi</h3>
+            <div id="modal-rischio"></div>
+        </div>
+</div>
+        <button class="oracolo-close-btn" onclick="closeOracolo()">Chiudi</button>
+
+    </div>
+</div>
+
+<script>
+
+window.addEventListener("scroll", function(){
+    const header = document.querySelector(".header");
+    header.classList.toggle("shrink", window.scrollY > 50);
+});
+
+const cards = document.querySelectorAll('.card');
+const dots = document.querySelectorAll('.slider-dots span');
+const container = document.querySelector('.cards');
+
+/* ================= MOBILE ACTIVE (SCROLL) ================= */
+
+function updateActiveCard(){
+    if(window.innerWidth <= 768){   // SOLO MOBILE
+
+        let containerCenter = container.scrollLeft + container.offsetWidth / 2;
+
+        cards.forEach((card, index)=>{
+            let cardCenter = card.offsetLeft + card.offsetWidth / 2;
+
+            if(Math.abs(containerCenter - cardCenter) < card.offsetWidth/2){
+                card.classList.add('active');
+                if(dots[index]) dots[index].classList.add('active');
+            }else{
+                card.classList.remove('active');
+                if(dots[index]) dots[index].classList.remove('active');
+            }
+        });
+
+    }
+}
+
+container.addEventListener('scroll', updateActiveCard);
+window.addEventListener('load', updateActiveCard);
+
+/* ================= DESKTOP ACTIVE (CLICK) ================= */
+
+cards.forEach(card => {
+    card.addEventListener("click", function(){
+
+        if(window.innerWidth > 768){   // SOLO DESKTOP
+
+            cards.forEach(c => c.classList.remove("active"));
+            this.classList.add("active");
+
+        }
+
+    });
+});
+
+
+let algoritmoData = null;
+let ruoloAttivo = "attaccanti";
+
+fetch("consigli_giornata.json")
+.then(response => response.json())
+.then(data => {
+
+    algoritmoData = data;
+
+    document.getElementById("modal-giornata").innerText =
+        "Giornata " + data.giornata +
+        " • Agg. " + data.aggiornamento;
+
+    caricaRuolo("attaccanti");
+
+})
+.catch(error => {
+    document.getElementById("modal-giornata").innerText =
+        "Errore caricamento dati";
+});
+
+function caricaRuolo(ruolo){
+
+    ruoloAttivo = ruolo;
+
+    if(!algoritmoData || !algoritmoData.ruoli[ruolo]) return;
+
+    const topBox = document.getElementById("modal-top");
+    const buoniBox = document.getElementById("modal-buoni");
+    const rischioBox = document.getElementById("modal-rischio");
+
+topBox.classList.add("alg-content");
+buoniBox.classList.add("alg-content");
+rischioBox.classList.add("alg-content");
+
+    // Reset
+    topBox.innerHTML = "";
+    buoniBox.innerHTML = "";
+    rischioBox.innerHTML = "";
+
+    // Animazione fade
+    topBox.classList.add("alg-hidden");
+    buoniBox.classList.add("alg-hidden");
+    rischioBox.classList.add("alg-hidden");
+
+    setTimeout(()=>{
+
+        // ORDINAMENTO DECRESCENTE PER VOTO
+        const topList = [...algoritmoData.ruoli[ruolo].top]
+            .sort((a,b)=> b.voto - a.voto);
+
+        const buoniList = [...algoritmoData.ruoli[ruolo].buoni]
+            .sort((a,b)=> b.voto - a.voto);
+
+        const rischioList = [...algoritmoData.ruoli[ruolo].rischiosi]
+            .sort((a,b)=> b.voto - a.voto);
+
+        topList.forEach(player=>{
+
+    let row = document.createElement("div");
+row.classList.add("player-row");
+
+row.innerHTML = `
+    <div class="player-left">
+        <div class="player-dot"></div>
+        <div class="player-info">
+            <div class="player-name">${player.nome}</div>
+            <div class="player-team">${player.squadra}</div>
+        </div>
+    </div>
+    <div class="player-voto">${player.voto}</div>
+`;
+
+topBox.appendChild(row);
+
+});
+
+buoniList.forEach(player=>{
+
+    let row = document.createElement("div");
+    row.classList.add("player-row");
+
+    row.innerHTML = `
+        <div class="player-left">
+            <div class="player-dot"></div>
+            <div class="player-info">
+                <div class="player-name">${player.nome}</div>
+                <div class="player-team">${player.squadra}</div>
+            </div>
+        </div>
+        <div class="player-voto">${player.voto}</div>
+    `;
+
+    buoniBox.appendChild(row);
+});
+
+rischioList.forEach(player=>{
+
+    let row = document.createElement("div");
+    row.classList.add("player-row");
+
+    row.innerHTML = `
+        <div class="player-left">
+            <div class="player-dot"></div>
+            <div class="player-info">
+                <div class="player-name">${player.nome}</div>
+                <div class="player-team">${player.squadra}</div>
+            </div>
+        </div>
+        <div class="player-voto">${player.voto}</div>
+    `;
+
+    rischioBox.appendChild(row);
+});
+
+        topBox.classList.remove("alg-hidden");
+        buoniBox.classList.remove("alg-hidden");
+        rischioBox.classList.remove("alg-hidden");
+    },150);
+}
+
+document.querySelectorAll(".alg-tab").forEach(tab => {
+
+    tab.addEventListener("click", function(){
+
+        document.querySelectorAll(".alg-tab")
+        .forEach(t => t.classList.remove("active"));
+
+        this.classList.add("active");
+
+        const ruolo = this.getAttribute("data-ruolo");
+
+        caricaRuolo(ruolo);
+
+    });
+
+});
+
+/* ================= VIDEO ================= */
+
+function openVideo(){
+    document.getElementById("videoModal").style.display="flex";
+    document.getElementById("youtubeFrame").src=
+    "https://www.youtube.com/embed/-DmT9bhRsxI";
+}
+
+function openOracolo(cardElement){
+
+    cardElement.classList.add("oracolo-activate");
+
+    setTimeout(function(){
+
+        cardElement.classList.remove("oracolo-activate");
+
+        document.getElementById("oracoloModal").style.display="flex";
+
+    }, 250);
+}
+
+function closeOracolo(){
+    document.getElementById("oracoloModal").style.display="none";
+}
+
+function closeVideo(){
+    document.getElementById("videoModal").style.display="none";
+    document.getElementById("youtubeFrame").src="";
+}
+
+</script>
+
+</body>
+</html>
+ 
