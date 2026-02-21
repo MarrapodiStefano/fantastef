@@ -625,7 +625,29 @@ osc.stop(audioCtx.currentTime+0.07);
 /* Gestione Tabs Ruolo */
 const tabs = document.querySelectorAll(".alg-tab");
 let ruoloSelezionato = "attaccanti";
+async function aggiornaDatalist(){
 
+    let file = "overlay_movimento.json";
+    if(ruoloSelezionato === "portieri"){
+        file = "overlay_portieri.json";
+    }
+
+    const response = await fetch(file);
+    const data = await response.json();
+
+    const lista = data.ruoli[ruoloSelezionato];
+
+    const datalist = document.getElementById("listaGiocatori");
+    datalist.innerHTML = "";
+
+    lista.forEach(g => {
+        const option = document.createElement("option");
+        option.value = g.nome;
+        datalist.appendChild(option);
+    });
+
+    console.log("Datalist aggiornata per:", ruoloSelezionato);
+}
 tabs.forEach(tab => {
     tab.addEventListener("click", function(){
 
