@@ -765,13 +765,11 @@ async function caricaOverlay(nome1, nome2){
     }
 
     const response = await fetch(file);
-    const data = await response.json();
+const data = await response.json();
 
-    let lista;
+let lista = data.ruoli[ruoloSelezionato];
 
-    let lista = data.ruoli[ruoloSelezionato];
-
-    const g1 = lista.find(g => g.nome.toLowerCase() === nome1.toLowerCase());
+const g1 = lista.find(g => g.nome.toLowerCase() === nome1.toLowerCase());
 const g2 = lista.find(g => g.nome.toLowerCase() === nome2.toLowerCase());
 
     if(!g1 || !g2){
