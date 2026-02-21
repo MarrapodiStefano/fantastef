@@ -624,16 +624,29 @@ osc.stop(audioCtx.currentTime+0.07);
 
 /* Gestione Tabs Ruolo */
 const tabs = document.querySelectorAll(".alg-tab");
-let ruoloSelezionato = "attaccanti";
-async function aggiornaDatalist(){
+let datiMovimento = null;
+let datiPortieri = null;
 
-    let file = "overlay_movimento.json";
-    if(ruoloSelezionato === "portieri"){
-        file = "overlay_portieri.json";
-    }
+document.addEventListener("DOMContentLoaded", async function(){
 
-    const response = await fetch(file);
-    const data = await response.json();
+    const responseMov = await fetch("overlay_movimento.json");
+    datiMovimento = await responseMov.json();
+
+    const responsePor = await fetch("overlay_portieri.json");
+    datiPortieri = await responsePor.json();
+
+    aggiornaDatalist();
+
+});
+
+
+function aggiornaDatalist(){
+
+    let data = ruoloSelezionato === "portieri"
+        ? datiPortieri
+        : datiMovimento;
+
+    if(!data) return; // evita errore se i dati non sono ancora caricati
 
     const lista = data.ruoli[ruoloSelezionato];
 
@@ -641,19 +654,21 @@ async function aggiornaDatalist(){
     datalist.innerHTML = "";
 
     const valore1 = document.getElementById("player1").value.trim().toLowerCase();
-const valore2 = document.getElementById("player2").value.trim().toLowerCase();
+    const valore2 = document.getElementById("player2").value.trim().toLowerCase();
 
-lista.forEach(g => {
+    lista.forEach(g => {
 
-    const nome = g.nome.toLowerCase();
+        const nome = g.nome.toLowerCase();
 
-    // esclude il giocatore già inserito nell’altro campo
-    if(nome === valore1 || nome === valore2) return;
+        // esclude il giocatore già inserito nell’altro campo
+        if(nome === valore1 || nome === valore2) return;
 
-    const option = document.createElement("option");
-    option.value = g.nome;
-    datalist.appendChild(option);
-});
+        const option = document.createElement("option");
+        option.value = g.nome;
+        datalist.appendChild(option);
+    });
+
+}
 
     console.log("Datalist aggiornata per:", ruoloSelezionato);
 }
