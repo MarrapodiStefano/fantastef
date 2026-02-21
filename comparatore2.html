@@ -628,12 +628,25 @@ let ruoloSelezionato = "attaccanti";
 
 let listaGiocatoriCorrente = [];
 
+let tuttiIRuoli = {};
+
 document.addEventListener("DOMContentLoaded", async () => {
 
-    const response = await fetch("overlay_movimento.json");
-    const data = await response.json();
+    const responseMov = await fetch("overlay_movimento.json");
+    const dataMov = await responseMov.json();
 
-    listaGiocatoriCorrente = data.ruoli["attaccanti"];
+    const responsePor = await fetch("overlay_portieri.json");
+    const dataPor = await responsePor.json();
+
+    // Uniamo tutto in un unico oggetto
+    tuttiIRuoli = {
+        attaccanti: dataMov.ruoli.attaccanti,
+        centrocampisti: dataMov.ruoli.centrocampisti,
+        difensori: dataMov.ruoli.difensori,
+        portieri: dataPor.ruoli.portieri
+    };
+
+    listaGiocatoriCorrente = tuttiIRuoli[ruoloSelezionato];
 
     aggiornaDatalist();
 });
