@@ -670,6 +670,43 @@ tabs.forEach(tab => {
 
 aggiornaDatalist();
 
+/* ================= AUTOSELEZIONE INTELLIGENTE ================= */
+
+function setupAutoSelect(inputId){
+
+    const input = document.getElementById(inputId);
+
+    input.addEventListener("input", async function(){
+
+        const valore = input.value.trim().toLowerCase();
+
+        if(valore.length < 2) return; // evita attivazione su 1 sola lettera
+
+        let file = "overlay_movimento.json";
+        if(ruoloSelezionato === "portieri"){
+            file = "overlay_portieri.json";
+        }
+
+        const response = await fetch(file);
+        const data = await response.json();
+
+        const lista = data.ruoli[ruoloSelezionato];
+
+        const matches = lista.filter(g =>
+            g.nome.toLowerCase().startsWith(valore)
+        );
+
+        if(matches.length === 1){
+            input.value = matches[0].nome;
+        }
+
+    });
+
+}
+
+setupAutoSelect("player1");
+setupAutoSelect("player2");
+
 async function confronta(){
 
     document.activeElement.blur();
