@@ -625,6 +625,9 @@ osc.stop(audioCtx.currentTime+0.07);
 /* Gestione Tabs Ruolo */
 const tabs = document.querySelectorAll(".alg-tab");
 let ruoloSelezionato = "attaccanti";
+
+let listaGiocatoriCorrente = [];
+
 async function aggiornaDatalist(){
 
     let file = "overlay_movimento.json";
@@ -635,7 +638,8 @@ async function aggiornaDatalist(){
     const response = await fetch(file);
     const data = await response.json();
 
-    const lista = data.ruoli[ruoloSelezionato];
+    listaGiocatoriCorrente = data.ruoli[ruoloSelezionato];
+const lista = listaGiocatoriCorrente;
 
     const datalist = document.getElementById("listaGiocatori");
     datalist.innerHTML = "";
@@ -685,34 +689,38 @@ function setupAutoSelect(inputId){
 
     const input = document.getElementById(inputId);
 
-    input.addEventListener("input", async function(){
+    input.addEventListener("input", function(){
 
         const valore = input.value.trim().toLowerCase();
 
-        if(valore.length < 3) return; // evita attivazione su 1 sola lettera
-
-        let file = "overlay_movimento.json";
-        if(ruoloSelezionato === "portieri"){
-            file = "overlay_portieri.json";
-        }
-
-        const response = await fetch(file);
-        const data = await response.json();
-
-        const lista = data.ruoli[ruoloSelezionato];
+        if(valore.length < 3) return;
 
         const altroInputId = inputId === "player1" ? "player2" : "player1";
-const altroValore = document.getElementById(altroInputId).value.trim().toLowerCase();
+        const altroValore = document.getElementById(altroInputId).value.trim().toLowerCase();
 
-const matches = lista.filter(g => {
+        const matches = listaGiocatoriCorrente.filter(g => {
 
-    const nome = g.nome.toLowerCase();
+            const nome = g.nome.toLowerCase();
 
-    return (
-        nome.startsWith(valore) &&
-        nome !== altroValore   // ← esclude il giocatore già selezionato
-    );
-});
+            return (
+                nome.startsWith(valore) &&
+                nome !== altroValore
+            );
+        });
+
+        if(matches.length === 1){
+
+            const nomeCompleto = matches[0].nome;
+
+            if(nomeCompleto.toLowerCase() !== valore){
+
+                input.value = nomeCompleto;
+
+            }
+        }
+
+    });
+}
 
         if(matches.length === 1){
 
