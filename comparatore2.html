@@ -769,11 +769,7 @@ async function caricaOverlay(nome1, nome2){
 
     let lista;
 
-    if(ruoloSelezionato === "portieri"){
-        lista = data.portieri;
-    } else {
-        lista = data.ruoli[ruoloSelezionato];
-    }
+    let lista = data.ruoli[ruoloSelezionato];
 
     const g1 = lista.find(g => g.nome.toLowerCase() === nome1.toLowerCase());
 const g2 = lista.find(g => g.nome.toLowerCase() === nome2.toLowerCase());
