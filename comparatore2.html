@@ -672,11 +672,7 @@ async function confronta(){
     const data = await response.json();
 
     let lista;
-    if(ruoloSelezionato === "portieri"){
-    lista = data.ruoli.portieri;
-} else {
     lista = data.ruoli[ruoloSelezionato];
-}
 
     const nome1 = p1.value.trim().toLowerCase();
     const nome2 = p2.value.trim().toLowerCase();
