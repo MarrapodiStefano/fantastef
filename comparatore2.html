@@ -692,9 +692,18 @@ function setupAutoSelect(inputId){
 
         const lista = data.ruoli[ruoloSelezionato];
 
-        const matches = lista.filter(g =>
-            g.nome.toLowerCase().startsWith(valore)
-        );
+        const altroInputId = inputId === "player1" ? "player2" : "player1";
+const altroValore = document.getElementById(altroInputId).value.trim().toLowerCase();
+
+const matches = lista.filter(g => {
+
+    const nome = g.nome.toLowerCase();
+
+    return (
+        nome.startsWith(valore) &&
+        nome !== altroValore   // ← esclude il giocatore già selezionato
+    );
+});
 
         if(matches.length === 1){
 
