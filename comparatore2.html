@@ -680,7 +680,7 @@ function setupAutoSelect(inputId){
 
         const valore = input.value.trim().toLowerCase();
 
-        if(valore.length < 2) return; // evita attivazione su 1 sola lettera
+        if(valore.length < 3) return; // evita attivazione su 1 sola lettera
 
         let file = "overlay_movimento.json";
         if(ruoloSelezionato === "portieri"){
@@ -697,11 +697,16 @@ function setupAutoSelect(inputId){
         );
 
         if(matches.length === 1){
-            input.value = matches[0].nome;
-        }
+
+    const nomeCompleto = matches[0].nome;
+
+    // evita di riscrivere se già completo
+    if(nomeCompleto.toLowerCase() !== valore){
+        input.value = nomeCompleto;
+    }
+}
 
     });
-
 }
 
 setupAutoSelect("player1");
