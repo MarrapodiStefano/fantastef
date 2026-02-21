@@ -638,13 +638,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     const responsePor = await fetch("overlay_portieri.json");
     const dataPor = await responsePor.json();
 
-    // Uniamo tutto in un unico oggetto
     tuttiIRuoli = {
         attaccanti: dataMov.ruoli.attaccanti,
         centrocampisti: dataMov.ruoli.centrocampisti,
         difensori: dataMov.ruoli.difensori,
         portieri: dataPor.ruoli.portieri
     };
+
+    listaGiocatoriCorrente = tuttiIRuoli[ruoloSelezionato];
+
+    aggiornaDatalist(); // 🔥 QUESTA MANCAVA
+});
 
     listaGiocatoriCorrente = tuttiIRuoli[ruoloSelezionato];
 
@@ -693,7 +697,6 @@ tabs.forEach(tab => {
         // RESET automatico quando cambi ruolo
         resetComparatore();
         
-        aggiornaDatalist();
         
         console.log("Ruolo selezionato:", ruoloSelezionato);
     });
