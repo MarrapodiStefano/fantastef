@@ -646,7 +646,7 @@ function aggiornaDatalist(){
         ? datiPortieri
         : datiMovimento;
 
-    if(!data) return; // evita errore se i dati non sono ancora caricati
+    if(!data) return;
 
     const lista = data.ruoli[ruoloSelezionato];
 
@@ -660,7 +660,6 @@ function aggiornaDatalist(){
 
         const nome = g.nome.toLowerCase();
 
-        // esclude il giocatore già inserito nell’altro campo
         if(nome === valore1 || nome === valore2) return;
 
         const option = document.createElement("option");
@@ -668,10 +667,9 @@ function aggiornaDatalist(){
         datalist.appendChild(option);
     });
 
-}
-
     console.log("Datalist aggiornata per:", ruoloSelezionato);
 }
+
 tabs.forEach(tab => {
     tab.addEventListener("click", function(){
 
