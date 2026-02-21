@@ -640,11 +640,20 @@ async function aggiornaDatalist(){
     const datalist = document.getElementById("listaGiocatori");
     datalist.innerHTML = "";
 
-    lista.forEach(g => {
-        const option = document.createElement("option");
-        option.value = g.nome;
-        datalist.appendChild(option);
-    });
+    const valore1 = document.getElementById("player1").value.trim().toLowerCase();
+const valore2 = document.getElementById("player2").value.trim().toLowerCase();
+
+lista.forEach(g => {
+
+    const nome = g.nome.toLowerCase();
+
+    // esclude il giocatore già inserito nell’altro campo
+    if(nome === valore1 || nome === valore2) return;
+
+    const option = document.createElement("option");
+    option.value = g.nome;
+    datalist.appendChild(option);
+});
 
     console.log("Datalist aggiornata per:", ruoloSelezionato);
 }
