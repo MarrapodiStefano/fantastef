@@ -742,6 +742,9 @@ const matches = lista.filter(g => {
 setupAutoSelect("player1");
 setupAutoSelect("player2");
 
+document.getElementById("player1").addEventListener("change", aggiornaDatalist);
+document.getElementById("player2").addEventListener("change", aggiornaDatalist);
+
 
 async function confronta(){
 
