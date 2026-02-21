@@ -625,22 +625,44 @@ osc.stop(audioCtx.currentTime+0.07);
 /* Gestione Tabs Ruolo */
 const tabs = document.querySelectorAll(".alg-tab");
 let ruoloSelezionato = "attaccanti";
-async function aggiornaDatalist(){
+let datiMovimento = null;
+let datiPortieri = null;
 
-    let file = "overlay_movimento.json";
-    if(ruoloSelezionato === "portieri"){
-        file = "overlay_portieri.json";
-    }
+document.addEventListener("DOMContentLoaded", async function(){
 
-    const response = await fetch(file);
-    const data = await response.json();
+    const responseMov = await fetch("overlay_movimento.json");
+    datiMovimento = await responseMov.json();
+
+    const responsePor = await fetch("overlay_portieri.json");
+    datiPortieri = await responsePor.json();
+
+    aggiornaDatalist();
+
+});
+
+
+function aggiornaDatalist(){
+
+    let data = ruoloSelezionato === "portieri"
+        ? datiPortieri
+        : datiMovimento;
+
+    if(!data) return;
 
     const lista = data.ruoli[ruoloSelezionato];
 
     const datalist = document.getElementById("listaGiocatori");
     datalist.innerHTML = "";
 
+    const valore1 = document.getElementById("player1").value.trim().toLowerCase();
+    const valore2 = document.getElementById("player2").value.trim().toLowerCase();
+
     lista.forEach(g => {
+
+        const nome = g.nome.toLowerCase();
+
+        if(nome === valore1 || nome === valore2) return;
+
         const option = document.createElement("option");
         option.value = g.nome;
         datalist.appendChild(option);
@@ -648,6 +670,7 @@ async function aggiornaDatalist(){
 
     console.log("Datalist aggiornata per:", ruoloSelezionato);
 }
+
 tabs.forEach(tab => {
     tab.addEventListener("click", function(){
 
@@ -669,6 +692,59 @@ tabs.forEach(tab => {
 });
 
 aggiornaDatalist();
+
+/* ================= AUTOSELEZIONE INTELLIGENTE ================= */
+
+function setupAutoSelect(inputId){
+
+    const input = document.getElementById(inputId);
+
+input.addEventListener("input", function(){
+
+        const valore = input.value.trim().toLowerCase();
+
+        if(valore.length < 3) return; // evita attivazione su 1 sola lettera
+
+        let data = ruoloSelezionato === "portieri"
+    ? datiPortieri
+    : datiMovimento;
+
+if(!data) return;
+
+const lista = data.ruoli[ruoloSelezionato];
+
+        const altroInputId = inputId === "player1" ? "player2" : "player1";
+const altroValore = document.getElementById(altroInputId).value.trim().toLowerCase();
+
+const matches = lista.filter(g => {
+
+    const nome = g.nome.toLowerCase();
+
+    return (
+        nome.startsWith(valore) &&
+        nome !== altroValore   // ← esclude il giocatore già selezionato
+    );
+});
+
+        if(matches.length === 1){
+
+    const nomeCompleto = matches[0].nome;
+
+    // evita di riscrivere se già completo
+    if(nomeCompleto.toLowerCase() !== valore){
+        input.value = nomeCompleto;
+    }
+}
+
+    });
+}
+
+setupAutoSelect("player1");
+setupAutoSelect("player2");
+
+document.getElementById("player1").addEventListener("change", aggiornaDatalist);
+document.getElementById("player2").addEventListener("change", aggiornaDatalist);
+
 
 async function confronta(){
 
@@ -697,16 +773,13 @@ async function confronta(){
 
     if(errore) return;
 
-    let file = "overlay_movimento.json";
-    if(ruoloSelezionato === "portieri"){
-        file = "overlay_portieri.json";
-    }
+    let data = ruoloSelezionato === "portieri"
+    ? datiPortieri
+    : datiMovimento;
 
-    const response = await fetch(file);
-    const data = await response.json();
+if(!data) return;
 
-    let lista;
-    lista = data.ruoli[ruoloSelezionato];
+let lista = data.ruoli[ruoloSelezionato];
 
     const nome1 = p1.value.trim().toLowerCase();
     const nome2 = p2.value.trim().toLowerCase();
@@ -793,13 +866,11 @@ async function caricaOverlay(nome1, nome2){
     `;
 
     // Decide quale file leggere
-    let file = "overlay_movimento.json";
-    if(ruoloSelezionato === "portieri"){
-        file = "overlay_portieri.json";
-    }
+    let data = ruoloSelezionato === "portieri"
+    ? datiPortieri
+    : datiMovimento;
 
-    const response = await fetch(file);
-const data = await response.json();
+if(!data) return;
 
 let lista = data.ruoli[ruoloSelezionato];
 
