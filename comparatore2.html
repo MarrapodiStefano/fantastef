@@ -476,9 +476,11 @@ button{
 </div>
 
 <div class="inputs">
-<input type="text" id="player1" placeholder="Giocatore 1">
-<input type="text" id="player2" placeholder="Giocatore 2">
+<input type="text" id="player1" list="listaGiocatori" placeholder="Giocatore 1">
+<input type="text" id="player2" list="listaGiocatori" placeholder="Giocatore 2">
 </div>
+
+<datalist id="listaGiocatori"></datalist>
 
 <button onclick="confronta()">Confronta</button>
 
