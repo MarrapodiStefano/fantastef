@@ -637,24 +637,24 @@ function aggiornaDatalist(){
     const valore2 = document.getElementById("player2").value.trim().toLowerCase();
 
     const inputAttivo = document.activeElement;
-const filtro = inputAttivo.value.trim().toLowerCase();
+    const filtro = inputAttivo ? inputAttivo.value.trim().toLowerCase() : "";
 
-listaGiocatoriCorrente
-    .filter(g => g.nome.toLowerCase().startsWith(filtro))
-    .forEach(g => {
+    listaGiocatoriCorrente
+        .filter(g => g.nome.toLowerCase().startsWith(filtro))
+        .forEach(g => {
 
-        const nome = g.nome.toLowerCase();
+            const nome = g.nome.toLowerCase();
 
-        if(nome === valore1 || nome === valore2) return;
+            if(nome === valore1 || nome === valore2) return;
 
-        const option = document.createElement("option");
-        option.value = g.nome;
-        datalist.appendChild(option);
-    });
-}
+            const option = document.createElement("option");
+            option.value = g.nome;
+            datalist.appendChild(option);
+        });
 
     console.log("Datalist aggiornata per:", ruoloSelezionato);
 }
+
 tabs.forEach(tab => {
     tab.addEventListener("click", async function(){
         
