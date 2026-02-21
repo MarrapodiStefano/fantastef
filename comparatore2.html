@@ -628,6 +628,16 @@ let ruoloSelezionato = "attaccanti";
 
 let listaGiocatoriCorrente = [];
 
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const response = await fetch("overlay_movimento.json");
+    const data = await response.json();
+
+    listaGiocatoriCorrente = data.ruoli["attaccanti"];
+
+    aggiornaDatalist();
+});
+
 function aggiornaDatalist(){
 
     const datalist = document.getElementById("listaGiocatori");
