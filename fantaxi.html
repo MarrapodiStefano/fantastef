@@ -368,6 +368,31 @@ function openComparatore(){
     window.location.href = "comparatore2.html";
 }
 
+/* ===== INIZIALIZZAZIONE STRUTTURA FANTAXI ===== */
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    let dati = localStorage.getItem("fantaXI");
+
+    if(!dati){
+
+        const strutturaBase = {
+            rose: [],
+            rosaAttiva: null
+        };
+
+        localStorage.setItem("fantaXI", JSON.stringify(strutturaBase));
+
+        console.log("Struttura FantaXI creata");
+
+    } else {
+
+        console.log("Struttura FantaXI già presente");
+
+    }
+
+});
+
 /* ================= MODALE ROSA ================= */
 
 function apriModalRosa(){
