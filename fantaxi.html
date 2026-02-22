@@ -305,11 +305,30 @@ button{
     </div>
 
     <div class="rosa-box">
-        <h3>La tua rosa</h3>
-        <div id="listaGiocatoriRosa" class="lista-giocatori">
-            Nessun giocatore inserito
-        </div>
+    <h3>La tua rosa</h3>
+
+    <input type="text" id="inputRicerca" placeholder="Cerca giocatore..." style="
+        width:100%;
+        padding:10px;
+        border-radius:12px;
+        border:none;
+        background:#243547;
+        color:white;
+        margin-bottom:10px;
+    ">
+
+    <div id="risultatiRicerca" style="
+        max-height:150px;
+        overflow-y:auto;
+        text-align:left;
+        font-size:14px;
+        margin-bottom:15px;
+    "></div>
+
+    <div id="listaGiocatoriRosa" class="lista-giocatori">
+        Nessun giocatore inserito
     </div>
+</div>
 
     <button class="genera-btn">
         Genera Miglior XI
@@ -534,6 +553,70 @@ if(totaleGiocatori === 0){
 
 });
 
+}
+
+/* ================= RICERCA GIOCATORE ================= */
+
+const inputRicerca = document.getElementById("inputRicerca");
+const risultatiRicerca = document.getElementById("risultatiRicerca");
+
+inputRicerca.addEventListener("input", function(){
+
+    const valore = this.value.toLowerCase().trim();
+    risultatiRicerca.innerHTML = "";
+
+    if(valore.length < 2) return;
+
+    const filtrati = giocatoriMaster.filter(g =>
+        g.nome.toLowerCase().includes(valore)
+    ).slice(0, 10);
+
+    filtrati.forEach(g => {
+
+        const div = document.createElement("div");
+        div.style.padding = "6px";
+        div.style.cursor = "pointer";
+        div.style.borderBottom = "1px solid rgba(255,255,255,0.1)";
+        div.textContent = `${g.nome} (${g.squadra})`;
+
+        div.onclick = function(){
+            aggiungiGiocatoreAllaRosa(g);
+            inputRicerca.value = "";
+            risultatiRicerca.innerHTML = "";
+        };
+
+        risultatiRicerca.appendChild(div);
+
+    });
+
+});
+
+function aggiungiGiocatoreAllaRosa(giocatore){
+
+    let dati = JSON.parse(localStorage.getItem("fantaXI"));
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+
+    if(!rosa) return;
+
+    const ruolo = giocatore.ruolo; // P D C A
+
+    // Evita doppioni
+    const giàPresente =
+        rosa.giocatori[ruolo].some(g => g.id === giocatore.id);
+
+    if(giàPresente){
+        alert("Giocatore già presente in rosa");
+        return;
+    }
+
+    rosa.giocatori[ruolo].push({
+        id: giocatore.id,
+        nome: giocatore.nome
+    });
+
+    localStorage.setItem("fantaXI", JSON.stringify(dati));
+
+    aggiornaBoxRosa();
 }
 
 </script>
