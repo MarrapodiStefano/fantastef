@@ -235,16 +235,19 @@ button{
     justify-content:center;
     align-items:center;
     z-index:3000;
+    padding:20px;
+    overflow:auto;
 }
 
 .modal-box{
-    width:90%;
-    max-width:400px;
+    width:100%;
+    max-width:420px;
     background:linear-gradient(180deg,#0f1f2f,#0a1624);
     border-radius:20px;
     padding:25px;
     text-align:center;
     box-shadow:0 0 30px rgba(46,204,113,0.3);
+    margin:auto;
 }
 
 .modal-box h3{
@@ -618,6 +621,14 @@ function aggiungiGiocatoreAllaRosa(giocatore){
 
     aggiornaBoxRosa();
 }
+
+/* ===== FIX SAFARI iOS TASTIERA ===== */
+
+document.getElementById("nomeNuovaRosa").addEventListener("blur", function(){
+    setTimeout(() => {
+        window.scrollTo(0,0);
+    }, 100);
+});
 
 </script>
 
