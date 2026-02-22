@@ -156,6 +156,72 @@ button{
     filter:drop-shadow(0 0 8px rgba(46,204,113,0.6));
 }
 
+/* ================= FANTAXI ================= */
+
+.fantaxi-container{
+    max-width:600px;
+    margin:0 auto;
+    text-align:center;
+}
+
+.fantaxi-title{
+    font-size:38px;
+    font-weight:800;
+    margin-bottom:5px;
+}
+
+.fantaxi-sub{
+    opacity:0.7;
+    margin-bottom:30px;
+}
+
+.rosa-selector{
+    display:flex;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+.rosa-selector select{
+    flex:1;
+    padding:12px;
+    border-radius:14px;
+    border:none;
+    background:#243547;
+    color:white;
+}
+
+.rosa-selector button{
+    padding:12px 18px;
+    border-radius:14px;
+    border:none;
+    background:#2ecc71;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.rosa-box{
+    background:linear-gradient(180deg,#0f1f2f,#0a1624);
+    border-radius:22px;
+    padding:20px;
+    margin-bottom:25px;
+    box-shadow:0 0 30px rgba(46,204,113,0.2);
+}
+
+.lista-giocatori{
+    min-height:120px;
+    opacity:0.6;
+}
+
+.genera-btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:24px;
+    background:linear-gradient(90deg,#2ecc71,#27ae60);
+    font-weight:700;
+    cursor:pointer;
+}
+
 </style>
 </head>
 
@@ -171,6 +237,30 @@ button{
 </div>
 
 <div class="main-wrapper">
+    <section class="fantaxi-container">
+
+    <h1 class="fantaxi-title">FantaXI</h1>
+    <p class="fantaxi-sub">Il tuo Stratega Settimanale</p>
+
+    <div class="rosa-selector">
+        <select id="selectRosa">
+            <option value="">Seleziona rosa</option>
+        </select>
+        <button id="btnNuovaRosa">+ Nuova Rosa</button>
+    </div>
+
+    <div class="rosa-box">
+        <h3>La tua rosa</h3>
+        <div id="listaGiocatoriRosa" class="lista-giocatori">
+            Nessun giocatore inserito
+        </div>
+    </div>
+
+    <button class="genera-btn">
+        Genera Miglior XI
+    </button>
+
+</section>
 <div class="container">
 
 <div id="noRosaSection" class="hidden">
