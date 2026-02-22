@@ -590,7 +590,7 @@ if(totaleGiocatori === 0){
 
     box.innerHTML = "";
 
-    ["P","D","C","A"].forEach(ruolo => {
+   ["P","D","C","A"].forEach(ruolo => {
 
     rosa.giocatori[ruolo].forEach(g => {
 
@@ -599,10 +599,9 @@ if(totaleGiocatori === 0){
         div.innerHTML = `<span class="role">${ruolo}</span> ${g.nome}`;
         box.appendChild(div);
 
+    });
+
 });
-
-}
-
 /* ================= RICERCA GIOCATORE ================= */
 
 const inputRicerca = document.getElementById("inputRicerca");
