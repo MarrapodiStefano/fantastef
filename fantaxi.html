@@ -370,11 +370,29 @@ function openComparatore(){
 
 let giocatoriMaster = [];
 
+let giocatoriMaster = [];
+
 fetch("giocatori_master.json")
     .then(response => response.json())
     .then(data => {
-        giocatoriMaster = data;
+
+        console.log("Struttura JSON:", data);
+
+        // Se il JSON contiene una proprietà tipo "giocatori"
+        if (Array.isArray(data)) {
+            giocatoriMaster = data;
+        } else if (data.giocatori) {
+            giocatoriMaster = data.giocatori;
+        } else if (data.ruoli) {
+            // Nel caso tu abbia struttura divisa per ruoli
+            giocatoriMaster = Object.values(data.ruoli).flat();
+        } else {
+            console.error("Formato JSON non riconosciuto");
+            return;
+        }
+
         console.log("Giocatori caricati:", giocatoriMaster.length);
+
     })
     .catch(error => {
         console.error("Errore caricamento JSON:", error);
