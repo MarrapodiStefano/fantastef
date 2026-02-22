@@ -253,9 +253,39 @@ button{
     box-shadow:0 0 10px rgba(0,0,0,0.3);
 }
 
-.player-pill .role{
+.roles-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:16px;
+    margin-top:15px;
+}
+
+.role-column{
+    text-align:left;
+}
+
+.role-title{
+    font-size:14px;
     font-weight:700;
-    color:#2ecc71;
+    margin-bottom:10px;
+    padding-bottom:6px;
+    border-bottom:2px solid rgba(255,255,255,0.1);
+}
+
+.player-pill.P{
+    border-left:4px solid #e74c3c;
+}
+
+.player-pill.D{
+    border-left:4px solid #f39c12;
+}
+
+.player-pill.C{
+    border-left:4px solid #2ecc71;
+}
+
+.player-pill.A{
+    border-left:4px solid #3498db;
 }
 
 .genera-btn{
@@ -590,18 +620,38 @@ if(totaleGiocatori === 0){
 
     box.innerHTML = "";
 
-   ["P","D","C","A"].forEach(ruolo => {
+// Creo griglia 4 colonne
+const grid = document.createElement("div");
+grid.className = "roles-grid";
+
+["P","D","C","A"].forEach(ruolo => {
+
+    const column = document.createElement("div");
+    column.className = "role-column";
+
+    const title = document.createElement("div");
+    title.className = "role-title";
+
+    if(ruolo === "P") title.textContent = "Portieri";
+    if(ruolo === "D") title.textContent = "Difensori";
+    if(ruolo === "C") title.textContent = "Centrocampisti";
+    if(ruolo === "A") title.textContent = "Attaccanti";
+
+    column.appendChild(title);
 
     rosa.giocatori[ruolo].forEach(g => {
 
         const div = document.createElement("div");
-        div.className = "player-pill";
-        div.innerHTML = `<span class="role">${ruolo}</span> ${g.nome}`;
-        box.appendChild(div);
+        div.className = "player-pill " + ruolo;
+        div.textContent = g.nome;
 
+        column.appendChild(div);
     });
 
+    grid.appendChild(column);
 });
+
+box.appendChild(grid);
 }
 
 /* ================= RICERCA GIOCATORE ================= */
