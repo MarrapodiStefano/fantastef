@@ -368,6 +368,18 @@ function openComparatore(){
     window.location.href = "comparatore2.html";
 }
 
+let giocatoriMaster = [];
+
+fetch("giocatori_master.json")
+    .then(response => response.json())
+    .then(data => {
+        giocatoriMaster = data;
+        console.log("Giocatori caricati:", giocatoriMaster.length);
+    })
+    .catch(error => {
+        console.error("Errore caricamento JSON:", error);
+    });
+
 /* ===== INIZIALIZZAZIONE STRUTTURA FANTAXI ===== */
 
 document.addEventListener("DOMContentLoaded", function(){
