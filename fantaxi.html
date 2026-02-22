@@ -241,6 +241,23 @@ button{
     opacity:0.6;
 }
 
+.player-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#1c2a38;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    margin:6px;
+    box-shadow:0 0 10px rgba(0,0,0,0.3);
+}
+
+.player-pill .role{
+    font-weight:700;
+    color:#2ecc71;
+}
+
 .genera-btn{
     width:auto;
     padding:10px 22px;
@@ -578,11 +595,9 @@ if(totaleGiocatori === 0){
     rosa.giocatori[ruolo].forEach(g => {
 
         const div = document.createElement("div");
-        div.textContent = ruolo + " - " + g.nome;
-
+        div.className = "player-pill";
+        div.innerHTML = `<span class="role">${ruolo}</span> ${g.nome}`;
         box.appendChild(div);
-
-    });
 
 });
 
