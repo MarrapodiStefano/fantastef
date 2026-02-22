@@ -440,13 +440,22 @@ function apriModalRosa(){
 }
 
 function chiudiModalRosa(){
+
+    document.activeElement.blur(); // chiude tastiera iOS
+
     document.getElementById("modalRosa").style.display = "none";
     document.getElementById("nomeNuovaRosa").value = "";
+
+    setTimeout(() => {
+        window.scrollTo(0,0); // reset viewport Safari
+    }, 50);
 }
 
 function creaRosa(){
 
     const nome = document.getElementById("nomeNuovaRosa").value.trim();
+    document.activeElement.blur();
+
     if(nome === "") return;
 
     let dati = JSON.parse(localStorage.getItem("fantaXI"));
