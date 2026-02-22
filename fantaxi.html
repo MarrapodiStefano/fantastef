@@ -382,6 +382,11 @@ document.addEventListener("DOMContentLoaded", function(){
         };
 
         localStorage.setItem("fantaXI", JSON.stringify(strutturaBase));
+    }
+
+    aggiornaSelectRose();
+
+});
 
         console.log("Struttura FantaXI creata");
 
@@ -405,12 +410,55 @@ function chiudiModalRosa(){
 }
 
 function creaRosa(){
+
     const nome = document.getElementById("nomeNuovaRosa").value.trim();
     if(nome === "") return;
 
-    console.log("Rosa creata:", nome);
+    let dati = JSON.parse(localStorage.getItem("fantaXI"));
+
+    // Limite massimo 3 rose
+    if(dati.rose.length >= 3){
+        alert("Puoi creare massimo 3 rose.");
+        return;
+    }
+
+    const nuovaRosa = {
+        id: Date.now(),
+        nome: nome,
+        giocatori: []
+    };
+
+    dati.rose.push(nuovaRosa);
+    dati.rosaAttiva = nuovaRosa.id;
+
+    localStorage.setItem("fantaXI", JSON.stringify(dati));
+
+    aggiornaSelectRose();
 
     chiudiModalRosa();
+}
+
+function aggiornaSelectRose(){
+
+    const select = document.getElementById("selectRosa");
+    select.innerHTML = '<option value="">Seleziona rosa</option>';
+
+    const dati = JSON.parse(localStorage.getItem("fantaXI"));
+
+    dati.rose.forEach(rosa => {
+
+        const option = document.createElement("option");
+        option.value = rosa.id;
+        option.textContent = rosa.nome;
+
+        if(rosa.id === dati.rosaAttiva){
+            option.selected = true;
+        }
+
+        select.appendChild(option);
+
+    });
+
 }
 
 </script>
