@@ -1,0 +1,36 @@
+{
+  "ruoli": {
+    "portieri": [
+      {
+        "id": 0,
+        "ruolo": "portieri",
+        "nome": "",
+        "squadra": "",
+
+        "pv": 0,
+        "mv": 0,
+        "fm": 0,
+
+        "gs": 0,
+        "rigori_parati": 0,
+        "clean_sheet": 0,
+
+        "amm": 0,
+        "esp": 0,
+        "au": 0,
+
+        "avversario": 0,
+        "off_squadra": 0,
+        "motivazioni": 0,
+        "solidita_difensiva": 0,
+        "status": 0,
+
+        "score_rendimento": 0,
+        "score_contesto": 0,
+        "score_penalita": 0,
+
+        "voto_algoritmo": 0
+      }
+    ]
+  }
+}
