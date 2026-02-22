@@ -385,6 +385,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     aggiornaSelectRose();
+    aggiornaBoxRosa();
 
 });
 
@@ -446,6 +447,53 @@ function aggiornaSelectRose(){
         }
 
         select.appendChild(option);
+
+    });
+
+}
+
+document.getElementById("selectRosa").addEventListener("change", function(){
+
+    const idSelezionato = parseInt(this.value);
+
+    if(!idSelezionato) return;
+
+    let dati = JSON.parse(localStorage.getItem("fantaXI"));
+
+    dati.rosaAttiva = idSelezionato;
+
+    localStorage.setItem("fantaXI", JSON.stringify(dati));
+
+    aggiornaBoxRosa();
+
+});
+
+function aggiornaBoxRosa(){
+
+    const box = document.getElementById("listaGiocatoriRosa");
+
+    const dati = JSON.parse(localStorage.getItem("fantaXI"));
+
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+
+    if(!rosa){
+        box.innerHTML = "Nessuna rosa selezionata";
+        return;
+    }
+
+    if(rosa.giocatori.length === 0){
+        box.innerHTML = "Nessun giocatore inserito";
+        return;
+    }
+
+    box.innerHTML = "";
+
+    rosa.giocatori.forEach(g => {
+
+        const div = document.createElement("div");
+        div.textContent = g.nome;
+
+        box.appendChild(div);
 
     });
 
