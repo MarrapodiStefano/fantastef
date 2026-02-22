@@ -414,10 +414,15 @@ function creaRosa(){
     }
 
     const nuovaRosa = {
-        id: Date.now(),
-        nome: nome,
-        giocatori: []
-    };
+    id: Date.now(),
+    nome: nome,
+    giocatori: {
+        P: [],
+        D: [],
+        C: [],
+        A: []
+    }
+};
 
     dati.rose.push(nuovaRosa);
     dati.rosaAttiva = nuovaRosa.id;
@@ -481,21 +486,31 @@ function aggiornaBoxRosa(){
         return;
     }
 
-    if(rosa.giocatori.length === 0){
-        box.innerHTML = "Nessun giocatore inserito";
-        return;
-    }
+    const totaleGiocatori =
+    rosa.giocatori.P.length +
+    rosa.giocatori.D.length +
+    rosa.giocatori.C.length +
+    rosa.giocatori.A.length;
+
+if(totaleGiocatori === 0){
+    box.innerHTML = "Nessun giocatore inserito";
+    return;
+}
 
     box.innerHTML = "";
 
-    rosa.giocatori.forEach(g => {
+    ["P","D","C","A"].forEach(ruolo => {
+
+    rosa.giocatori[ruolo].forEach(g => {
 
         const div = document.createElement("div");
-        div.textContent = g.nome;
+        div.textContent = ruolo + " - " + g.nome;
 
         box.appendChild(div);
 
     });
+
+});
 
 }
 
