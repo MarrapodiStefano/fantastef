@@ -301,7 +301,7 @@ button{
         <select id="selectRosa">
             <option value="">Seleziona rosa</option>
         </select>
-        <button id="btnNuovaRosa">+ Nuova Rosa</button>
+        <button id="btnNuovaRosa" onclick="apriModalRosa()">+ Nuova Rosa</button>
     </div>
 
     <div class="rosa-box">
@@ -400,6 +400,26 @@ document.addEventListener("DOMContentLoaded", function(){
 
 function creaRosa(){
     alert("Struttura creazione rosa in arrivo.");
+}
+
+/* ================= MODALE ROSA ================= */
+
+function apriModalRosa(){
+    document.getElementById("modalRosa").style.display = "flex";
+}
+
+function chiudiModalRosa(){
+    document.getElementById("modalRosa").style.display = "none";
+    document.getElementById("nomeNuovaRosa").value = "";
+}
+
+function creaRosa(){
+    const nome = document.getElementById("nomeNuovaRosa").value.trim();
+    if(nome === "") return;
+
+    console.log("Rosa creata:", nome);
+
+    chiudiModalRosa();
 }
 
 </script>
