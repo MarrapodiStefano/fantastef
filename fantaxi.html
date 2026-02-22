@@ -7,7 +7,8 @@
 
 <style>
 
-/* ===== RESET ===== */
+/* ================= RESET ================= */
+
 *{
     margin:0;
     padding:0;
@@ -21,14 +22,16 @@ body{
     min-height:100vh;
 }
 
-/* ===== WRAPPER ===== */
+/* ================= WRAPPER ================= */
+
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-    padding:120px 20px 170px 20px;
+    padding:100px 20px 140px 20px;
 }
 
-/* ===== HEADER ===== */
+/* ================= HEADER ================= */
+
 .header{
     position:fixed;
     top:0;
@@ -44,7 +47,12 @@ body{
     background:rgba(10,20,35,0.9);
     backdrop-filter:blur(6px);
     z-index:1000;
+    transition:all 0.3s ease;
     border-bottom:1px solid #2ecc71;
+}
+
+.header.shrink{
+    height:50px;
 }
 
 .logo-area{
@@ -59,9 +67,16 @@ body{
     width:42px;
     height:42px;
     border-radius:50%;
+    animation:logoGlow 3s infinite ease-in-out;
 }
 
-/* ===== CONTAINER ===== */
+@keyframes logoGlow{
+    0%,100%{box-shadow:0 0 0 rgba(46,204,113,0);}
+    50%{box-shadow:0 0 20px rgba(46,204,113,0.8);}
+}
+
+/* ================= CONTAINER ================= */
+
 .container{
     max-width:600px;
     margin:0 auto;
@@ -84,7 +99,17 @@ body{
     display:none;
 }
 
-/* ===== BOTTOM MENU ===== */
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:20px;
+    background:linear-gradient(90deg,#2ecc71,#27ae60);
+    color:#0a1624;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* ================= BOTTOM MENU ================= */
 
 .bottom-menu{
     position:fixed;
@@ -109,11 +134,16 @@ body{
     font-size:12px;
     color:#2ecc71;
     opacity:0.5;
+    transition:all 0.3s ease;
 }
 
 .bottom-item.active{
     opacity:1;
     transform:translateY(-3px);
+}
+
+.bottom-item.active svg{
+    filter:drop-shadow(0 0 12px rgba(46,204,113,0.9));
 }
 
 .bottom-item svg{
@@ -123,16 +153,7 @@ body{
     stroke-width:2;
     fill:none;
     margin-bottom:4px;
-}
-
-button{
-    padding:12px 20px;
-    border:none;
-    border-radius:20px;
-    background:linear-gradient(90deg,#2ecc71,#27ae60);
-    color:#0a1624;
-    font-weight:700;
-    cursor:pointer;
+    filter:drop-shadow(0 0 8px rgba(46,204,113,0.6));
 }
 
 </style>
@@ -159,9 +180,7 @@ button{
 
 <div id="rosaEsistenteSection" class="hidden">
     <div class="section-title">La tua Miglior Formazione</div>
-    <div id="formazioneContainer">
-        <!-- Qui verrà generata la formazione -->
-    </div>
+    <div id="formazioneContainer"></div>
 </div>
 
 </div>
@@ -200,6 +219,13 @@ button{
 
 <script>
 
+/* ===== HEADER SHRINK ===== */
+
+window.addEventListener("scroll", function(){
+    const header = document.querySelector(".header");
+    header.classList.toggle("shrink", window.scrollY > 50);
+});
+
 /* ===== NAVIGAZIONE ===== */
 
 function openHome(){
@@ -210,7 +236,7 @@ function openComparatore(){
     window.location.href = "comparatore2.html";
 }
 
-/* ===== CONTROLLO INIZIALE ===== */
+/* ===== CONTROLLO ROSE ===== */
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -224,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 });
 
-/* ===== CREA ROSA (placeholder) ===== */
+/* ===== PLACEHOLDER ===== */
 
 function creaRosa(){
     alert("Struttura creazione rosa in arrivo.");
