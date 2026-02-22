@@ -368,20 +368,6 @@ function openComparatore(){
     window.location.href = "comparatore2.html";
 }
 
-/* ===== CONTROLLO ROSE ===== */
-
-document.addEventListener("DOMContentLoaded", function(){
-
-    const roseSalvate = localStorage.getItem("roseFantastef");
-
-    if(!roseSalvate){
-        document.getElementById("noRosaSection").classList.remove("hidden");
-    } else {
-        document.getElementById("rosaEsistenteSection").classList.remove("hidden");
-    }
-
-});
-
 /* ================= MODALE ROSA ================= */
 
 function apriModalRosa(){
