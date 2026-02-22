@@ -255,9 +255,10 @@ button{
 
 .roles-grid{
     display:grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap:16px;
-    margin-top:15px;
+    margin-top:20px;
+    width:100%;
 }
 
 .role-column{
@@ -631,7 +632,7 @@ grid.className = "roles-grid";
     column.className = "role-column";
 
     const title = document.createElement("div");
-    title.className = "role-title";
+    title.className = "role-title " + ruolo;
     title.textContent = ruolo;
 
     column.appendChild(title);
