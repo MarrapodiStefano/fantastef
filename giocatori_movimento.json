@@ -1,0 +1,43 @@
+{
+  "ruoli": {
+    "difensori": [
+      {
+        "id": 0,
+        "ruolo": "difensori",
+        "nome": "",
+        "squadra": "",
+
+        "pv": 0,
+        "mv": 0,
+        "fm": 0,
+
+        "gf": 0,
+        "rc": 0,
+        "r_plus": 0,
+        "r_minus": 0,
+        "assist": 0,
+
+        "amm": 0,
+        "esp": 0,
+        "au": 0,
+
+        "avversario": 0,
+        "off_squadra": 0,
+        "motivazioni": 0,
+        "rigorista": 0,
+        "status": 0,
+        "piazzati": 0,
+
+        "score_rendimento": 0,
+        "score_contesto": 0,
+        "score_penalita": 0,
+
+        "voto_algoritmo": 0
+      }
+    ],
+
+    "centrocampisti": [],
+
+    "attaccanti": []
+  }
+}
