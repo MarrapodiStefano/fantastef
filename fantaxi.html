@@ -787,9 +787,10 @@ function generaXI(){
         return;
     }
 
-// ================= ORDINAMENTO STRATEGICO =================
+// // ================= ORDINAMENTO STRATEGICO =================
 
-// Per ogni ruolo (P, D, C, ["P","D","C","A"].forEach(ruolo => {
+// Cicliamo su ogni ruolo per ordinare i giocatori
+["P","D","C","A"].forEach(ruolo => {
 
     rosa.giocatori[ruolo].sort((a, b) => {
 
