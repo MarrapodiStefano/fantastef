@@ -730,15 +730,18 @@ function aggiungiGiocatoreAllaRosa(giocatore){
 
     rosa.giocatori[ruolo].push({
 
-    id: giocatore.id,  
-    // Salva l'ID univoco del giocatore (serve per riconoscerlo senza errori)
+    id: giocatore.id,
+    // Salviamo l'ID univoco del giocatore
 
-    nome: giocatore.nome,  
-    // Salva il nome che viene mostrato nell'interfaccia
+    nome: giocatore.nome,
+    // Salviamo il nome mostrato nella rosa
 
-    voto_algoritmo: giocatore.voto_algoritmo  
-    // Salva il punteggio strategico calcolato dal tuo algoritmo
-    // NON verrà mostrato ora, ma servirà per generare l'XI migliore
+    voto_algoritmo: giocatore.voto_algoritmo,
+    // Salviamo il voto finale calcolato dal tuo algoritmo
+
+    avversario: giocatore.avversario
+    // Salviamo il valore della colonna S (forza dell'avversario)
+    // Questo servirà come criterio di spareggio
 
 });
 
@@ -786,15 +789,22 @@ function generaXI(){
 
 // ================= ORDINAMENTO STRATEGICO =================
 
-// Per ogni ruolo (P, D, C, A)
-["P","D","C","A"].forEach(ruolo => {
+// Per ogni ruolo (P, D, C, ["P","D","C","A"].forEach(ruolo => {
 
-    // Ordiniamo i giocatori di quel ruolo
     rosa.giocatori[ruolo].sort((a, b) => {
 
-        return b.voto_algoritmo - a.voto_algoritmo;
-        // b - a = ordine decrescente
-        // Il giocatore con voto_algoritmo più alto va in posizione 0
+        // ================= PRIMO CRITERIO =================
+        // Ordiniamo per voto_algoritmo (dal più alto al più basso)
+
+        if(b.voto_algoritmo !== a.voto_algoritmo){
+            return b.voto_algoritmo - a.voto_algoritmo;
+        }
+
+        // ================= SPAREGGIO =================
+        // Se i voti sono uguali, guardiamo il valore "avversario"
+        // Vince chi ha il numero più alto
+
+        return b.avversario - a.avversario;
 
     });
 
