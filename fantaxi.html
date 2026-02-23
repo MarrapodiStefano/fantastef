@@ -209,10 +209,11 @@ button{
 .rosa-box{
     background:linear-gradient(180deg,#0f1f2f,#0a1624);
     border-radius:26px;
-    padding:24px 20px 24px 20px;
+    padding:24px 20px;
     box-shadow:
         0 25px 60px rgba(0,0,0,0.6),
         0 0 40px rgba(46,204,113,0.08);
+
     display:flex;
     flex-direction:column;
 }
@@ -248,6 +249,7 @@ button{
     max-height:320px;   /* 👈 altezza controllata */
     overflow-y:auto;    /* 👈 scroll solo qui */
     padding-right:6px;
+    flex:1;
 }
 
 .lista-giocatori::-webkit-scrollbar{
@@ -624,14 +626,15 @@ button{
         margin-bottom:15px;
     "></div>
 
-    <div id="listaGiocatoriRosa" class="lista-giocatori">
-        Nessun giocatore inserito
-    </div>
+   <div id="listaGiocatoriRosa" class="lista-giocatori">
+    Nessun giocatore inserito
 </div>
 
-    <button class="genera-btn" onclick="generaXI()">
+<button class="genera-btn" onclick="generaXI()">
     Genera Miglior XI
 </button>
+
+</div>   <!-- 👈 QUI chiudi rosa-box -->
 
 
 </section>
