@@ -391,9 +391,8 @@ button{
 .xi-overlay{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.85);
-    backdrop-filter:blur(6px);
-    display:none; /* 🔥 di default nascosto */
+    background:transparent;
+    display:none;
     justify-content:center;
     align-items:center;
     z-index:5000;
@@ -407,7 +406,7 @@ button{
     border-radius:25px;
     padding:30px 20px;
     text-align:center;
-    box-shadow:0 0 50px rgba(46,204,113,0.3);
+    box-shadow:none;
     overflow:hidden;
 }
 
