@@ -32,6 +32,8 @@ html, body{
 .main-wrapper{
     max-width:1750px;
     margin:auto;
+    padding-top:80px;     /* spazio per header */
+    padding-bottom:65px;  /* spazio per bottom menu */
     height:100dvh;
     display:flex;
     flex-direction:column;
@@ -341,10 +343,6 @@ button{
 
 @media (max-width:600px){
 
-    .main-wrapper{
-        padding:80px 15px 160px 15px;
-    }
-
     .fantaxi-container{
     flex:1;
     display:flex;
@@ -359,10 +357,10 @@ button{
 .rosa-box{
     width:100%;
     border-radius:24px;
-    padding:26px 18px 26px 18px;
+    padding:26px 18px;
 
-    flex:none;                /* 🔥 QUESTO È FONDAMENTALE */
-    height: calc(100dvh - 120px);
+    flex:1;          /* prende tutto lo spazio disponibile */
+    min-height:0;    /* permette alla lista di scrollare */
 }
 
     .roles-grid{
