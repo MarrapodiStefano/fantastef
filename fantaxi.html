@@ -163,8 +163,9 @@ button{
 /* ================= FANTAXI ================= */
 
 .fantaxi-container{
-    max-width:600px;
-    margin:0 auto;
+    width:100%;        /* 🔥 occupa tutta la larghezza disponibile */
+    max-width:600px;   /* limite su desktop */
+    margin:0 auto;     /* centrato */
     text-align:center;
 }
 
@@ -665,9 +666,20 @@ button{
 
 /* ===== HEADER SHRINK ===== */
 
+let lastScroll = 0;
+
 window.addEventListener("scroll", function(){
+
     const header = document.querySelector(".header");
-    header.classList.toggle("shrink", window.scrollY > 50);
+    const currentScroll = window.pageYOffset;
+
+    if(currentScroll > 50){
+        header.classList.add("shrink");
+    } else {
+        header.classList.remove("shrink");
+    }
+
+    lastScroll = currentScroll;
 });
 
 /* ===== NAVIGAZIONE ===== */
