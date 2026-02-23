@@ -424,9 +424,9 @@ button{
     </div>
 </div>
 
-    <button class="genera-btn">
-        Genera Miglior XI
-    </button>
+    <button class="genera-btn" onclick="generaXI()">
+    Genera Miglior XI
+</button>
 
 </section>
 </div>
@@ -766,6 +766,41 @@ document.getElementById("nomeNuovaRosa").addEventListener("blur", function(){
         window.scrollTo(0,0);
     }, 100);
 });
+
+function generaXI(){
+
+    // Recuperiamo i dati salvati nel localStorage
+
+    let dati = JSON.parse(localStorage.getItem("fantaXI"));
+
+    // Troviamo la rosa attiva
+
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+
+    // Se non esiste rosa attiva, blocchiamo
+
+    if(!rosa){
+        alert("Seleziona una rosa prima di generare l'XI.");
+        return;
+    }
+
+    // Verifichiamo i vincoli minimi di formazione
+
+    if(
+        rosa.giocatori.P.length < 1 ||   // Serve almeno 1 portiere
+        rosa.giocatori.D.length < 3 ||   // Almeno 3 difensori
+        rosa.giocatori.C.length < 3 ||   // Almeno 3 centrocampisti
+        rosa.giocatori.A.length < 1      // Almeno 1 attaccante
+    ){
+        alert("Rosa incompleta per generare l'XI minimo (1P - 3D - 3C - 1A).");
+        return;
+    }
+
+    // Se arriviamo qui significa che i vincoli sono rispettati
+
+    alert("Vincoli rispettati. Pronti per generare l'XI!");
+
+}
 
 </script>
 
