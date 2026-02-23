@@ -393,7 +393,7 @@ button{
     inset:0;
     background:rgba(0,0,0,0.85);
     backdrop-filter:blur(6px);
-    display:flex;
+    display:none; /* 🔥 di default nascosto */
     justify-content:center;
     align-items:center;
     z-index:5000;
@@ -1005,12 +1005,12 @@ creaLinea(xiFinale.filter(g => g.ruolo === "P"));
 
 score.textContent = "Punteggio Totale XI: " + totale;
 
-overlay.classList.remove("hidden");
+overlay.style.display = "flex"; // 🔥 mostriamo overlay
 // Mostriamo overlay
 }
 
 function chiudiXI(){
-    document.getElementById("xiOverlay").classList.add("hidden");
+    document.getElementById("xiOverlay").style.display = "none";
 }
 
 </script>
