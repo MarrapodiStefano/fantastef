@@ -400,13 +400,38 @@ button{
 }
 
 .xi-overlay-content{
+    position:relative; /* serve per pseudo-elemento */
     width:95%;
     max-width:600px;
-    background:url("campo.png") center center / cover no-repeat;
     border-radius:25px;
     padding:30px 20px;
     text-align:center;
     box-shadow:0 0 50px rgba(46,204,113,0.3);
+    overflow:hidden; /* importante */
+}
+
+/* IMMAGINE CAMPO */
+.xi-overlay-content::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:url("campo.png") center center / cover no-repeat;
+    z-index:0;
+}
+
+/* VELATURA SCURA SOPRA IL CAMPO */
+.xi-overlay-content::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.55);
+    z-index:1;
+}
+
+/* PORTIAMO CONTENUTO SOPRA */
+.xi-overlay-content > *{
+    position:relative;
+    z-index:2;
 }
 
 .xi-field{
