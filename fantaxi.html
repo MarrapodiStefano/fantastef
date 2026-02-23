@@ -640,7 +640,7 @@ grid.className = "roles-grid";
     rosa.giocatori[ruolo].forEach(g => {
 
         const div = document.createElement("div");
-        div.className = "player-pill";
+        div.className = "player-pill " + ruolo;
         div.textContent = g.nome;
 
         column.appendChild(div);
