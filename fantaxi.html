@@ -327,13 +327,13 @@ button{
 
 @media (max-width:600px){
 
-    html, body{
-    height:100%;
-    overflow:hidden;
+    body{
+    height:100dvh;     /* viewport reale iPhone */
+    overflow:hidden;   /* blocca scroll globale */
 }
     
         .main-wrapper{
-        height:calc(100dvh - 70px - 65px);
+        height:100dvh;
 /* 70 header */
 /* 65 bottom menu */
         padding:80px 15px 75px 15px; 
@@ -344,15 +344,12 @@ button{
         justify-content:space-between;
     }
     
-        .fantaxi-container{
-        display:flex;
-        flex-direction:column;
-        height:100%;
-    }
-  
-.fantaxi-container{
-    max-width:100%; /* 🔥 usa tutta la larghezza */
-    padding:0 10px; /* piccolo margine laterale */
+       .fantaxi-container{
+    display:flex;              /* layout verticale */
+    flex-direction:column;
+    height:100%;
+    max-width:100%;            /* tutta larghezza */
+    padding:0 10px;            /* margine laterale */
 }
 
 .rosa-box{
