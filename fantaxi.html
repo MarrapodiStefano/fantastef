@@ -794,11 +794,24 @@ function generaXI(){
 
     rosa.giocatori[ruolo].sort((a, b) => {
 
-        if(b.voto_algoritmo !== a.voto_algoritmo){
-            return b.voto_algoritmo - a.voto_algoritmo;
+        const votoA = Number(a.voto_algoritmo) || 0;
+// Convertiamo sempre in numero, se undefined diventa 0
+
+        const votoB = Number(b.voto_algoritmo) || 0;
+// Sicurezza totale contro stringhe
+
+        if(votoB !== votoA){
+            return votoB - votoA;
+// Ordinamento principale per voto
         }
 
-        return b.avversario - a.avversario;
+        const avvA = Number(a.avversario) || 0;
+// Convertiamo avversario in numero
+
+        const avvB = Number(b.avversario) || 0;
+
+        return avvB - avvA;
+// Spareggio: vince chi ha avversario più alto
 
     });
 
