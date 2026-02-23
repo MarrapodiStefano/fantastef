@@ -794,22 +794,18 @@ function generaXI(){
 
     rosa.giocatori[ruolo].sort((a, b) => {
 
-        // ================= PRIMO CRITERIO =================
-        // Ordiniamo per voto_algoritmo (dal più alto al più basso)
-
         if(b.voto_algoritmo !== a.voto_algoritmo){
             return b.voto_algoritmo - a.voto_algoritmo;
         }
-
-        // ================= SPAREGGIO =================
-        // Se i voti sono uguali, guardiamo il valore "avversario"
-        // Vince chi ha il numero più alto
 
         return b.avversario - a.avversario;
 
     });
 
 });
+
+localStorage.setItem("fantaXI", JSON.stringify(dati));
+// Salviamo il nuovo ordine ordinato
 
     // Se arriviamo qui significa che i vincoli sono rispettati
 
