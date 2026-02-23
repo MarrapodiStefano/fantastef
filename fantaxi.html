@@ -238,7 +238,10 @@ button{
 
 .lista-giocatori{
     min-height:120px;
-    opacity:0.6;
+    max-height:260px;     /* altezza massima area lista */
+    overflow-y:auto;      /* attiva scroll verticale */
+    opacity:0.9;
+    padding-right:6px;    /* evita che scrollbar copra testo */
 }
 
 .player-pill{
