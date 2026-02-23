@@ -23,7 +23,8 @@ body{
 }
 
 html, body{
-    overflow-x:hidden; /* 🔥 blocca scroll laterale iPhone */
+    height:100%;
+    overflow:hidden;
 }
 
 /* ================= WRAPPER ================= */
@@ -31,8 +32,10 @@ html, body{
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-    padding:100px 20px 170px 20px; 
-    /* 🔥 170 invece di 140 */
+    padding:100px 20px 80px 20px;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
 }
 
 /* ================= HEADER ================= */
@@ -168,6 +171,9 @@ button{
     max-width:600px;   /* limite su desktop */
     margin:0 auto;     /* centrato */
     text-align:center;
+    flex:1;
+    display:flex;
+    flex-direction:column;
 }
 
 .fantaxi-title{
@@ -214,9 +220,11 @@ button{
     background:linear-gradient(180deg,#0f1f2f,#0a1624);
     border-radius:26px;
     padding:24px 20px;
+
     display:flex;
     flex-direction:column;
-    height:55vh;
+    flex:1;
+    overflow:hidden;
 }
 
 .rosa-box h3{
@@ -246,10 +254,10 @@ button{
 }
 
 .lista-giocatori{
+    flex:1;
+    overflow-y:auto;
     margin-top:10px;
-    overflow-y:auto;    /* 👈 scroll solo qui */
     padding-right:6px;
-    
 }
 
 .lista-giocatori::-webkit-scrollbar{
@@ -336,11 +344,10 @@ button{
     }
 
     .fantaxi-container{
-        display:flex;
-        flex-direction:column;
-        max-width:100%;
-        padding:0 16px;
-    }
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
 
     .rosa-selector{
         width:100%;
