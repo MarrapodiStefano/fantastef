@@ -323,6 +323,52 @@ button{
     display:inline-block;
 }
 
+/* ================= SEZIONE XI ================= */
+
+.xi-container{
+    margin-top:30px; 
+    padding:25px;
+    border-radius:22px;
+    background:linear-gradient(180deg,#0d1c2b,#08121d);
+    box-shadow:
+        0 0 30px rgba(46,204,113,0.15),
+        0 15px 40px rgba(0,0,0,0.5);
+    animation:fadeInXI 0.4s ease forwards;
+}
+
+.xi-title{
+    margin-bottom:18px;
+    font-size:20px;
+    font-weight:700;
+}
+
+.xi-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.xi-player{
+    background:#1c2a38;
+    padding:8px;
+    border-radius:14px;
+    font-size:13px;
+    text-align:center;
+    border-left:4px solid #2ecc71;
+}
+
+.xi-score{
+    font-weight:700;
+    font-size:16px;
+    color:#2ecc71;
+}
+
+@keyframes fadeInXI{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
 /* ================= MODALE ROSA ================= */
 
 .modal-overlay{
@@ -427,6 +473,21 @@ button{
     <button class="genera-btn" onclick="generaXI()">
     Genera Miglior XI
 </button>
+
+<div id="xiContainer" class="xi-container hidden">
+    <!-- Contenitore che mostrerà l'XI generato -->
+
+    <h3 class="xi-title">👑 Il tuo Miglior XI</h3>
+    <!-- Titolo sezione XI -->
+
+    <div id="xiGrid" class="xi-grid">
+        <!-- Qui verranno inseriti dinamicamente i titolari -->
+    </div>
+
+    <div id="xiScore" class="xi-score">
+        <!-- Qui mostreremo il punteggio totale -->
+    </div>
+</div>
 
 </section>
 </div>
@@ -848,14 +909,41 @@ xiFinale.push(rosa.giocatori.A[0]);
 
 // Per ora mostriamo l'XI in console per verifica
 
-console.log("XI Generato:", xiFinale);
+// ================= MOSTRA XI NEL LAYOUT =================
 
-// Mostriamo anche un alert temporaneo con i nomi
+const xiContainer = document.getElementById("xiContainer");
+// Recuperiamo il contenitore XI
 
-alert(
-    "XI Generato:\n\n" +
-    xiFinale.map(g => g.nome).join("\n")
-);
+const xiGrid = document.getElementById("xiGrid");
+// Recuperiamo la griglia
+
+const xiScore = document.getElementById("xiScore");
+// Recuperiamo area punteggio
+
+xiGrid.innerHTML = "";
+// Puliamo eventuali XI precedenti
+
+let totale = 0;
+// Variabile per sommare il voto totale
+
+xiFinale.forEach(g => {
+
+    const div = document.createElement("div");
+    div.className = "xi-player";
+    div.textContent = g.nome;
+
+    xiGrid.appendChild(div);
+
+    totale += Number(g.voto_algoritmo) || 0;
+    // Sommiamo il voto
+
+});
+
+xiScore.textContent = "Punteggio Totale XI: " + totale;
+// Mostriamo punteggio totale
+
+xiContainer.classList.remove("hidden");
+// Rendiamo visibile il blocco XI
 }
 
 </script>
