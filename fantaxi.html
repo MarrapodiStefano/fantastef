@@ -399,12 +399,13 @@ button{
 }
 
 .xi-overlay-content{
+    position:relative;        /* 🔥 necessario per posizionamenti assoluti */
     width:100%;
     max-width:420px;
     aspect-ratio: 9 / 16;
     border-radius:30px;
     overflow:hidden;
-    padding:20px;
+    padding:0;                /* 🔥 togliamo padding */
 }
 
 /* IMMAGINE  */
@@ -431,10 +432,25 @@ button{
     z-index:2;
 }
 
+/* ===== TITOLO CENTRATO SOPRA IL CAMPO ===== */
+
+.xi-overlay-title{
+    position:absolute;
+    top:18px;              /* distanza dal bordo superiore campo */
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    text-align:center;
+    font-size:22px;
+    font-weight:700;
+    z-index:3;
+}
+
 .xi-field{
     display:flex;
     flex-direction:column;
-    gap:20px;
+    gap:30px;
+    margin-top:90px;   /* 🔥 spazio sotto il titolo */
     margin-bottom:20px;
 }
 
