@@ -226,8 +226,9 @@ button{
 
     display:flex;
     flex-direction:column;
+
     flex:1;
-    overflow:hidden;
+    min-height:0;
 }
 
 .rosa-box h3{
@@ -258,10 +259,10 @@ button{
 
 .lista-giocatori{
     flex:1;
+    min-height:0;
     overflow-y:auto;
     margin-top:10px;
     padding-right:6px;
-    min-height:0;
 }
 .lista-giocatori::-webkit-scrollbar{
     width:6px;
@@ -372,8 +373,8 @@ button{
 }
 
 .genera-btn{
-    align-self:center;      /* 🔥 impedisce che si allarghi */
-    width:auto;             /* torna dimensione naturale */
+    align-self:center;
+    width:auto;
     padding:10px 22px;
     border:none;
     border-radius:18px;
@@ -381,8 +382,8 @@ button{
     font-weight:700;
     cursor:pointer;
 
-    margin-top:auto;        /* 🔥 lo spinge in basso */
-    margin-bottom:12px;     /* piccolo respiro dal fondo */
+    margin-top:15px;   /* spazio sopra */
+    margin-bottom:6px; /* micro respiro sotto */
 }
 
 /* ================= SEZIONE XI ================= */
