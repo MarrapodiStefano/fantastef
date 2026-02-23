@@ -203,6 +203,7 @@ button{
     padding:10px 14px;
     font-size:14px;
     border-radius:12px;
+    white-space:nowrap; /* 🔥 mai più su due righe */
 }
 
 .rosa-box{
@@ -243,11 +244,7 @@ button{
 }
 
 .lista-giocatori{
-    min-height:120px;
-    max-height:260px;     /* altezza massima area lista */
-    overflow-y:auto;      /* attiva scroll verticale */
-    opacity:0.9;
-    padding-right:6px;    /* evita che scrollbar copra testo */
+    margin-top:10px;
 }
 
 .lista-giocatori::-webkit-scrollbar{
@@ -368,6 +365,7 @@ button{
     font-weight:700;
     cursor:pointer;
     margin:0 auto;
+    margin-top:20px;
     display:inline-block;
 }
 
@@ -606,7 +604,7 @@ button{
         <select id="selectRosa">
             <option value="">Seleziona rosa</option>
         </select>
-        <button id="btnNuovaRosa" onclick="apriModalRosa()">+ Nuova Rosa</button>
+<button id="btnNuovaRosa" onclick="apriModalRosa()">Aggiungi Rosa</button>
     </div>
 
     <div class="rosa-box">
