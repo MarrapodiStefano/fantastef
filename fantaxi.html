@@ -650,18 +650,6 @@ grid.className = "roles-grid";
 
 ["P","D","C","A"].forEach(ruolo => {
 
-// Ordiniamo i giocatori del ruolo corrente per voto_algoritmo (dal più alto al più basso)
-
-rosa.giocatori[ruolo].sort((a, b) => {
-
-    return b.voto_algoritmo - a.voto_algoritmo;
-
-    // b - a = ordine decrescente
-    // Il giocatore con voto più alto viene prima
-
-});
-
-
     const column = document.createElement("div");
     column.className = "role-column";
 
@@ -795,6 +783,22 @@ function generaXI(){
         alert("Rosa incompleta per generare l'XI minimo (1P - 3D - 3C - 1A).");
         return;
     }
+
+// ================= ORDINAMENTO STRATEGICO =================
+
+// Per ogni ruolo (P, D, C, A)
+["P","D","C","A"].forEach(ruolo => {
+
+    // Ordiniamo i giocatori di quel ruolo
+    rosa.giocatori[ruolo].sort((a, b) => {
+
+        return b.voto_algoritmo - a.voto_algoritmo;
+        // b - a = ordine decrescente
+        // Il giocatore con voto_algoritmo più alto va in posizione 0
+
+    });
+
+});
 
     // Se arriviamo qui significa che i vincoli sono rispettati
 
