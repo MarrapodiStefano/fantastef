@@ -798,9 +798,40 @@ function generaXI(){
 
     // Se arriviamo qui significa che i vincoli sono rispettati
 
-    alert("Vincoli rispettati. Pronti per generare l'XI!");
+    // Creiamo l'array che conterrà gli 8 titolari selezionati
 
-}
+let xiFinale = [];
+
+// ================= PORTIERE =================
+
+xiFinale.push(rosa.giocatori.P[0]);
+// Prendiamo il primo portiere (già il migliore perché ordinato)
+
+// ================= DIFENSORI =================
+
+xiFinale.push(...rosa.giocatori.D.slice(0,3));
+// slice(0,3) prende i primi 3 difensori migliori
+
+// ================= CENTROCAMPISTI =================
+
+xiFinale.push(...rosa.giocatori.C.slice(0,3));
+// Prendiamo i primi 3 centrocampisti migliori
+
+// ================= ATTACCANTE =================
+
+xiFinale.push(rosa.giocatori.A[0]);
+// Miglior attaccante
+
+// Per ora mostriamo l'XI in console per verifica
+
+console.log("XI Generato:", xiFinale);
+
+// Mostriamo anche un alert temporaneo con i nomi
+
+alert(
+    "XI Generato:\n\n" +
+    xiFinale.map(g => g.nome).join("\n")
+);
 
 </script>
 
