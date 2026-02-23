@@ -729,9 +729,18 @@ function aggiungiGiocatoreAllaRosa(giocatore){
     }
 
     rosa.giocatori[ruolo].push({
-        id: giocatore.id,
-        nome: giocatore.nome
-    });
+
+    id: giocatore.id,  
+    // Salva l'ID univoco del giocatore (serve per riconoscerlo senza errori)
+
+    nome: giocatore.nome,  
+    // Salva il nome che viene mostrato nell'interfaccia
+
+    voto_algoritmo: giocatore.voto_algoritmo  
+    // Salva il punteggio strategico calcolato dal tuo algoritmo
+    // NON verrà mostrato ora, ma servirà per generare l'XI migliore
+
+});
 
     localStorage.setItem("fantaXI", JSON.stringify(dati));
 
