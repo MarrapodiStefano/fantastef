@@ -650,6 +650,18 @@ grid.className = "roles-grid";
 
 ["P","D","C","A"].forEach(ruolo => {
 
+// Ordiniamo i giocatori del ruolo corrente per voto_algoritmo (dal più alto al più basso)
+
+rosa.giocatori[ruolo].sort((a, b) => {
+
+    return b.voto_algoritmo - a.voto_algoritmo;
+
+    // b - a = ordine decrescente
+    // Il giocatore con voto più alto viene prima
+
+});
+
+
     const column = document.createElement("div");
     column.className = "role-column";
 
