@@ -167,16 +167,14 @@ button{
 /* ================= FANTAXI ================= */
 
 .fantaxi-container{
-    width:100%;
-    max-width:600px;
-    margin:0 auto;
+    width:100%;        /* 🔥 occupa tutta la larghezza disponibile */
+    max-width:600px;   /* limite su desktop */
+    margin:0 auto;     /* centrato */
     text-align:center;
-
     flex:1;
     display:flex;
     flex-direction:column;
     gap:12px;
-
 }
 
 .fantaxi-title{
@@ -343,8 +341,8 @@ button{
 @media (max-width:600px){
 
     .main-wrapper{
-    padding:80px 15px 70px 15px;
-}
+        padding:80px 15px 160px 15px;
+    }
 
     .fantaxi-container{
     flex:1;
@@ -357,12 +355,12 @@ button{
         max-width:600px;
     }
 
-  .rosa-box{
-    width:100%;
-    border-radius:24px;
-    padding:26px 18px 26px 18px;
-    flex:1;
-}
+    .rosa-box{
+        width:100%;
+        border-radius:24px;
+        padding:26px 18px 26px 18px;
+        height:55vh;
+    }
 
     .roles-grid{
         grid-template-columns: repeat(2, 1fr);
