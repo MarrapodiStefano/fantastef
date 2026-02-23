@@ -482,11 +482,16 @@ button{
 
 .xi-bench-btn{
     position:absolute;
-    top:150px;
-    left:50px;
-    background:red;
-    padding:15px;
-    z-index:9999;
+    bottom:110px;   /* stessa altezza di Chiudi */
+    right:40px;     /* lato destro speculare */
+
+    padding:12px 26px;
+    border:none;
+    border-radius:22px;
+    background:linear-gradient(90deg,#3498db,#2980b9);
+    color:white;
+    font-weight:700;
+    cursor:pointer;
 }
 
 /* ================= MODALE ROSA ================= */
@@ -1091,10 +1096,18 @@ function apriPanchina(){
 
     <div class="xi-overlay-content">
 
-        <h2 class="xi-overlay-title">TEST</h2>
+        <h2 class="xi-overlay-title">👑 Il tuo Miglior XI</h2>
 
-        <button style="position:absolute; top:200px; left:50px; background:red; z-index:9999;">
-            TEST ROSSO
+        <div id="xiField" class="xi-field"></div>
+
+        <div id="xiOverlayScore" class="xi-overlay-score"></div>
+
+        <button onclick="chiudiXI()" class="xi-close-btn">
+            Chiudi
+        </button>
+
+        <button onclick="apriPanchina()" class="xi-bench-btn">
+            Panchina
         </button>
 
     </div>
