@@ -400,14 +400,15 @@ button{
 }
 
 .xi-overlay-content{
-    position:relative; /* serve per pseudo-elemento */
+    position:relative;
     width:95%;
     max-width:600px;
+    aspect-ratio: 9 / 16;   /* 🔥 QUESTO È IL FIX */
     border-radius:25px;
     padding:30px 20px;
     text-align:center;
     box-shadow:0 0 50px rgba(46,204,113,0.3);
-    overflow:hidden; /* importante */
+    overflow:hidden;
 }
 
 /* IMMAGINE  */
