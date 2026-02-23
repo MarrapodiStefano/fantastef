@@ -209,7 +209,7 @@ button{
 .rosa-box{
     background:linear-gradient(180deg,#0f1f2f,#0a1624);
     border-radius:26px;
-    padding:30px 22px 35px 22px;
+    padding:24px 20px 24px 20px;
     box-shadow:
         0 25px 60px rgba(0,0,0,0.6),
         0 0 40px rgba(46,204,113,0.08);
@@ -245,6 +245,9 @@ button{
 
 .lista-giocatori{
     margin-top:10px;
+    max-height:320px;   /* 👈 altezza controllata */
+    overflow-y:auto;    /* 👈 scroll solo qui */
+    padding-right:6px;
 }
 
 .lista-giocatori::-webkit-scrollbar{
@@ -271,7 +274,7 @@ button{
 .roles-grid{
     display:grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap:16px;
+    gap:12px;
     margin-top:20px;
     width:100%;
 }
