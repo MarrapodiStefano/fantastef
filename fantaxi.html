@@ -262,7 +262,9 @@ button{
 }
 
 .role-column{
-    text-align:left;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
 .role-title{
@@ -287,6 +289,14 @@ button{
 
 .player-pill.A{
     border-left:4px solid #3498db;
+}
+
+@media (max-width:600px){
+
+    .roles-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 }
 
 .genera-btn{
