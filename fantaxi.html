@@ -22,6 +22,10 @@ body{
     min-height:100vh;
 }
 
+html, body{
+    overflow-x:hidden; /* 🔥 blocca scroll laterale iPhone */
+}
+
 /* ================= WRAPPER ================= */
 
 .main-wrapper{
@@ -323,6 +327,42 @@ button{
 
 @media (max-width:600px){
 
+    body{
+        overflow:hidden; /* 🔥 blocca scroll pagina */
+    }
+    
+        .main-wrapper{
+        height:100dvh; /* 🔥 altezza reale iPhone */
+        padding:80px 15px 75px 15px; 
+        /* 80 = header */
+        /* 75 = bottom menu */
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+    }
+    
+        .fantaxi-container{
+        display:flex;
+        flex-direction:column;
+        height:100%;
+    }
+
+    .rosa-box{
+        flex:1; /* 🔥 occupa spazio centrale */
+        overflow:hidden; /* evita doppio scroll */
+    }
+
+    .lista-giocatori{
+        flex:1;
+        max-height:none; /* rimuove limite 260px */
+        overflow-y:auto; /* unico scroll attivo */
+    }
+
+    .genera-btn{
+        position:relative;
+        margin-top:15px;
+    }
+
     .roles-grid{
         grid-template-columns: repeat(2, 1fr);
     }
@@ -554,6 +594,8 @@ button{
 </head>
 
 <body>
+
+
 
 <div class="header">
     <div>☰</div>
