@@ -17,7 +17,7 @@
 
 html, body{
     height:100%;
-    overflow-x:hidden;   /* solo orizzontale */
+    overflow:hidden;   /* 🔥 BLOCCA SCROLL VERTICALE */
 }
 
 body{
@@ -32,13 +32,14 @@ body{
     max-width:1750px;
     margin:auto;
 
-    min-height:100vh;   /* 🔥 NON height */
-    padding:100px 20px 90px 20px;
-}
+    height:100dvh;
 
-/* 🔥 fuori dal blocco */
-.main-wrapper::-webkit-scrollbar{
+    padding:100px 20px 90px 20px;
+
+    overflow-y:auto;        /* 🔥 SOLO QUI si può scrollare */
+    .main-wrapper::-webkit-scrollbar{
     display:none;
+}
 }
 
 /* ================= HEADER ================= */
@@ -94,7 +95,7 @@ body{
     flex-direction:column;       /* 🔥 */
     gap:18px;                    /* 🔥 spazio controllato */
 }
-
+}
 /* ================= TITLE ================= */
 
 .title-box{
@@ -116,8 +117,8 @@ body{
 
 .shadow-title span{
     opacity:0;
+    transition:opacity 0.6s ease;
     margin:0 6px;
-    transition:all 0.18s ease;
 }
 
 .subtitle{
@@ -609,36 +610,30 @@ const w2=document.getElementById("w2");
 const w3=document.getElementById("w3");
 const w4=document.getElementById("w4");
 
-document.addEventListener("DOMContentLoaded", function(){
+setTimeout(()=>{w1.style.opacity=1;},100);
+setTimeout(()=>{w1.style.opacity=0;},500);
 
-const letters = [
-    document.getElementById("w1"), // THIS
-    document.getElementById("w3"), // THAT
-    document.getElementById("w2"), // OR
-    document.getElementById("w4")  // ?
-];
+setTimeout(()=>{w3.style.opacity=1;},650);
+setTimeout(()=>{w3.style.opacity=0;},1100);
 
-letters.forEach((el, index) => {
+setTimeout(()=>{w2.style.opacity=1;},1250);
+setTimeout(()=>{w2.style.opacity=0;},1600);
 
-    setTimeout(() => {
-        el.style.opacity = 1;
-        el.style.transform = "scale(1.15)";
-        el.style.textShadow = "0 0 18px #2ecc71";
-    }, index * 200);
+setTimeout(()=>{w4.style.opacity=1;},1750);
+setTimeout(()=>{w4.style.opacity=0;},2100);
 
-    setTimeout(() => {
-        el.style.transform = "scale(1)";
-        el.style.textShadow = "0 0 6px rgba(46,204,113,0.4)";
-    }, index * 200 + 180);
-
-});
-
-// Subtitle appare dopo sequenza
 setTimeout(()=>{
-    document.querySelector(".subtitle").style.opacity = 0.8;
-}, 900);
+    w1.style.opacity=1;
+    w2.style.opacity=1;
+    w3.style.opacity=1;
+    w4.style.opacity=1;
+},2300);
 
 });
+
+setTimeout(()=>{
+    document.querySelector(".subtitle").style.opacity = 0.7;
+},2600);
 
 /* Audio */
 const audioCtx=new (window.AudioContext||window.webkitAudioContext)();
