@@ -434,11 +434,7 @@ button{
 /* ================= OVERLAY XI ================= */
 
 .xi-overlay{
-    position:fixed;
-    inset:0;
     display:none;
-    z-index:5000;
-    pointer-events:none; /* non interferisce */
 }
 
 .xi-overlay-content{
@@ -1127,12 +1123,12 @@ creaLinea(xiFinale.filter(g => g.ruolo === "P"));
 
 score.textContent = "Punteggio Totale XI: " + totale;
 
-overlay.style.display = "flex"; // 🔥 mostriamo overlay
+document.querySelector(".xi-overlay-content").style.display = "block";
 // Mostriamo overlay
 }
 
 function chiudiXI(){
-    document.getElementById("xiOverlay").style.display = "none";
+    document.querySelector(".xi-overlay-content").style.display = "none";
 }
 
 function apriPanchina(){
