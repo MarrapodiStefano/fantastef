@@ -951,7 +951,13 @@ async function openDuello(){
 }
 
 function closeDuello(){
-    document.getElementById("duelloOverlay").classList.remove("active");
+
+    document.getElementById("duelloOverlay")
+        .classList.remove("active");
+
+    // 🔥 Nasconde il pulsante analisi
+    document.getElementById("analisiContainer")
+        .innerHTML = "";
 }
 
 function openHome(){
