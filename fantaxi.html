@@ -1013,6 +1013,60 @@ document.getElementById("nomeNuovaRosa").addEventListener("blur", function(){
     }, 100);
 });
 
+// ================= MODULI CONSENTITI =================
+
+const moduliConsentiti = [
+    "3-4-3",
+    "3-5-2",
+    "4-4-2",
+    "4-3-3",
+    "4-5-1",
+    "5-3-2",
+    "5-4-1"
+];
+
+function scegliModuloMigliore(rosa){
+
+    let migliorModulo = null;
+    let migliorPunteggio = -1;
+
+    moduliConsentiti.forEach(modulo => {
+
+        const [dif, cen, att] = modulo.split("-").map(Number);
+
+        // Verifica se la rosa ha abbastanza giocatori
+        if(
+            rosa.giocatori.D.length >= dif &&
+            rosa.giocatori.C.length >= cen &&
+            rosa.giocatori.A.length >= att
+        ){
+
+            let punteggio = 0;
+
+            // Sommiamo i migliori per ruolo
+            punteggio += rosa.giocatori.D.slice(0, dif)
+                .reduce((acc, g) => acc + (Number(g.voto_algoritmo) || 0), 0);
+
+            punteggio += rosa.giocatori.C.slice(0, cen)
+                .reduce((acc, g) => acc + (Number(g.voto_algoritmo) || 0), 0);
+
+            punteggio += rosa.giocatori.A.slice(0, att)
+                .reduce((acc, g) => acc + (Number(g.voto_algoritmo) || 0), 0);
+
+            // Portiere sempre 1
+            punteggio += Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
+
+            if(punteggio > migliorPunteggio){
+                migliorPunteggio = punteggio;
+                migliorModulo = modulo;
+            }
+        }
+
+    });
+
+    return migliorModulo;
+}
+
 function generaXI(){
 
     // Recuperiamo i dati salvati nel localStorage
@@ -1082,24 +1136,26 @@ localStorage.setItem("fantaXI", JSON.stringify(dati));
 
 let xiFinale = [];
 
-// ================= PORTIERE =================
+const moduloScelto = scegliModuloMigliore(rosa);
 
+if(!moduloScelto){
+    alert("Nessun modulo possibile con la rosa attuale.");
+    return;
+}
+
+const [dif, cen, att] = moduloScelto.split("-").map(Number);
+
+// Portiere
 xiFinale.push(rosa.giocatori.P[0]);
-// Prendiamo il primo portiere (già il migliore perché ordinato)
 
-// ================= DIFENSORI =================
+// Difensori
+xiFinale.push(...rosa.giocatori.D.slice(0, dif));
 
-xiFinale.push(...rosa.giocatori.D.slice(0,3));
-// slice(0,3) prende i primi 3 difensori migliori
+// Centrocampisti
+xiFinale.push(...rosa.giocatori.C.slice(0, cen));
 
-// ================= CENTROCAMPISTI =================
-
-xiFinale.push(...rosa.giocatori.C.slice(0,3));
-// Prendiamo i primi 3 centrocampisti migliori
-
-// ================= ATTACCANTE =================
-
-xiFinale.push(rosa.giocatori.A[0]);
+// Attaccanti
+xiFinale.push(...rosa.giocatori.A.slice(0, att));
 
 window.titolariCorrenti = xiFinale.map(g => g.id);
 
@@ -1161,9 +1217,16 @@ else{
 
 // Creiamo linee campo (attacco → centro → difesa → porta)
 
+// Attacco
 creaLinea(xiFinale.filter(g => g.ruolo === "A"));
+
+// Centrocampo
 creaLinea(xiFinale.filter(g => g.ruolo === "C"));
+
+// Difesa
 creaLinea(xiFinale.filter(g => g.ruolo === "D"));
+
+// Portiere
 creaLinea(xiFinale.filter(g => g.ruolo === "P"));
 
 score.textContent = "Punteggio Totale XI: " + totale;
