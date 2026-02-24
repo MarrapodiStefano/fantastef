@@ -435,26 +435,28 @@ button{
 
 .xi-overlay{
     position:fixed;
+    inset:0;
+    display:none;
+    z-index:5000;
+    pointer-events:none; /* non interferisce */
+}
 
-    top:80px;   /* sotto header */
+.xi-overlay-content{
+    position:fixed;
+
+    top:90px;   /* distanza dal header */
     left:50%;
     transform:translateX(-50%);
 
     width:100%;
-    max-width:360px; /* stessa dimensione campo */
-
-    display:none;
-    justify-content:center;
-    z-index:5000;
-}
-
-.xi-overlay-content{
-    position:relative;        /* 🔥 necessario per posizionamenti assoluti */
-    width:100%;
+    max-width:360px;
     aspect-ratio: 9 / 16;
+
     border-radius:30px;
     overflow:hidden;
-    padding:0;                /* 🔥 togliamo padding */
+    padding:0;
+
+    z-index:6000;
 }
 
 /* IMMAGINE  */
