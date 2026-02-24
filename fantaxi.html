@@ -434,25 +434,23 @@ button{
 /* ================= OVERLAY XI ================= */
 
 .xi-overlay{
+    position:fixed;
+    inset:0;
     display:none;
+    justify-content:center;
+    align-items:flex-start; /* non centra verticalmente */
+    padding-top:90px;       /* distanza dal header */
+    z-index:5000;
 }
 
 .xi-overlay-content{
-    position:fixed;
-
-    top:90px;   /* distanza dal header */
-    left:50%;
-    transform:translateX(-50%);
-
+    position:relative;   /* NON fixed */
     width:100%;
     max-width:360px;
     aspect-ratio: 9 / 16;
-
     border-radius:30px;
     overflow:hidden;
     padding:0;
-
-    z-index:6000;
 }
 
 /* IMMAGINE  */
@@ -1128,7 +1126,7 @@ document.querySelector(".xi-overlay-content").style.display = "block";
 }
 
 function chiudiXI(){
-    document.querySelector(".xi-overlay-content").style.display = "none";
+    document.getElementById("xiOverlay").style.display = "none";
 }
 
 function apriPanchina(){
