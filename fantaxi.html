@@ -422,12 +422,12 @@ button{
 
 /* SOLO GIOCATORI NELL'OVERLAY CAMPO */
 .xi-overlay .xi-player{
+    position:relative;
+
     display:flex;
     align-items:center;
-    justify-content:flex-start;
 
-    position:relative;
-    padding-right:40px; /* spazio per la pill */
+    padding-right:36px; /* spazio tecnico per la pill */
 }
 
 .xi-name{
@@ -436,29 +436,32 @@ button{
 
 .xi-voto{
     position:absolute;
-    right:8px;
+    right:4px;  /* più vicino al bordo */
+    top:50%;
+    transform:translateY(-50%);
 
     font-size:10px;
     font-weight:700;
 
     padding:2px 7px;
-    border-radius:10px;
+    border-radius:9px;
 
-    color:white;
     min-width:28px;
     text-align:center;
+    
+    color:#0f1f2f;
 }
 
 .voto-top{
-    background:#4cd964; /* verde chiaro */
+    background:#6ee7a2; /* verde più soft */
 }
 
 .voto-buono{
-    background:#ffb74d; /* arancio chiaro */
+    background:#ffcc80; /* arancio soft */
 }
 
 .voto-rischio{
-    background:#ff6b6b; /* rosso chiaro */
+    background:#ff8a80; /* rosso soft */
 }
 
 .xi-score{
