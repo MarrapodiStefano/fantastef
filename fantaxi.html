@@ -1134,14 +1134,11 @@ localStorage.setItem("fantaXI", JSON.stringify(dati));
 
 let xiFinale = [];
 
-const moduloScelto = scegliModuloMigliore(rosa);
+// MODULO DEFAULT 3-4-3
 
-if(!moduloScelto){
-    alert("Nessun modulo possibile con la rosa attuale.");
-    return;
-}
-
-const [dif, cen, att] = moduloScelto.split("-").map(Number);
+const dif = 3;
+const cen = 4;
+const att = 3;
 
 // Portiere
 xiFinale.push(rosa.giocatori.P[0]);
