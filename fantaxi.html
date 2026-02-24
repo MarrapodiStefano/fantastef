@@ -1027,29 +1027,22 @@ const moduliConsentiti = [
 
 function scegliModuloMigliore(rosa){
 
-console.log("D:", rosa.giocatori.D.length);
-console.log("C:", rosa.giocatori.C.length);
-console.log("A:", rosa.giocatori.A.length);
-
     let migliorModulo = null;
     let migliorPunteggio = -1;
 
-moduliConsentiti.forEach(modulo => {
+    moduliConsentiti.forEach(modulo => {
 
-    console.log("Test modulo:", modulo);
-    
         const [dif, cen, att] = modulo.split("-").map(Number);
 
-        // Verifica se la rosa ha abbastanza giocatori
         if(
             rosa.giocatori.D.length >= dif &&
             rosa.giocatori.C.length >= cen &&
-            rosa.giocatori.A.length >= att
+            rosa.giocatori.A.length >= att &&
+            rosa.giocatori.P.length > 0
         ){
 
             let punteggio = 0;
 
-            // Sommiamo i migliori per ruolo
             punteggio += rosa.giocatori.D.slice(0, dif)
                 .reduce((acc, g) => acc + (Number(g.voto_algoritmo) || 0), 0);
 
@@ -1059,9 +1052,17 @@ moduliConsentiti.forEach(modulo => {
             punteggio += rosa.giocatori.A.slice(0, att)
                 .reduce((acc, g) => acc + (Number(g.voto_algoritmo) || 0), 0);
 
-            // Portiere sempre 1
-            if(rosa.giocatori.P.length > 0){
-    punteggio += Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
+            punteggio += Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
+
+            if(punteggio > migliorPunteggio){
+                migliorPunteggio = punteggio;
+                migliorModulo = modulo;
+            }
+        }
+
+    });
+
+    return migliorModulo;
 }
 
             if(punteggio > migliorPunteggio){
