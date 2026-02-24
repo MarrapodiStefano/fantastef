@@ -414,84 +414,29 @@ button{
 
 .xi-player{
     background:#1c2a38;
-    padding:6px 12px;
-    border-radius:20px;
-    font-size:13px;
-    color:white;
+    padding:6px 10px;
+    border-radius:14px;
+    font-size:12px;
+    text-align:center;
 }
 
 /* SOLO GIOCATORI NELL'OVERLAY CAMPO */
 .xi-overlay .xi-player{
-    position:relative;
     display:flex;
-    align-items:center;
-    justify-content:flex-start;
-
-    padding:8px 42px 8px 14px; /* spazio a destra per pill */
-    border-radius:22px;
-
-    background:#1c2a38;
-    color:white;
-}
-
-.xi-name{
-    font-size:13px;
-    font-weight:500;
-    color:white;
-}
-
-.xi-overlay .xi-player{
-    display:flex;
-    align-items:center;
     justify-content:space-between;
-    padding-right:0;
-    overflow:hidden;
+    align-items:center;
+    min-width:90px;
 }
 
 .xi-name{
-    padding:6px 12px;
+    font-size:12px;
 }
 
 .xi-voto{
-    position:absolute;
-    right:8px;
-    top:50%;
-    transform:translateY(-50%);
-
-    padding:4px 9px;
-    border-radius:12px;
-
     font-size:11px;
     font-weight:700;
-
-    color:#0f1f2f;
-}
-
-.voto-top .xi-voto{
-    background:#6ee7a2;
-}
-
-.voto-buono .xi-voto{
-    background:#ffcc80;
-}
-
-.voto-rischio .xi-voto{
-    background:#ff8a80;
-}
-
-.xi-voto{
-    position:absolute;
-    right:8px;
-    top:50%;
-    transform:translateY(-50%);
-    
-    padding:3px 8px;
-    border-radius:10px;
-
-    font-size:11px;
-    font-weight:700;
-
-    color:#1c2a38;
+    color:#2ecc71;
+    margin-left:8px;
 }
 
 .xi-score{
@@ -560,7 +505,6 @@ button{
 .xi-overlay-score{
     display:none;
 }
-
 
 .xi-close-btn{
     position:absolute;
@@ -1150,35 +1094,21 @@ function creaLinea(array){
 
     array.forEach(g => {
 
-    const div = document.createElement("div");
+        const div = document.createElement("div");
 
-    div.className = "xi-player " + g.ruolo;
+        div.className = "xi-player " + g.ruolo;
+        // 🔥 manteniamo colori ruolo
 
-    const voto = Number(g.voto_algoritmo) || 0;
+        div.innerHTML = `
+    <span class="xi-name">${g.nome}</span>
+    <span class="xi-voto">${Number(g.voto_algoritmo).toFixed(1)}</span>
+`;
 
-    let coloreClasse = "";
+        linea.appendChild(div);
 
-    if(voto >= 8){
-        coloreClasse = "voto-top";
-    }
-    else if(voto >= 6.5){
-        coloreClasse = "voto-buono";
-    }
-    else{
-        coloreClasse = "voto-rischio";
-    }
+        totale += Number(g.voto_algoritmo) || 0;
 
-    div.classList.add(coloreClasse);
-
-    div.innerHTML = `
-        <span class="xi-name">${g.nome}</span>
-        <span class="xi-voto">${voto.toFixed(1)}</span>
-    `;
-
-    linea.appendChild(div);
-
-    totale += voto;
-});
+    });
 
     field.appendChild(linea);
 }
