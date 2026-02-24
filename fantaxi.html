@@ -1027,10 +1027,20 @@ const moduliConsentiti = [
 
 function scegliModuloMigliore(rosa){
 
+console.log("D:", rosa.giocatori.D.length);
+console.log("C:", rosa.giocatori.C.length);
+console.log("A:", rosa.giocatori.A.length);
+
     let migliorModulo = null;
     let migliorPunteggio = -1;
 
-    moduliConsentiti.forEach(modulo => {
+moduliConsentiti.forEach(modulo => {
+
+    console.log("Test modulo:", modulo);
+
+    const [dif, cen, att] = modulo.split("-").map(Number);
+        
+        
 
         const [dif, cen, att] = modulo.split("-").map(Number);
 
