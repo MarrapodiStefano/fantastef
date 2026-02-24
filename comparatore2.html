@@ -16,15 +16,14 @@
 }
 
 html, body{
-    width:100%;
-    overflow-x:hidden;
+    height:100%;
+    overflow:hidden;   /* 🔥 BLOCCA SCROLL VERTICALE */
 }
 
 body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     background:url("stadium-bg.png") center center / cover no-repeat;
     color:white;
-    min-height:100vh;
 }
 
 /* ================= WRAPPER ================= */
@@ -32,7 +31,9 @@ body{
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-    padding:120px 20px 170px 20px;
+
+    height:100dvh;              /* 🔥 altezza viewport reale */
+    padding:120px 20px 90px 20px; /* meno spazio sotto */
 }
 
 /* ================= HEADER ================= */
