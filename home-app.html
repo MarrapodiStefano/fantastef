@@ -15,11 +15,15 @@
     box-sizing:border-box;
 }
 
+html, body{
+    height:100%;
+    overflow:hidden;   /* 🔥 BLOCCA SCROLL VERTICALE */
+}
+
 body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     background:url("stadium-bg.png") center center / cover no-repeat;
     color:white;
-    min-height:100vh;   /* AGGIUNGI QUESTA RIGA */
 }
 
 /* ================= WRAPPER ================= */
@@ -27,7 +31,9 @@ body{
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-    padding:100px 20px 140px 20px; /* compensazione header */
+
+    height:100dvh;              /* 🔥 altezza fissa viewport */
+    padding:100px 20px 90px 20px; /* meno spazio sotto */
 }
 
 /* ================= HEADER ================= */
