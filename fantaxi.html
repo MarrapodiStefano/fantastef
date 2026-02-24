@@ -421,10 +421,13 @@ button{
 }
 
 .xi-overlay .xi-player{
+    position:absolute;
+    transform:translate(-50%, -50%);
     display:flex;
-    align-items:stretch;  /* stessa altezza */
-    min-width:90px;
-    padding:0;           /* togliamo padding */
+    align-items:center;
+    min-width:80px;
+    max-width:95px;
+    padding:0;
     overflow:hidden;
 }
 
@@ -518,17 +521,9 @@ button{
 
 
 .xi-field{
-    display:flex;
-    flex-direction:column;
-    gap:22px;        /* meno spazio tra linee */
-    margin-top:55px;
-    margin-bottom:15px;
-}
-
-.xi-line{
-    display:flex;
-    justify-content:center;
-    gap:12px;
+    position:relative;
+    width:100%;
+    height:75%;
 }
 
 .xi-overlay-score{
@@ -1169,65 +1164,59 @@ field.innerHTML = "";
 
 let totale = 0;
 
-// Funzione per creare una linea del campo
-function creaLinea(array){
+function posizionaGiocatori(array, topPercent){
 
-    const linea = document.createElement("div");
-    linea.className = "xi-line";
+    const spacing = 100 / (array.length + 1);
 
-    array.forEach(g => {
+    array.forEach((g, index) => {
 
         const div = document.createElement("div");
-
         div.className = "xi-player " + g.ruolo;
-        
+
         const voto = Number(g.voto_algoritmo) || 0;
 
-let classeVoto = "";
-
-if(voto >= 8){
-    classeVoto = "voto-top";
-}
-else if(voto >= 6.5){
-    classeVoto = "voto-buono";
-}
-else{
-    classeVoto = "voto-rischio";
-}
-        // 🔥 manteniamo colori ruolo
+        let classeVoto = "";
+        if(voto >= 8) classeVoto = "voto-top";
+        else if(voto >= 6.5) classeVoto = "voto-buono";
+        else classeVoto = "voto-rischio";
 
         div.innerHTML = `
-    <span class="xi-name">${g.nome}</span>
-    <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
-`;
+            <span class="xi-name">${g.nome}</span>
+            <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
+        `;
 
-        linea.appendChild(div);
+        div.style.top = topPercent + "%";
+        div.style.left = spacing * (index + 1) + "%";
 
-        totale += Number(g.voto_algoritmo) || 0;
+        field.appendChild(div);
 
+        totale += voto;
     });
-
-    field.appendChild(linea);
 }
 
-// Creiamo linee campo (attacco → centro → difesa → porta)
+// ATTACCO
+posizionaGiocatori(
+    xiFinale.filter(g => g.ruolo === "A"),
+    25
+);
 
-// Attacco
-creaLinea(xiFinale.filter(g => g.ruolo === "A"));
+// CENTROCAMPO
+posizionaGiocatori(
+    xiFinale.filter(g => g.ruolo === "C"),
+    45
+);
 
-// Centrocampo
-creaLinea(xiFinale.filter(g => g.ruolo === "C"));
+// DIFESA
+posizionaGiocatori(
+    xiFinale.filter(g => g.ruolo === "D"),
+    65
+);
 
-// Difesa
-creaLinea(xiFinale.filter(g => g.ruolo === "D"));
-
-// Portiere
-creaLinea(xiFinale.filter(g => g.ruolo === "P"));
-
-score.textContent = "Punteggio Totale XI: " + totale;
-
-overlay.style.display = "flex";
-}
+// PORTIERE
+posizionaGiocatori(
+    xiFinale.filter(g => g.ruolo === "P"),
+    
+);
 
 function chiudiXI(){
     document.getElementById("xiOverlay").style.display = "none";
