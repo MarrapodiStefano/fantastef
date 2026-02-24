@@ -31,15 +31,14 @@ body{
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-
     height:100dvh;
-
     padding:100px 20px 90px 20px;
-
-    overflow-y:auto;        /* 🔥 SOLO QUI si può scrollare */
-    .main-wrapper::-webkit-scrollbar{
-    display:none;
+    overflow-y:auto;
 }
+
+/* 🔥 fuori dal blocco */
+.main-wrapper::-webkit-scrollbar{
+    display:none;
 }
 
 /* ================= HEADER ================= */
@@ -95,7 +94,7 @@ body{
     flex-direction:column;       /* 🔥 */
     gap:18px;                    /* 🔥 spazio controllato */
 }
-}
+
 /* ================= TITLE ================= */
 
 .title-box{
