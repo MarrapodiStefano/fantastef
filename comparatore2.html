@@ -17,7 +17,7 @@
 
 html, body{
     height:100%;
-    overflow:hidden;   /* 🔥 BLOCCA SCROLL VERTICALE */
+    overflow-x:hidden;   /* solo orizzontale */
 }
 
 body{
@@ -31,9 +31,9 @@ body{
 .main-wrapper{
     max-width:1750px;
     margin:auto;
-    height:100dvh;
+
+    min-height:100vh;   /* 🔥 NON height */
     padding:100px 20px 90px 20px;
-    overflow-y:auto;
 }
 
 /* 🔥 fuori dal blocco */
