@@ -421,24 +421,31 @@ button{
 }
 
 .xi-overlay .xi-player{
-    position:relative;
     display:flex;
-    align-items:center;
-    justify-content:flex-start;
+    align-items:stretch;  /* stessa altezza */
     min-width:90px;
-    padding:6px 42px 6px 10px; /* spazio a destra per la micro pillow */
+    padding:0;           /* togliamo padding */
     overflow:hidden;
 }
 
 .xi-name{
+    flex:1;
+    display:flex;
+    align-items:center;
+    padding:6px 12px;
     font-size:12px;
 }
 
 .xi-voto{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 12px;
     font-size:11px;
     font-weight:700;
-    color:#2ecc71;
-    margin-left:8px;
+    border-top-right-radius:14px;
+    border-bottom-right-radius:14px;
+    color:#0f1f2f;
 }
 
 /* ===== MICRO PILLOW VOTO ===== */
