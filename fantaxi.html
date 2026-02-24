@@ -423,9 +423,11 @@ button{
 /* SOLO GIOCATORI NELL'OVERLAY CAMPO */
 .xi-overlay .xi-player{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    min-width:90px;
+    justify-content:flex-start;
+
+    position:relative;
+    padding-right:40px; /* spazio per la pill */
 }
 
 .xi-name{
@@ -433,24 +435,30 @@ button{
 }
 
 .xi-voto{
-    font-size:11px;
+    position:absolute;
+    right:8px;
+
+    font-size:10px;
     font-weight:700;
 
-    padding:3px 8px;
-    border-radius:12px;
+    padding:2px 7px;
+    border-radius:10px;
 
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(4px);
+    color:white;
+    min-width:28px;
+    text-align:center;
+}
 
-    color:#2ecc71;
+.voto-top{
+    background:#4cd964; /* verde chiaro */
+}
 
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
+.voto-buono{
+    background:#ffb74d; /* arancio chiaro */
+}
 
-    min-width:32px;
-    
-    box-shadow:0 0 6px rgba(46,204,113,0.4);
+.voto-rischio{
+    background:#ff6b6b; /* rosso chiaro */
 }
 
 .xi-score{
@@ -1113,9 +1121,25 @@ function creaLinea(array){
         div.className = "xi-player " + g.ruolo;
         // 🔥 manteniamo colori ruolo
 
-        div.innerHTML = `
+        const voto = Number(g.voto_algoritmo) || 0;
+
+let coloreClasse = "";
+
+if(voto >= 8){
+    coloreClasse = "voto-top";
+}
+else if(voto >= 6.5){
+    coloreClasse = "voto-buono";
+}
+else{
+    coloreClasse = "voto-rischio";
+}
+
+div.innerHTML = `
     <span class="xi-name">${g.nome}</span>
-    <span class="xi-voto">${Number(g.voto_algoritmo).toFixed(1)}</span>
+    <span class="xi-voto ${coloreClasse}">
+        ${voto.toFixed(1)}
+    </span>
 `;
 
         linea.appendChild(div);
