@@ -1215,8 +1215,14 @@ posizionaGiocatori(
 // PORTIERE
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "P"),
-    
+    82
 );
+
+score.textContent = "Punteggio Totale XI: " + totale;
+
+overlay.style.display = "flex";
+
+}
 
 function chiudiXI(){
     document.getElementById("xiOverlay").style.display = "none";
