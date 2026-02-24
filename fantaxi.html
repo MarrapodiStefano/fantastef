@@ -435,18 +435,22 @@ button{
 
 .xi-overlay{
     position:fixed;
-    inset:0;
-    background:transparent;
+
+    top:80px;   /* sotto header */
+    left:50%;
+    transform:translateX(-50%);
+
+    width:100%;
+    max-width:360px; /* stessa dimensione campo */
+
     display:none;
     justify-content:center;
-    align-items:center;
     z-index:5000;
 }
 
 .xi-overlay-content{
     position:relative;        /* 🔥 necessario per posizionamenti assoluti */
     width:100%;
-    max-width:360px;
     aspect-ratio: 9 / 16;
     border-radius:30px;
     overflow:hidden;
