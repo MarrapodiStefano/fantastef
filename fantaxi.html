@@ -1054,7 +1054,9 @@ function scegliModuloMigliore(rosa){
                 .reduce((acc, g) => acc + (Number(g.voto_algoritmo) || 0), 0);
 
             // Portiere sempre 1
-            punteggio += Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
+            if(rosa.giocatori.P.length > 0){
+    punteggio += Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
+}
 
             if(punteggio > migliorPunteggio){
                 migliorPunteggio = punteggio;
