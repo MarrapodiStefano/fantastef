@@ -423,11 +423,10 @@ button{
 /* SOLO GIOCATORI NELL'OVERLAY CAMPO */
 .xi-overlay .xi-player{
     position:relative;
-
     display:flex;
     align-items:center;
-
-    padding-right:36px; /* spazio tecnico per la pill */
+    padding:6px 14px;
+    overflow:hidden;
 }
 
 .xi-name{
@@ -447,18 +446,12 @@ button{
 }
 
 .xi-voto{
-    min-width:48px;
-    height:100%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    position:absolute;
+    right:10px;
+    z-index:2;
 
     font-size:12px;
     font-weight:700;
-
-    border-top-right-radius:14px;
-    border-bottom-right-radius:14px;
 
     color:#0f1f2f;
 }
@@ -540,6 +533,51 @@ button{
 
 .xi-overlay-score{
     display:none;
+}
+
+/* ===== SFUMATURA DINAMICA VOTO ===== */
+
+.voto-top::after,
+.voto-buono::after,
+.voto-rischio::after{
+    content:"";
+    position:absolute;
+    top:0;
+    right:0;
+    width:60px;
+    height:100%;
+
+    border-top-right-radius:14px;
+    border-bottom-right-radius:14px;
+
+    z-index:1;
+}
+
+.voto-top::after{
+    background:linear-gradient(
+        to left,
+        #6ee7a2 0%,
+        rgba(110,231,162,0.6) 40%,
+        rgba(110,231,162,0.0) 100%
+    );
+}
+
+.voto-buono::after{
+    background:linear-gradient(
+        to left,
+        #ffcc80 0%,
+        rgba(255,204,128,0.6) 40%,
+        rgba(255,204,128,0.0) 100%
+    );
+}
+
+.voto-rischio::after{
+    background:linear-gradient(
+        to left,
+        #ff8a80 0%,
+        rgba(255,138,128,0.6) 40%,
+        rgba(255,138,128,0.0) 100%
+    );
 }
 
 .xi-close-btn{
@@ -1151,7 +1189,8 @@ else{
 
 div.innerHTML = `
     <span class="xi-name">${g.nome}</span>
-    <span class="xi-voto ${coloreClasse}">
+    <span class="xi-voto">${voto.toFixed(1)}</span>
+`;
         ${voto.toFixed(1)}
     </span>
 `;
