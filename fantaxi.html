@@ -1252,10 +1252,10 @@ function posizionaGiocatori(array, topPercent){
             <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
         `;
 
-        const pos = preset[index];
+        const pos = preset[index] || { left: 50, offset: 0 };
 
-        div.style.top = (topPercent + pos.offset) + "%";
-        div.style.left = pos.left + "%";
+div.style.top = (topPercent + (pos.offset || 0)) + "%";
+div.style.left = (pos.left || 50) + "%";
 
         field.appendChild(div);
         totale += voto;
