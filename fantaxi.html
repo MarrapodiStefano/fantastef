@@ -413,6 +413,7 @@ button{
 }
 
 .xi-player{
+    position:relative;
     background:#1c2a38;
     border-radius:12px;
     font-size:11px;
@@ -449,12 +450,14 @@ button{
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+    padding-right:22px;
 }
 
 .xi-voto{
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    position:absolute;
+    right:6px;      /* ← distanza dal bordo destro */
+    top:50%;
+    transform:translateY(-50%);
 
     width:18px;
     height:18px;
