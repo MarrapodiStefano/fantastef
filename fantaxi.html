@@ -879,7 +879,7 @@ function aggiornaBoxRosa(){
 
     const dati = JSON.parse(localStorage.getItem("fantaXI"));
 
-    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+    const rosa = dati.rose.find(r => Number(r.id) === Number(dati.rosaAttiva));
 
     if(!rosa){
         box.innerHTML = "Nessuna rosa selezionata";
@@ -1072,7 +1072,7 @@ function generaXI(){
 
     // Troviamo la rosa attiva
 
-    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+    const rosa = dati.rose.find(r => Number(r.id) === Number(dati.rosaAttiva));
 
     // Se non esiste rosa attiva, blocchiamo
 
@@ -1306,7 +1306,7 @@ function apriPanchina(){
     benchField.innerHTML = "";
 
     let dati = JSON.parse(localStorage.getItem("fantaXI"));
-    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+    const rosa = dati.rose.find(r => Number(r.id) === Number(dati.rosaAttiva));
 
     if(!rosa) return;
 
