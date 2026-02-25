@@ -879,7 +879,7 @@ function aggiornaBoxRosa(){
 
     const dati = JSON.parse(localStorage.getItem("fantaXI"));
 
-    const rosa = dati.rose.find(r => Number(r.id) === Number(dati.rosaAttiva));
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
 
     if(!rosa){
         box.innerHTML = "Nessuna rosa selezionata";
@@ -1006,11 +1006,15 @@ function aggiungiGiocatoreAllaRosa(giocatore){
 
 /* ===== FIX SAFARI iOS TASTIERA ===== */
 
-document.getElementById("nomeNuovaRosa").addEventListener("blur", function(){
-    setTimeout(() => {
-        window.scrollTo(0,0);
-    }, 100);
-});
+const inputNomeRosa = document.getElementById("nomeNuovaRosa");
+
+if(inputNomeRosa){
+    inputNomeRosa.addEventListener("blur", function(){
+        setTimeout(() => {
+            window.scrollTo(0,0);
+        }, 100);
+    });
+}
 
 // ================= MODULI CONSENTITI =================
 
@@ -1072,7 +1076,7 @@ function generaXI(){
 
     // Troviamo la rosa attiva
 
-    const rosa = dati.rose.find(r => Number(r.id) === Number(dati.rosaAttiva));
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
 
     // Se non esiste rosa attiva, blocchiamo
 
@@ -1306,7 +1310,7 @@ function apriPanchina(){
     benchField.innerHTML = "";
 
     let dati = JSON.parse(localStorage.getItem("fantaXI"));
-    const rosa = dati.rose.find(r => Number(r.id) === Number(dati.rosaAttiva));
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
 
     if(!rosa) return;
 
