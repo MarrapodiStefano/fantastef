@@ -1175,9 +1175,7 @@ field.innerHTML = "";
 
 let totale = 0;
 
-function posizionaGiocatori(array, topPercent){
-
-    const spacing = 100 / (array.length + 1);
+function posizionaGiocatori(array, topPercent, minX, maxX){
 
     array.forEach((g, index) => {
 
@@ -1205,7 +1203,10 @@ if(array.length > 1){
 }
 
 div.style.top = (topPercent + offset) + "%";
-        div.style.left = spacing * (index + 1) + "%";
+
+const width = maxX - minX;
+const spacing = width / (array.length + 1);
+div.style.left = (minX + spacing * (index + 1)) + "%";
 
         field.appendChild(div);
 
@@ -1216,25 +1217,33 @@ div.style.top = (topPercent + offset) + "%";
 // ATTACCO
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "A"),
-    topAtt
+    topAtt,
+    15,
+    85
 );
 
 // CENTROCAMPO
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "C"),
-    topCen
+    topCen,
+    10,
+    90
 );
 
 // DIFESA
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "D"),
-    topDif
+    topDif,
+    18,
+    82
 );
 
 // PORTIERE
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "P"),
-    topPor
+    topPor,
+    45,
+    55
 );
 
 score.textContent = "Punteggio Totale XI: " + totale;
