@@ -414,20 +414,23 @@ button{
 
 .xi-player{
     background:#1c2a38;
-    padding:6px 10px;
     border-radius:14px;
     font-size:12px;
-    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:6px 8px;
 }
 
 .xi-overlay .xi-player{
-    position:absolute;
-    transform:translate(-50%, -50%);
+    position:relative;
+    transform:none;
     display:flex;
     align-items:center;
-    width:92px;
-    height:32px;
-    padding:0;
+    justify-content:space-between;
+    padding:6px 8px;
+    border-radius:14px;
+    font-size:12px;
     overflow:hidden;
 }
 
