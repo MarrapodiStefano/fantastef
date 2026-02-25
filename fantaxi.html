@@ -519,6 +519,35 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     padding:0;
 }
 
+.xi-modulo-selector{
+    position:absolute;
+    top:15px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:8px;
+    z-index:5;
+}
+
+.xi-modulo-selector select{
+    padding:6px 10px;
+    border-radius:12px;
+    border:none;
+    background:#1c2a38;
+    color:white;
+    font-size:13px;
+}
+
+.xi-modulo-selector button{
+    padding:6px 12px;
+    border-radius:12px;
+    border:none;
+    background:linear-gradient(90deg,#2ecc71,#27ae60);
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+}
+
 /* IMMAGINE  */
 .xi-overlay-content::before{
     content:"";
@@ -1326,10 +1355,118 @@ field.appendChild(colTitolari);
 field.appendChild(colPanchina);
 
 overlay.style.display = "flex";
+
+// Popoliamo select modulo
+const selectModulo = document.getElementById("selectModuloXI");
+selectModulo.innerHTML = "";
+
+moduliConsentiti.forEach(mod => {
+    const opt = document.createElement("option");
+    opt.value = mod;
+    opt.textContent = mod;
+    selectModulo.appendChild(opt);
+});
+
+selectModulo.value = moduloScelto;
+
 }
 
 function chiudiXI(){
     document.getElementById("xiOverlay").style.display = "none";
+}
+
+function applicaModuloManuale(){
+
+    const moduloScelto = document.getElementById("selectModuloXI").value;
+
+    generaXIConModulo(moduloScelto);
+}
+
+function generaXIConModulo(moduloScelto){
+
+    let dati = JSON.parse(localStorage.getItem("fantaXI"));
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+    if(!rosa) return;
+    
+    // Ordiniamo anche qui come nella versione automatica
+["P","D","C","A"].forEach(ruolo => {
+
+    rosa.giocatori[ruolo].sort((a, b) => {
+
+        const votoA = Number(a.voto_algoritmo) || 0;
+        const votoB = Number(b.voto_algoritmo) || 0;
+
+        if(votoB !== votoA){
+            return votoB - votoA;
+        }
+
+        const avvA = Number(a.avversario) || 0;
+        const avvB = Number(b.avversario) || 0;
+
+        return avvB - avvA;
+    });
+
+});
+    
+    const [dif, cen, att] = moduloScelto.split("-").map(Number);
+
+    let xiFinale = [];
+
+    xiFinale.push(rosa.giocatori.P[0]);
+    xiFinale.push(...rosa.giocatori.D.slice(0, dif));
+    xiFinale.push(...rosa.giocatori.C.slice(0, cen));
+    xiFinale.push(...rosa.giocatori.A.slice(0, att));
+
+    const field = document.getElementById("xiField");
+    field.innerHTML = "";
+
+    const colTitolari = document.createElement("div");
+    colTitolari.className = "xi-column";
+
+    const colPanchina = document.createElement("div");
+    colPanchina.className = "xi-column";
+
+    const titoloTit = document.createElement("div");
+    titoloTit.className = "xi-column-title";
+    titoloTit.textContent = "TITOLARI";
+
+    const titoloPan = document.createElement("div");
+    titoloPan.className = "xi-column-title";
+    titoloPan.textContent = "PANCHINA";
+
+    colTitolari.appendChild(titoloTit);
+    colPanchina.appendChild(titoloPan);
+
+    function creaPill(g){
+
+        const div = document.createElement("div");
+        div.className = "xi-player " + g.ruolo;
+
+        const voto = Number(g.voto_algoritmo) || 0;
+
+        let classeVoto = "";
+        if(voto >= 8) classeVoto = "voto-top";
+        else if(voto >= 6.5) classeVoto = "voto-buono";
+        else classeVoto = "voto-rischio";
+
+        div.innerHTML = `
+            <span class="xi-name">${g.nome}</span>
+            <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
+        `;
+
+        return div;
+    }
+
+    ["P","D","C","A"].forEach(ruolo => {
+        xiFinale
+            .filter(g => g.ruolo === ruolo)
+            .forEach(g => {
+                colTitolari.appendChild(creaPill(g));
+            });
+    });
+
+    field.appendChild(colTitolari);
+    field.appendChild(colPanchina);
 }
 
 </script>
@@ -1353,6 +1490,11 @@ function chiudiXI(){
 <div id="xiOverlay" class="xi-overlay">
 
     <div class="xi-overlay-content">
+        
+        <div class="xi-modulo-selector">
+    <select id="selectModuloXI"></select>
+    <button onclick="applicaModuloManuale()">Applica</button>
+</div>
 
         <div id="xiField" class="xi-field"></div>
 
