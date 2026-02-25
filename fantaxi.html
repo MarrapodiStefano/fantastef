@@ -222,13 +222,10 @@ button{
 .rosa-box{
     background:linear-gradient(180deg,#0f1f2f,#0a1624);
     border-radius:26px;
-    padding:24px 20px 70px 20px;
-    position:relative;   /* permette al bottone di ancorarsi dentro */
+    padding:24px 20px;
     display:flex;
     flex-direction:column;
-
-    flex:1;
-    min-height:0;
+    height:100%;
 }
 
 .rosa-box h3{
@@ -259,12 +256,11 @@ button{
 
 .lista-giocatori{
     flex:1;
-    min-height:0;
     overflow-y:auto;
     margin-top:2px;
     padding-right:6px;
-    padding-bottom:80px;   /* spazio per il bottone assoluto */
 }
+
 .lista-giocatori::-webkit-scrollbar{
     width:6px;
 }
@@ -374,11 +370,10 @@ button{
 }
 
 .genera-btn{
-    position:absolute;        /* 🔥 non occupa spazio nel flusso */
     bottom:20px;              /* distanza dal fondo card */
     left:50%;                 
     transform:translateX(-50%);  /* centrato perfettamente */
-
+    margin-top:16px;
     padding:10px 22px;
     border:none;
     border-radius:18px;
