@@ -1175,7 +1175,55 @@ field.innerHTML = "";
 
 let totale = 0;
 
-function posizionaGiocatori(array, topPercent, minX, maxX){
+// ===== PRESET POSIZIONI PER NUMERO GIOCATORI =====
+
+function getPresetPositions(count){
+
+    switch(count){
+
+        case 1:
+            return [{ left: 50, offset: 0 }];
+
+        case 2:
+            return [
+                { left: 30, offset: 0 },
+                { left: 70, offset: 0 }
+            ];
+
+        case 3:
+            return [
+                { left: 20, offset: 0 },
+                { left: 50, offset: 0 },
+                { left: 80, offset: 0 }
+            ];
+
+        case 4:
+            return [
+                { left: 50, offset: -4 },
+                { left: 20, offset: 0 },
+                { left: 80, offset: 0 },
+                { left: 50, offset: 4 }
+            ];
+
+        case 5:
+            return [
+                { left: 10, offset: 0 },
+                { left: 30, offset: -3 },
+                { left: 50, offset: 3 },
+                { left: 70, offset: -3 },
+                { left: 90, offset: 0 }
+            ];
+
+        default:
+            return [];
+    }
+}
+
+// ===== NUOVO POSIZIONAMENTO PROFESSIONALE =====
+
+function posizionaGiocatori(array, topPercent){
+
+    const preset = getPresetPositions(array.length);
 
     array.forEach((g, index) => {
 
@@ -1194,24 +1242,12 @@ function posizionaGiocatori(array, topPercent, minX, maxX){
             <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
         `;
 
-        // ===== CURVATURA PARABOLICA =====
-        let offset = 0;
+        const pos = preset[index];
 
-        if(array.length > 1){
-            const center = (array.length - 1) / 2;
-            const distance = index - center;
-            offset = (distance * distance) * 2;
-        }
-
-        div.style.top = (topPercent + offset) + "%";
-
-        // ===== POSIZIONAMENTO ORIZZONTALE =====
-        const width = maxX - minX;
-        const spacing = width / (array.length + 1);
-        div.style.left = (minX + spacing * (index + 1)) + "%";
+        div.style.top = (topPercent + pos.offset) + "%";
+        div.style.left = pos.left + "%";
 
         field.appendChild(div);
-
         totale += voto;
 
     });
@@ -1221,33 +1257,25 @@ function posizionaGiocatori(array, topPercent, minX, maxX){
 // ATTACCO
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "A"),
-    topAtt,
-    5,
-    95
+    topAtt
 );
 
 // CENTROCAMPO
 posizionaGiocatori(
-    xiFinale.filter(g => g.ruolo === "C"),
-    topCen,
-    3,
-    97
+    xiFinale.filter(g => g.ruolo === "A"),
+    topAtt
 );
 
 // DIFESA
 posizionaGiocatori(
-    xiFinale.filter(g => g.ruolo === "D"),
-    topDif,
-    8,
-    92
+    xiFinale.filter(g => g.ruolo === "A"),
+    topAtt
 );
 
 // PORTIERE
 posizionaGiocatori(
-    xiFinale.filter(g => g.ruolo === "P"),
-    topPor,
-    45,
-    55
+    xiFinale.filter(g => g.ruolo === "A"),
+    topAtt
 );
 
 score.textContent = "Punteggio Totale XI: " + totale;
