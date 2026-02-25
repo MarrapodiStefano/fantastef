@@ -1232,6 +1232,9 @@ function posizionaGiocatori(array, topPercent){
 
     const preset = getPresetPositions(array.length);
 
+    // 🔥 PROTEZIONE SICUREZZA
+    if(!preset || preset.length === 0) return;
+
     array.forEach((g, index) => {
 
         const div = document.createElement("div");
