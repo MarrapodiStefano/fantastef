@@ -1228,16 +1228,37 @@ titoloPan.textContent = "PANCHINA";
 colTitolari.appendChild(titoloTit);
 colPanchina.appendChild(titoloPan);
 
-// Calcoliamo la panchina
+// ================= PANCHINA STRATEGICA =================
+
 let panchina = [];
 
-["P","D","C","A"].forEach(ruolo => {
-    rosa.giocatori[ruolo].forEach(g => {
-        if(!xiFinale.some(t => t.id === g.id)){
-            panchina.push(g);
-        }
-    });
-});
+// 1 PORTIERE
+const portieriPanchina = rosa.giocatori.P
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,1);
+
+panchina.push(...portieriPanchina);
+
+// 2 DIFENSORI
+const difPanchina = rosa.giocatori.D
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...difPanchina);
+
+// 2 CENTROCAMPISTI
+const cenPanchina = rosa.giocatori.C
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...cenPanchina);
+
+// 2 ATTACCANTI
+const attPanchina = rosa.giocatori.A
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...attPanchina);
 
 // Funzione crea pill
 function creaPill(g){
