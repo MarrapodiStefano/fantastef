@@ -1230,10 +1230,9 @@ function getPresetPositions(count){
 
 function posizionaGiocatori(array, topPercent){
 
-    const preset = getPresetPositions(array.length);
+    if(!array || array.length === 0) return;
 
-    // 🔥 PROTEZIONE SICUREZZA
-    if(!preset || preset.length === 0) return;
+    const spacing = 100 / (array.length + 1);
 
     array.forEach((g, index) => {
 
@@ -1252,16 +1251,13 @@ function posizionaGiocatori(array, topPercent){
             <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
         `;
 
-        const pos = preset[index] || { left: 50, offset: 0 };
-
-div.style.top = (topPercent + (pos.offset || 0)) + "%";
-div.style.left = (pos.left || 50) + "%";
+        div.style.top = topPercent + "%";
+        div.style.left = spacing * (index + 1) + "%";
 
         field.appendChild(div);
         totale += voto;
 
     });
-
 }
 
 // ATTACCO
