@@ -1135,15 +1135,22 @@ let xiFinale = [];
 
 // MODULO DEFAULT 3-4-3
 
-const dif = 3;
-const cen = 4;
-const att = 3;
+// ===== SCELTA MODULO MIGLIORE =====
+
+const moduloScelto = scegliModuloMigliore(rosa);
+
+if(!moduloScelto){
+    alert("Nessun modulo compatibile con la rosa.");
+    return;
+}
+
+const [dif, cen, att] = moduloScelto.split("-").map(Number);
 
 // POSIZIONI VERTICALI DINAMICHE
 
-let topAtt = 22;
-let topCen = 42;
-let topDif = 62;
+let topAtt = 20;
+let topCen = 40;
+let topDif = 60;
 let topPor = 82;
 
 // Portiere
