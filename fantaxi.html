@@ -1406,8 +1406,9 @@ function creaPill(g){
 field.appendChild(colTitolari);
 field.appendChild(colPanchina);
 
-// ===== ANIMAZIONE STAGGER =====
+overlay.style.display = "flex";
 
+// ===== ANIMAZIONE STAGGER =====
 const allPills = field.querySelectorAll(".xi-player");
 
 allPills.forEach((pill, index) => {
@@ -1416,8 +1417,6 @@ allPills.forEach((pill, index) => {
         pill.classList.add("pill-show");
     }, index * 60);
 });
-
-overlay.style.display = "flex";
 
 // Popoliamo select modulo
 const selectModulo = document.getElementById("selectModuloXI");
