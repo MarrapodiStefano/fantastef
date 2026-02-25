@@ -1135,6 +1135,13 @@ const dif = 3;
 const cen = 4;
 const att = 3;
 
+// POSIZIONI VERTICALI DINAMICHE
+
+let topAtt = 22;
+let topCen = 42;
+let topDif = 62;
+let topPor = 82;
+
 // Portiere
 xiFinale.push(rosa.giocatori.P[0]);
 
@@ -1197,25 +1204,25 @@ function posizionaGiocatori(array, topPercent){
 // ATTACCO
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "A"),
-    25
+    topAtt
 );
 
 // CENTROCAMPO
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "C"),
-    45
+    topCen
 );
 
 // DIFESA
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "D"),
-    65
+    topDif
 );
 
 // PORTIERE
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "P"),
-    82
+    topPor
 );
 
 score.textContent = "Punteggio Totale XI: " + totale;
