@@ -1465,6 +1465,43 @@ function generaXIConModulo(moduloScelto){
             });
     });
 
+// ================= PANCHINA STRATEGICA =================
+
+let panchina = [];
+
+const portieriPanchina = rosa.giocatori.P
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,1);
+
+panchina.push(...portieriPanchina);
+
+const difPanchina = rosa.giocatori.D
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...difPanchina);
+
+const cenPanchina = rosa.giocatori.C
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...cenPanchina);
+
+const attPanchina = rosa.giocatori.A
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...attPanchina);
+
+// Ordine ruolo per panchina
+["P","D","C","A"].forEach(ruolo => {
+    panchina
+        .filter(g => g.ruolo === ruolo)
+        .forEach(g => {
+            colPanchina.appendChild(creaPill(g));
+        });
+});
+
     field.appendChild(colTitolari);
     field.appendChild(colPanchina);
 }
