@@ -428,6 +428,27 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     margin:0 auto;
 }
 
+/* ===== ANIMAZIONE COMPARSA PILL ===== */
+
+@keyframes pillReveal{
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.pill-hidden{
+    opacity:0;
+}
+
+.pill-show{
+    animation:pillReveal 0.35s ease forwards;
+}
+
 .xi-overlay .xi-player{
     position:relative;
     transform:none;
@@ -1345,7 +1366,7 @@ panchina.push(...attPanchina);
 function creaPill(g){
 
     const div = document.createElement("div");
-    div.className = "xi-player " + g.ruolo;
+    div.className = "xi-player " + g.ruolo + " pill-hidden";
 
     const voto = Number(g.voto_algoritmo) || 0;
 
@@ -1384,6 +1405,17 @@ function creaPill(g){
 
 field.appendChild(colTitolari);
 field.appendChild(colPanchina);
+
+// ===== ANIMAZIONE STAGGER =====
+
+const allPills = field.querySelectorAll(".xi-player");
+
+allPills.forEach((pill, index) => {
+    setTimeout(() => {
+        pill.classList.remove("pill-hidden");
+        pill.classList.add("pill-show");
+    }, index * 60);
+});
 
 overlay.style.display = "flex";
 
@@ -1482,7 +1514,7 @@ function generaXIConModulo(moduloScelto){
     function creaPill(g){
 
         const div = document.createElement("div");
-        div.className = "xi-player " + g.ruolo;
+        div.className = "xi-player " + g.ruolo + " pill-hidden";
 
         const voto = Number(g.voto_algoritmo) || 0;
 
@@ -1546,6 +1578,17 @@ panchina.push(...attPanchina);
 
     field.appendChild(colTitolari);
     field.appendChild(colPanchina);
+    
+    // ===== ANIMAZIONE STAGGER =====
+
+const allPills = field.querySelectorAll(".xi-player");
+
+allPills.forEach((pill, index) => {
+    setTimeout(() => {
+        pill.classList.remove("pill-hidden");
+        pill.classList.add("pill-show");
+    }, index * 60);
+});
 }
 
 </script>
