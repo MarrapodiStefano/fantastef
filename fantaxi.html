@@ -1269,20 +1269,20 @@ posizionaGiocatori(
 
 // CENTROCAMPO
 posizionaGiocatori(
-    xiFinale.filter(g => g.ruolo === "A"),
-    topAtt
+    xiFinale.filter(g => g.ruolo === "C"),
+    topCen
 );
 
 // DIFESA
 posizionaGiocatori(
-    xiFinale.filter(g => g.ruolo === "A"),
-    topAtt
+    xiFinale.filter(g => g.ruolo === "D"),
+    topDif
 );
 
 // PORTIERE
 posizionaGiocatori(
-    xiFinale.filter(g => g.ruolo === "A"),
-    topAtt
+    xiFinale.filter(g => g.ruolo === "P"),
+    topPor
 );
 
 score.textContent = "Punteggio Totale XI: " + totale;
