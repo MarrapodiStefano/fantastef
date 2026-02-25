@@ -558,6 +558,27 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     cursor:pointer;
 }
 
+/* ===== ANIMAZIONE APPlica ===== */
+
+@keyframes pulseApply{
+    0%{
+        transform:scale(1);
+        box-shadow:0 0 0 rgba(46,204,113,0);
+    }
+    50%{
+        transform:scale(1.08);
+        box-shadow:0 0 18px rgba(46,204,113,0.8);
+    }
+    100%{
+        transform:scale(1);
+        box-shadow:0 0 0 rgba(46,204,113,0);
+    }
+}
+
+.apply-anim{
+    animation:pulseApply 0.45s ease;
+}
+
 /* IMMAGINE  */
 .xi-overlay-content::before{
     content:"";
@@ -1378,6 +1399,17 @@ moduliConsentiti.forEach(mod => {
 });
 
 selectModulo.value = moduloScelto;
+
+// Animazione quando cambia modulo
+selectModulo.addEventListener("change", function(){
+
+    const btn = document.querySelector(".xi-modulo-selector button");
+
+    btn.classList.remove("apply-anim");
+    void btn.offsetWidth; // reset animazione
+    btn.classList.add("apply-anim");
+
+});
 
 }
 
