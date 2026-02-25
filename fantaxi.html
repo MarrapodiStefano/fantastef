@@ -958,10 +958,9 @@ function creaRosa(){
     nome: nome,
 
     regole: {
-        cleanSheet: false,
-        modDifesaClassico: false,
-        modDifesa6Fasce: false
-    },
+    cleanSheet: false,
+    tipoModificatore: null // "classico" | "fasce" | null
+},
 
     giocatori: {
         P: [],
@@ -1462,16 +1461,16 @@ moduliConsentiti.forEach(mod => {
 
 selectModulo.value = moduloScelto;
 
-// Animazione quando cambia modulo
-selectModulo.addEventListener("change", function(){
+// Animazione quando cambia modulo (senza duplicare listener)
+selectModulo.onchange = function(){
 
     const btn = document.querySelector(".xi-modulo-selector button");
 
     btn.classList.remove("apply-anim");
-    void btn.offsetWidth; // reset animazione
+    void btn.offsetWidth;
     btn.classList.add("apply-anim");
 
-});
+};
 
 }
 
@@ -1704,10 +1703,6 @@ function chiudiOverlayRegole(){
         </button>
 
     </div>
-
-</div>
-
-
 
 </div>
 
