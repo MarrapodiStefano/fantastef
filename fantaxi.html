@@ -425,8 +425,8 @@ button{
     transform:translate(-50%, -50%);
     display:flex;
     align-items:center;
-    min-width:80px;
-    max-width:95px;
+    width:110px;
+    height:32px;
     padding:0;
     overflow:hidden;
 }
@@ -435,8 +435,12 @@ button{
     flex:1;
     display:flex;
     align-items:center;
-    padding:6px 12px;
-    font-size:12px;
+    justify-content:center;
+    padding:0 6px;
+    font-size:clamp(8px, 2.5vw, 12px);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .xi-voto{
@@ -1192,7 +1196,15 @@ function posizionaGiocatori(array, topPercent){
             <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
         `;
 
-        div.style.top = topPercent + "%";
+        // Sfalsamento verticale dinamico
+let offset = 0;
+
+if(array.length > 1){
+    const centerIndex = (array.length - 1) / 2;
+    offset = (index - centerIndex) * 3; 
+}
+
+div.style.top = (topPercent + offset) + "%";
         div.style.left = spacing * (index + 1) + "%";
 
         field.appendChild(div);
