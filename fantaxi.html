@@ -1194,29 +1194,28 @@ function posizionaGiocatori(array, topPercent, minX, maxX){
             <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
         `;
 
-        // Sfalsamento verticale dinamico
-       // Curvatura naturale a parabola
-let offset = 0;
+        // ===== CURVATURA PARABOLICA =====
+        let offset = 0;
 
-if(array.length > 1){
-    const center = (array.length - 1) / 2;
-    const distance = index - center;
-    offset = (distance * distance) * 2;
-}
+        if(array.length > 1){
+            const center = (array.length - 1) / 2;
+            const distance = index - center;
+            offset = (distance * distance) * 2;
+        }
 
-div.style.top = (topPercent + offset) + "%"; 
-}
+        div.style.top = (topPercent + offset) + "%";
 
-div.style.top = (topPercent + offset) + "%";
-
-const width = maxX - minX;
-const spacing = width / (array.length + 1);
-div.style.left = (minX + spacing * (index + 1)) + "%";
+        // ===== POSIZIONAMENTO ORIZZONTALE =====
+        const width = maxX - minX;
+        const spacing = width / (array.length + 1);
+        div.style.left = (minX + spacing * (index + 1)) + "%";
 
         field.appendChild(div);
 
         totale += voto;
+
     });
+
 }
 
 // ATTACCO
