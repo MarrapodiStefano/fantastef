@@ -1195,11 +1195,16 @@ function posizionaGiocatori(array, topPercent, minX, maxX){
         `;
 
         // Sfalsamento verticale dinamico
+       // Curvatura naturale a parabola
 let offset = 0;
 
 if(array.length > 1){
-    const centerIndex = (array.length - 1) / 2;
-    offset = (index - centerIndex) * 3; 
+    const center = (array.length - 1) / 2;
+    const distance = index - center;
+    offset = (distance * distance) * 2;
+}
+
+div.style.top = (topPercent + offset) + "%"; 
 }
 
 div.style.top = (topPercent + offset) + "%";
