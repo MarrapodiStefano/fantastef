@@ -520,13 +520,11 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 }
 
 .xi-modulo-selector{
-    position:absolute;
-    top:15px;
-    left:50%;
-    transform:translateX(-50%);
+    position:relative;
     display:flex;
-    gap:8px;
-    z-index:5;
+    justify-content:center;
+    gap:10px;
+    margin-top:15px;
 }
 
 .xi-modulo-selector select{
@@ -1527,13 +1525,13 @@ panchina.push(...attPanchina);
 <div id="xiOverlay" class="xi-overlay">
 
     <div class="xi-overlay-content">
+
+        <div id="xiField" class="xi-field"></div>
         
-        <div class="xi-modulo-selector">
+                <div class="xi-modulo-selector">
     <select id="selectModuloXI"></select>
     <button onclick="applicaModuloManuale()">Applica</button>
 </div>
-
-        <div id="xiField" class="xi-field"></div>
 
         <div id="xiOverlayScore" class="xi-overlay-score"></div>
 
