@@ -225,7 +225,6 @@ button{
     padding:24px 20px;
     display:flex;
     flex-direction:column;
-    height:100%;
 }
 
 .rosa-box h3{
@@ -370,13 +369,15 @@ button{
 }
 
 .genera-btn{
-    bottom:20px;              /* distanza dal fondo card */
-    left:50%;                 
-    transform:translateX(-50%);  /* centrato perfettamente */
-    margin-top:16px;
-    padding:10px 22px;
+    align-self:center;   /* centra orizzontalmente */
+    width:80%;           /* larghezza coerente con card */
+    max-width:320px;     /* evita che diventi gigante */
+    margin-top:20px;     /* distanza dalla lista */
+    margin-bottom:5px;   /* leggero distacco dal fondo */
+
+    padding:12px 0;
     border:none;
-    border-radius:18px;
+    border-radius:22px;
     background:linear-gradient(90deg,#2ecc71,#27ae60);
     font-weight:700;
     cursor:pointer;
