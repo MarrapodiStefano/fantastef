@@ -1642,6 +1642,32 @@ function apriOverlayRegole(){
     document.getElementById("overlayRegole").style.display = "flex";
 }
 
+function chiudiOverlayRegole(){
+
+    // 1️⃣ Recuperiamo dati salvati
+    const dati = JSON.parse(localStorage.getItem("fantaXI"));
+
+    // 2️⃣ Troviamo la rosa attiva
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+    if(!rosa) return;
+
+    // 3️⃣ Salviamo lo stato delle checkbox dentro la rosa
+    rosa.regole.cleanSheet =
+        document.getElementById("ruleClean").checked;
+
+    rosa.regole.modDifesaClassico =
+        document.getElementById("ruleModClassico").checked;
+
+    rosa.regole.modDifesa6Fasce =
+        document.getElementById("ruleMod6").checked;
+
+    // 4️⃣ Aggiorniamo localStorage
+    localStorage.setItem("fantaXI", JSON.stringify(dati));
+
+    // 5️⃣ Chiudiamo overlay
+    document.getElementById("overlayRegole").style.display = "none";
+}
+
 </script>
 
 <!-- ================= MODALE NUOVA ROSA ================= -->
