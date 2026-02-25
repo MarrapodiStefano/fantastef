@@ -254,8 +254,8 @@ button{
 }
 
 .lista-giocatori{
-    flex:1;
-    min-height:0;
+    flex:0 1 auto;   /* non occupa più tutto lo spazio */
+    max-height:250px; /* scroll attivo ma altezza controllata */
     overflow-y:auto;
     margin-top:2px;
     padding-right:6px;
