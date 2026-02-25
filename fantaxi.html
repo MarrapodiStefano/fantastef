@@ -425,7 +425,7 @@ button{
     transform:translate(-50%, -50%);
     display:flex;
     align-items:center;
-    width:110px;
+    width:92px;
     height:32px;
     padding:0;
     overflow:hidden;
@@ -1222,24 +1222,24 @@ function posizionaGiocatori(array, topPercent, minX, maxX){
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "A"),
     topAtt,
-    15,
-    85
+    5,
+    95
 );
 
 // CENTROCAMPO
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "C"),
     topCen,
-    10,
-    90
+    3,
+    97
 );
 
 // DIFESA
 posizionaGiocatori(
     xiFinale.filter(g => g.ruolo === "D"),
     topDif,
-    18,
-    82
+    8,
+    92
 );
 
 // PORTIERE
