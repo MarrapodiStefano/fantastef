@@ -200,11 +200,19 @@ button{
     max-width:420px;
 }
 
-.rosa-selector select,
+.rosa-selector select{
+    height:28px;
+    width:55%;
+    border-radius:12px;
+    font-size:13px;
+}
+
 .rosa-selector button{
-    height:29px;
-    border-radius:14px;
-    font-size:14px;
+    height:28px;
+    min-width:36px;
+    padding:0 10px;
+    border-radius:12px;
+    font-size:13px;
 }
 
 .rosa-selector select{
@@ -768,11 +776,18 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     <p class="fantaxi-sub">Il tuo Stratega Settimanale</p>
 
     <div class="rosa-selector">
-        <select id="selectRosa">
-            <option value="">Seleziona rosa</option>
-        </select>
-<button id="btnNuovaRosa" onclick="apriModalRosa()">Aggiungi Rosa</button>
-    </div>
+
+    <select id="selectRosa">
+        <option value="">Seleziona rosa</option>
+    </select>
+
+    <button id="btnNuovaRosa" onclick="apriModalRosa()">+</button>
+
+    <button id="btnRegole" onclick="apriOverlayRegole()" disabled>
+        Regole
+    </button>
+
+</div>
 
     <div class="rosa-box">
     <h3>La tua rosa</h3>
@@ -941,6 +956,13 @@ function creaRosa(){
     const nuovaRosa = {
     id: Date.now(),
     nome: nome,
+
+    regole: {
+        cleanSheet: false,
+        modDifesaClassico: false,
+        modDifesa6Fasce: false
+    },
+
     giocatori: {
         P: [],
         D: [],
@@ -955,6 +977,8 @@ function creaRosa(){
     localStorage.setItem("fantaXI", JSON.stringify(dati));
 
     aggiornaSelectRose();
+    
+    document.getElementById("btnRegole").disabled = false;
 
     chiudiModalRosa();
 }
@@ -979,22 +1003,29 @@ function aggiornaSelectRose(){
         select.appendChild(option);
 
     });
+// Abilita o disabilita il pulsante Regole
+        const btnRegole = document.getElementById("btnRegole");
 
+        if(dati.rosaAttiva){
+        btnRegole.disabled = false;
+        } else {
+        btnRegole.disabled = true;
+     }
 }
 
 document.getElementById("selectRosa").addEventListener("change", function(){
 
     const idSelezionato = parseInt(this.value);
-
     if(!idSelezionato) return;
 
     let dati = JSON.parse(localStorage.getItem("fantaXI"));
-
     dati.rosaAttiva = idSelezionato;
-
     localStorage.setItem("fantaXI", JSON.stringify(dati));
 
     aggiornaBoxRosa();
+
+    // 🔥 ATTIVA pulsante Regole
+    document.getElementById("btnRegole").disabled = false;
 
 });
 
@@ -1590,6 +1621,27 @@ allPills.forEach((pill, index) => {
 });
 }
 
+function apriOverlayRegole(){
+
+    // 1️⃣ Recuperiamo i dati salvati
+    const dati = JSON.parse(localStorage.getItem("fantaXI"));
+
+    // 2️⃣ Troviamo la rosa attiva
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+
+    if(!rosa) return; // sicurezza
+
+    // 3️⃣ Impostiamo i checkbox in base ai valori salvati
+    document.getElementById("ruleClean").checked = rosa.regole.cleanSheet;
+
+    document.getElementById("ruleModClassico").checked = rosa.regole.modDifesaClassico;
+
+    document.getElementById("ruleMod6").checked = rosa.regole.modDifesa6Fasce;
+
+    // 4️⃣ Mostriamo overlay
+    document.getElementById("overlayRegole").style.display = "flex";
+}
+
 </script>
 
 <!-- ================= MODALE NUOVA ROSA ================= -->
@@ -1630,6 +1682,36 @@ allPills.forEach((pill, index) => {
 </div>
 
 
+
+</div>
+
+<!-- ================= OVERLAY REGOLE LEGA ================= -->
+
+<div id="overlayRegole" class="modal-overlay">
+
+    <div class="modal-box">
+        <h3>Regole Lega</h3>
+
+        <label>
+            <input type="checkbox" id="ruleClean">
+            Clean Sheet
+        </label><br><br>
+
+        <label>
+            <input type="checkbox" id="ruleModClassico">
+            Modificatore Difesa Classico
+        </label><br><br>
+
+        <label>
+            <input type="checkbox" id="ruleMod6">
+            Modificatore Difesa 6 Fasce
+        </label><br><br>
+
+        <div class="modal-buttons">
+            <button onclick="chiudiOverlayRegole()">Chiudi</button>
+        </div>
+
+    </div>
 
 </div>
 
