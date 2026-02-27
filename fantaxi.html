@@ -953,6 +953,33 @@ function chiudiModalRosa(){
     }, 50);
 }
 
+function getDati(){
+
+    let datiRaw = localStorage.getItem("fantaXI");
+
+    if(!datiRaw){
+        return {
+            rose: [],
+            rosaAttiva: null
+        };
+    }
+
+    try{
+        const parsed = JSON.parse(datiRaw);
+
+        if(!parsed.rose) parsed.rose = [];
+        if(!("rosaAttiva" in parsed)) parsed.rosaAttiva = null;
+
+        return parsed;
+
+    }catch(e){
+        return {
+            rose: [],
+            rosaAttiva: null
+        };
+    }
+}
+
 function creaRosa(){
 
     const nome = document.getElementById("nomeNuovaRosa").value.trim();
@@ -1021,7 +1048,7 @@ function aggiornaSelectRose(){
     const select = document.getElementById("selectRosa");
     select.innerHTML = '<option value="">Seleziona rosa</option>';
 
-    const dati = JSON.parse(localStorage.getItem("fantaXI"));
+    const dati = getDati();
 
     dati.rose.forEach(rosa => {
 
@@ -1044,7 +1071,7 @@ document.getElementById("selectRosa").addEventListener("change", function(){
     const idSelezionato = parseInt(this.value);
     if(!idSelezionato) return;
 
-    let dati = JSON.parse(localStorage.getItem("fantaXI"));
+    const dati = getDati();
     dati.rosaAttiva = idSelezionato;
     localStorage.setItem("fantaXI", JSON.stringify(dati));
 
@@ -1056,7 +1083,7 @@ function aggiornaBoxRosa(){
 
     const box = document.getElementById("listaGiocatoriRosa");
 
-    const dati = JSON.parse(localStorage.getItem("fantaXI"));
+    const dati = getDati();
 
     const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
 
@@ -1148,7 +1175,7 @@ inputRicerca.addEventListener("input", function(){
 
 function aggiungiGiocatoreAllaRosa(giocatore){
 
-    let dati = JSON.parse(localStorage.getItem("fantaXI"));
+    const dati = getDati();
     const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
 
     if(!rosa) return;
@@ -1251,7 +1278,7 @@ function generaXI(){
 
     // Recuperiamo i dati salvati nel localStorage
 
-    let dati = JSON.parse(localStorage.getItem("fantaXI"));
+    const dati = getDati();
 
     // Troviamo la rosa attiva
 
@@ -1511,7 +1538,7 @@ function applicaModuloManuale(){
 
 function generaXIConModulo(moduloScelto){
 
-    let dati = JSON.parse(localStorage.getItem("fantaXI"));
+    const dati = getDati();
     const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
     if(!rosa) return;
     
