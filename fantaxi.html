@@ -24,8 +24,7 @@ body{
 
 html, body{
     height:100%;
-    overflow-x:hidden;
-    overflow-y:auto;   /* 🔥 era hidden */
+    overflow:hidden;
 }
 
 /* ================= WRAPPER ================= */
@@ -703,7 +702,7 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     position:fixed;
     inset:0;
     background:rgba(0,0,0,0.75);
-    backdrop-filter:blur(6px); /* backdrop-filter:blur(6px); */
+    backdrop-filter:blur(6px); 
     display:none;
     justify-content:center;
     align-items:flex-start;
@@ -1629,6 +1628,8 @@ function apriOverlayRegole(){
     document.getElementById("ruleMod6").checked = (tipo === "fasce");
 
     document.getElementById("overlayRegole").style.display = "flex";
+    
+    document.body.style.overflow = "hidden";
 }
 
 function chiudiOverlayRegole(){
@@ -1641,6 +1642,7 @@ function chiudiOverlayRegole(){
 
 if(!rosa){
     document.getElementById("overlayRegole").style.display = "none";
+    document.body.style.overflow = "hidden";
     return;
 }
 
