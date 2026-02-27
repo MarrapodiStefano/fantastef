@@ -1077,7 +1077,7 @@ document.getElementById("selectRosa").addEventListener("change", function(){
 
     const dati = getDati();
     dati.rosaAttiva = idSelezionato;
-    localStorage.setItem("fantaXI", JSON.stringify(dati));
+    salvaDati(dati);
 
     aggiornaBoxRosa();
 
