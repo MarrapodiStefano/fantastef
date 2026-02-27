@@ -327,6 +327,34 @@ button{
     border-left:4px solid #3498db;
 }
 
+.delete-btn{
+    margin-left:auto;
+    cursor:pointer;
+    font-size:12px;
+    opacity:0.6;
+    transition:0.2s;
+}
+
+.delete-btn:hover{
+    opacity:1;
+    color:#ff6b6b;
+}
+
+@keyframes removeFade{
+    from{
+        opacity:1;
+        transform:translateX(0);
+    }
+    to{
+        opacity:0;
+        transform:translateX(-10px);
+    }
+}
+
+.remove-anim{
+    animation:removeFade 0.25s ease forwards;
+}
+
 /* ================= COLORI RUOLO OVERLAY XI ================= */
 
 .xi-player.P{
@@ -987,6 +1015,12 @@ function getDati(){
         if(!parsed.rose) parsed.rose = [];
         if(!("rosaAttiva" in parsed)) parsed.rosaAttiva = null;
 
+parsed.rose.forEach(r => {
+    if(typeof r.sostituzioni !== "number"){
+        r.sostituzioni = 0;
+    }
+});
+
         return parsed;
 
     }catch(e){
@@ -1039,19 +1073,20 @@ function creaRosa(){
     }
 
     const nuovaRosa = {
-        id: Date.now(),
-        nome: nome,
-        regole: {
-            cleanSheet: false,
-            tipoModificatore: null
-        },
-        giocatori: {
-            P: [],
-            D: [],
-            C: [],
-            A: []
-        }
-    };
+    id: Date.now(),
+    nome: nome,
+    sostituzioni: 0,   // 🔥 nuovo contatore
+    regole: {
+        cleanSheet: false,
+        tipoModificatore: null
+    },
+    giocatori: {
+        P: [],
+        D: [],
+        C: [],
+        A: []
+    }
+};
 
     dati.rose.push(nuovaRosa);
     dati.rosaAttiva = nuovaRosa.id;
@@ -1144,13 +1179,25 @@ grid.className = "roles-grid";
 
     rosa.giocatori[ruolo].forEach(g => {
 
-        const div = document.createElement("div");
-        div.className = "player-pill " + ruolo;
-        
-        div.textContent = g.nome;
+    const div = document.createElement("div");
+    div.className = "player-pill " + ruolo;
 
-        column.appendChild(div);
-    });
+    const nomeSpan = document.createElement("span");
+    nomeSpan.textContent = g.nome;
+
+    const deleteBtn = document.createElement("span");
+    deleteBtn.textContent = "✖";
+    deleteBtn.className = "delete-btn";
+
+    deleteBtn.onclick = function(){
+        rimuoviGiocatore(g.id, ruolo);
+    };
+
+    div.appendChild(nomeSpan);
+    div.appendChild(deleteBtn);
+
+    column.appendChild(div);
+});
 
     grid.appendChild(column);
 });
@@ -1937,6 +1984,48 @@ function chiudiOverlayRegole(){
     salvaDati(dati);
 
     document.getElementById("overlayRegole").style.display = "none";
+}
+
+function rimuoviGiocatore(id, ruolo){
+
+    const dati = getDati();
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+
+    if(!rosa) return;
+
+    const totaleGiocatori =
+        rosa.giocatori.P.length +
+        rosa.giocatori.D.length +
+        rosa.giocatori.C.length +
+        rosa.giocatori.A.length;
+
+    const faseCreazione = totaleGiocatori < 11;
+
+    if(!faseCreazione && rosa.sostituzioni >= 5){
+        alert("Hai raggiunto il limite massimo di 5 sostituzioni per questa giornata.");
+        return;
+    }
+
+    // Recuperiamo la pill cliccata
+    const pill = event.target.closest(".player-pill");
+
+    if(pill){
+        pill.classList.add("remove-anim");
+    }
+
+    setTimeout(() => {
+
+        rosa.giocatori[ruolo] =
+            rosa.giocatori[ruolo].filter(g => g.id !== id);
+
+        if(!faseCreazione){
+            rosa.sostituzioni++;
+        }
+
+        salvaDati(dati);
+        aggiornaBoxRosa();
+
+    }, 250);
 }
 
 // ===== INIT PAGINA =====
