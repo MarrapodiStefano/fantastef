@@ -1673,19 +1673,16 @@ allPills.forEach((pill, index) => {
 
 function apriOverlayRegole(){
 
-    const dati = getDati();
+    const select = document.getElementById("selectRosa");
 
-    if(!dati.rose || dati.rose.length === 0){
-        alert("Crea prima una rosa.");
-        return;
-    }
-
-    if(!dati.rosaAttiva){
+    if(!select.value){
         alert("Seleziona prima una rosa.");
         return;
     }
 
-    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+    const dati = getDati();
+
+    const rosa = dati.rose.find(r => r.id === parseInt(select.value));
 
     if(!rosa){
         alert("Rosa non valida.");
