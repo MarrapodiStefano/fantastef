@@ -1322,49 +1322,47 @@ const statusPortiere = Number(rosa.giocatori.P[0].status) || 0;
 punteggio += (votoPortiere * statusPortiere);
   
 
-                // ================= MODIFICATORE DIFESA CLASSICO =================
+// ================= MODIFICATORE DIFESA CLASSICO =================
 
-            if(modClassicoAttivo && dif >= 4){
+if(modClassicoAttivo && dif >= 4){
 
-                // Portiere titolare
-                const portiere = rosa.giocatori.P[0];
+    const portiere = rosa.giocatori.P[0];
+    const difensoriModulo = rosa.giocatori.D.slice(0, dif);
 
-                // Difensori titolari del modulo corrente
-                const difensoriModulo = rosa.giocatori.D.slice(0, dif);
+    const votoPortiereAtteso = calcolaVotoAttesoDifensivo(portiere);
 
-                // Calcoliamo voto atteso portiere
-                const votoPortiereAtteso = calcolaVotoAttesoDifensivo(portiere);
+    const votiDifAttesi = difensoriModulo.map(d =>
+        calcolaVotoAttesoDifensivo(d)
+    );
 
-                // Calcoliamo voto atteso difensori
-                const votiDifAttesi = difensoriModulo.map(d =>
-                    calcolaVotoAttesoDifensivo(d)
-                );
+    votiDifAttesi.sort((a, b) => b - a);
 
-                // Ordiniamo per prendere i 3 migliori
-                votiDifAttesi.sort((a, b) => b - a);
+    const top3Dif = votiDifAttesi.slice(0, 3);
 
-                const top3Dif = votiDifAttesi.slice(0, 3);
+    const mediaMod =
+        (votoPortiereAtteso +
+         top3Dif.reduce((acc, v) => acc + v, 0)
+        ) / 4;
 
-                // Media modificatore
-                const mediaMod =
-                    (votoPortiereAtteso +
-                     top3Dif.reduce((acc, v) => acc + v, 0)
-                    ) / 4;
+    let bonus = 0;
 
-                let bonus = 0;
+    if(mediaMod >= 7){
+        bonus = 6;
+    }
+    else if(mediaMod >= 6.5){
+        bonus = 3;
+    }
+    else if(mediaMod >= 6){
+        bonus = 1;
+    }
 
-                if(mediaMod >= 7){
-                    bonus = 6;
-                }
-                else if(mediaMod >= 6.5){
-                    bonus = 3;
-                }
-                else if(mediaMod >= 6){
-                    bonus = 1;
-                }
+    punteggio += bonus;
 
-                punteggio += bonus;
-            }
+    // 🔥 PENALITÀ DIFENSORI EXTRA OLTRE IL QUARTO
+    if(dif > 4){
+        punteggio -= (dif - 4) * 1;
+    }
+}
 
             // ================= PENALITÀ COPERTURA PANCHINA =================
 
