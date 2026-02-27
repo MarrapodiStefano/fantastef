@@ -1637,7 +1637,11 @@ function chiudiOverlayRegole(){
 
     // 2️⃣ Troviamo la rosa attiva
     const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
-    if(!rosa) return;
+
+if(!rosa){
+    document.getElementById("overlayRegole").style.display = "none";
+    return;
+}
 
     // 3️⃣ Salviamo lo stato delle checkbox dentro la rosa
     rosa.regole.cleanSheet =
