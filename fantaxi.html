@@ -1296,30 +1296,34 @@ function scegliModuloMigliore(rosa){
 
             let punteggio = 0;
 
-            punteggio += rosa.giocatori.D.slice(0, dif)
-                (acc, g) => {
-    const voto = Number(g.voto_algoritmo) || 0;
-    const status = Number(g.status) || 0;
-    return acc + (voto * status);
-}
+            punteggio += rosa.giocatori.D
+    .slice(0, dif)
+    .reduce((acc, g) => {
+        const voto = Number(g.voto_algoritmo) || 0;
+        const status = Number(g.status) || 0;
+        return acc + (voto * status);
+    }, 0);
 
-            punteggio += rosa.giocatori.C.slice(0, cen)
-                (acc, g) => {
-    const voto = Number(g.voto_algoritmo) || 0;
-    const status = Number(g.status) || 0;
-    return acc + (voto * status);
-}
+punteggio += rosa.giocatori.C
+    .slice(0, cen)
+    .reduce((acc, g) => {
+        const voto = Number(g.voto_algoritmo) || 0;
+        const status = Number(g.status) || 0;
+        return acc + (voto * status);
+    }, 0);
 
-            punteggio += rosa.giocatori.A.slice(0, att)
-                (acc, g) => {
-    const voto = Number(g.voto_algoritmo) || 0;
-    const status = Number(g.status) || 0;
-    return acc + (voto * status);
+punteggio += rosa.giocatori.A
+    .slice(0, att)
+    .reduce((acc, g) => {
+        const voto = Number(g.voto_algoritmo) || 0;
+        const status = Number(g.status) || 0;
+        return acc + (voto * status);
+    }, 0);
 }
             {
-    const voto = Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
-    const status = Number(rosa.giocatori.P[0].status) || 0;
-    punteggio += (voto * status);
+    const votoPortiere = Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
+const statusPortiere = Number(rosa.giocatori.P[0].status) || 0;
+punteggio += (votoPortiere * statusPortiere);
 }
             
                 // ================= MODIFICATORE DIFESA CLASSICO =================
