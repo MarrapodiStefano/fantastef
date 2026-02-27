@@ -1591,31 +1591,36 @@ allPills.forEach((pill, index) => {
 
 function apriOverlayRegole(){
 
-    const dati = JSON.parse(localStorage.getItem("fantaXI"));
-
-    let rosa = null;
-
-    if(dati && dati.rose){
-        rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+    const datiRaw = localStorage.getItem("fantaXI");
+    if(!datiRaw){
+        alert("Crea prima una rosa.");
+        return;
     }
 
-    // Se non esiste una rosa attiva,
-    // apriamo comunque l’overlay con valori di default
-    const clean = rosa?.regole?.cleanSheet || false;
-    const tipo = rosa?.regole?.tipoModificatore || null;
+    const dati = JSON.parse(datiRaw);
 
-    document.getElementById("ruleClean").checked = clean;
-    document.getElementById("ruleModClassico").checked = (tipo === "classico");
-    document.getElementById("ruleMod6").checked = (tipo === "fasce");
+    if(!dati.rosaAttiva){
+        alert("Seleziona o crea prima una rosa.");
+        return;
+    }
+
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+
+    if(!rosa){
+        alert("Seleziona una rosa valida.");
+        return;
+    }
+
+    document.getElementById("ruleClean").checked =
+        rosa.regole.cleanSheet || false;
+
+    document.getElementById("ruleModClassico").checked =
+        rosa.regole.tipoModificatore === "classico";
+
+    document.getElementById("ruleMod6").checked =
+        rosa.regole.tipoModificatore === "fasce";
 
     document.getElementById("overlayRegole").style.display = "flex";
-    
-    const btn = document.getElementById("btnChiudiRegole");
-btn.onclick = function(e){
-    e.preventDefault();
-    chiudiOverlayRegole();
-};
-    document.body.style.overflow = "hidden";
 }
 
 function chiudiOverlayRegole(){
