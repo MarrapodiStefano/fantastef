@@ -1673,23 +1673,22 @@ allPills.forEach((pill, index) => {
 
 function apriOverlayRegole(){
 
-    const datiRaw = localStorage.getItem("fantaXI");
-    if(!datiRaw){
+    const dati = getDati();
+
+    if(!dati.rose || dati.rose.length === 0){
         alert("Crea prima una rosa.");
         return;
     }
 
-    const dati = JSON.parse(datiRaw);
-
     if(!dati.rosaAttiva){
-        alert("Seleziona o crea prima una rosa.");
+        alert("Seleziona prima una rosa.");
         return;
     }
 
     const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
 
     if(!rosa){
-        alert("Seleziona una rosa valida.");
+        alert("Rosa non valida.");
         return;
     }
 
@@ -1796,22 +1795,26 @@ function chiudiOverlayRegole(){
 
         <div class="regole-list">
 
-    <label class="regola-item">
-        <input type="checkbox" id="ruleClean">
-        Clean Sheet
-    </label>
+            <label class="regola-item">
+                <input type="checkbox" id="ruleClean">
+                Clean Sheet
+            </label>
 
-    <label class="regola-item">
-        <input type="checkbox" id="ruleModClassico">
-        Modificatore Difesa Classico
-    </label>
+            <label class="regola-item">
+                <input type="checkbox" id="ruleModClassico">
+                Modificatore Difesa Classico
+            </label>
 
-    <label class="regola-item">
-        <input type="checkbox" id="ruleMod6">
-        Modificatore Difesa 6 Fasce
-    </label>
+            <label class="regola-item">
+                <input type="checkbox" id="ruleMod6">
+                Modificatore Difesa 6 Fasce
+            </label>
 
-</div>
+        </div>
+
+        <div class="modal-buttons">
+            <button onclick="chiudiOverlayRegole()">Chiudi</button>
+        </div>
 
     </div>
 
