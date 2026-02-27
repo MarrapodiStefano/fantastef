@@ -1366,6 +1366,39 @@ function scegliModuloMigliore(rosa){
                 punteggio += bonus;
             }
 
+            // ================= PENALITÀ COPERTURA PANCHINA =================
+
+            let penalita = 0;
+
+            const ruoliModulo = {
+                D: dif,
+                C: cen,
+                A: att
+            };
+
+            Object.keys(ruoliModulo).forEach(ruolo => {
+
+                const titolari = ruoliModulo[ruolo];
+
+                const totaleRuolo = rosa.giocatori[ruolo].length;
+
+                const panchinari = totaleRuolo - titolari;
+
+                if(panchinari === 1){
+
+                    const unicoCambio = rosa.giocatori[ruolo][titolari];
+
+                    const statusCambio = Number(unicoCambio?.status) || 0;
+
+                    if(statusCambio < 0.6){
+                        penalita += 1.5; // penalità leggera ma incisiva
+                    }
+                }
+
+            });
+
+            punteggio -= penalita;
+
             if(punteggio > migliorPunteggio){
                 migliorPunteggio = punteggio;
                 migliorModulo = modulo;
