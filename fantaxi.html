@@ -1294,7 +1294,7 @@ function scegliModuloMigliore(rosa){
             punteggio += rosa.giocatori.D
     .slice(0, dif)
     .reduce((acc, g) => {
-        const voto = Number(g.voto_algoritmo) || 0;
+        const voto = calcolaVotoAttesoDifensivo(g);
         const status = Number(g.status) || 0;
         return acc + (voto * status);
     }, 0);
