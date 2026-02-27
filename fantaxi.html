@@ -1321,6 +1321,39 @@ const statusPortiere = Number(rosa.giocatori.P[0].status) || 0;
 
 punteggio += (votoPortiere * statusPortiere);
   
+// ================= PENALITÀ TITOLARI RISCHIOSI =================
+
+let penalitaRischio = 0;
+
+["D","C","A"].forEach(ruolo => {
+
+    const titolari = {D:dif, C:cen, A:att}[ruolo];
+
+    rosa.giocatori[ruolo]
+        .slice(0, titolari)
+        .forEach((g, index) => {
+
+            const status = Number(g.status) || 0;
+
+            if(status < 0.5){
+
+                const panchinaro = rosa.giocatori[ruolo][titolari];
+
+                const votoPanchina =
+                    (Number(panchinaro?.voto_algoritmo) || 0) *
+                    (Number(panchinaro?.status) || 0);
+
+                const perditaStimata =
+                    (Number(g.voto_algoritmo) * status) - votoPanchina;
+
+                penalitaRischio += Math.max(perditaStimata, 1);
+            }
+
+        });
+
+});
+
+punteggio -= penalitaRischio;
 
 // ================= MODIFICATORE DIFESA CLASSICO =================
 
