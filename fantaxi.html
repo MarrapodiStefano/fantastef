@@ -1366,33 +1366,31 @@ if(modClassicoAttivo && dif >= 4){
 
             // ================= PENALITÀ COPERTURA PANCHINA =================
 
-            let penalita = 0;
+let penalita = 0;
 
-            const ruoliModulo = {
-                D: dif,
-                C: cen,
-                A: att
-            };
+["D","C","A"].forEach(ruolo => {
 
-            Object.keys(ruoliModulo).forEach(ruolo => {
+    const titolari = {D:dif, C:cen, A:att}[ruolo];
+    const panchinari = rosa.giocatori[ruolo].slice(titolari);
 
-    const titolari = ruoliModulo[ruolo];
-    const totaleRuolo = rosa.giocatori[ruolo].length;
-    const panchinari = totaleRuolo - titolari;
-
-    // 🚨 Nessuna copertura
-    if(panchinari === 0){
-        penalita += 3;   // penalità forte
+    // 🚨 Nessuna copertura reale
+    if(panchinari.length === 0){
+        penalita += 4;
         return;
     }
 
-    // ⚠️ Una sola copertura
-    if(panchinari === 1){
+    // Calcolo indice sicurezza panchina
+    const indiceSicurezza = panchinari
+        .map(g => {
+            const voto = Number(g.voto_algoritmo) || 0;
+            const status = Number(g.status) || 0;
+            return voto * status;
+        })
+        .reduce((a,b)=>a+b,0) / panchinari.length;
 
-        const unicoCambio = rosa.giocatori[ruolo][titolari];
-        const statusCambio = Number(unicoCambio?.status) || 0;
-
-        penalita += (1 - statusCambio) * 2;
+    // Panchina debole = penalità
+    if(indiceSicurezza < 5.5){
+        penalita += 2;
     }
 
 });
