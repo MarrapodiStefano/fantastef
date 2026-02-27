@@ -1665,6 +1665,21 @@ else{
     document.getElementById("overlayRegole").style.display = "none";
 }
 
+// ===== FIX iOS SAFARI CLICK OVERLAY REGOLE =====
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    const btnChiudiRegole = document.getElementById("btnChiudiRegole");
+
+    if(btnChiudiRegole){
+        btnChiudiRegole.addEventListener("click", function(e){
+            e.preventDefault();
+            chiudiOverlayRegole();
+        });
+    }
+
+});
+
 </script>
 
 <!-- ================= MODALE NUOVA ROSA ================= -->
@@ -1727,8 +1742,8 @@ else{
         </label><br><br>
 
         <div class="modal-buttons">
-            <button onclick="chiudiOverlayRegole()">Chiudi</button>
-        </div>
+    <button id="btnChiudiRegole">Chiudi</button>
+</div>
 
     </div>
 
