@@ -1633,7 +1633,8 @@ function chiudiOverlayRegole(){
 
     const dati = JSON.parse(datiRaw);
 
-    if(!dati || !dati.rose || !dati.rosaAttiva){
+    // 🚨 BLOCCO ASSOLUTO se non esiste rosa attiva
+    if(!dati.rosaAttiva){
         document.getElementById("overlayRegole").style.display = "none";
         return;
     }
@@ -1645,7 +1646,8 @@ function chiudiOverlayRegole(){
         return;
     }
 
-    // Salvataggio sicuro
+    // Se arriviamo qui significa che la rosa esiste davvero
+
     rosa.regole.cleanSheet =
         document.getElementById("ruleClean").checked;
 
