@@ -725,6 +725,30 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     margin:auto;
 }
 
+/* ===== OVERLAY REGOLE LEGA ===== */
+
+.regole-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin:25px 0;
+    text-align:left;
+}
+
+.regola-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:15px;
+}
+
+.regola-item input[type="checkbox"]{
+    width:18px;
+    height:18px;
+    accent-color:#2ecc71;
+    cursor:pointer;
+}
+
 .modal-box h3{
     margin-bottom:15px;
 }
@@ -1733,23 +1757,23 @@ function chiudiOverlayRegole(){
     <div class="modal-box">
         <h3>Regole Lega</h3>
 
-        <label>
-            <input type="checkbox" id="ruleClean">
-            Clean Sheet
-        </label><br><br>
+        <div class="regole-list">
 
-        <label>
-            <input type="checkbox" id="ruleModClassico">
-            Modificatore Difesa Classico
-        </label><br><br>
+    <label class="regola-item">
+        <input type="checkbox" id="ruleClean">
+        Clean Sheet
+    </label>
 
-        <label>
-            <input type="checkbox" id="ruleMod6">
-            Modificatore Difesa 6 Fasce
-        </label><br><br>
+    <label class="regola-item">
+        <input type="checkbox" id="ruleModClassico">
+        Modificatore Difesa Classico
+    </label>
 
-        <div class="modal-buttons">
-    <button onclick="chiudiOverlayRegole()">Chiudi</button>
+    <label class="regola-item">
+        <input type="checkbox" id="ruleMod6">
+        Modificatore Difesa 6 Fasce
+    </label>
+
 </div>
 
     </div>
