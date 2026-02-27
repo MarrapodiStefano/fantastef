@@ -25,7 +25,7 @@ body{
 html, body{
     height:100%;
     overflow-x:hidden;
-    overflow-y:hidden;
+    overflow-y:auto;   /* 🔥 era hidden */
 }
 
 /* ================= WRAPPER ================= */
@@ -706,10 +706,11 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     backdrop-filter:blur(6px);
     display:none;
     justify-content:center;
-    align-items:flex-start;   /* <-- cambiato */
+    align-items:flex-start;
     z-index:3000;
-    padding:40px 20px;        /* leggermente più spazio sopra */
+    padding:40px 20px;
     overflow:auto;
+    touch-action: manipulation; /* 🔥 */
 }
 
 .modal-box{
