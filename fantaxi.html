@@ -1640,7 +1640,44 @@ btn.onclick = function(e){
 }
 
 function chiudiOverlayRegole(){
-    alert("FUNZIONE CHIAMATA");
+
+    const datiRaw = localStorage.getItem("fantaXI");
+    if(!datiRaw){
+        document.getElementById("overlayRegole").style.display = "none";
+        return;
+    }
+
+    const dati = JSON.parse(datiRaw);
+
+    if(!dati || !dati.rose || !dati.rosaAttiva){
+        document.getElementById("overlayRegole").style.display = "none";
+        return;
+    }
+
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+
+    if(!rosa){
+        document.getElementById("overlayRegole").style.display = "none";
+        return;
+    }
+
+    // Salvataggio sicuro
+    rosa.regole.cleanSheet =
+        document.getElementById("ruleClean").checked;
+
+    if(document.getElementById("ruleModClassico").checked){
+        rosa.regole.tipoModificatore = "classico";
+    }
+    else if(document.getElementById("ruleMod6").checked){
+        rosa.regole.tipoModificatore = "fasce";
+    }
+    else{
+        rosa.regole.tipoModificatore = null;
+    }
+
+    localStorage.setItem("fantaXI", JSON.stringify(dati));
+
+    document.getElementById("overlayRegole").style.display = "none";
 }
 
 </script>
