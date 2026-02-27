@@ -1709,12 +1709,13 @@ selectModulo.classList.add("best-modulo");
 // Animazione quando cambia modulo (senza duplicare listener)
 selectModulo.onchange = function(){
 
+    selectModulo.classList.remove("best-modulo");
+
     const btn = document.querySelector(".xi-modulo-selector button");
 
     btn.classList.remove("apply-anim");
     void btn.offsetWidth;
     btn.classList.add("apply-anim");
-
 };
 
 }
