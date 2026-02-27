@@ -570,6 +570,23 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     background-position:right 8px center;
 }
 
+.best-modulo{
+    border:2px solid #2ecc71;
+    box-shadow:0 0 12px rgba(46,204,113,0.6);
+}
+
+/* ===== Evidenzia modulo consigliato ===== */
+
+#selectModuloXI option{
+    background:#1c2a38;
+    color:white;
+}
+
+#selectModuloXI option:checked{
+    background:#2ecc71;
+    color:#0a1624;
+}
+
 .xi-modulo-selector select:focus{
     outline:none;
     box-shadow:0 0 0 2px rgba(46,204,113,0.5),
@@ -1671,13 +1688,23 @@ const selectModulo = document.getElementById("selectModuloXI");
 selectModulo.innerHTML = "";
 
 moduliConsentiti.forEach(mod => {
+
     const opt = document.createElement("option");
     opt.value = mod;
-    opt.textContent = mod;
+
+    if(mod === moduloScelto){
+        opt.textContent = mod + " ⭐ Best XI";
+    } else {
+        opt.textContent = mod;
+    }
+
     selectModulo.appendChild(opt);
+
 });
 
 selectModulo.value = moduloScelto;
+
+selectModulo.classList.add("best-modulo");
 
 // Animazione quando cambia modulo (senza duplicare listener)
 selectModulo.onchange = function(){
