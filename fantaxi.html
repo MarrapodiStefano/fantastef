@@ -1378,24 +1378,26 @@ punteggio += (votoPortiere * statusPortiere);
 
             Object.keys(ruoliModulo).forEach(ruolo => {
 
-                const titolari = ruoliModulo[ruolo];
+    const titolari = ruoliModulo[ruolo];
+    const totaleRuolo = rosa.giocatori[ruolo].length;
+    const panchinari = totaleRuolo - titolari;
 
-                const totaleRuolo = rosa.giocatori[ruolo].length;
+    // 🚨 Nessuna copertura
+    if(panchinari === 0){
+        penalita += 3;   // penalità forte
+        return;
+    }
 
-                const panchinari = totaleRuolo - titolari;
+    // ⚠️ Una sola copertura
+    if(panchinari === 1){
 
-                if(panchinari === 1){
+        const unicoCambio = rosa.giocatori[ruolo][titolari];
+        const statusCambio = Number(unicoCambio?.status) || 0;
 
-                    const unicoCambio = rosa.giocatori[ruolo][titolari];
+        penalita += (1 - statusCambio) * 2;
+    }
 
-                    const statusCambio = Number(unicoCambio?.status) || 0;
-
-                    if(statusCambio < 0.6){
-                        penalita += 1.5; // penalità leggera ma incisiva
-                    }
-                }
-
-            });
+});
 
             punteggio -= penalita;
 
