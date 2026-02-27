@@ -980,6 +980,10 @@ function getDati(){
     }
 }
 
+function salvaDati(dati){
+    localStorage.setItem("fantaXI", JSON.stringify(dati));
+}
+
 function creaRosa(){
 
     const nome = document.getElementById("nomeNuovaRosa").value.trim();
@@ -1035,7 +1039,7 @@ function creaRosa(){
     dati.rose.push(nuovaRosa);
     dati.rosaAttiva = nuovaRosa.id;
 
-    localStorage.setItem("fantaXI", JSON.stringify(dati));
+    salvaDati(dati);
 
     aggiornaSelectRose();
     aggiornaBoxRosa();
@@ -1205,7 +1209,7 @@ function aggiungiGiocatoreAllaRosa(giocatore){
 
 });
 
-    localStorage.setItem("fantaXI", JSON.stringify(dati));
+    salvaDati(dati);
 
     aggiornaBoxRosa();
 }
@@ -1334,7 +1338,7 @@ function generaXI(){
 
 });
 
-localStorage.setItem("fantaXI", JSON.stringify(dati));
+salvaDati(dati);
 // Salviamo il nuovo ordine ordinato
 
     // Se arriviamo qui significa che i vincoli sono rispettati
@@ -1739,7 +1743,7 @@ function chiudiOverlayRegole(){
         rosa.regole.tipoModificatore = null;
     }
 
-    localStorage.setItem("fantaXI", JSON.stringify(dati));
+    salvaDati(dati);
 
     document.getElementById("overlayRegole").style.display = "none";
 }
