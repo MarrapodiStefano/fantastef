@@ -901,27 +901,6 @@ fetch("giocatori_master.json")
         console.error("Errore caricamento JSON:", error);
     });
 
-/* ===== INIZIALIZZAZIONE STRUTTURA FANTAXI ===== */
-
-document.addEventListener("DOMContentLoaded", function(){
-
-    let dati = localStorage.getItem("fantaXI");
-
-    if(!dati){
-
-        const strutturaBase = {
-            rose: [],
-            rosaAttiva: null
-        };
-
-        localStorage.setItem("fantaXI", JSON.stringify(strutturaBase));
-    }
-
-    aggiornaSelectRose();
-    aggiornaBoxRosa();
-
-});
-
 /* ================= MODALE ROSA ================= */
 
 function apriModalRosa(){
@@ -1742,7 +1721,7 @@ function chiudiOverlayRegole(){
         </label><br><br>
 
         <div class="modal-buttons">
-    <button id="btnChiudiRegole">Chiudi</button>
+    <button onclick="chiudiOverlayRegole()">Chiudi</button>
 </div>
 
     </div>
