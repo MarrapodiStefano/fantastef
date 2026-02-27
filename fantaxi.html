@@ -926,30 +926,50 @@ function creaRosa(){
 
     if(nome === "") return;
 
-    let dati = JSON.parse(localStorage.getItem("fantaXI"));
+    let datiRaw = localStorage.getItem("fantaXI");
 
-    // Limite massimo 3 rose
+    // 🔥 Se localStorage è vuoto o corrotto, ricreiamo struttura base
+    if(!datiRaw){
+        datiRaw = JSON.stringify({
+            rose: [],
+            rosaAttiva: null
+        });
+    }
+
+    let dati;
+
+    try{
+        dati = JSON.parse(datiRaw);
+    }catch(e){
+        dati = {
+            rose: [],
+            rosaAttiva: null
+        };
+    }
+
+    if(!dati.rose){
+        dati.rose = [];
+    }
+
     if(dati.rose.length >= 3){
         alert("Puoi creare massimo 3 rose.");
         return;
     }
 
     const nuovaRosa = {
-    id: Date.now(),
-    nome: nome,
-
-    regole: {
-    cleanSheet: false,
-    tipoModificatore: null // "classico" | "fasce" | null
-},
-
-    giocatori: {
-        P: [],
-        D: [],
-        C: [],
-        A: []
-    }
-};
+        id: Date.now(),
+        nome: nome,
+        regole: {
+            cleanSheet: false,
+            tipoModificatore: null
+        },
+        giocatori: {
+            P: [],
+            D: [],
+            C: [],
+            A: []
+        }
+    };
 
     dati.rose.push(nuovaRosa);
     dati.rosaAttiva = nuovaRosa.id;
@@ -957,6 +977,7 @@ function creaRosa(){
     localStorage.setItem("fantaXI", JSON.stringify(dati));
 
     aggiornaSelectRose();
+    aggiornaBoxRosa();
 
     chiudiModalRosa();
 }
