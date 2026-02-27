@@ -1636,7 +1636,7 @@ function chiudiOverlayRegole(){
     const dati = JSON.parse(localStorage.getItem("fantaXI"));
 
     // 2️⃣ Troviamo la rosa attiva
-    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+    const rosa = dati.rose.find(r => Number(r.id) === Number(dati.rosaAttiva));
 
 if(!rosa){
     document.getElementById("overlayRegole").style.display = "none";
