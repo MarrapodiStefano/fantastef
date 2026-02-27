@@ -1631,6 +1631,11 @@ function apriOverlayRegole(){
 
     document.getElementById("overlayRegole").style.display = "flex";
     
+    const btn = document.getElementById("btnChiudiRegole");
+btn.onclick = function(e){
+    e.preventDefault();
+    chiudiOverlayRegole();
+};
     document.body.style.overflow = "hidden";
 }
 
@@ -1668,21 +1673,6 @@ else{
     // 5️⃣ Chiudiamo overlay
     document.getElementById("overlayRegole").style.display = "none";
 }
-
-// ===== FIX iOS SAFARI CLICK OVERLAY REGOLE =====
-
-document.addEventListener("DOMContentLoaded", function(){
-
-    const btnChiudiRegole = document.getElementById("btnChiudiRegole");
-
-    if(btnChiudiRegole){
-        btnChiudiRegole.addEventListener("click", function(e){
-            e.preventDefault();
-            chiudiOverlayRegole();
-        });
-    }
-
-});
 
 </script>
 
