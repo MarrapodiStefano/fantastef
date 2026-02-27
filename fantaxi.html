@@ -715,14 +715,16 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 .modal-box{
     width:100%;
     max-width:420px;
-    max-height:80vh;
-    overflow-y:auto;
     background:linear-gradient(180deg,#0f1f2f,#0a1624);
     border-radius:20px;
     padding:25px;
     text-align:center;
     box-shadow:0 0 30px rgba(46,204,113,0.3);
     margin:auto;
+
+    display:flex;
+    flex-direction:column;
+    max-height:80vh;
 }
 
 /* ===== OVERLAY REGOLE LEGA ===== */
@@ -750,6 +752,11 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     cursor:pointer;
     margin:0;
     flex-shrink:0;
+}
+
+.regole-list{
+    flex:1;
+    overflow-y:auto;
 }
 
 .modal-box h3{
