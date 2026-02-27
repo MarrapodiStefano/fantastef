@@ -708,13 +708,15 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     align-items:flex-start;
     z-index:3000;
     padding:40px 20px;
-    overflow:auto;
+    overflow:hidden;
     touch-action: manipulation; /* 🔥 */
 }
 
 .modal-box{
     width:100%;
     max-width:420px;
+    max-height:80vh;
+    overflow-y:auto;
     background:linear-gradient(180deg,#0f1f2f,#0a1624);
     border-radius:20px;
     padding:25px;
