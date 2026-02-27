@@ -1238,7 +1238,47 @@ const moduliConsentiti = [
     "5-4-1"
 ];
 
+// ================= VOTO ATTESO DIFENSIVO =================
+
+function calcolaVotoAttesoDifensivo(giocatore){
+
+    const votoBase = Number(giocatore.voto_algoritmo) || 0;
+
+    const avversario = Number(giocatore.avversario) || 3;
+    const offSquadra = Number(giocatore.offSquadra) || 3;
+    const motivazioni = Number(giocatore.motivazioni) || 3;
+    const cleanSheet = Number(giocatore.cleanSheet) || 0;
+
+    // PESI (li potremo modificare dopo)
+    const pesoAvversario = 0.15;
+    const pesoOffensivita = 0.10;
+    const pesoMotivazioni = 0.10;
+    const pesoCleanSheet = 0.20;
+
+    let votoAtteso = votoBase;
+
+    // Avversario forte (1) penalizza, debole (5) aiuta
+    votoAtteso += (avversario - 3) * pesoAvversario;
+
+    // Squadra offensiva aiuta il rendimento
+    votoAtteso += (offSquadra - 3) * pesoOffensivita;
+
+    // Motivazioni incidono
+    votoAtteso += (motivazioni - 3) * pesoMotivazioni;
+
+    // Clean sheet incide solo per portieri (ma non crea problemi ai difensori)
+    votoAtteso += cleanSheet * pesoCleanSheet;
+
+    return votoAtteso;
+}
+
 function scegliModuloMigliore(rosa){
+
+    // Recuperiamo le regole della rosa
+    const regole = rosa.regole || {};
+
+    // Verifichiamo se il modificatore classico è attivo
+    const modClassicoAttivo = regole.tipoModificatore === "classico";
 
     let migliorModulo = null;
     let migliorPunteggio = -1;
@@ -1266,6 +1306,50 @@ function scegliModuloMigliore(rosa){
                 .reduce((acc, g) => acc + (Number(g.voto_algoritmo) || 0), 0);
 
             punteggio += Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
+            
+                // ================= MODIFICATORE DIFESA CLASSICO =================
+
+            if(modClassicoAttivo && dif >= 4){
+
+                // Portiere titolare
+                const portiere = rosa.giocatori.P[0];
+
+                // Difensori titolari del modulo corrente
+                const difensoriModulo = rosa.giocatori.D.slice(0, dif);
+
+                // Calcoliamo voto atteso portiere
+                const votoPortiereAtteso = calcolaVotoAttesoDifensivo(portiere);
+
+                // Calcoliamo voto atteso difensori
+                const votiDifAttesi = difensoriModulo.map(d =>
+                    calcolaVotoAttesoDifensivo(d)
+                );
+
+                // Ordiniamo per prendere i 3 migliori
+                votiDifAttesi.sort((a, b) => b - a);
+
+                const top3Dif = votiDifAttesi.slice(0, 3);
+
+                // Media modificatore
+                const mediaMod =
+                    (votoPortiereAtteso +
+                     top3Dif.reduce((acc, v) => acc + v, 0)
+                    ) / 4;
+
+                let bonus = 0;
+
+                if(mediaMod >= 7){
+                    bonus = 6;
+                }
+                else if(mediaMod >= 6.5){
+                    bonus = 3;
+                }
+                else if(mediaMod >= 6){
+                    bonus = 1;
+                }
+
+                punteggio += bonus;
+            }
 
             if(punteggio > migliorPunteggio){
                 migliorPunteggio = punteggio;
