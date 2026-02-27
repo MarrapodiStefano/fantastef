@@ -783,8 +783,8 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 
     <button id="btnNuovaRosa" onclick="apriModalRosa()">+</button>
 
-    <button id="btnRegole" onclick="apriOverlayRegole()" disabled>
-        Regole
+    <button id="btnBonusLega" onclick="apriOverlayRegole()">
+    Bonus Lega
     </button>
 
 </div>
@@ -976,8 +976,6 @@ function creaRosa(){
     localStorage.setItem("fantaXI", JSON.stringify(dati));
 
     aggiornaSelectRose();
-    
-    document.getElementById("btnRegole").disabled = false;
 
     chiudiModalRosa();
 }
@@ -1002,14 +1000,7 @@ function aggiornaSelectRose(){
         select.appendChild(option);
 
     });
-// Abilita o disabilita il pulsante Regole
-        const btnRegole = document.getElementById("btnRegole");
 
-        if(dati.rosaAttiva){
-        btnRegole.disabled = false;
-        } else {
-        btnRegole.disabled = true;
-     }
 }
 
 document.getElementById("selectRosa").addEventListener("change", function(){
@@ -1022,9 +1013,6 @@ document.getElementById("selectRosa").addEventListener("change", function(){
     localStorage.setItem("fantaXI", JSON.stringify(dati));
 
     aggiornaBoxRosa();
-
-    // 🔥 ATTIVA pulsante Regole
-    document.getElementById("btnRegole").disabled = false;
 
 });
 
