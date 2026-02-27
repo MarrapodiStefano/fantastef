@@ -1640,38 +1640,7 @@ btn.onclick = function(e){
 }
 
 function chiudiOverlayRegole(){
-
-    // 1️⃣ Recuperiamo dati salvati
-    const dati = JSON.parse(localStorage.getItem("fantaXI"));
-
-    // 2️⃣ Troviamo la rosa attiva
-    const rosa = dati.rose.find(r => Number(r.id) === Number(dati.rosaAttiva));
-
-if(!rosa){
-    document.getElementById("overlayRegole").style.display = "none";
-    document.body.style.overflow = "hidden";
-    return;
-}
-
-    // 3️⃣ Salviamo lo stato delle checkbox dentro la rosa
-    rosa.regole.cleanSheet =
-        document.getElementById("ruleClean").checked;
-
-    if(document.getElementById("ruleModClassico").checked){
-    rosa.regole.tipoModificatore = "classico";
-}
-else if(document.getElementById("ruleMod6").checked){
-    rosa.regole.tipoModificatore = "fasce";
-}
-else{
-    rosa.regole.tipoModificatore = null;
-}
-
-    // 4️⃣ Aggiorniamo localStorage
-    localStorage.setItem("fantaXI", JSON.stringify(dati));
-
-    // 5️⃣ Chiudiamo overlay
-    document.getElementById("overlayRegole").style.display = "none";
+    alert("FUNZIONE CHIAMATA");
 }
 
 </script>
