@@ -1319,13 +1319,14 @@ punteggio += rosa.giocatori.A
         const status = Number(g.status) || 0;
         return acc + (voto * status);
     }, 0);
-}
-            {
-    const votoPortiere = Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
+
+// Portiere
+const votoPortiere = Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
 const statusPortiere = Number(rosa.giocatori.P[0].status) || 0;
+
 punteggio += (votoPortiere * statusPortiere);
-}
-            
+  }
+
                 // ================= MODIFICATORE DIFESA CLASSICO =================
 
             if(modClassicoAttivo && dif >= 4){
