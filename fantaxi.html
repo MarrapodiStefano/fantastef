@@ -643,6 +643,16 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     }
 }
 
+#bestBadge{
+    margin-left:8px;
+    background:#2ecc71;
+    color:#0a1624;
+    padding:3px 10px;
+    border-radius:14px;
+    font-size:11px;
+    font-weight:700;
+}
+
 .apply-anim{
     animation:pulseApply 0.45s ease;
 }
@@ -1606,16 +1616,6 @@ if(!badge){
     badge = document.createElement("div");
     badge.id = "bestBadge";
     badge.textContent = "BEST";
-
-    badge.style.position = "absolute";
-    badge.style.top = "-18px";
-    badge.style.right = "0";
-    badge.style.background = "#2ecc71";
-    badge.style.color = "#0a1624";
-    badge.style.padding = "3px 10px";
-    badge.style.borderRadius = "14px";
-    badge.style.fontSize = "11px";
-    badge.style.fontWeight = "700";
 
     document.querySelector(".xi-modulo-selector").appendChild(badge);
 }
