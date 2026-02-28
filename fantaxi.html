@@ -1392,6 +1392,39 @@ function scegliModuloMigliore(rosa){
             rosa.giocatori.P.length > 0
         ){
 
+// ================= BLOCCO COPERTURA OBBLIGATORIA =================
+
+// Costruiamo ipotetici titolari del modulo
+const titolariD = rosa.giocatori.D.slice(0, dif);
+const titolariC = rosa.giocatori.C.slice(0, cen);
+const titolariA = rosa.giocatori.A.slice(0, att);
+
+// Panchina reale
+const panchinaD = rosa.giocatori.D.slice(dif);
+const panchinaC = rosa.giocatori.C.slice(cen);
+const panchinaA = rosa.giocatori.A.slice(att);
+
+// Se manca copertura reale in uno dei ruoli → modulo scartato
+if(
+    panchinaD.length === 0 ||
+    panchinaC.length === 0 ||
+    panchinaA.length === 0
+){
+    return; // scarta questo modulo
+}
+
+// ================= BLOCCO TOP PLAYER =================
+
+const topInPanchina = [
+    ...panchinaD,
+    ...panchinaC,
+    ...panchinaA
+].some(g => (Number(g.voto_algoritmo) || 0) >= 8);
+
+if(topInPanchina){
+    return; // scarta modulo se lascia un top in panchina
+}
+
             let punteggio = 0;
 
             punteggio += rosa.giocatori.D
