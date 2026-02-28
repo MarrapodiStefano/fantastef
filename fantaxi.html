@@ -1550,13 +1550,8 @@ if(difPanchinaReali.length === 0){
 
 punteggio += bonus;
 
-// Penalità forte se non c'è copertura difensiva reale
-const difPanchinaReali = rosa.giocatori.D
-    .slice(dif)
-    .filter(g => (Number(g.status) || 0) > 0.5);
-
 if(dif >= 4 && difPanchinaReali.length === 0){
-    punteggio -= 5; // penalità strutturale forte
+    punteggio -= 5;
 }
 
     // 🔥 PENALITÀ DIFENSORI EXTRA OLTRE IL QUARTO
