@@ -976,7 +976,7 @@ function openComparatore(){
 
 let giocatoriMaster = [];
 
-fetch("giocatori_master.json")
+fetch("giocatori_master.json?v=" + Date.now())
     .then(response => response.json())
     .then(data => {
 
