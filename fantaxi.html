@@ -1445,7 +1445,7 @@ punteggio += rosa.giocatori.C
     }, 0);
 
 punteggio += rosa.giocatori.A
-    .slice(0, att)
+    .slice(0, 1)
     .reduce((acc, g) => {
         const voto = Number(g.voto_algoritmo) || 0;
         const status = Number(g.status) || 0;
