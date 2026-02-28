@@ -518,6 +518,12 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     padding-right:22px;
 }
 
+.xi-atteso{
+    font-size:10px;
+    opacity:0.6;
+    margin-left:6px;
+}
+
 .xi-voto{
     position:absolute;
     right:6px;
@@ -1370,6 +1376,27 @@ function calcolaVotoAttesoDifensivo(giocatore){
     return votoAtteso;
 }
 
+function calcolaVotoAttesoGenerico(giocatore){
+
+    const votoBase = Number(giocatore.voto_algoritmo) || 0;
+
+    const avversario = Number(giocatore.avversario) || 3;
+    const offSquadra = Number(giocatore.offSquadra) || 3;
+    const motivazioni = Number(giocatore.motivazioni) || 3;
+
+    const pesoAvversario = 0.15;
+    const pesoOffensivita = 0.10;
+    const pesoMotivazioni = 0.10;
+
+    let votoAtteso = votoBase;
+
+    votoAtteso += (avversario - 3) * pesoAvversario;
+    votoAtteso += (offSquadra - 3) * pesoOffensivita;
+    votoAtteso += (motivazioni - 3) * pesoMotivazioni;
+
+    return votoAtteso;
+}
+
 function scegliModuloMigliore(rosa){
 
     // Recuperiamo le regole della rosa
@@ -1753,10 +1780,25 @@ function creaPill(g){
     else if(voto >= 6.5) classeVoto = "voto-buono";
     else classeVoto = "voto-rischio";
 
-    div.innerHTML = `
-        <span class="xi-name">${g.nome}</span>
-        <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
-    `;
+let votoAtteso = 0;
+
+if(g.ruolo === "D" || g.ruolo === "P"){
+    votoAtteso = calcolaVotoAttesoDifensivo(g);
+} else {
+    votoAtteso = calcolaVotoAttesoGenerico(g);
+}
+
+div.innerHTML = `
+    <span class="xi-name">
+        ${g.nome}
+        <span class="xi-atteso">
+            (${votoAtteso.toFixed(1)})
+        </span>
+    </span>
+    <span class="xi-voto ${classeVoto}">
+        ${voto.toFixed(1)}
+    </span>
+`;
 
     totale += voto;
 
@@ -1911,10 +1953,25 @@ function generaXIConModulo(moduloScelto){
         else if(voto >= 6.5) classeVoto = "voto-buono";
         else classeVoto = "voto-rischio";
 
-        div.innerHTML = `
-            <span class="xi-name">${g.nome}</span>
-            <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
-        `;
+        let votoAtteso = 0;
+
+if(g.ruolo === "D" || g.ruolo === "P"){
+    votoAtteso = calcolaVotoAttesoDifensivo(g);
+} else {
+    votoAtteso = calcolaVotoAttesoGenerico(g);
+}
+
+div.innerHTML = `
+    <span class="xi-name">
+        ${g.nome}
+        <span class="xi-atteso">
+            (${votoAtteso.toFixed(1)})
+        </span>
+    </span>
+    <span class="xi-voto ${classeVoto}">
+        ${voto.toFixed(1)}
+    </span>
+`;
 
         return div;
     }
