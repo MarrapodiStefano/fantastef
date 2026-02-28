@@ -1405,12 +1405,27 @@ const panchinaC = rosa.giocatori.C.slice(cen);
 const panchinaA = rosa.giocatori.A.slice(att);
 
 // Se manca copertura reale in uno dei ruoli → modulo scartato
+const coperturaRealeD = panchinaD.some(g =>
+    (Number(g.status) || 0) > 0.5 &&
+    (Number(g.voto_algoritmo) || 0) > 0
+);
+
+const coperturaRealeC = panchinaC.some(g =>
+    (Number(g.status) || 0) > 0.5 &&
+    (Number(g.voto_algoritmo) || 0) > 0
+);
+
+const coperturaRealeA = panchinaA.some(g =>
+    (Number(g.status) || 0) > 0.5 &&
+    (Number(g.voto_algoritmo) || 0) > 0
+);
+
 if(
-    panchinaD.length === 0 ||
-    panchinaC.length === 0 ||
-    panchinaA.length === 0
+    !coperturaRealeD ||
+    !coperturaRealeC ||
+    !coperturaRealeA
 ){
-    return; // scarta questo modulo
+    return; // scarta modulo con copertura finta
 }
 
 // ================= BLOCCO TOP PLAYER =================
