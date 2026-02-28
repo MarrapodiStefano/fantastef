@@ -1598,9 +1598,14 @@ moduliConsentiti.forEach(modulo => {
 
     if(modulo === moduloScelto){
         option.selected = true;
+        selectModulo.classList.add("best-modulo");
     }
 
     selectModulo.appendChild(option);
+});
+
+selectModulo.addEventListener("change", function(){
+    selectModulo.classList.remove("best-modulo");
 });
 
     const allPills = field.querySelectorAll(".xi-player");
