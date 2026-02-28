@@ -1474,7 +1474,7 @@ punteggio += rosa.giocatori.A
     .reduce((acc, g) => {
         const voto = Number(g.voto_algoritmo) || 0;
         const status = Number(g.status) || 0;
-        return acc + (voto * status * 1.05);
+        return acc + (voto * status * 1.20);
     }, 0);
 
 
