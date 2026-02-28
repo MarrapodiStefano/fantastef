@@ -1494,7 +1494,8 @@ if(dif > 3){
 if(cen > 3){
     const extraCen = rosa.giocatori.C.slice(3, cen);
     extraCen.forEach(g => {
-        punteggio += (Number(g.voto_algoritmo) || 0) * (Number(g.status) || 0);
+        punteggio += (Number(g.voto_algoritmo) || 0) *
+                     (Number(g.status) || 0) * 0.95;
     });
 }
 
