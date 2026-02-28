@@ -209,9 +209,15 @@ button{
 .rosa-selector button{
     height:28px;
     min-width:36px;
-    padding:0 10px;
+    padding:0 16px;
     border-radius:12px;
     font-size:13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    white-space:nowrap;
 }
 
 .rosa-selector select{
@@ -220,11 +226,6 @@ button{
     border:none;
     background:#243547;
     color:white;
-}
-
-.rosa-selector button{
-    padding:0 16px;
-    white-space:nowrap;
 }
 
 .rosa-box{
@@ -325,6 +326,34 @@ button{
 
 .player-pill.A{
     border-left:4px solid #3498db;
+}
+
+.delete-btn{
+    margin-left:auto;
+    cursor:pointer;
+    font-size:12px;
+    opacity:0.6;
+    transition:0.2s;
+}
+
+.delete-btn:hover{
+    opacity:1;
+    color:#ff6b6b;
+}
+
+@keyframes removeFade{
+    from{
+        opacity:1;
+        transform:translateX(0);
+    }
+    to{
+        opacity:0;
+        transform:translateX(-10px);
+    }
+}
+
+.remove-anim{
+    animation:removeFade 0.25s ease forwards;
 }
 
 /* ================= COLORI RUOLO OVERLAY XI ================= */
@@ -568,6 +597,23 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     background-image: url("data:image/svg+xml;utf8,<svg fill='%232ecc71' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
     background-repeat:no-repeat;
     background-position:right 8px center;
+}
+
+.best-modulo{
+    border:2px solid #2ecc71;
+    box-shadow:0 0 12px rgba(46,204,113,0.6);
+}
+
+/* ===== Evidenzia modulo consigliato ===== */
+
+#selectModuloXI option{
+    background:#1c2a38;
+    color:white;
+}
+
+#selectModuloXI option:checked{
+    background:#2ecc71;
+    color:#0a1624;
 }
 
 .xi-modulo-selector select:focus{
@@ -970,6 +1016,12 @@ function getDati(){
         if(!parsed.rose) parsed.rose = [];
         if(!("rosaAttiva" in parsed)) parsed.rosaAttiva = null;
 
+parsed.rose.forEach(r => {
+    if(typeof r.sostituzioni !== "number"){
+        r.sostituzioni = 0;
+    }
+});
+
         return parsed;
 
     }catch(e){
@@ -1022,19 +1074,20 @@ function creaRosa(){
     }
 
     const nuovaRosa = {
-        id: Date.now(),
-        nome: nome,
-        regole: {
-            cleanSheet: false,
-            tipoModificatore: null
-        },
-        giocatori: {
-            P: [],
-            D: [],
-            C: [],
-            A: []
-        }
-    };
+    id: Date.now(),
+    nome: nome,
+    sostituzioni: 0,   // 🔥 nuovo contatore
+    regole: {
+        cleanSheet: false,
+        tipoModificatore: null
+    },
+    giocatori: {
+        P: [],
+        D: [],
+        C: [],
+        A: []
+    }
+};
 
     dati.rose.push(nuovaRosa);
     dati.rosaAttiva = nuovaRosa.id;
@@ -1127,13 +1180,25 @@ grid.className = "roles-grid";
 
     rosa.giocatori[ruolo].forEach(g => {
 
-        const div = document.createElement("div");
-        div.className = "player-pill " + ruolo;
-        
-        div.textContent = g.nome;
+    const div = document.createElement("div");
+    div.className = "player-pill " + ruolo;
 
-        column.appendChild(div);
-    });
+    const nomeSpan = document.createElement("span");
+    nomeSpan.textContent = g.nome;
+
+    const deleteBtn = document.createElement("span");
+    deleteBtn.textContent = "✖";
+    deleteBtn.className = "delete-btn";
+
+    deleteBtn.onclick = function(){
+        rimuoviGiocatore(g.id, ruolo);
+    };
+
+    div.appendChild(nomeSpan);
+    div.appendChild(deleteBtn);
+
+    column.appendChild(div);
+});
 
     grid.appendChild(column);
 });
@@ -1671,23 +1736,34 @@ const selectModulo = document.getElementById("selectModuloXI");
 selectModulo.innerHTML = "";
 
 moduliConsentiti.forEach(mod => {
+
     const opt = document.createElement("option");
     opt.value = mod;
-    opt.textContent = mod;
+
+    if(mod === moduloScelto){
+        opt.textContent = mod + " ⭐ Best XI";
+    } else {
+        opt.textContent = mod;
+    }
+
     selectModulo.appendChild(opt);
+
 });
 
 selectModulo.value = moduloScelto;
 
+selectModulo.classList.add("best-modulo");
+
 // Animazione quando cambia modulo (senza duplicare listener)
 selectModulo.onchange = function(){
+
+    selectModulo.classList.remove("best-modulo");
 
     const btn = document.querySelector(".xi-modulo-selector button");
 
     btn.classList.remove("apply-anim");
     void btn.offsetWidth;
     btn.classList.add("apply-anim");
-
 };
 
 }
@@ -1909,6 +1985,48 @@ function chiudiOverlayRegole(){
     salvaDati(dati);
 
     document.getElementById("overlayRegole").style.display = "none";
+}
+
+function rimuoviGiocatore(id, ruolo){
+
+    const dati = getDati();
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+
+    if(!rosa) return;
+
+    const totaleGiocatori =
+        rosa.giocatori.P.length +
+        rosa.giocatori.D.length +
+        rosa.giocatori.C.length +
+        rosa.giocatori.A.length;
+
+    const faseCreazione = totaleGiocatori < 11;
+
+    if(!faseCreazione && rosa.sostituzioni >= 5){
+        alert("Hai raggiunto il limite massimo di 5 sostituzioni per questa giornata.");
+        return;
+    }
+
+    // Recuperiamo la pill cliccata
+    const pill = event.target.closest(".player-pill");
+
+    if(pill){
+        pill.classList.add("remove-anim");
+    }
+
+    setTimeout(() => {
+
+        rosa.giocatori[ruolo] =
+            rosa.giocatori[ruolo].filter(g => g.id !== id);
+
+        if(!faseCreazione){
+            rosa.sostituzioni++;
+        }
+
+        salvaDati(dati);
+        aggiornaBoxRosa();
+
+    }, 250);
 }
 
 // ===== INIT PAGINA =====
