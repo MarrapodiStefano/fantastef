@@ -1448,7 +1448,10 @@ punteggio += rosa.giocatori.A
     .reduce((acc, g) => {
         const voto = Number(g.voto_algoritmo) || 0;
         const status = Number(g.status) || 0;
-        return acc + (voto * status);
+
+        const pesoAttacco = 1.08;  // 🔥 priorità offensiva
+
+        return acc + (voto * status * pesoAttacco);
     }, 0);
 
 // Portiere
