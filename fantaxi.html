@@ -1501,6 +1501,99 @@ let penalita = 0;
     return migliorModulo;
 }
 
+function renderXI(rosa, moduloScelto){
+
+    const [dif, cen, att] = moduloScelto.split("-").map(Number);
+
+    let xiFinale = [];
+
+    xiFinale.push(rosa.giocatori.P[0]);
+    xiFinale.push(...rosa.giocatori.D.slice(0, dif));
+    xiFinale.push(...rosa.giocatori.C.slice(0, cen));
+    xiFinale.push(...rosa.giocatori.A.slice(0, att));
+
+    const overlay = document.getElementById("xiOverlay");
+    const field = document.getElementById("xiField");
+
+    field.innerHTML = "";
+
+    const colTitolari = document.createElement("div");
+    colTitolari.className = "xi-column";
+
+    const colPanchina = document.createElement("div");
+    colPanchina.className = "xi-column";
+
+    const titoloTit = document.createElement("div");
+    titoloTit.className = "xi-column-title";
+    titoloTit.textContent = "TITOLARI";
+
+    const titoloPan = document.createElement("div");
+    titoloPan.className = "xi-column-title";
+    titoloPan.textContent = "PANCHINA";
+
+    colTitolari.appendChild(titoloTit);
+    colPanchina.appendChild(titoloPan);
+
+    function creaPill(g){
+
+        const div = document.createElement("div");
+        div.className = "xi-player " + g.ruolo + " pill-hidden";
+
+        const voto = Number(g.voto_algoritmo) || 0;
+
+        let classeVoto = "";
+        if(voto >= 8) classeVoto = "voto-top";
+        else if(voto >= 6.5) classeVoto = "voto-buono";
+        else classeVoto = "voto-rischio";
+
+        div.innerHTML = `
+            <span class="xi-name">${g.nome}</span>
+            <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
+        `;
+
+        return div;
+    }
+
+    ["P","D","C","A"].forEach(ruolo => {
+        xiFinale
+            .filter(g => g.ruolo === ruolo)
+            .forEach(g => colTitolari.appendChild(creaPill(g)));
+    });
+
+    let panchina = [];
+
+    ["P","D","C","A"].forEach(ruolo => {
+
+        const limite = ruolo === "P" ? 1 : 2;
+
+        const bench = rosa.giocatori[ruolo]
+            .filter(g => !xiFinale.some(t => t.id === g.id))
+            .slice(0, limite);
+
+        panchina.push(...bench);
+    });
+
+    ["P","D","C","A"].forEach(ruolo => {
+        panchina
+            .filter(g => g.ruolo === ruolo)
+            .forEach(g => colPanchina.appendChild(creaPill(g)));
+    });
+
+    field.appendChild(colTitolari);
+    field.appendChild(colPanchina);
+
+    overlay.style.display = "flex";
+
+    const allPills = field.querySelectorAll(".xi-player");
+
+    allPills.forEach((pill, index) => {
+        setTimeout(() => {
+            pill.classList.remove("pill-hidden");
+            pill.classList.add("pill-show");
+        }, index * 60);
+    });
+}
+
 function generaXI(){
 
     // Recuperiamo i dati salvati nel localStorage
@@ -1982,11 +2075,10 @@ function chiudiOverlayRegole(){
     document.getElementById("overlayRegole").style.display = "none";
 }
 
-function rimuoviGiocatore(id, ruolo){
+function rimuoviGiocatore(id, ruolo, ev){
 
     const dati = getDati();
     const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
-
     if(!rosa) return;
 
     const totaleGiocatori =
@@ -2002,7 +2094,6 @@ function rimuoviGiocatore(id, ruolo){
         return;
     }
 
-    // Recuperiamo la pill cliccata
     const pill = ev.target.closest(".player-pill");
 
     if(pill){
