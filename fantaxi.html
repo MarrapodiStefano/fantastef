@@ -1606,28 +1606,6 @@ if(modulo === moduloConsigliato){
 });
 
 selectModulo.addEventListener("change", function(){
-
-    const selected = this.value;
-
-    // Ripopoliamo pulito
-    selectModulo.innerHTML = "";
-
-    moduliConsentiti.forEach(modulo => {
-
-        const option = document.createElement("option");
-        option.value = modulo;
-        option.textContent = modulo;
-
-        if(modulo === selected){
-            option.selected = true;
-        }
-
-        selectModulo.appendChild(option);
-    });
-
-});
-
-selectModulo.addEventListener("change", function(){
     selectModulo.classList.remove("best-modulo");
 });
 
