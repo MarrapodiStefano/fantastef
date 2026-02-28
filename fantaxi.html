@@ -181,7 +181,7 @@ button{
 .fantaxi-title{
     font-size:38px;
     font-weight:800;
-    margin-bottom:-4px;
+    margin-bottom:-4;
 }
 
 .fantaxi-sub{
@@ -199,6 +199,13 @@ button{
     max-width:420px;
 }
 
+.rosa-selector select{
+    height:28px;
+    width:55%;
+    border-radius:12px;
+    font-size:13px;
+}
+
 .rosa-selector button{
     height:28px;
     min-width:36px;
@@ -214,10 +221,7 @@ button{
 }
 
 .rosa-selector select{
-    height:28px;
     width:60%;
-    border-radius:12px;
-    font-size:13px;
     padding:0 12px;
     border:none;
     background:#243547;
@@ -1186,9 +1190,9 @@ grid.className = "roles-grid";
     deleteBtn.textContent = "✖";
     deleteBtn.className = "delete-btn";
 
-    deleteBtn.onclick = function(ev){
-    rimuoviGiocatore(g.id, ruolo, ev);
-};
+    deleteBtn.onclick = function(){
+        rimuoviGiocatore(g.id, ruolo);
+    };
 
     div.appendChild(nomeSpan);
     div.appendChild(deleteBtn);
@@ -1453,8 +1457,9 @@ if(modClassicoAttivo && dif >= 4){
     punteggio += bonus;
 
     // 🔥 PENALITÀ DIFENSORI EXTRA OLTRE IL QUARTO
-    const penalitaDifExtra = 1;
-punteggio -= (dif - 4) * penalitaDifExtra;
+    if(dif > 4){
+        punteggio -= (dif - 4) * 1;
+    }
 }
 
             // ================= PENALITÀ COPERTURA PANCHINA =================
@@ -1499,118 +1504,6 @@ let penalita = 0;
     });
 
     return migliorModulo;
-}
-
-function renderXI(rosa, moduloScelto){
-
-    const [dif, cen, att] = moduloScelto.split("-").map(Number);
-
-    let xiFinale = [];
-
-    xiFinale.push(rosa.giocatori.P[0]);
-    xiFinale.push(...rosa.giocatori.D.slice(0, dif));
-    xiFinale.push(...rosa.giocatori.C.slice(0, cen));
-    xiFinale.push(...rosa.giocatori.A.slice(0, att));
-
-    const overlay = document.getElementById("xiOverlay");
-    const field = document.getElementById("xiField");
-
-    field.innerHTML = "";
-
-    const colTitolari = document.createElement("div");
-    colTitolari.className = "xi-column";
-
-    const colPanchina = document.createElement("div");
-    colPanchina.className = "xi-column";
-
-    const titoloTit = document.createElement("div");
-    titoloTit.className = "xi-column-title";
-    titoloTit.textContent = "TITOLARI";
-
-    const titoloPan = document.createElement("div");
-    titoloPan.className = "xi-column-title";
-    titoloPan.textContent = "PANCHINA";
-
-    colTitolari.appendChild(titoloTit);
-    colPanchina.appendChild(titoloPan);
-
-    function creaPill(g){
-
-        const div = document.createElement("div");
-        div.className = "xi-player " + g.ruolo + " pill-hidden";
-
-        const voto = Number(g.voto_algoritmo) || 0;
-
-        let classeVoto = "";
-        if(voto >= 8) classeVoto = "voto-top";
-        else if(voto >= 6.5) classeVoto = "voto-buono";
-        else classeVoto = "voto-rischio";
-
-        div.innerHTML = `
-            <span class="xi-name">${g.nome}</span>
-            <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
-        `;
-
-        return div;
-    }
-
-    ["P","D","C","A"].forEach(ruolo => {
-        xiFinale
-            .filter(g => g.ruolo === ruolo)
-            .forEach(g => colTitolari.appendChild(creaPill(g)));
-    });
-
-    let panchina = [];
-
-    ["P","D","C","A"].forEach(ruolo => {
-
-        const limite = ruolo === "P" ? 1 : 2;
-
-        const bench = rosa.giocatori[ruolo]
-            .filter(g => !xiFinale.some(t => t.id === g.id))
-            .slice(0, limite);
-
-        panchina.push(...bench);
-    });
-
-    ["P","D","C","A"].forEach(ruolo => {
-        panchina
-            .filter(g => g.ruolo === ruolo)
-            .forEach(g => colPanchina.appendChild(creaPill(g)));
-    });
-
-    field.appendChild(colTitolari);
-    field.appendChild(colPanchina);
-
-    overlay.style.display = "flex";
-    
-    const selectModulo = document.getElementById("selectModuloXI");
-
-// Puliamo eventuali opzioni precedenti
-selectModulo.innerHTML = "";
-
-// Inseriamo tutti i moduli consentiti
-moduliConsentiti.forEach(modulo => {
-
-    const option = document.createElement("option");
-    option.value = modulo;
-    option.textContent = modulo;
-
-    if(modulo === moduloScelto){
-        option.selected = true;
-    }
-
-    selectModulo.appendChild(option);
-});
-
-    const allPills = field.querySelectorAll(".xi-player");
-
-    allPills.forEach((pill, index) => {
-        setTimeout(() => {
-            pill.classList.remove("pill-hidden");
-            pill.classList.add("pill-show");
-        }, index * 60);
-    });
 }
 
 function generaXI(){
@@ -1680,14 +1573,199 @@ salvaDati(dati);
 
     // Creiamo l'array che conterrà gli 8 titolari selezionati
 
-    const moduloScelto = scegliModuloMigliore(rosa);
+let xiFinale = [];
+
+// MODULO DEFAULT 3-4-3
+
+// ===== SCELTA MODULO MIGLIORE =====
+
+const moduloScelto = scegliModuloMigliore(rosa);
 
 if(!moduloScelto){
     alert("Nessun modulo compatibile con la rosa.");
     return;
 }
 
-renderXI(rosa, moduloScelto);
+const [dif, cen, att] = moduloScelto.split("-").map(Number);
+
+// POSIZIONI VERTICALI DINAMICHE
+
+let topAtt = 20;
+let topCen = 40;
+let topDif = 60;
+let topPor = 82;
+
+// Portiere
+xiFinale.push(rosa.giocatori.P[0]);
+
+// Difensori
+xiFinale.push(...rosa.giocatori.D.slice(0, dif));
+
+// Centrocampisti
+xiFinale.push(...rosa.giocatori.C.slice(0, cen));
+
+// Attaccanti
+xiFinale.push(...rosa.giocatori.A.slice(0, att));
+
+window.titolariCorrenti = xiFinale.map(g => g.id);
+
+// Miglior attaccante
+
+// Per ora mostriamo l'XI in console per verifica
+
+// ================= MOSTRA XI IN OVERLAY CAMPO =================
+
+const overlay = document.getElementById("xiOverlay");
+const field = document.getElementById("xiField");
+const score = document.getElementById("xiOverlayScore");
+
+field.innerHTML = "";
+// Puliamo eventuali XI precedenti
+
+let totale = 0;
+
+// Creiamo colonne
+const colTitolari = document.createElement("div");
+colTitolari.className = "xi-column";
+
+const colPanchina = document.createElement("div");
+colPanchina.className = "xi-column";
+
+// Titoli
+const titoloTit = document.createElement("div");
+titoloTit.className = "xi-column-title";
+titoloTit.textContent = "TITOLARI";
+
+const titoloPan = document.createElement("div");
+titoloPan.className = "xi-column-title";
+titoloPan.textContent = "PANCHINA";
+
+colTitolari.appendChild(titoloTit);
+colPanchina.appendChild(titoloPan);
+
+// ================= PANCHINA STRATEGICA =================
+
+let panchina = [];
+
+// 1 PORTIERE
+const portieriPanchina = rosa.giocatori.P
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,1);
+
+panchina.push(...portieriPanchina);
+
+// 2 DIFENSORI
+const difPanchina = rosa.giocatori.D
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...difPanchina);
+
+// 2 CENTROCAMPISTI
+const cenPanchina = rosa.giocatori.C
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...cenPanchina);
+
+// 2 ATTACCANTI
+const attPanchina = rosa.giocatori.A
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...attPanchina);
+
+// Funzione crea pill
+function creaPill(g){
+
+    const div = document.createElement("div");
+    div.className = "xi-player " + g.ruolo + " pill-hidden";
+
+    const voto = Number(g.voto_algoritmo) || 0;
+
+    let classeVoto = "";
+    if(voto >= 8) classeVoto = "voto-top";
+    else if(voto >= 6.5) classeVoto = "voto-buono";
+    else classeVoto = "voto-rischio";
+
+    div.innerHTML = `
+        <span class="xi-name">${g.nome}</span>
+        <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
+    `;
+
+    totale += voto;
+
+    return div;
+}
+
+// Ordine ruolo P-D-C-A per titolari
+["P","D","C","A"].forEach(ruolo => {
+    xiFinale
+        .filter(g => g.ruolo === ruolo)
+        .forEach(g => {
+            colTitolari.appendChild(creaPill(g));
+        });
+});
+
+// Ordine ruolo P-D-C-A per panchina
+["P","D","C","A"].forEach(ruolo => {
+    panchina
+        .filter(g => g.ruolo === ruolo)
+        .forEach(g => {
+            colPanchina.appendChild(creaPill(g));
+        });
+});
+
+field.appendChild(colTitolari);
+field.appendChild(colPanchina);
+
+overlay.style.display = "flex";
+
+// ===== ANIMAZIONE STAGGER =====
+const allPills = field.querySelectorAll(".xi-player");
+
+allPills.forEach((pill, index) => {
+    setTimeout(() => {
+        pill.classList.remove("pill-hidden");
+        pill.classList.add("pill-show");
+    }, index * 60);
+});
+
+// Popoliamo select modulo
+const selectModulo = document.getElementById("selectModuloXI");
+selectModulo.innerHTML = "";
+
+moduliConsentiti.forEach(mod => {
+
+    const opt = document.createElement("option");
+    opt.value = mod;
+
+    if(mod === moduloScelto){
+        opt.textContent = mod + " ⭐ Best XI";
+    } else {
+        opt.textContent = mod;
+    }
+
+    selectModulo.appendChild(opt);
+
+});
+
+selectModulo.value = moduloScelto;
+
+selectModulo.classList.add("best-modulo");
+
+// Animazione quando cambia modulo (senza duplicare listener)
+selectModulo.onchange = function(){
+
+    selectModulo.classList.remove("best-modulo");
+
+    const btn = document.querySelector(".xi-modulo-selector button");
+
+    btn.classList.remove("apply-anim");
+    void btn.offsetWidth;
+    btn.classList.add("apply-anim");
+};
+
 }
 
 function chiudiXI(){
@@ -1705,32 +1783,135 @@ function generaXIConModulo(moduloScelto){
 
     const dati = getDati();
     const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
-
     if(!rosa) return;
+    
+    // Ordiniamo anche qui come nella versione automatica
+["P","D","C","A"].forEach(ruolo => {
 
-    ["P","D","C","A"].forEach(ruolo => {
+    rosa.giocatori[ruolo].sort((a, b) => {
 
-        rosa.giocatori[ruolo].sort((a, b) => {
+        const votoA = Number(a.voto_algoritmo) || 0;
+        const votoB = Number(b.voto_algoritmo) || 0;
 
-            const votoA = Number(a.voto_algoritmo) || 0;
-            const votoB = Number(b.voto_algoritmo) || 0;
+        if(votoB !== votoA){
+            return votoB - votoA;
+        }
 
-            if(votoB !== votoA){
-                return votoB - votoA;
-            }
+        const avvA = Number(a.avversario) || 0;
+        const avvB = Number(b.avversario) || 0;
 
-            const avvA = Number(a.avversario) || 0;
-            const avvB = Number(b.avversario) || 0;
-
-            return avvB - avvA;
-
-        });
-
+        return avvB - avvA;
     });
 
-    salvaDati(dati);
+});
+    
+    const [dif, cen, att] = moduloScelto.split("-").map(Number);
 
-    renderXI(rosa, moduloScelto);
+    let xiFinale = [];
+
+    xiFinale.push(rosa.giocatori.P[0]);
+    xiFinale.push(...rosa.giocatori.D.slice(0, dif));
+    xiFinale.push(...rosa.giocatori.C.slice(0, cen));
+    xiFinale.push(...rosa.giocatori.A.slice(0, att));
+
+    const field = document.getElementById("xiField");
+    field.innerHTML = "";
+
+    const colTitolari = document.createElement("div");
+    colTitolari.className = "xi-column";
+
+    const colPanchina = document.createElement("div");
+    colPanchina.className = "xi-column";
+
+    const titoloTit = document.createElement("div");
+    titoloTit.className = "xi-column-title";
+    titoloTit.textContent = "TITOLARI";
+
+    const titoloPan = document.createElement("div");
+    titoloPan.className = "xi-column-title";
+    titoloPan.textContent = "PANCHINA";
+
+    colTitolari.appendChild(titoloTit);
+    colPanchina.appendChild(titoloPan);
+
+    function creaPill(g){
+
+        const div = document.createElement("div");
+        div.className = "xi-player " + g.ruolo + " pill-hidden";
+
+        const voto = Number(g.voto_algoritmo) || 0;
+
+        let classeVoto = "";
+        if(voto >= 8) classeVoto = "voto-top";
+        else if(voto >= 6.5) classeVoto = "voto-buono";
+        else classeVoto = "voto-rischio";
+
+        div.innerHTML = `
+            <span class="xi-name">${g.nome}</span>
+            <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
+        `;
+
+        return div;
+    }
+
+    ["P","D","C","A"].forEach(ruolo => {
+        xiFinale
+            .filter(g => g.ruolo === ruolo)
+            .forEach(g => {
+                colTitolari.appendChild(creaPill(g));
+            });
+    });
+
+// ================= PANCHINA STRATEGICA =================
+
+let panchina = [];
+
+const portieriPanchina = rosa.giocatori.P
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,1);
+
+panchina.push(...portieriPanchina);
+
+const difPanchina = rosa.giocatori.D
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...difPanchina);
+
+const cenPanchina = rosa.giocatori.C
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...cenPanchina);
+
+const attPanchina = rosa.giocatori.A
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...attPanchina);
+
+// Ordine ruolo per panchina
+["P","D","C","A"].forEach(ruolo => {
+    panchina
+        .filter(g => g.ruolo === ruolo)
+        .forEach(g => {
+            colPanchina.appendChild(creaPill(g));
+        });
+});
+
+    field.appendChild(colTitolari);
+    field.appendChild(colPanchina);
+    
+    // ===== ANIMAZIONE STAGGER =====
+
+const allPills = field.querySelectorAll(".xi-player");
+
+allPills.forEach((pill, index) => {
+    setTimeout(() => {
+        pill.classList.remove("pill-hidden");
+        pill.classList.add("pill-show");
+    }, index * 60);
+});
 }
 
 function apriOverlayRegole(){
@@ -1806,10 +1987,11 @@ function chiudiOverlayRegole(){
     document.getElementById("overlayRegole").style.display = "none";
 }
 
-function rimuoviGiocatore(id, ruolo, ev){
+function rimuoviGiocatore(id, ruolo){
 
     const dati = getDati();
     const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+
     if(!rosa) return;
 
     const totaleGiocatori =
@@ -1825,7 +2007,8 @@ function rimuoviGiocatore(id, ruolo, ev){
         return;
     }
 
-    const pill = ev.target.closest(".player-pill");
+    // Recuperiamo la pill cliccata
+    const pill = event.target.closest(".player-pill");
 
     if(pill){
         pill.classList.add("remove-anim");
@@ -1844,16 +2027,6 @@ function rimuoviGiocatore(id, ruolo, ev){
         aggiornaBoxRosa();
 
     }, 250);
-    
-    const moduloScelto = scegliModuloMigliore(rosa);
-
-if(!moduloScelto){
-    alert("Nessun modulo compatibile con la rosa.");
-    return;
-}
-
-renderXI(rosa, moduloScelto);
-
 }
 
 // ===== INIT PAGINA =====
