@@ -1435,8 +1435,9 @@ if(topInPanchina){
         return acc + (voto * status);
     }, 0);
 
+// 🔥 Valutiamo SEMPRE solo i migliori 3 centrocampisti
 punteggio += rosa.giocatori.C
-    .slice(0, cen)
+    .slice(0, 3)
     .reduce((acc, g) => {
         const voto = Number(g.voto_algoritmo) || 0;
         const status = Number(g.status) || 0;
