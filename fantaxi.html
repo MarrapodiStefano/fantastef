@@ -1427,8 +1427,9 @@ if(topInPanchina){
 
             let punteggio = 0;
 
-            punteggio += rosa.giocatori.D
-    .slice(0, dif)
+            // 🔥 Valutiamo SEMPRE solo i migliori 3 difensori
+punteggio += rosa.giocatori.D
+    .slice(0, 3)
     .reduce((acc, g) => {
         const voto = calcolaVotoAttesoDifensivo(g);
         const status = Number(g.status) || 0;
