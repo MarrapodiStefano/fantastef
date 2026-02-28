@@ -1492,7 +1492,15 @@ if(modClassicoAttivo && dif >= 4){
         bonus = 1;
     }
 
-    punteggio += bonus;
+    const difPanchinaReali = rosa.giocatori.D
+    .slice(dif)
+    .filter(g => (Number(g.status) || 0) > 0.5);
+
+if(difPanchinaReali.length === 0){
+    bonus = bonus * 0.4;   // riduzione forte del bonus
+}
+
+punteggio += bonus;
 
     // 🔥 PENALITÀ DIFENSORI EXTRA OLTRE IL QUARTO
     if(dif > 4){
