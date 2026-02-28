@@ -1468,9 +1468,9 @@ punteggio += rosa.giocatori.C
     }, 0);
 
 
-// 🔹 3 ATTACCANTI MIGLIORI (LEGGERO PESO)
+// 🔹 1 ATTACCANTE BASE (minimo strutturale)
 punteggio += rosa.giocatori.A
-    .slice(0, 3)
+    .slice(0, 1)
     .reduce((acc, g) => {
         const voto = Number(g.voto_algoritmo) || 0;
         const status = Number(g.status) || 0;
