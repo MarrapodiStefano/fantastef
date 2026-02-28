@@ -1438,74 +1438,38 @@ if(topInPanchina){
     return; // scarta modulo se lascia un top in panchina
 }
 
-            let punteggio = 0;
+let punteggio = 0;
 
-/* ================= BASE STRUTTURALE FISSA =================
-   Tutti i moduli vengono valutati su:
-   1P - 3D - 3C - 3A
-   Il modulo influisce SOLO sugli extra
-*/
+// PORTIERE
+punteggio += (Number(rosa.giocatori.P[0].voto_algoritmo) || 0) *
+             (Number(rosa.giocatori.P[0].status) || 0);
 
-// 🔹 PORTIERE
-const votoPortiere = Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
-const statusPortiere = Number(rosa.giocatori.P[0].status) || 0;
-punteggio += votoPortiere * statusPortiere;
-
-
-// 🔹 3 DIFENSORI MIGLIORI
+// DIFENSORI DEL MODULO
 punteggio += rosa.giocatori.D
-    .slice(0, 3)
+    .slice(0, dif)
     .reduce((acc, g) => {
-        return acc + (calcolaVotoAttesoDifensivo(g) * (Number(g.status) || 0));
+        return acc +
+            (calcolaVotoAttesoDifensivo(g) *
+             (Number(g.status) || 0));
     }, 0);
 
-
-// 🔹 3 CENTROCAMPISTI MIGLIORI
+// CENTROCAMPISTI DEL MODULO
 punteggio += rosa.giocatori.C
-    .slice(0, 3)
+    .slice(0, cen)
     .reduce((acc, g) => {
-        return acc + ((Number(g.voto_algoritmo) || 0) * (Number(g.status) || 0));
+        return acc +
+            ((Number(g.voto_algoritmo) || 0) *
+             (Number(g.status) || 0));
     }, 0);
 
-
-// 🔹 1 ATTACCANTE BASE (minimo strutturale)
+// ATTACCANTI DEL MODULO
 punteggio += rosa.giocatori.A
-    .slice(0, 1)
+    .slice(0, att)
     .reduce((acc, g) => {
-        const voto = Number(g.voto_algoritmo) || 0;
-        const status = Number(g.status) || 0;
-        return acc + (voto * status * 1.20);
+        return acc +
+            ((Number(g.voto_algoritmo) || 0) *
+             (Number(g.status) || 0));
     }, 0);
-
-
-/* ================= EXTRA MODULO =================
-   Qui il modulo fa la differenza
-*/
-
-// 🔹 DIFENSORI EXTRA
-if(dif > 3){
-    const extraDif = rosa.giocatori.D.slice(3, dif);
-    extraDif.forEach(g => {
-        punteggio += calcolaVotoAttesoDifensivo(g) * (Number(g.status) || 0);
-    });
-}
-
-// 🔹 CENTROCAMPISTI EXTRA
-if(cen > 3){
-    const extraCen = rosa.giocatori.C.slice(3, cen);
-    extraCen.forEach(g => {
-        punteggio += (Number(g.voto_algoritmo) || 0) *
-                     (Number(g.status) || 0) * 0.95;
-    });
-}
-
-// 🔹 ATTACCANTI EXTRA
-if(att > 1){
-    const extraAtt = rosa.giocatori.A.slice(1, att);
-    extraAtt.forEach(g => {
-        punteggio += (Number(g.voto_algoritmo) || 0) * (Number(g.status) || 0) * 1.05;
-    });
-}
 
 // ================= MODIFICATORE DIFESA CLASSICO =================
 
