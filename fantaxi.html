@@ -591,9 +591,6 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     appearance:none;
     -webkit-appearance:none;
 
-    width:110px;
-    text-align:center;
-    text-align-last:center;
 }
 
 .best-modulo{
@@ -1592,33 +1589,74 @@ selectModulo.innerHTML = "";
 
     const option = document.createElement("option");
     option.value = modulo;
+    option.textContent = modulo;
 
     if(modulo === moduloSelezionato){
-    option.selected = true;
-}
-
-if(modulo === moduloConsigliato){
-    option.textContent = modulo + " (Best XI)";
-} else {
-    option.textContent = modulo;
-}
+        option.selected = true;
+    }
 
     selectModulo.appendChild(option);
 });
 
-selectModulo.addEventListener("change", function(){
-    selectModulo.classList.remove("best-modulo");
-});
+// ===== BADGE BEST XI =====
 
-    const allPills = field.querySelectorAll(".xi-player");
+let badge = document.getElementById("bestBadge");
 
-    allPills.forEach((pill, index) => {
-        setTimeout(() => {
-            pill.classList.remove("pill-hidden");
-            pill.classList.add("pill-show");
-        }, index * 60);
-    });
+if(!badge){
+    badge = document.createElement("div");
+    badge.id = "bestBadge";
+    badge.textContent = "BEST";
+
+    badge.style.position = "absolute";
+    badge.style.top = "-18px";
+    badge.style.right = "0";
+    badge.style.background = "#2ecc71";
+    badge.style.color = "#0a1624";
+    badge.style.padding = "3px 10px";
+    badge.style.borderRadius = "14px";
+    badge.style.fontSize = "11px";
+    badge.style.fontWeight = "700";
+
+    document.querySelector(".xi-modulo-selector").appendChild(badge);
 }
+
+// Mostriamo il badge solo se è il modulo consigliato
+if(moduloSelezionato === moduloConsigliato){
+    badge.style.display = "block";
+} else {
+    badge.style.display = "none";
+}
+
+selectModulo.addEventListener("change", function(){
+
+    const selected = this.value;
+
+    // Ripopoliamo pulito
+    selectModulo.innerHTML = "";
+
+    moduliConsentiti.forEach(modulo => {
+
+        const option = document.createElement("option");
+        option.value = modulo;
+        option.textContent = modulo;
+
+        if(modulo === selected){
+            option.selected = true;
+        }
+
+        selectModulo.appendChild(option);
+    });
+
+    // ===== AGGIUNTA QUI =====
+    const badge = document.getElementById("bestBadge");
+
+    if(this.value === moduloConsigliato){
+        badge.style.display = "block";
+    } else {
+        badge.style.display = "none";
+    }
+
+});
 
 function generaXI(){
 
