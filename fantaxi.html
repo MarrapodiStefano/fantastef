@@ -1500,8 +1500,8 @@ if(cen > 3){
 }
 
 // 🔹 ATTACCANTI EXTRA
-if(att > 3){
-    const extraAtt = rosa.giocatori.A.slice(3, att);
+if(att > 1){
+    const extraAtt = rosa.giocatori.A.slice(1, att);
     extraAtt.forEach(g => {
         punteggio += (Number(g.voto_algoritmo) || 0) * (Number(g.status) || 0) * 1.05;
     });
