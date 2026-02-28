@@ -1005,9 +1005,11 @@ function getDati(){
 
     if(!datiRaw){
         return {
-            rose: [],
-            rosaAttiva: null
-        };
+    rose: [],
+    rosaAttiva: null,
+    giornataAttuale: 1
+};
+
     }
 
     try{
@@ -1017,9 +1019,21 @@ function getDati(){
         if(!("rosaAttiva" in parsed)) parsed.rosaAttiva = null;
 
 parsed.rose.forEach(r => {
+
     if(typeof r.sostituzioni !== "number"){
         r.sostituzioni = 0;
     }
+
+    if(typeof r.giornataRosa !== "number"){
+        r.giornataRosa = parsed.giornataAttuale || 1;
+    }
+
+    // 🔥 RESET AUTOMATICO SE GIORNATA DIVERSA
+    if(r.giornataRosa !== parsed.giornataAttuale){
+        r.sostituzioni = 0;
+        r.giornataRosa = parsed.giornataAttuale;
+    }
+
 });
 
         return parsed;
@@ -1076,6 +1090,7 @@ function creaRosa(){
     const nuovaRosa = {
     id: Date.now(),
     nome: nome,
+    giornataRosa: dati.giornataAttuale,
     sostituzioni: 0,   // 🔥 nuovo contatore
     regole: {
         cleanSheet: false,
@@ -2027,6 +2042,18 @@ function rimuoviGiocatore(id, ruolo, ev){
         aggiornaBoxRosa();
 
     }, 250);
+}
+
+function cambiaGiornata(){
+
+    const dati = getDati();
+
+    dati.giornataAttuale = (dati.giornataAttuale || 1) + 1;
+
+    salvaDati(dati);
+
+    alert("Nuova giornata attivata. Sostituzioni resettate.");
+
 }
 
 // ===== INIT PAGINA =====
