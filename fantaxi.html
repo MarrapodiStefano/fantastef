@@ -1501,7 +1501,7 @@ let penalita = 0;
     return migliorModulo;
 }
 
-function renderXI(rosa, moduloScelto){
+function renderXI(rosa, moduloSelezionato, moduloConsigliato){
 
     const [dif, cen, att] = moduloScelto.split("-").map(Number);
 
@@ -1592,12 +1592,15 @@ selectModulo.innerHTML = "";
     const option = document.createElement("option");
     option.value = modulo;
 
-    if(modulo === moduloScelto){
-        option.textContent = modulo + " (Best XI)";
-        option.selected = true;
-    } else {
-        option.textContent = modulo;
-    }
+    if(modulo === moduloSelezionato){
+    option.selected = true;
+}
+
+if(modulo === moduloConsigliato){
+    option.textContent = modulo + " (Best XI)";
+} else {
+    option.textContent = modulo;
+}
 
     selectModulo.appendChild(option);
 });
@@ -1700,14 +1703,18 @@ function generaXI(){
 
 salvaDati(dati);
 
-    const moduloScelto = scegliModuloMigliore(rosa);
+    const moduloConsigliato = scegliModuloMigliore(rosa);
 
-if(!moduloScelto){
+if(!moduloConsigliato){
     alert("Nessun modulo compatibile con la rosa.");
     return;
 }
 
-renderXI(rosa, moduloScelto);
+renderXI(
+    rosa,
+    moduloConsigliato,
+    moduloConsigliato
+);
 }
 
 function chiudiXI(){
@@ -1750,7 +1757,13 @@ function generaXIConModulo(moduloScelto){
 
     salvaDati(dati);
 
-    renderXI(rosa, moduloScelto);
+    const moduloConsigliato = scegliModuloMigliore(rosa);
+
+renderXI(
+    rosa,
+    moduloScelto,        // modulo scelto manualmente
+    moduloConsigliato    // vero Best XI
+);
 }
 
 function apriOverlayRegole(){
