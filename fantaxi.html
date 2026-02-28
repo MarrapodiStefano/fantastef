@@ -1420,10 +1420,11 @@ const coperturaRealeA = panchinaA.some(g =>
     (Number(g.voto_algoritmo) || 0) > 0
 );
 
-if(
-    !coperturaRealeD ||
-    !coperturaRealeC ||
-    !coperturaRealeA
+let penalitaCoperturaStrutturale = 0;
+
+if(!coperturaRealeD) penalitaCoperturaStrutturale += 6;
+if(!coperturaRealeC) penalitaCoperturaStrutturale += 4;
+if(!coperturaRealeA) penalitaCoperturaStrutturale += 6;
 ){
     return; // scarta modulo con copertura finta
 }
@@ -1560,6 +1561,8 @@ punteggio += bonus;
         punteggio -= (dif - 4) * 1;
     }
 }
+
+punteggio -= penalitaCoperturaStrutturale;
 
             // ================= PENALITÀ COPERTURA PANCHINA =================
 
