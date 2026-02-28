@@ -1584,6 +1584,9 @@ function renderXI(rosa, moduloScelto){
 
     overlay.style.display = "flex";
     
+    const selectModulo = document.getElementById("selectModuloXI");
+selectModulo.innerHTML = "";
+    
     moduliConsentiti.forEach(modulo => {
 
     const option = document.createElement("option");
