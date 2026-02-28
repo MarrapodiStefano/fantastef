@@ -1440,74 +1440,71 @@ if(topInPanchina){
 
             let punteggio = 0;
 
-            // 🔥 Valutiamo SEMPRE solo i migliori 3 difensori
+/* ================= BASE STRUTTURALE FISSA =================
+   Tutti i moduli vengono valutati su:
+   1P - 3D - 3C - 3A
+   Il modulo influisce SOLO sugli extra
+*/
+
+// 🔹 PORTIERE
+const votoPortiere = Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
+const statusPortiere = Number(rosa.giocatori.P[0].status) || 0;
+punteggio += votoPortiere * statusPortiere;
+
+
+// 🔹 3 DIFENSORI MIGLIORI
 punteggio += rosa.giocatori.D
     .slice(0, 3)
     .reduce((acc, g) => {
-        const voto = calcolaVotoAttesoDifensivo(g);
-        const status = Number(g.status) || 0;
-        return acc + (voto * status);
+        return acc + (calcolaVotoAttesoDifensivo(g) * (Number(g.status) || 0));
     }, 0);
 
-// 🔥 Valutiamo SEMPRE solo i migliori 3 centrocampisti
+
+// 🔹 3 CENTROCAMPISTI MIGLIORI
 punteggio += rosa.giocatori.C
     .slice(0, 3)
     .reduce((acc, g) => {
-        const voto = Number(g.voto_algoritmo) || 0;
-        const status = Number(g.status) || 0;
-        return acc + (voto * status);
+        return acc + ((Number(g.voto_algoritmo) || 0) * (Number(g.status) || 0));
     }, 0);
 
+
+// 🔹 3 ATTACCANTI MIGLIORI (LEGGERO PESO)
 punteggio += rosa.giocatori.A
     .slice(0, 3)
     .reduce((acc, g) => {
         const voto = Number(g.voto_algoritmo) || 0;
         const status = Number(g.status) || 0;
-
-        const pesoAttacco = 1.08;
-
-        return acc + (voto * status * pesoAttacco);
+        return acc + (voto * status * 1.05);
     }, 0);
 
-// Portiere
-const votoPortiere = Number(rosa.giocatori.P[0].voto_algoritmo) || 0;
-const statusPortiere = Number(rosa.giocatori.P[0].status) || 0;
 
-punteggio += (votoPortiere * statusPortiere);
-  
-// ================= PENALITÀ TITOLARI RISCHIOSI =================
+/* ================= EXTRA MODULO =================
+   Qui il modulo fa la differenza
+*/
 
-let penalitaRischio = 0;
+// 🔹 DIFENSORI EXTRA
+if(dif > 3){
+    const extraDif = rosa.giocatori.D.slice(3, dif);
+    extraDif.forEach(g => {
+        punteggio += calcolaVotoAttesoDifensivo(g) * (Number(g.status) || 0);
+    });
+}
 
-["D","C","A"].forEach(ruolo => {
+// 🔹 CENTROCAMPISTI EXTRA
+if(cen > 3){
+    const extraCen = rosa.giocatori.C.slice(3, cen);
+    extraCen.forEach(g => {
+        punteggio += (Number(g.voto_algoritmo) || 0) * (Number(g.status) || 0);
+    });
+}
 
-    const titolari = {D:dif, C:cen, A:att}[ruolo];
-
-    rosa.giocatori[ruolo]
-        .slice(0, titolari)
-        .forEach((g, index) => {
-
-            const status = Number(g.status) || 0;
-
-            if(status < 0.5){
-
-                const panchinaro = rosa.giocatori[ruolo][titolari];
-
-                const votoPanchina =
-                    (Number(panchinaro?.voto_algoritmo) || 0) *
-                    (Number(panchinaro?.status) || 0);
-
-                const perditaStimata =
-                    (Number(g.voto_algoritmo) * status) - votoPanchina;
-
-                penalitaRischio += Math.max(perditaStimata, 1);
-            }
-
-        });
-
-});
-
-punteggio -= penalitaRischio;
+// 🔹 ATTACCANTI EXTRA
+if(att > 3){
+    const extraAtt = rosa.giocatori.A.slice(3, att);
+    extraAtt.forEach(g => {
+        punteggio += (Number(g.voto_algoritmo) || 0) * (Number(g.status) || 0) * 1.05;
+    });
+}
 
 // ================= MODIFICATORE DIFESA CLASSICO =================
 
@@ -1534,14 +1531,14 @@ if(modClassicoAttivo && dif >= 4){
     let bonus = 0;
 
     if(mediaMod >= 7){
-        bonus = 6;
-    }
-    else if(mediaMod >= 6.5){
-        bonus = 3;
-    }
-    else if(mediaMod >= 6){
-        bonus = 1;
-    }
+    bonus = 4;
+}
+else if(mediaMod >= 6.5){
+    bonus = 2;
+}
+else if(mediaMod >= 6){
+    bonus = 0.5;
+}
 
     const difPanchinaReali = rosa.giocatori.D
     .slice(dif)
@@ -1552,6 +1549,15 @@ if(difPanchinaReali.length === 0){
 }
 
 punteggio += bonus;
+
+// Penalità forte se non c'è copertura difensiva reale
+const difPanchinaReali = rosa.giocatori.D
+    .slice(dif)
+    .filter(g => (Number(g.status) || 0) > 0.5);
+
+if(dif >= 4 && difPanchinaReali.length === 0){
+    punteggio -= 5; // penalità strutturale forte
+}
 
     // 🔥 PENALITÀ DIFENSORI EXTRA OLTRE IL QUARTO
     if(dif > 4){
