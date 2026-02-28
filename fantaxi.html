@@ -236,6 +236,9 @@ button{
     padding:5px 20px 1px 20px;
     display:flex;
     flex-direction:column;
+
+    flex:1;                 /* 👈 occupa spazio disponibile */
+    min-height:0;           /* 👈 fondamentale */
 }
 
 .rosa-box h3{
@@ -265,7 +268,8 @@ button{
 }
 
 .lista-giocatori{
-    height:300px;  /* spazio giocatori dentro box */
+    flex:1;
+    min-height:0;
     overflow-y:auto;
     margin-top:2px;
     padding-right:6px;
