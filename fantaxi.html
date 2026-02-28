@@ -1190,9 +1190,9 @@ grid.className = "roles-grid";
     deleteBtn.textContent = "✖";
     deleteBtn.className = "delete-btn";
 
-    deleteBtn.onclick = function(){
-        rimuoviGiocatore(g.id, ruolo);
-    };
+    deleteBtn.onclick = function(ev){
+    rimuoviGiocatore(g.id, ruolo, ev);
+};
 
     div.appendChild(nomeSpan);
     div.appendChild(deleteBtn);
@@ -1987,7 +1987,7 @@ function chiudiOverlayRegole(){
     document.getElementById("overlayRegole").style.display = "none";
 }
 
-function rimuoviGiocatore(id, ruolo){
+function rimuoviGiocatore(id, ruolo, ev){
 
     const dati = getDati();
     const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
@@ -2008,7 +2008,7 @@ function rimuoviGiocatore(id, ruolo){
     }
 
     // Recuperiamo la pill cliccata
-    const pill = event.target.closest(".player-pill");
+    const pill = ev?.target.closest(".player-pill");
 
     if(pill){
         pill.classList.add("remove-anim");
