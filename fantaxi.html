@@ -844,12 +844,27 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 
 <div class="header">
     <div>☰</div>
-    <div class="logo-area">
+    <div class="logo-area" id="logoAdmin">
         <img src="logo.png">
         FantaStef
     </div>
     <div>⚙</div>
 </div>
+
+<button id="adminResetBtn" style="
+    position:fixed;
+    top:75px;
+    right:20px;
+    display:none;
+    padding:10px 18px;
+    border-radius:18px;
+    background:#e74c3c;
+    color:white;
+    font-weight:700;
+    z-index:9999;
+">
+Nuova Giornata
+</button>
 
 <div class="main-wrapper">
     <section class="fantaxi-container">
@@ -2061,6 +2076,41 @@ document.addEventListener("DOMContentLoaded", function(){
 
     aggiornaSelectRose();
     aggiornaBoxRosa();
+
+});
+
+// ===== ADMIN MODE SEGRETO =====
+
+let clickLogoCount = 0;
+let clickTimer = null;
+
+const logoAdmin = document.getElementById("logoAdmin");
+const adminBtn = document.getElementById("adminResetBtn");
+
+logoAdmin.addEventListener("click", function(){
+
+    clickLogoCount++;
+
+    if(clickTimer){
+        clearTimeout(clickTimer);
+    }
+
+    clickTimer = setTimeout(() => {
+        clickLogoCount = 0;
+    }, 1500);
+
+    if(clickLogoCount === 5){
+        adminBtn.style.display = "block";
+        clickLogoCount = 0;
+    }
+
+});
+
+adminBtn.addEventListener("click", function(){
+
+    cambiaGiornata();
+
+    adminBtn.style.display = "none";
 
 });
 
