@@ -1449,7 +1449,7 @@ punteggio += rosa.giocatori.D
     .slice(0, dif)
     .reduce((acc, g) => {
         return acc +
-(Number(g.voto_algoritmo) || 0)
+            (calcolaVotoAttesoDifensivo(g) *
              (Number(g.status) || 0));
     }, 0);
 
