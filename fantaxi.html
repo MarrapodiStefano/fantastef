@@ -1583,6 +1583,25 @@ function renderXI(rosa, moduloScelto){
     field.appendChild(colPanchina);
 
     overlay.style.display = "flex";
+    
+    const selectModulo = document.getElementById("selectModuloXI");
+
+// Puliamo eventuali opzioni precedenti
+selectModulo.innerHTML = "";
+
+// Inseriamo tutti i moduli consentiti
+moduliConsentiti.forEach(modulo => {
+
+    const option = document.createElement("option");
+    option.value = modulo;
+    option.textContent = modulo;
+
+    if(modulo === moduloScelto){
+        option.selected = true;
+    }
+
+    selectModulo.appendChild(option);
+});
 
     const allPills = field.querySelectorAll(".xi-player");
 
