@@ -181,7 +181,7 @@ button{
 .fantaxi-title{
     font-size:38px;
     font-weight:800;
-    margin-bottom:-4;
+    margin-bottom:-4px;
 }
 
 .fantaxi-sub{
@@ -199,13 +199,6 @@ button{
     max-width:420px;
 }
 
-.rosa-selector select{
-    height:28px;
-    width:55%;
-    border-radius:12px;
-    font-size:13px;
-}
-
 .rosa-selector button{
     height:28px;
     min-width:36px;
@@ -221,7 +214,10 @@ button{
 }
 
 .rosa-selector select{
+    height:28px;
     width:60%;
+    border-radius:12px;
+    font-size:13px;
     padding:0 12px;
     border:none;
     background:#243547;
@@ -1190,9 +1186,9 @@ grid.className = "roles-grid";
     deleteBtn.textContent = "✖";
     deleteBtn.className = "delete-btn";
 
-    deleteBtn.onclick = function(){
-        rimuoviGiocatore(g.id, ruolo);
-    };
+    deleteBtn.onclick = function(ev){
+    rimuoviGiocatore(g.id, ruolo, ev);
+};
 
     div.appendChild(nomeSpan);
     div.appendChild(deleteBtn);
@@ -1457,9 +1453,8 @@ if(modClassicoAttivo && dif >= 4){
     punteggio += bonus;
 
     // 🔥 PENALITÀ DIFENSORI EXTRA OLTRE IL QUARTO
-    if(dif > 4){
-        punteggio -= (dif - 4) * 1;
-    }
+    const penalitaDifExtra = 1;
+punteggio -= (dif - 4) * penalitaDifExtra;
 }
 
             // ================= PENALITÀ COPERTURA PANCHINA =================
@@ -2008,7 +2003,7 @@ function rimuoviGiocatore(id, ruolo){
     }
 
     // Recuperiamo la pill cliccata
-    const pill = event.target.closest(".player-pill");
+    const pill = ev.target.closest(".player-pill");
 
     if(pill){
         pill.classList.add("remove-anim");
