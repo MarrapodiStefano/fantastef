@@ -1584,24 +1584,41 @@ function renderXI(rosa, moduloScelto){
 
     overlay.style.display = "flex";
     
-    const selectModulo = document.getElementById("selectModuloXI");
-
-// Puliamo eventuali opzioni precedenti
-selectModulo.innerHTML = "";
-
-// Inseriamo tutti i moduli consentiti
-moduliConsentiti.forEach(modulo => {
+    moduliConsentiti.forEach(modulo => {
 
     const option = document.createElement("option");
     option.value = modulo;
-    option.textContent = modulo;
 
     if(modulo === moduloScelto){
+        option.textContent = modulo + " (Best XI)";
         option.selected = true;
-        selectModulo.classList.add("best-modulo");
+    } else {
+        option.textContent = modulo;
     }
 
     selectModulo.appendChild(option);
+});
+
+selectModulo.addEventListener("change", function(){
+
+    const selected = this.value;
+
+    // Ripopoliamo pulito
+    selectModulo.innerHTML = "";
+
+    moduliConsentiti.forEach(modulo => {
+
+        const option = document.createElement("option");
+        option.value = modulo;
+        option.textContent = modulo;
+
+        if(modulo === selected){
+            option.selected = true;
+        }
+
+        selectModulo.appendChild(option);
+    });
+
 });
 
 selectModulo.addEventListener("change", function(){
