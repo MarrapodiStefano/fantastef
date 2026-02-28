@@ -1655,6 +1655,11 @@ function generaXI(){
 });
 
 salvaDati(dati);
+// Salviamo il nuovo ordine ordinato
+
+    // Se arriviamo qui significa che i vincoli sono rispettati
+
+    // Creiamo l'array che conterrà gli 8 titolari selezionati
 
     const moduloScelto = scegliModuloMigliore(rosa);
 
@@ -1664,6 +1669,152 @@ if(!moduloScelto){
 }
 
 renderXI(rosa, moduloScelto);
+}
+
+function chiudiXI(){
+    document.getElementById("xiOverlay").style.display = "none";
+}
+
+function applicaModuloManuale(){
+
+    const moduloScelto = document.getElementById("selectModuloXI").value;
+
+    generaXIConModulo(moduloScelto);
+}
+
+function generaXIConModulo(moduloScelto){
+
+    const dati = getDati();
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+    if(!rosa) return;
+    
+    // Ordiniamo anche qui come nella versione automatica
+["P","D","C","A"].forEach(ruolo => {
+
+    rosa.giocatori[ruolo].sort((a, b) => {
+
+        const votoA = Number(a.voto_algoritmo) || 0;
+        const votoB = Number(b.voto_algoritmo) || 0;
+
+        if(votoB !== votoA){
+            return votoB - votoA;
+        }
+
+        const avvA = Number(a.avversario) || 0;
+        const avvB = Number(b.avversario) || 0;
+
+        return avvB - avvA;
+    });
+
+});
+    
+    const [dif, cen, att] = moduloScelto.split("-").map(Number);
+
+    let xiFinale = [];
+
+    xiFinale.push(rosa.giocatori.P[0]);
+    xiFinale.push(...rosa.giocatori.D.slice(0, dif));
+    xiFinale.push(...rosa.giocatori.C.slice(0, cen));
+    xiFinale.push(...rosa.giocatori.A.slice(0, att));
+
+    const field = document.getElementById("xiField");
+    field.innerHTML = "";
+
+    const colTitolari = document.createElement("div");
+    colTitolari.className = "xi-column";
+
+    const colPanchina = document.createElement("div");
+    colPanchina.className = "xi-column";
+
+    const titoloTit = document.createElement("div");
+    titoloTit.className = "xi-column-title";
+    titoloTit.textContent = "TITOLARI";
+
+    const titoloPan = document.createElement("div");
+    titoloPan.className = "xi-column-title";
+    titoloPan.textContent = "PANCHINA";
+
+    colTitolari.appendChild(titoloTit);
+    colPanchina.appendChild(titoloPan);
+
+    function creaPill(g){
+
+        const div = document.createElement("div");
+        div.className = "xi-player " + g.ruolo + " pill-hidden";
+
+        const voto = Number(g.voto_algoritmo) || 0;
+
+        let classeVoto = "";
+        if(voto >= 8) classeVoto = "voto-top";
+        else if(voto >= 6.5) classeVoto = "voto-buono";
+        else classeVoto = "voto-rischio";
+
+        div.innerHTML = `
+            <span class="xi-name">${g.nome}</span>
+            <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
+        `;
+
+        return div;
+    }
+
+    ["P","D","C","A"].forEach(ruolo => {
+        xiFinale
+            .filter(g => g.ruolo === ruolo)
+            .forEach(g => {
+                colTitolari.appendChild(creaPill(g));
+            });
+    });
+
+// ================= PANCHINA STRATEGICA =================
+
+let panchina = [];
+
+const portieriPanchina = rosa.giocatori.P
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,1);
+
+panchina.push(...portieriPanchina);
+
+const difPanchina = rosa.giocatori.D
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...difPanchina);
+
+const cenPanchina = rosa.giocatori.C
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...cenPanchina);
+
+const attPanchina = rosa.giocatori.A
+    .filter(g => !xiFinale.some(t => t.id === g.id))
+    .slice(0,2);
+
+panchina.push(...attPanchina);
+
+// Ordine ruolo per panchina
+["P","D","C","A"].forEach(ruolo => {
+    panchina
+        .filter(g => g.ruolo === ruolo)
+        .forEach(g => {
+            colPanchina.appendChild(creaPill(g));
+        });
+});
+
+    field.appendChild(colTitolari);
+    field.appendChild(colPanchina);
+    
+    // ===== ANIMAZIONE STAGGER =====
+
+const allPills = field.querySelectorAll(".xi-player");
+
+allPills.forEach((pill, index) => {
+    setTimeout(() => {
+        pill.classList.remove("pill-hidden");
+        pill.classList.add("pill-show");
+    }, index * 60);
+});
 }
 
 function apriOverlayRegole(){
