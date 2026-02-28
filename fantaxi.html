@@ -1445,12 +1445,12 @@ punteggio += rosa.giocatori.C
     }, 0);
 
 punteggio += rosa.giocatori.A
-    .slice(0, 1)
+    .slice(0, 3)
     .reduce((acc, g) => {
         const voto = Number(g.voto_algoritmo) || 0;
         const status = Number(g.status) || 0;
 
-        const pesoAttacco = 1.08;  // 🔥 priorità offensiva
+        const pesoAttacco = 1.08;
 
         return acc + (voto * status * pesoAttacco);
     }, 0);
