@@ -175,19 +175,36 @@
   </div>
 
   <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const btn = document.getElementById("ctaButton");
-    if (btn) {
-      btn.addEventListener("click", function() {
-        gtag('event', 'cta_click', {
-          event_category: 'engagement',
-          event_label: 'Landing CTA'
-        });
+document.addEventListener("DOMContentLoaded", function() {
+  const btn = document.getElementById("ctaButton");
 
-        console.log("CTA cliccata");
+  if (btn) {
+    btn.addEventListener("click", function() {
+
+      // Evento Analytics
+      gtag('event', 'cta_click', {
+        event_category: 'engagement',
+        event_label: 'Landing CTA'
       });
-    }
-  });
+
+      // Effetto pressione
+      btn.style.transform = "scale(0.95)";
+      btn.style.background = "#0fff88";
+
+      const originalText = btn.innerHTML;
+
+      // Cambia testo
+      btn.innerHTML = "🔥 STIAMO ARRIVANDO 🔥";
+
+      setTimeout(() => {
+        btn.style.transform = "scale(1)";
+        btn.style.background = "#16ff9a";
+        btn.innerHTML = originalText;
+      }, 1500);
+
+    });
+  }
+});
 </script>
 
 </body>
