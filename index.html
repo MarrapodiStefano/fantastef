@@ -173,15 +173,20 @@
   </div>
 
   <script>
-    document.getElementById("ctaButton").addEventListener("click", function() {
-      gtag('event', 'cta_click', {
-        event_category: 'engagement',
-        event_label: 'Landing CTA'
-      });
+  document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.getElementById("ctaButton");
+    if (btn) {
+      btn.addEventListener("click", function() {
+        gtag('event', 'cta_click', {
+          event_category: 'engagement',
+          event_label: 'Landing CTA'
+        });
 
-      console.log("CTA cliccata");
-    });
-  </script>
+        console.log("CTA cliccata");
+      });
+    }
+  });
+</script>
 
 </body>
 </html>
