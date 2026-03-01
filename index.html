@@ -166,11 +166,23 @@
       <span class="final-title">HERE WE GOL</span>
     </div>
 
-    <div class="badge">
-      LA FANTAREVOLUTION<br />
-      STA PER INIZIARE
-    </div>
+    <div class="badge" id="ctaButton">
+  LA FANTAREVOLUTION<br />
+  STA PER INIZIARE
+</div>
   </div>
+
+  <script>
+    document.getElementById("ctaButton").addEventListener("click", function() {
+      gtag('event', 'cta_click', {
+        event_category: 'engagement',
+        event_label: 'Landing CTA'
+      });
+
+      console.log("CTA cliccata");
+    });
+  </script>
+
 </body>
 </html>
 
