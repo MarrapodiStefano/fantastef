@@ -2150,6 +2150,27 @@ document.addEventListener("DOMContentLoaded", function(){
 
 });
 
+// ================= BLOCCO MUTUA ESCLUSIONE MODIFICATORI =================
+
+const checkClassico = document.getElementById("ruleModClassico");
+const check6 = document.getElementById("ruleMod6");
+
+if(checkClassico && check6){
+
+    checkClassico.addEventListener("change", function(){
+        if(this.checked){
+            check6.checked = false;
+        }
+    });
+
+    check6.addEventListener("change", function(){
+        if(this.checked){
+            checkClassico.checked = false;
+        }
+    });
+
+}
+
 // ===== ADMIN MODE SEGRETO =====
 
 let clickLogoCount = 0;
