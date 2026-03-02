@@ -1119,11 +1119,23 @@ function generaStrutturaOracolo(master){
         const lista = [...master[ruolo]]
         .sort((a,b)=> b.voto_algoritmo - a.voto_algoritmo);
 
-        struttura.ruoli[ruolo] = {
-            top: lista.filter(g => g.voto_algoritmo >= 8.3),
-            buoni: lista.filter(g => g.voto_algoritmo >= 7.5 && g.voto_algoritmo < 8.3),
-            rischiosi: lista.filter(g => g.voto_algoritmo >= 6.5 && g.voto_algoritmo < 7.5)
-        };
+        let sogliaTop, sogliaBuoni, sogliaRischio;
+
+if(ruolo === "difensori"){
+    sogliaTop = 8.0;
+    sogliaBuoni = 7.0;
+    sogliaRischio = 6.4;
+}else{
+    sogliaTop = 8.3;
+    sogliaBuoni = 7.5;
+    sogliaRischio = 6.5;
+}
+
+struttura.ruoli[ruolo] = {
+    top: lista.filter(g => g.voto_algoritmo >= sogliaTop),
+    buoni: lista.filter(g => g.voto_algoritmo >= sogliaBuoni && g.voto_algoritmo < sogliaTop),
+    rischiosi: lista.filter(g => g.voto_algoritmo >= sogliaRischio && g.voto_algoritmo < sogliaBuoni)
+};
 
     });
 
