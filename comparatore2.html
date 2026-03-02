@@ -601,6 +601,17 @@ CHIUDI
 
 <script>
 
+let datiMaster = null;
+
+document.addEventListener("DOMContentLoaded", async function(){
+
+    const response = await fetch("giocatori_master.json");
+    datiMaster = await response.json();
+
+    aggiornaDatalist();
+
+});
+
 /* Animazione titolo */
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -653,31 +664,12 @@ osc.stop(audioCtx.currentTime+0.07);
 /* Gestione Tabs Ruolo */
 const tabs = document.querySelectorAll(".alg-tab");
 let ruoloSelezionato = "attaccanti";
-let datiMovimento = null;
-let datiPortieri = null;
-
-document.addEventListener("DOMContentLoaded", async function(){
-
-    const responseMov = await fetch("overlay_movimento.json");
-    datiMovimento = await responseMov.json();
-
-    const responsePor = await fetch("overlay_portieri.json");
-    datiPortieri = await responsePor.json();
-
-    aggiornaDatalist();
-
-});
-
 
 function aggiornaDatalist(){
 
-    let data = ruoloSelezionato === "portieri"
-        ? datiPortieri
-        : datiMovimento;
+    if(!datiMaster) return;
 
-    if(!data) return;
-
-    const lista = data.ruoli[ruoloSelezionato];
+const lista = datiMaster[ruoloSelezionato];
 
     const datalist = document.getElementById("listaGiocatori");
     datalist.innerHTML = "";
@@ -733,13 +725,9 @@ input.addEventListener("input", function(){
 
         if(valore.length < 3) return; // evita attivazione su 1 sola lettera
 
-        let data = ruoloSelezionato === "portieri"
-    ? datiPortieri
-    : datiMovimento;
+if(!datiMaster) return;
 
-if(!data) return;
-
-const lista = data.ruoli[ruoloSelezionato];
+const lista = datiMaster[ruoloSelezionato];
 
         const altroInputId = inputId === "player1" ? "player2" : "player1";
 const altroValore = document.getElementById(altroInputId).value.trim().toLowerCase();
@@ -801,13 +789,9 @@ async function confronta(){
 
     if(errore) return;
 
-    let data = ruoloSelezionato === "portieri"
-    ? datiPortieri
-    : datiMovimento;
+if(!datiMaster) return;
 
-if(!data) return;
-
-let lista = data.ruoli[ruoloSelezionato];
+let lista = datiMaster[ruoloSelezionato];
 
     const nome1 = p1.value.trim().toLowerCase();
     const nome2 = p2.value.trim().toLowerCase();
@@ -894,13 +878,9 @@ async function caricaOverlay(nome1, nome2){
     `;
 
     // Decide quale file leggere
-    let data = ruoloSelezionato === "portieri"
-    ? datiPortieri
-    : datiMovimento;
+    if(!datiMaster) return;
 
-if(!data) return;
-
-let lista = data.ruoli[ruoloSelezionato];
+let lista = datiMaster[ruoloSelezionato];
 
 const g1 = lista.find(g => g.nome.toLowerCase() === nome1.toLowerCase());
 const g2 = lista.find(g => g.nome.toLowerCase() === nome2.toLowerCase());
