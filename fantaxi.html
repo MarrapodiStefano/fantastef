@@ -1810,11 +1810,8 @@ moduliConsentiti.forEach(mod => {
     const opt = document.createElement("option");
     opt.value = mod;
 
-    if(mod === moduloScelto){
-        opt.textContent = mod + " ⭐ Best XI";
-    } else {
-        opt.textContent = mod;
-    }
+    // 🔥 Non scriviamo mai "Best XI" dentro le option
+    opt.textContent = mod;
 
     selectModulo.appendChild(opt);
 
@@ -1822,10 +1819,15 @@ moduliConsentiti.forEach(mod => {
 
 selectModulo.value = moduloScelto;
 
+const badge = document.getElementById("bestBadge");
+badge.textContent = "⭐ Best XI";
+
 selectModulo.classList.add("best-modulo");
 
 // Animazione quando cambia modulo (senza duplicare listener)
 selectModulo.onchange = function(){
+    
+    document.getElementById("bestBadge").textContent = "";
 
     selectModulo.classList.remove("best-modulo");
 
@@ -2177,9 +2179,9 @@ adminBtn.addEventListener("click", function(){
     <div class="xi-overlay-content">
 
         <div id="xiField" class="xi-field"></div>
-        
-                <div class="xi-modulo-selector">
+<div class="xi-modulo-selector">
     <select id="selectModuloXI"></select>
+    <span id="bestBadge" style="color:#2ecc71;font-weight:600;"></span>
     <button onclick="applicaModuloManuale()">Applica</button>
 </div>
 
