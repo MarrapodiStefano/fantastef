@@ -425,12 +425,12 @@
       "offsquadra": 4,
       "motivazioni": 4,
       "rigori_gerarchia": 1,
-      "status": 1,
+      "status": 0,
       "piazzati": 0.25,
       "score_rendimento": 5.456,
       "score_contesto": 1.4000000000000001,
       "score_penalita": 0.4,
-      "voto_algoritmo": 8.7
+      "voto_algoritmo": 0
     },
     {
       "id": 2155,
@@ -624,7 +624,7 @@
     {
       "id": 2762,
       "ruolo": "A",
-      "nome": "Kouamè",
+      "nome": "Kouam?",
       "squadra": "Fiorentina",
       "presenze": 1,
       "media_voto": 6,
@@ -1353,7 +1353,7 @@
     {
       "id": 5734,
       "ruolo": "A",
-      "nome": "Soulè",
+      "nome": "Soul?",
       "squadra": "Roma",
       "presenze": 24,
       "media_voto": 6.12,
@@ -1515,7 +1515,7 @@
     {
       "id": 6060,
       "ruolo": "A",
-      "nome": "Laurientè",
+      "nome": "Laurient?",
       "squadra": "Sassuolo",
       "presenze": 24,
       "media_voto": 6.15,
@@ -1785,7 +1785,7 @@
     {
       "id": 6229,
       "ruolo": "A",
-      "nome": "Tourè E.",
+      "nome": "Tour? E.",
       "squadra": "Atalanta",
       "presenze": 0,
       "media_voto": 0,
@@ -6053,7 +6053,7 @@
     {
       "id": 5589,
       "ruolo": "C",
-      "nome": "Konè M.",
+      "nome": "Kon? M.",
       "squadra": "Roma",
       "presenze": 22,
       "media_voto": 6.34,
@@ -7754,7 +7754,7 @@
     {
       "id": 6618,
       "ruolo": "C",
-      "nome": "Cissè A.",
+      "nome": "Ciss? A.",
       "squadra": "Verona",
       "presenze": 0,
       "media_voto": 0,
@@ -7943,7 +7943,7 @@
     {
       "id": 6666,
       "ruolo": "C",
-      "nome": "Bernabè",
+      "nome": "Bernab?",
       "squadra": "Parma",
       "presenze": 25,
       "media_voto": 6.18,
@@ -8105,7 +8105,7 @@
     {
       "id": 6717,
       "ruolo": "C",
-      "nome": "Konè I.",
+      "nome": "Kon? I.",
       "squadra": "Sassuolo",
       "presenze": 22,
       "media_voto": 6.16,
@@ -8780,7 +8780,7 @@
     {
       "id": 7146,
       "ruolo": "C",
-      "nome": "Tourè I.",
+      "nome": "Tour? I.",
       "squadra": "Pisa",
       "presenze": 23,
       "media_voto": 5.91,
@@ -11158,7 +11158,7 @@
     {
       "id": 4904,
       "ruolo": "D",
-      "nome": "Marì",
+      "nome": "Mar?",
       "squadra": "Fiorentina",
       "presenze": 10,
       "media_voto": 5.45,
@@ -12319,7 +12319,7 @@
     {
       "id": 5885,
       "ruolo": "D",
-      "nome": "Dodò",
+      "nome": "Dod?",
       "squadra": "Fiorentina",
       "presenze": 25,
       "media_voto": 5.9,
@@ -12508,7 +12508,7 @@
     {
       "id": 6042,
       "ruolo": "D",
-      "nome": "Lucumì",
+      "nome": "Lucum?",
       "squadra": "Bologna",
       "presenze": 16,
       "media_voto": 5.81,
@@ -13696,7 +13696,7 @@
     {
       "id": 6826,
       "ruolo": "D",
-      "nome": "Dembelè A.",
+      "nome": "Dembel? A.",
       "squadra": "Torino",
       "presenze": 1,
       "media_voto": 5,
@@ -14236,7 +14236,7 @@
     {
       "id": 6985,
       "ruolo": "D",
-      "nome": "Candè",
+      "nome": "Cand?",
       "squadra": "Sassuolo",
       "presenze": 8,
       "media_voto": 5.69,
@@ -15424,7 +15424,7 @@
     {
       "id": 7274,
       "ruolo": "D",
-      "nome": "Zè Pedro",
+      "nome": "Z? Pedro",
       "squadra": "Cagliari",
       "presenze": 10,
       "media_voto": 5.6,
@@ -16635,7 +16635,7 @@
     {
       "id": 4957,
       "ruolo": "P",
-      "nome": "Montipò",
+      "nome": "Montip?",
       "squadra": "Verona",
       "presenze": 22,
       "media_voto": 6.16,
