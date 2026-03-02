@@ -1087,6 +1087,29 @@ cards.forEach(card => {
 let algoritmoData = null;
 let ruoloAttivo = "attaccanti";
 
+const SOGLIE_ORACOLO = {
+    attaccanti: {
+        top: 8.3,
+        buoni: 7.5,
+        rischio: 6.5
+    },
+    centrocampisti: {
+        top: 8.0,
+        buoni: 7.5,
+        rischio: 6.5
+    },
+    difensori: {
+        top: 8.0,
+        buoni: 7.0,
+        rischio: 6.4
+    },
+    portieri: {
+        top: 8.0,
+        buoni: 7.5,
+        rischio: 6.5
+    }
+};
+
 fetch("giocatori_master.json")
 .then(response => response.json())
 .then(data => {
