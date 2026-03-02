@@ -398,12 +398,12 @@
       "offsquadra": 3.5,
       "motivazioni": 4,
       "rigori_gerarchia": 0.5,
-      "status": 0,
+      "status": 1,
       "piazzati": 0.25,
       "score_rendimento": 5.5169999999999995,
       "score_contesto": 1.7750000000000001,
       "score_penalita": 0.6000000000000001,
-      "voto_algoritmo": 0
+      "voto_algoritmo": 8.9
     },
     {
       "id": 2137,
