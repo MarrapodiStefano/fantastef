@@ -2042,6 +2042,23 @@ function apriOverlayRegole(){
     document.getElementById("ruleMod6").checked =
         rosa.regole.tipoModificatore === "fasce";
 
+// 🔒 Mutua esclusione modificatori
+
+const checkClassico = document.getElementById("ruleModClassico");
+const check6 = document.getElementById("ruleMod6");
+
+checkClassico.onchange = function(){
+    if(this.checked){
+        check6.checked = false;
+    }
+};
+
+check6.onchange = function(){
+    if(this.checked){
+        checkClassico.checked = false;
+    }
+};
+
     document.getElementById("overlayRegole").style.display = "flex";
 }
 
