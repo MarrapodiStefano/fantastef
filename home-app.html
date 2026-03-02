@@ -1087,15 +1087,14 @@ cards.forEach(card => {
 let algoritmoData = null;
 let ruoloAttivo = "attaccanti";
 
-fetch("consigli_giornata.json")
+fetch("giocatori_master.json")
 .then(response => response.json())
 .then(data => {
 
-    algoritmoData = data;
+    algoritmoData = generaStrutturaOracolo(data);
 
     document.getElementById("modal-giornata").innerText =
-        "Giornata " + data.giornata +
-        " • Agg. " + data.aggiornamento;
+        "Previsioni aggiornate";
 
     caricaRuolo("attaccanti");
 
@@ -1104,6 +1103,35 @@ fetch("consigli_giornata.json")
     document.getElementById("modal-giornata").innerText =
         "Errore caricamento dati";
 });
+
+function generaStrutturaOracolo(master){
+
+    const struttura = {
+        giornata: "",
+        aggiornamento: "",
+        ruoli: {}
+    };
+
+    const ruoli = ["attaccanti","centrocampisti","difensori","portieri"];
+
+    ruoli.forEach(ruolo => {
+
+        const lista = [...master[ruolo]]
+        .sort((a,b)=> b.voto_algoritmo - a.voto_algoritmo);
+
+        // 🔥 QUI NON CAMBIAMO NUMERI
+        // Mantieni le stesse soglie che usavi nel JSON manuale
+
+        struttura.ruoli[ruolo] = {
+            top: lista.filter(g => g.voto_algoritmo >= 7),
+            buoni: lista.filter(g => g.voto_algoritmo >= 6 && g.voto_algoritmo < 7),
+            rischiosi: lista.filter(g => g.voto_algoritmo < 6)
+        };
+
+    });
+
+    return struttura;
+}
 
 function caricaRuolo(ruolo){
 
