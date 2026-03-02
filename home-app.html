@@ -1179,7 +1179,7 @@ row.innerHTML = `
             <div class="player-team">${player.squadra}</div>
         </div>
     </div>
-    <div class="player-voto">${player.voto}</div>
+<div class="player-voto">${player.voto_algoritmo.toFixed(1)}</div>
 `;
 
 topBox.appendChild(row);
@@ -1199,7 +1199,7 @@ buoniList.forEach(player=>{
                 <div class="player-team">${player.squadra}</div>
             </div>
         </div>
-        <div class="player-voto">${player.voto}</div>
+<div class="player-voto">${player.voto_algoritmo.toFixed(1)}</div>
     `;
 
     buoniBox.appendChild(row);
@@ -1218,7 +1218,7 @@ rischioList.forEach(player=>{
                 <div class="player-team">${player.squadra}</div>
             </div>
         </div>
-        <div class="player-voto">${player.voto}</div>
+<div class="player-voto">${player.voto_algoritmo.toFixed(1)}</div>
     `;
 
     rischioBox.appendChild(row);
