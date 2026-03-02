@@ -1119,13 +1119,10 @@ function generaStrutturaOracolo(master){
         const lista = [...master[ruolo]]
         .sort((a,b)=> b.voto_algoritmo - a.voto_algoritmo);
 
-        // 🔥 QUI NON CAMBIAMO NUMERI
-        // Mantieni le stesse soglie che usavi nel JSON manuale
-
         struttura.ruoli[ruolo] = {
-            top: lista.filter(g => g.voto_algoritmo >= 7),
-            buoni: lista.filter(g => g.voto_algoritmo >= 6 && g.voto_algoritmo < 7),
-            rischiosi: lista.filter(g => g.voto_algoritmo < 6)
+            top: lista.filter(g => g.voto_algoritmo >= 8.3),
+            buoni: lista.filter(g => g.voto_algoritmo >= 7.5 && g.voto_algoritmo < 8.3),
+            rischiosi: lista.filter(g => g.voto_algoritmo >= 6.5 && g.voto_algoritmo < 7.5)
         };
 
     });
