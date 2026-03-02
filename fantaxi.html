@@ -1378,6 +1378,8 @@ function scegliModuloMigliore(rosa){
     // Verifichiamo se il modificatore classico è attivo
     const modClassicoAttivo = regole.tipoModificatore === "classico";
 
+const mod6FasceAttivo = regole.tipoModificatore === "fasce";
+
     let migliorModulo = null;
     let migliorPunteggio = -Infinity;
 
@@ -1523,6 +1525,40 @@ if(dif >= 4 && difPanchinaReali.length === 0){
     if(dif > 4){
         punteggio -= (dif - 4) * 1;
     }
+}
+
+// ================= MODIFICATORE DIFESA 6 FASCE =================
+
+if(mod6FasceAttivo && dif >= 4){
+
+    const portiere = rosa.giocatori.P[0];
+    const difensoriModulo = rosa.giocatori.D.slice(0, dif);
+
+    const votoPortiereAtteso = calcolaVotoAttesoDifensivo(portiere);
+
+    const votiDifAttesi = difensoriModulo.map(d =>
+        calcolaVotoAttesoDifensivo(d)
+    );
+
+    votiDifAttesi.sort((a, b) => b - a);
+
+    const top3Dif = votiDifAttesi.slice(0, 3);
+
+    const mediaMod =
+        (votoPortiereAtteso +
+         top3Dif.reduce((acc, v) => acc + v, 0)
+        ) / 4;
+
+    let bonus = 0;
+
+    if(mediaMod >= 7.25) bonus = 6;
+    else if(mediaMod >= 7.00) bonus = 5;
+    else if(mediaMod >= 6.75) bonus = 4;
+    else if(mediaMod >= 6.50) bonus = 3;
+    else if(mediaMod >= 6.25) bonus = 2;
+    else if(mediaMod >= 6.00) bonus = 1;
+
+    punteggio += bonus;
 }
 
 punteggio -= penalitaCoperturaStrutturale;
