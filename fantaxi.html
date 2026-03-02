@@ -586,10 +586,11 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 
 .xi-modulo-selector{
     position:relative;
-    display:flex;
+    display:inline-flex;     /* 🔥 invece di flex */
     justify-content:center;
+    align-items:center;
     gap:10px;
-    margin-top:15px;
+    margin:15px auto 0 auto; /* 🔥 centra il blocco */
 }
 
 .xi-modulo-selector select{
