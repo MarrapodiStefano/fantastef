@@ -511,5 +511,82 @@ FantaXI
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+const ctx = document.getElementById('radarChart');
+
+new Chart(ctx, {
+type: 'radar',
+
+data: {
+
+labels: [
+'Tiri',
+'Bonus',
+'Forma',
+'Assist',
+'Expected'
+],
+
+datasets: [{
+
+data: [7,8,6,7,7],
+
+backgroundColor:'rgba(46,204,113,0.2)',
+
+borderColor:'#2ecc71',
+
+borderWidth:2,
+
+pointBackgroundColor:'#2ecc71'
+
+}]
+
+},
+
+options:{
+
+plugins:{
+legend:{
+display:false
+}
+},
+
+scales:{
+
+r:{
+
+angleLines:{
+color:'rgba(255,255,255,0.1)'
+},
+
+grid:{
+color:'rgba(255,255,255,0.1)'
+},
+
+pointLabels:{
+color:'rgba(255,255,255,0.7)',
+font:{
+size:10
+}
+},
+
+ticks:{
+display:false
+},
+
+suggestedMin:0,
+suggestedMax:10
+
+}
+
+}
+
+}
+
+});
+
+</script>
 </body>
 </html>
