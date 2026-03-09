@@ -1201,13 +1201,13 @@ rischioBox.classList.add("alg-content");
 
         // ORDINAMENTO DECRESCENTE PER VOTO
         const topList = [...algoritmoData.ruoli[ruolo].top]
-            .sort((a,b)=> b.voto - a.voto);
+            .sort((a,b)=> b.voto_algoritmo - a.voto_algoritmo);
 
         const buoniList = [...algoritmoData.ruoli[ruolo].buoni]
-            .sort((a,b)=> b.voto - a.voto);
+            .sort((a,b)=> b.voto_algoritmo - a.voto_algoritmo);
 
         const rischioList = [...algoritmoData.ruoli[ruolo].rischiosi]
-            .sort((a,b)=> b.voto - a.voto);
+            .sort((a,b)=> b.voto_algoritmo - a.voto_algoritmo);
 
         topList.forEach(player=>{
 
