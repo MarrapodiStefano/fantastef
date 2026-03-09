@@ -212,18 +212,20 @@ gap:10px;
 }
 
 .player-info{
-
 display:flex;
 flex-direction:column;
-
+flex:1;
+min-width:0;
 }
 
 .player-name{
-
 font-size:22px;
 font-weight:700;
 letter-spacing:1px;
 
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
 }
 
 .player-meta{
@@ -242,6 +244,7 @@ position:relative;
 .player-search input{
 
 height:34px;
+width:140px;
 
 border-radius:10px;
 border:none;
