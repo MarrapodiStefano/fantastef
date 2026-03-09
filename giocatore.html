@@ -742,7 +742,14 @@ const div = document.createElement("div");
 
 div.className = "search-item";
 
-div.textContent = g.nome + " • " + g.squadra + " • " + g.voto_algoritmo;
+const ruoloIcon = {
+P:"🔴",
+D:"🟠",
+C:"🟢",
+A:"🔵"
+};
+
+div.textContent = ruoloIcon[g.ruolo] + " " + g.nome + " • " + g.squadra + " • " + g.voto_algoritmo;
 
 div.onclick = () =>{
 window.location.href = "giocatore.html?id=" + g.id;
