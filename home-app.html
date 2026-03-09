@@ -669,6 +669,12 @@ text-shadow:0 0 12px rgba(255,255,255,0.4);
     border-bottom:none;
 }
 
+.player-row.flash{
+    box-shadow:0 0 18px rgba(46,204,113,0.9);
+    background:rgba(46,204,113,0.15);
+    transition:all 0.12s ease;
+}
+
 .player-left{
     display:flex;
     align-items:center;
@@ -1235,7 +1241,17 @@ row.innerHTML = `
 
 topBox.appendChild(row);
 
-row.addEventListener("click", () => goToPlayer(player.nome));
+row.addEventListener("click", () => {
+
+row.classList.add("flash");
+
+setTimeout(() => {
+
+goToPlayer(player.nome);
+
+},120);
+
+});
 
 });
 
@@ -1256,7 +1272,17 @@ buoniList.forEach(player=>{
     `;
 
     buoniBox.appendChild(row);
-    row.addEventListener("click", () => goToPlayer(player.nome));
+row.addEventListener("click", () => {
+
+row.classList.add("flash");
+
+setTimeout(() => {
+
+goToPlayer(player.nome);
+
+},120);
+
+});
 });
 
 rischioList.forEach(player=>{
@@ -1276,7 +1302,17 @@ rischioList.forEach(player=>{
     `;
 
     rischioBox.appendChild(row);
-    row.addEventListener("click", () => goToPlayer(player.nome));
+row.addEventListener("click", () => {
+
+row.classList.add("flash");
+
+setTimeout(() => {
+
+goToPlayer(player.nome);
+
+},120);
+
+});
 });
 
         topBox.classList.remove("alg-hidden");
