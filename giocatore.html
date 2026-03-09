@@ -546,8 +546,7 @@ FantaXI
 
 /* ================= PRENDI ID DAL LINK ================= */
 
-const params = new URLSearchParams(window.location.search);
-const playerId = parseInt(params.get("id"));
+const playerSlug = window.location.search.substring(1);
 
 const ctx = document.getElementById('radarChart');
 
@@ -564,7 +563,9 @@ let tuttiGiocatori = [
 ...data.portieri
 ];
 
-const player = tuttiGiocatori.find(p => p.id === playerId);
+const player = tuttiGiocatori.find(
+p => p.nome.toLowerCase() === playerSlug
+);
 
 if(!player) return;
 
@@ -748,7 +749,7 @@ div.className = "search-item";
 div.textContent = g.nome + " • " + g.squadra + " • " + g.voto_algoritmo;
 
 div.onclick = () =>{
-window.location.href = "giocatore.html?id=" + g.id;
+window.location.href = "giocatore.html?" + g.nome.toLowerCase();
 };
 
 resultsBox.appendChild(div);
