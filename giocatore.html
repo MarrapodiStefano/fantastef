@@ -519,7 +519,7 @@ overlay.classList.add("green");
 
 }
 
-});
+/* ================= RADAR ================= */
 
 new Chart(ctx, {
 type: 'radar',
@@ -538,10 +538,10 @@ datasets: [{
 
 data: [7,8,6,7,7],
 
-backgroundColor:coloreBg,
-borderColor:coloreRadar,
-pointBackgroundColor:coloreRadar,
-borderWidth:2,
+backgroundColor: coloreBg,
+borderColor: coloreRadar,
+pointBackgroundColor: coloreRadar,
+borderWidth:2
 
 }]
 
@@ -558,36 +558,22 @@ display:false
 },
 
 scales:{
-
 r:{
-
-angleLines:{
-color:'rgba(255,255,255,0.1)'
-},
-
-grid:{
-color:'rgba(255,255,255,0.1)'
-},
-
+angleLines:{color:'rgba(255,255,255,0.1)'},
+grid:{color:'rgba(255,255,255,0.1)'},
 pointLabels:{
 color:'rgba(255,255,255,0.7)',
-font:{
-size:10
-}
+font:{size:10}
 },
-
-ticks:{
-display:false
-},
-
+ticks:{display:false},
 min:0,
 max:10
-
+}
 }
 
 }
 
-}
+});
 
 });
 
