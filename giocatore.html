@@ -127,9 +127,9 @@ max-width:420px;
 
 margin:-25px auto 0 auto;
 
-rgba(10,20,35,0.45)
-blur:14px
-backdrop-filter:blur(10px);
+background:rgba(10,20,35,0.45);
+
+backdrop-filter:blur(14px);
 
 border-radius:26px;
 
@@ -458,8 +458,13 @@ if(!player) return;
 /* ================= POPOLA STATISTICHE ================= */
 
 document.getElementById("stat-voto").textContent = player.voto_algoritmo;
-const voto = player.voto_algoritmo;
+document.getElementById("stat-gol").textContent = player.gol;
+document.getElementById("stat-assist").textContent = player.assist;
+document.getElementById("stat-amm").textContent = player.ammonizioni;
+document.getElementById("stat-esp").textContent = player.espulsioni;
+document.getElementById("stat-fm").textContent = player.fantamedia;
 
+const voto = player.voto_algoritmo;
 const overlay = document.querySelector(".player-overlay");
 
 if(voto < 6){
@@ -486,8 +491,7 @@ overlay.classList.add("green");
 
 }
 
-document.querySelector(".player-overlay").classList.add("glow");
-
+});
 }
 document.getElementById("stat-gol").textContent = player.gol;
 document.getElementById("stat-assist").textContent = player.assist;
