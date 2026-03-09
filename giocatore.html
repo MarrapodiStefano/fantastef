@@ -240,6 +240,12 @@ color:rgba(255,255,255,0.6);
 
 }
 
+.player-image img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
 .player-stats-right{
 flex:1;
 display:flex;
@@ -446,7 +452,8 @@ let tuttiGiocatori = [
 ];
 
 const player = tuttiGiocatori.find(p => p.id === playerId);
-
+document.querySelector(".player-image").innerHTML =
+'<img src="player-img/' + player.nome.toLowerCase() + '.PNG">';
 if(!player) return;
 
 /* ================= POPOLA STATISTICHE ================= */
