@@ -563,9 +563,16 @@ let tuttiGiocatori = [
 ...data.portieri
 ];
 
-const player = tuttiGiocatori.find(
-p => p.nome.toLowerCase() === playerSlug
-);
+const player = tuttiGiocatori.find(p => {
+
+const slug = p.nome
+.toLowerCase()
+.replace(/\./g,"")
+.replace(/\s+/g,"-");
+
+return slug === playerSlug;
+
+});
 
 if(!player) return;
 
@@ -749,7 +756,12 @@ div.className = "search-item";
 div.textContent = g.nome + " • " + g.squadra + " • " + g.voto_algoritmo;
 
 div.onclick = () =>{
-window.location.href = "giocatore.html?" + g.nome.toLowerCase();
+const slug = g.nome
+.toLowerCase()
+.replace(/\./g,"")
+.replace(/\s+/g,"-");
+
+window.location.href = "giocatore.html?" + slug;
 };
 
 resultsBox.appendChild(div);
