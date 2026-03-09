@@ -658,11 +658,11 @@ overlay.classList.add("green");
 
 const radarData = [
 
-player.avversario * 2,
-player.motivazioni * 2,
-player.status * 10,
-player.score_penalita * 10,
-player.score_rendimento
+Math.min(player.avversario * 2,10),
+Math.min(player.motivazioni * 2,10),
+Math.min(player.status * 10,10),
+Math.min(player.score_penalita * 10,10),
+Math.min(player.score_rendimento,10)
 
 ];
 
