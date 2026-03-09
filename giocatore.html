@@ -436,7 +436,7 @@ FantaXI
 const params = new URLSearchParams(window.location.search);
 const playerId = parseInt(params.get("id"));
 
-const ctx = document.getElementById('radarChart');
+const ctx = document.getElementById('radarChart').getContext('2d');
 
 /* ================= CARICA JSON ================= */
 
@@ -557,8 +557,8 @@ ticks:{
 display:false
 },
 
-suggestedMin:0,
-suggestedMax:10
+min:0,
+max:10
 
 }
 
