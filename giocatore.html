@@ -461,6 +461,7 @@ document.getElementById("stat-fm").textContent = player.fantamedia;
 /* ================= COLORI OVERLAY ================= */
 
 const voto = player.voto_algoritmo;
+document.getElementById("stat-voto").textContent = voto.toFixed(1);
 let coloreRadar;
 let coloreBg;
 
@@ -539,7 +540,7 @@ data: [7,8,6,7,7],
 
 backgroundColor:coloreBg,
 borderColor:coloreRadar,
-pointBackgroundColor:coloreRadar
+pointBackgroundColor:coloreRadar,
 borderWidth:2,
 
 }]
