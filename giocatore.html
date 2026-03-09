@@ -346,7 +346,7 @@ FantaStef
 <div class="player-top">
 
 <div class="player-image">
-Foto
+<img id="player-photo">
 </div>
 
 <div class="player-stats-right">
@@ -455,6 +455,8 @@ const player = tuttiGiocatori.find(p => p.id === playerId);
 document.querySelector(".player-image").innerHTML =
 '<img src="player-img/' + player.nome.toLowerCase() + '.png" onerror="this.src=\'player-img/' + player.nome.toLowerCase() + '.PNG\'">';
 if(!player) return;
+document.getElementById("player-photo").src =
+"player-img/" + player.nome.toLowerCase() + ".PNG";
 
 /* ================= POPOLA STATISTICHE ================= */
 
