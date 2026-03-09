@@ -452,9 +452,9 @@ let tuttiGiocatori = [
 ];
 
 const player = tuttiGiocatori.find(p => p.id === playerId);
-document.querySelector(".player-image").innerHTML =
-'<img src="player-img/' + player.nome.toLowerCase() + '.png" onerror="this.src=\'player-img/' + player.nome.toLowerCase() + '.PNG\'">';
+
 if(!player) return;
+
 document.getElementById("player-photo").src =
 "player-img/" + player.nome.toLowerCase() + ".PNG";
 
