@@ -139,6 +139,46 @@ box-shadow:0 0 30px rgba(0,0,0,0.6);
 
 }
 
+/* ---------- PLAYER SCORE STATES ---------- */
+
+.player-overlay.red{
+
+border:1px solid rgba(255,80,80,0.7);
+
+box-shadow:
+0 0 20px rgba(255,80,80,0.25);
+
+}
+
+.player-overlay.orange{
+
+border:1px solid rgba(255,165,0,0.7);
+
+box-shadow:
+0 0 20px rgba(255,165,0,0.25);
+
+}
+
+.player-overlay.green{
+
+border:1px solid rgba(46,204,113,0.7);
+
+box-shadow:
+0 0 25px rgba(46,204,113,0.35),
+0 0 60px rgba(46,204,113,0.15);
+
+}
+
+.player-overlay.green-strong{
+
+border:1px solid rgba(46,204,113,0.9);
+
+box-shadow:
+0 0 30px rgba(46,204,113,0.6),
+0 0 80px rgba(46,204,113,0.35);
+
+}
+
 .player-overlay.glow{
 
 box-shadow:
@@ -418,7 +458,33 @@ if(!player) return;
 /* ================= POPOLA STATISTICHE ================= */
 
 document.getElementById("stat-voto").textContent = player.voto_algoritmo;
-if(player.voto_algoritmo > 7){
+const voto = player.voto_algoritmo;
+
+const overlay = document.querySelector(".player-overlay");
+
+if(voto < 6){
+
+overlay.classList.add("red");
+
+}
+
+else if(voto >= 6 && voto <= 7){
+
+overlay.classList.add("orange");
+
+}
+
+else if(voto > 8){
+
+overlay.classList.add("green-strong");
+
+}
+
+else if(voto > 7){
+
+overlay.classList.add("green");
+
+}
 
 document.querySelector(".player-overlay").classList.add("glow");
 
