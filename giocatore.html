@@ -418,6 +418,11 @@ if(!player) return;
 /* ================= POPOLA STATISTICHE ================= */
 
 document.getElementById("stat-voto").textContent = player.voto_algoritmo;
+if(player.voto_algoritmo > 7){
+
+document.querySelector(".player-overlay").classList.add("glow");
+
+}
 document.getElementById("stat-gol").textContent = player.gol;
 document.getElementById("stat-assist").textContent = player.assist;
 document.getElementById("stat-amm").textContent = player.ammonizioni;
