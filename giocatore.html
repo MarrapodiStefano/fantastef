@@ -353,7 +353,40 @@ FantaXI
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 
+/* ================= PRENDI ID DAL LINK ================= */
+
+const params = new URLSearchParams(window.location.search);
+const playerId = parseInt(params.get("id"));
+
 const ctx = document.getElementById('radarChart');
+
+/* ================= CARICA JSON ================= */
+
+fetch("giocatori_master.json")
+.then(response => response.json())
+.then(data => {
+
+let tuttiGiocatori = [
+...data.attaccanti,
+...data.centrocampisti,
+...data.difensori,
+...data.portieri
+];
+
+const player = tuttiGiocatori.find(p => p.id === playerId);
+
+if(!player) return;
+
+/* ================= POPOLA STATISTICHE ================= */
+
+document.getElementById("stat-voto").textContent = player.voto_algoritmo;
+document.getElementById("stat-gol").textContent = player.gol;
+document.getElementById("stat-assist").textContent = player.assist;
+document.getElementById("stat-amm").textContent = player.ammonizioni;
+document.getElementById("stat-esp").textContent = player.espulsioni;
+document.getElementById("stat-fm").textContent = player.fantamedia;
+
+});
 
 new Chart(ctx, {
 type: 'radar',
