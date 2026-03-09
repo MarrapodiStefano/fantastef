@@ -546,7 +546,7 @@ FantaXI
 
 /* ================= PRENDI ID DAL LINK ================= */
 
-const playerSlug = decodeURIComponent(window.location.search.substring(1)).toLowerCase();
+const playerSlug = decodeURIComponent(window.location.search.substring(1) || "").toLowerCase();
 
 const ctx = document.getElementById('radarChart');
 
