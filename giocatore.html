@@ -430,7 +430,7 @@ FantaXI
 const params = new URLSearchParams(window.location.search);
 const playerId = parseInt(params.get("id"));
 
-const ctx = document.getElementById('radarChart').getContext('2d');
+const ctx = document.getElementById('radarChart');
 
 /* ================= CARICA JSON ================= */
 
@@ -521,7 +521,7 @@ overlay.classList.add("green");
 
 /* ================= RADAR ================= */
 
-new Chart(ctx, {
+new Chart(ctx.getContext('2d'), {
 type: 'radar',
 
 data: {
