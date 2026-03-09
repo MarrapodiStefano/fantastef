@@ -1046,6 +1046,14 @@ return nome
 
 }
 
+function goToPlayer(nome){
+
+const slug = getPlayerSlug(nome);
+
+window.location.href = "giocatore.html?" + slug;
+
+}
+
 window.addEventListener("scroll", function(){
     const header = document.querySelector(".header");
     header.classList.toggle("shrink", window.scrollY > 50);
