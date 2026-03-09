@@ -1235,13 +1235,7 @@ row.innerHTML = `
 
 topBox.appendChild(row);
 
-row.addEventListener("click", () => {
-
-const slug = getPlayerSlug(player.nome);
-
-window.location.href = "giocatore.html?" + slug;
-
-});
+row.addEventListener("click", () => goToPlayer(player.nome));
 
 });
 
@@ -1262,13 +1256,7 @@ buoniList.forEach(player=>{
     `;
 
     buoniBox.appendChild(row);
-    row.addEventListener("click", () => {
-
-const slug = getPlayerSlug(player.nome);
-
-window.location.href = "giocatore.html?" + slug;
-
-});
+    row.addEventListener("click", () => goToPlayer(player.nome));
 });
 
 rischioList.forEach(player=>{
@@ -1288,13 +1276,7 @@ rischioList.forEach(player=>{
     `;
 
     rischioBox.appendChild(row);
-    row.addEventListener("click", () => {
-
-const slug = getPlayerSlug(player.nome);
-
-window.location.href = "giocatore.html?" + slug;
-
-});
+    row.addEventListener("click", () => goToPlayer(player.nome));
 });
 
         topBox.classList.remove("alg-hidden");
