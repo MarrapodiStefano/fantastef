@@ -282,12 +282,9 @@ letter-spacing:1px;
 }
 
 .stat-value{
-
 font-size:20px;
 font-weight:700;
 margin-top:4px;
-color:#2ecc71;
-
 }
 
 .player-radar{
@@ -464,6 +461,37 @@ document.getElementById("stat-fm").textContent = player.fantamedia;
 /* ================= COLORI OVERLAY ================= */
 
 const voto = player.voto_algoritmo;
+let coloreRadar;
+let coloreBg;
+
+if(voto < 6){
+
+coloreRadar = "#ff5050";
+coloreBg = "rgba(255,80,80,0.2)";
+
+document.querySelectorAll(".stat-value").forEach(el=>{
+el.style.color="#ff5050";
+});
+
+}
+
+else if(voto >= 6 && voto < 7){
+
+coloreRadar = "#ffa500";
+coloreBg = "rgba(255,165,0,0.2)";
+
+document.querySelectorAll(".stat-value").forEach(el=>{
+el.style.color="#ffa500";
+});
+
+}
+
+else{
+
+coloreRadar = "#2ecc71";
+coloreBg = "rgba(46,204,113,0.2)";
+
+}
 const overlay = document.querySelector(".player-overlay");
 
 if(voto < 6){
@@ -509,13 +537,10 @@ datasets: [{
 
 data: [7,8,6,7,7],
 
-backgroundColor:'rgba(46,204,113,0.2)',
-
-borderColor:'#2ecc71',
-
+backgroundColor:coloreBg,
+borderColor:coloreRadar,
+pointBackgroundColor:coloreRadar
 borderWidth:2,
-
-pointBackgroundColor:'#2ecc71'
 
 }]
 
