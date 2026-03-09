@@ -453,7 +453,7 @@ let tuttiGiocatori = [
 
 const player = tuttiGiocatori.find(p => p.id === playerId);
 document.querySelector(".player-image").innerHTML =
-'<img src="player-img/' + player.nome.toLowerCase() + '.PNG">';
+'<img src="player-img/' + player.nome.toLowerCase() + '.png" onerror="this.src=\'player-img/' + player.nome.toLowerCase() + '.PNG\'">';
 if(!player) return;
 
 /* ================= POPOLA STATISTICHE ================= */
