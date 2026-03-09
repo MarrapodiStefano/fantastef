@@ -519,6 +519,16 @@ overlay.classList.add("green");
 
 }
 
+const radarData = [
+
+(5 - player.avversario) * 2,
+player.motivazioni * 2,
+player.status * 10,
+player.score_penalita * 10,
+player.score_rendimento * 10
+
+];
+
 /* ================= RADAR ================= */
 
 new Chart(ctx.getContext('2d'), {
@@ -536,15 +546,7 @@ labels:[
 
 datasets: [{
 
-const radarData = [
-
-(5 - player.avversario) * 2,
-player.motivazioni * 2,
-player.status * 10,
-player.score_penalita * 10,
-player.score_rendimento * 10
-
-];
+data: radarData,
 
 backgroundColor: coloreBg,
 borderColor: coloreRadar,
