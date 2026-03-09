@@ -575,7 +575,10 @@ return slug === playerSlug;
 
 });
 
-if(!player) return;
+if(!player){
+console.log("Giocatore non trovato:", playerSlug);
+return;
+}
 
 document.getElementById("player-name").textContent = player.nome;
 document.getElementById("player-team").textContent = player.squadra;
