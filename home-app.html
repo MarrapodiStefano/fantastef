@@ -1227,13 +1227,13 @@ row.innerHTML = `
 
 topBox.appendChild(row);
 
-row.onclick = () => {
+row.addEventListener("click", () => {
 
 const slug = getPlayerSlug(player.nome);
 
 window.location.href = "giocatore.html?" + slug;
 
-};
+});
 
 });
 
@@ -1254,13 +1254,13 @@ buoniList.forEach(player=>{
     `;
 
     buoniBox.appendChild(row);
-    row.onclick = () => {
+    row.addEventListener("click", () => {
 
 const slug = getPlayerSlug(player.nome);
 
 window.location.href = "giocatore.html?" + slug;
 
-};
+});
 });
 
 rischioList.forEach(player=>{
@@ -1280,13 +1280,13 @@ rischioList.forEach(player=>{
     `;
 
     rischioBox.appendChild(row);
-    row.onclick = () => {
+    row.addEventListener("click", () => {
 
 const slug = getPlayerSlug(player.nome);
 
 window.location.href = "giocatore.html?" + slug;
 
-};
+});
 });
 
         topBox.classList.remove("alg-hidden");
