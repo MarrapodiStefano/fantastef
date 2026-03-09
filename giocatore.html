@@ -208,6 +208,57 @@ flex-direction:column;
 gap:16px;
 }
 
+.player-bar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+gap:10px;
+
+}
+
+.player-info{
+
+display:flex;
+flex-direction:column;
+
+}
+
+.player-name{
+
+font-size:22px;
+font-weight:700;
+letter-spacing:1px;
+
+}
+
+.player-meta{
+
+font-size:12px;
+opacity:0.7;
+
+}
+
+.player-search input{
+
+height:34px;
+
+border-radius:10px;
+border:none;
+
+background:rgba(0,0,0,0.35);
+
+color:white;
+
+padding:0 10px;
+
+font-size:12px;
+
+outline:none;
+
+}
+
 .player-top{
 display:flex;
 gap:12px;
@@ -344,6 +395,27 @@ FantaStef
 
 <div class="player-layout">
 
+<div class="player-bar">
+
+<div class="player-info">
+
+<div class="player-name" id="player-name"></div>
+
+<div class="player-meta">
+<span id="player-team"></span> • 
+<span id="player-role"></span>
+</div>
+
+</div>
+
+<div class="player-search">
+
+<input type="text" placeholder="Cerca giocatore">
+
+</div>
+
+</div>
+
 <div class="player-top">
 
 <div class="player-image">
@@ -455,6 +527,18 @@ let tuttiGiocatori = [
 const player = tuttiGiocatori.find(p => p.id === playerId);
 
 if(!player) return;
+
+document.getElementById("player-name").textContent = player.nome;
+document.getElementById("player-team").textContent = player.squadra;
+
+const ruoloMap = {
+P:"POR",
+D:"DIF",
+C:"CEN",
+A:"ATT"
+};
+
+document.getElementById("player-role").textContent = ruoloMap[player.ruolo];
 
 const img = document.getElementById("player-photo");
 img.src = "player-img/" + player.nome.toLowerCase() + ".PNG";
