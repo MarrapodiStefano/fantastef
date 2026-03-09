@@ -455,8 +455,11 @@ const player = tuttiGiocatori.find(p => p.id === playerId);
 
 if(!player) return;
 
-document.getElementById("player-photo").src =
-"player-img/" + player.nome.toLowerCase() + ".PNG";
+const img = document.getElementById("player-photo");
+img.src = "player-img/" + player.nome.toLowerCase() + ".PNG";
+img.onerror = () => {
+img.src = "player-img/" + player.nome.toLowerCase() + ".png";
+};
 
 /* ================= POPOLA STATISTICHE ================= */
 
