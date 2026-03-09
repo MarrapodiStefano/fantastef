@@ -233,6 +233,12 @@ opacity:0.7;
 
 }
 
+.player-search{
+
+position:relative;
+
+}
+
 .player-search input{
 
 height:34px;
@@ -249,6 +255,42 @@ padding:0 10px;
 font-size:12px;
 
 outline:none;
+
+}
+
+#search-results{
+
+position:absolute;
+
+margin-top:4px;
+
+width:160px;
+
+background:rgba(10,20,35,0.95);
+
+border-radius:10px;
+
+overflow:hidden;
+
+box-shadow:0 6px 20px rgba(0,0,0,0.5);
+
+z-index:2000;
+
+}
+
+.search-item{
+
+padding:8px 10px;
+
+font-size:13px;
+
+cursor:pointer;
+
+}
+
+.search-item:hover{
+
+background:rgba(46,204,113,0.2);
 
 }
 
@@ -403,7 +445,9 @@ FantaStef
 
 <div class="player-search">
 
-<input type="text" placeholder="Cerca giocatore">
+<input id="search-player" type="text" placeholder="Cerca giocatore">
+
+<div id="search-results"></div>
 
 </div>
 
@@ -674,6 +718,51 @@ max:10
 }
 
 });
+    
+/* ================= RICERCA GIOCATORE ================= */
+
+const searchInput = document.getElementById("search-player");
+const resultsBox = document.getElementById("search-results");
+
+searchInput.addEventListener("input", function(){
+
+const value = this.value.toLowerCase();
+
+resultsBox.innerHTML = "";
+
+if(value.length < 2) return;
+
+const risultati = tuttiGiocatori.filter(g =>
+g.nome.toLowerCase().includes(value)
+).slice(0,5);
+
+risultati.forEach(g =>{
+
+const div = document.createElement("div");
+
+div.className = "search-item";
+
+div.textContent = g.nome + " • " + g.squadra;
+
+div.onclick = () =>{
+window.location.href = "giocatore.html?id=" + g.id;
+};
+
+resultsBox.appendChild(div);
+
+});
+
+});
+
+
+document.addEventListener("click", function(e){
+
+if(!searchInput.contains(e.target)){
+resultsBox.innerHTML="";
+}
+
+});
+
 
 });
 
