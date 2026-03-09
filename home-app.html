@@ -1034,6 +1034,20 @@ text-shadow:0 0 12px rgba(255,255,255,0.4);
 
 <script>
 
+/* ================= FUNZIONE SLUG ================= */
+
+function getPlayerSlug(nome){
+
+return nome
+.toLowerCase()
+.replace(/\./g,"")
+.replace(/\s+/g,"-")
+.trim();
+
+}
+
+window.addEventListener("scroll", function(){
+
 window.addEventListener("scroll", function(){
     const header = document.querySelector(".header");
     header.classList.toggle("shrink", window.scrollY > 50);
@@ -1215,6 +1229,14 @@ row.innerHTML = `
 
 topBox.appendChild(row);
 
+row.onclick = () => {
+
+const slug = getPlayerSlug(player.nome);
+
+window.location.href = "giocatore.html?" + slug;
+
+};
+
 });
 
 buoniList.forEach(player=>{
@@ -1234,6 +1256,13 @@ buoniList.forEach(player=>{
     `;
 
     buoniBox.appendChild(row);
+    row.onclick = () => {
+
+const slug = getPlayerSlug(player.nome);
+
+window.location.href = "giocatore.html?" + slug;
+
+};
 });
 
 rischioList.forEach(player=>{
@@ -1253,6 +1282,13 @@ rischioList.forEach(player=>{
     `;
 
     rischioBox.appendChild(row);
+    row.onclick = () => {
+
+const slug = getPlayerSlug(player.nome);
+
+window.location.href = "giocatore.html?" + slug;
+
+};
 });
 
         topBox.classList.remove("alg-hidden");
