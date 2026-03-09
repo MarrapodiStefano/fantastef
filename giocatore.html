@@ -526,17 +526,25 @@ type: 'radar',
 
 data: {
 
-labels: [
-'Tiri',
-'Bonus',
-'Forma',
-'Assist',
-'Expected'
+labels:[
+'Avversario',
+'Motivazioni',
+'Status',
+'Expected Malus',
+'Expected Bonus'
 ],
 
 datasets: [{
 
-data: [7,8,6,7,7],
+const radarData = [
+
+(5 - player.avversario) * 2,
+player.motivazioni * 2,
+player.status * 10,
+player.score_penalita * 10,
+player.score_rendimento * 10
+
+];
 
 backgroundColor: coloreBg,
 borderColor: coloreRadar,
