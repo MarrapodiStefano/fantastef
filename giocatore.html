@@ -200,6 +200,23 @@ font-size:14px;
 letter-spacing:0.5px;
 }
 
+.stat-label{
+
+font-size:11px;
+opacity:0.6;
+letter-spacing:1px;
+
+}
+
+.stat-value{
+
+font-size:20px;
+font-weight:700;
+margin-top:4px;
+color:#2ecc71;
+
+}
+
 .player-radar{
 
 height:200px;
@@ -256,9 +273,20 @@ Foto
 
 <div class="player-stats-right">
 
-<div class="stat-box">Voto</div>
-<div class="stat-box">Gol</div>
-<div class="stat-box">Assist</div>
+<div class="stat-box">
+<div class="stat-label">VOTO</div>
+<div class="stat-value" id="stat-voto"></div>
+</div>
+
+<div class="stat-box">
+<div class="stat-label">GOL</div>
+<div class="stat-value" id="stat-gol"></div>
+</div>
+
+<div class="stat-box">
+<div class="stat-label">ASSIST</div>
+<div class="stat-value" id="stat-assist"></div>
+</div>
 
 </div>
 
@@ -266,9 +294,20 @@ Foto
 
 <div class="player-stats-middle">
 
-<div class="stat-box">Amm</div>
-<div class="stat-box">Esp</div>
-<div class="stat-box">FM</div>
+<div class="stat-box">
+<div class="stat-label">AMM</div>
+<div class="stat-value" id="stat-amm"></div>
+</div>
+
+<div class="stat-box">
+<div class="stat-label">ESP</div>
+<div class="stat-value" id="stat-esp"></div>
+</div>
+
+<div class="stat-box">
+<div class="stat-label">FM</div>
+<div class="stat-value" id="stat-fm"></div>
+</div>
 
 </div>
 
