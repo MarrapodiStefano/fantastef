@@ -987,10 +987,16 @@ Ruota il telefono in verticale 📱
 
 </div>
 
-  <div class="card">
-    <h3>Dream Team</h3>
-    <p>I top selezionati.</p>
-    
+<div class="card video-card" onclick="openVideoLatest()">
+
+<img src="dreamteam-logo.png" class="dreamteam-img">
+
+<div class="video-content">
+    <div class="play-icon"></div>
+    <h3>Ultimo Video</h3>
+    <p>Guarda l’ultimo contenuto sul canale</p>
+</div>
+
 </div>
 
 </section>
@@ -1390,15 +1396,18 @@ document.querySelectorAll(".alg-tab").forEach(tab => {
 
 /* ================= VIDEO ================= */
 
+let latestVideoID = "";
 let secondVideoID = "";
 
 fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=UCwYx1v3M9t3hWn4Z2pY0C9A")
 .then(res => res.json())
 .then(data => {
 
-    const link = data.items[1].link;   // penultimo video caricato
+    const linkLatest = data.items[0].link;
+    const linkSecond = data.items[1].link;
 
-    secondVideoID = link.split("v=")[1];
+    latestVideoID = linkLatest.split("v=")[1];
+    secondVideoID = linkSecond.split("v=")[1];
 
 });
 
@@ -1408,6 +1417,15 @@ function openVideo(){
 
     document.getElementById("youtubeFrame").src =
     "https://www.youtube.com/embed/" + secondVideoID;
+
+}
+
+function openVideoLatest(){
+
+    document.getElementById("videoModal").style.display="flex";
+
+    document.getElementById("youtubeFrame").src =
+    "https://www.youtube.com/embed/" + latestVideoID;
 
 }
 
