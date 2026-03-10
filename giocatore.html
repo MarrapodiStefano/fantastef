@@ -829,9 +829,11 @@ div.className = "search-item";
 div.textContent = g.nome + " • " + g.squadra;
 
 div.onclick = () =>{
+
 const slug = getPlayerSlug(g.nome);
 
-window.location.search = slug;
+window.location.href = "giocatore.html?" + slug;
+
 };
 
 resultsBox.appendChild(div);
