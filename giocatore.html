@@ -808,6 +808,17 @@ max:10
 const searchInput = document.getElementById("search-player");
 const resultsBox = document.getElementById("search-results");
 
+searchInput.addEventListener("keydown", function(e){
+
+if(e.key === "Enter"){
+
+const slug = getPlayerSlug(this.value);
+
+window.location.search = slug;
+
+}
+
+});
 searchInput.addEventListener("input", function(){
 
 const value = this.value.toLowerCase();
@@ -832,21 +843,9 @@ div.onclick = () =>{
 
 const slug = getPlayerSlug(g.nome);
 
-window.location.href = "giocatore.html?" + slug;
+window.location.search = slug;
 
 };
-
-searchInput.addEventListener("keydown", function(e){
-
-if(e.key === "Enter"){
-
-const slug = getPlayerSlug(this.value);
-
-window.location.href = "giocatore.html?" + slug;
-
-}
-
-});
 
 resultsBox.appendChild(div);
 
