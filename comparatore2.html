@@ -359,6 +359,7 @@ button{
     font-size:15px;
     padding-bottom:10px;
     border-bottom:1px solid rgba(255,255,255,0.15);
+    cursor:pointer;
 }
 
 .dg-header.center{
@@ -602,6 +603,24 @@ CHIUDI
 <script>
 
 let datiMaster = null;
+
+function getPlayerSlug(nome){
+
+return nome
+.toLowerCase()
+.replace(/\./g,"")
+.replace(/\s+/g,"-")
+.trim();
+
+}
+
+function goToPlayer(nome){
+
+const slug = getPlayerSlug(nome);
+
+window.location.href = "giocatore.html?" + slug;
+
+}
 
 document.addEventListener("DOMContentLoaded", async function(){
 
@@ -871,11 +890,11 @@ async function caricaOverlay(nome1, nome2){
     const grid = document.getElementById("duelloGrid");
 
     // Svuota la grid
-    grid.innerHTML = `
-        <div class="dg-header">${nome1}</div>
-        <div class="dg-header center">VS</div>
-        <div class="dg-header">${nome2}</div>
-    `;
+   grid.innerHTML = `
+<div class="dg-header" onclick="goToPlayer('${nome1}')">${nome1}</div>
+<div class="dg-header center">VS</div>
+<div class="dg-header" onclick="goToPlayer('${nome2}')">${nome2}</div>
+`;
 
     // Decide quale file leggere
     if(!datiMaster) return;
