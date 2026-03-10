@@ -832,7 +832,7 @@ div.onclick = () =>{
 
 const slug = getPlayerSlug(g.nome);
 
-window.location.href = "giocatore.html?" + slug;
+window.location.search = slug;
 
 };
 
@@ -842,7 +842,7 @@ if(e.key === "Enter"){
 
 const slug = getPlayerSlug(this.value);
 
-window.location.href = "giocatore.html?" + slug;
+window.location.search = slug;
 
 }
 
