@@ -634,7 +634,18 @@ return slug === playerSlug;
 });
 
 if(!player){
-console.log("Giocatore non trovato:", playerSlug);
+
+document.getElementById("player-name").textContent = "Stats";
+document.getElementById("player-team").textContent = "Cerca un giocatore";
+document.getElementById("player-role").textContent = "";
+
+document.getElementById("stat-voto").textContent = "-";
+document.getElementById("stat-gol").textContent = "-";
+document.getElementById("stat-assist").textContent = "-";
+document.getElementById("stat-amm").textContent = "-";
+document.getElementById("stat-esp").textContent = "-";
+document.getElementById("stat-fm").textContent = "-";
+
 return;
 }
 
