@@ -1406,8 +1406,8 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feed
 const linkLatest = data.items[0].link;
 const linkSecond = data.items[1].link;
 
-latestVideoID = linkLatest.split("/").pop().split("?")[0];
-secondVideoID = linkSecond.split("/").pop().split("?")[0];
+latestVideoID = new URL(linkLatest).searchParams.get("v") || linkLatest.split("/").pop();
+secondVideoID = new URL(linkSecond).searchParams.get("v") || linkSecond.split("/").pop();
 });
 
 function openVideo(){
