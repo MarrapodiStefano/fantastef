@@ -1248,11 +1248,21 @@ grid.className = "roles-grid";
     div.className = "player-pill " + ruolo;
 
     const nomeSpan = document.createElement("span");
-    nomeSpan.textContent = g.nome;
+nomeSpan.textContent = g.nome;
 
-    const deleteBtn = document.createElement("span");
-    deleteBtn.textContent = "✖";
-    deleteBtn.className = "delete-btn";
+nomeSpan.style.cursor = "pointer";
+
+nomeSpan.onclick = function(){
+
+const slug = getPlayerSlug(g.nome);
+
+window.location.href = "giocatore.html?" + slug;
+
+};
+
+const deleteBtn = document.createElement("span");
+deleteBtn.textContent = "✖";
+deleteBtn.className = "delete-btn";
 
     deleteBtn.onclick = function(ev){
     rimuoviGiocatore(g.id, ruolo, ev);
