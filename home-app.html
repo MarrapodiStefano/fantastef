@@ -1390,10 +1390,25 @@ document.querySelectorAll(".alg-tab").forEach(tab => {
 
 /* ================= VIDEO ================= */
 
+let secondVideoID = "";
+
+fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=UCwYx1v3M9t3hWn4Z2pY0C9A")
+.then(res => res.json())
+.then(data => {
+
+    const link = data.items[1].link;   // penultimo video caricato
+
+    secondVideoID = link.split("v=")[1];
+
+});
+
 function openVideo(){
+
     document.getElementById("videoModal").style.display="flex";
-    document.getElementById("youtubeFrame").src=
-    "https://www.youtube.com/embed/-DmT9bhRsxI";
+
+    document.getElementById("youtubeFrame").src =
+    "https://www.youtube.com/embed/" + secondVideoID;
+
 }
 
 function openOracolo(cardElement){
