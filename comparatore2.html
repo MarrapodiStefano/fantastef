@@ -586,6 +586,64 @@ box-shadow:0 0 12px rgba(0,0,0,0.5);
 
 }
 
+/* MENU LATERALE */
+
+.side-menu{
+
+position:fixed;
+top:0;
+left:-280px;
+
+width:260px;
+height:100%;
+
+background:#0f1f2f;
+
+box-shadow:20px 0 40px rgba(0,0,0,0.6);
+
+padding:30px 20px;
+
+transition:all 0.3s ease;
+
+z-index:4000;
+
+}
+
+.side-menu.active{
+left:0;
+}
+
+.menu-header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+font-weight:700;
+font-size:18px;
+
+margin-bottom:30px;
+
+color:#2ecc71;
+
+}
+
+.menu-item{
+
+padding:14px 0;
+
+border-bottom:1px solid rgba(255,255,255,0.08);
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+.menu-item:hover{
+color:#2ecc71;
+}
+
 </style>
 </head>
 
