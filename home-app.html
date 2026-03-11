@@ -1687,6 +1687,21 @@ Rifiuta
 
 <script src="menu.js"></script>
 
+<script>
+
+if ("serviceWorker" in navigator) {
+
+navigator.serviceWorker.register("service-worker.js")
+.then(function(registration) {
+
+console.log("Service Worker registrato");
+
+});
+
+}
+
+</script>
+
 </body>
 </html>
  
