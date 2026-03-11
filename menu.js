@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 const menuHTML = `
 
-<div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+<div id="menuOverlay" class="menu-overlay"></div>
 
 <div id="sideMenu" class="side-menu">
 
@@ -33,6 +33,9 @@ Segnala Bug
 
 document.body.insertAdjacentHTML("beforeend", menuHTML);
 
+document.getElementById("menuOverlay").addEventListener("click", function(e){
+e.stopPropagation();
+closeMenu();
 });
 
 function openMenu(){
