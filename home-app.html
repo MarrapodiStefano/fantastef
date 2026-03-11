@@ -937,6 +937,76 @@ display:none;
 
 }
 
+/* ================= COOKIE BANNER ================= */
+
+.cookie-banner{
+
+position:fixed;
+bottom:80px;
+left:50%;
+transform:translateX(-50%);
+
+width:90%;
+max-width:520px;
+
+background:rgba(10,20,35,0.95);
+backdrop-filter:blur(6px);
+
+border:1px solid rgba(46,204,113,0.4);
+border-radius:14px;
+
+padding:16px;
+
+z-index:9999;
+
+display:none;
+
+box-shadow:0 0 20px rgba(0,0,0,0.6);
+
+}
+
+.cookie-text{
+
+font-size:14px;
+line-height:1.4;
+margin-bottom:12px;
+
+}
+
+.cookie-buttons{
+
+display:flex;
+gap:10px;
+
+}
+
+.cookie-btn{
+
+flex:1;
+padding:8px;
+
+border-radius:8px;
+border:none;
+
+font-weight:600;
+cursor:pointer;
+
+}
+
+.cookie-accept{
+
+background:#2ecc71;
+color:black;
+
+}
+
+.cookie-reject{
+
+background:#1f2f3f;
+color:white;
+
+}
+
 </style>
 </head>
 
@@ -1462,7 +1532,93 @@ function openStats(){
 window.location.href = "giocatore.html";
 }
 
+/* ================= COOKIE SYSTEM ================= */
+
+function checkCookies(){
+
+if(!localStorage.getItem("cookieChoice")){
+
+document.getElementById("cookieBanner").style.display="block";
+
+}
+
+else if(localStorage.getItem("cookieChoice") === "accepted"){
+
+loadAnalytics();
+
+}
+
+}
+
+function acceptCookies(){
+
+localStorage.setItem("cookieChoice","accepted");
+
+document.getElementById("cookieBanner").style.display="none";
+
+loadAnalytics();
+
+}
+
+function rejectCookies(){
+
+localStorage.setItem("cookieChoice","rejected");
+
+document.getElementById("cookieBanner").style.display="none";
+
+}
+
+/* ================= GOOGLE ANALYTICS ================= */
+
+function loadAnalytics(){
+
+const script = document.createElement("script");
+
+script.src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX";
+
+script.async=true;
+
+document.head.appendChild(script);
+
+window.dataLayer = window.dataLayer || [];
+
+function gtag(){dataLayer.push(arguments);}
+
+gtag('js', new Date());
+
+gtag('config', 'G-XXXXXXX', {
+'anonymize_ip': true
+});
+
+}
+
+/* ================= AVVIO CONTROLLO ================= */
+
+window.addEventListener("load",checkCookies);
+
 </script>
+
+<!-- COOKIE BANNER -->
+
+<div class="cookie-banner" id="cookieBanner">
+
+<div class="cookie-text">
+Questo sito utilizza cookie tecnici e statistiche anonime per migliorare l’esperienza di navigazione.
+</div>
+
+<div class="cookie-buttons">
+
+<button class="cookie-btn cookie-accept" onclick="acceptCookies()">
+Accetta
+</button>
+
+<button class="cookie-btn cookie-reject" onclick="rejectCookies()">
+Rifiuta
+</button>
+
+</div>
+
+</div>
 
 </body>
 </html>
