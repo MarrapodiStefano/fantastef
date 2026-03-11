@@ -44,6 +44,31 @@ color:#2ecc71;
 
 }
 
+.close-container{
+
+text-align:center;
+margin-top:40px;
+
+}
+
+.close-btn{
+
+padding:14px 28px;
+font-size:16px;
+
+border-radius:22px;
+border:none;
+
+background:#2ecc71;
+color:#0a1624;
+
+font-weight:700;
+cursor:pointer;
+
+box-shadow:0 0 20px rgba(46,204,113,0.4);
+
+}
+
 </style>
 
 </head>
@@ -103,6 +128,20 @@ Il titolare del trattamento dei dati è il gestore del sito FantaStef.
 <p>
 Per qualsiasi informazione è possibile contattare il gestore tramite i canali ufficiali del progetto.
 </p>
+
+<div class="close-container">
+<button onclick="goBack()" class="close-btn">
+Torna all'app
+</button>
+</div>
+
+<script>
+
+function goBack(){
+window.history.back();
+}
+
+</script>
 
 </body>
 
