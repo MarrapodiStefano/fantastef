@@ -1,13 +1,18 @@
 {
-  "name": "Fantastef",
-  "short_name": "Fantastef",
-  "description": "Fantastef – Algoritmo e consigli per il fantacalcio",
-  "start_url": "/",
+  "name": "FantaStef",
+  "short_name": "FantaStef",
+  "description": "Algoritmo e consigli strategici per il fantacalcio",
+  "start_url": "/home-app.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#0b1726",
+  "theme_color": "#2ecc71",
   "orientation": "portrait",
   "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
