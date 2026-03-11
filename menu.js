@@ -38,6 +38,8 @@ e.stopPropagation();
 closeMenu();
 });
 
+});
+
 function openMenu(){
 
 document.getElementById("sideMenu").classList.add("active");
