@@ -557,10 +557,41 @@ color:white;
 
 }
 
+/* ================= CLOSE BUTTON ================= */
+
+.close-btn{
+
+position:fixed;
+top:20px;
+right:20px;
+
+font-size:26px;
+cursor:pointer;
+
+background:rgba(10,20,35,0.9);
+border:1px solid rgba(46,204,113,0.4);
+
+width:40px;
+height:40px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+
+color:white;
+
+box-shadow:0 0 12px rgba(0,0,0,0.5);
+
+}
+
 </style>
 </head>
 
 <body>
+
+<div class="close-btn" onclick="goBack()">✕</div>
     
 <div class="rotate-warning">
 Ruota il telefono in verticale 📱
@@ -1183,6 +1214,16 @@ Rifiuta
 </div>
 
 </div>
+
+<script>
+
+function goBack(){
+
+window.history.back();
+
+}
+
+</script>
 
 </body>
 </html>
