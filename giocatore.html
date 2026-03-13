@@ -861,10 +861,7 @@ A:"🔵 ATT"
 document.getElementById("player-role").textContent = ruoloMap[player.ruolo];
 
 const img = document.getElementById("player-photo");
-img.src = "player-img/" + player.nome.toLowerCase() + ".PNG";
-img.onerror = () => {
-img.src = "player-img/" + player.nome.toLowerCase() + ".png";
-};
+img.src = "player-img/" + getPlayerSlug(player.nome) + ".png";
 
 /* ================= POPOLA STATISTICHE ================= */
 
