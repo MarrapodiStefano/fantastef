@@ -853,7 +853,11 @@ document.getElementById("stat-amm").textContent = player.ammonizioni;
 document.getElementById("stat-esp").textContent = player.espulsioni;
 document.getElementById("stat-fm").textContent = player.fantamedia;
 
-    document.querySelector(".main-wrapper").scrollTop = 0;
+document.activeElement.blur();
+
+setTimeout(() => {
+window.scrollTo(0,0);
+}, 50);
 }
     
 let player = null;
