@@ -810,17 +810,6 @@ const ctx = document.getElementById('radarChart');
 /* ================= CARICA JSON ================= */
 
 let tuttiGiocatori = [];
-    
-fetch("giocatori_master.json")
-.then(response => response.json())
-.then(data => {
-
-tuttiGiocatori = [
-...data.attaccanti,
-...data.centrocampisti,
-...data.difensori,
-...data.portieri
-];
 
 function caricaGiocatore(slug){
 
@@ -855,12 +844,20 @@ document.getElementById("stat-amm").textContent = player.ammonizioni;
 document.getElementById("stat-esp").textContent = player.espulsioni;
 document.getElementById("stat-fm").textContent = player.fantamedia;
 
-document.activeElement.blur();
-
-setTimeout(() => {
 window.scrollTo(0,0);
-}, 50);
+
 }
+    
+fetch("giocatori_master.json")
+.then(response => response.json())
+.then(data => {
+
+tuttiGiocatori = [
+...data.attaccanti,
+...data.centrocampisti,
+...data.difensori,
+...data.portieri
+];
     
 let player = null;
 
