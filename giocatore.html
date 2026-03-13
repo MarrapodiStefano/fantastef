@@ -953,7 +953,15 @@ type: 'radar',
 
 data: {
 
-labels:[
+labels: player.ruolo === "P"
+? [
+'Avversario',
+'Motivazioni',
+'Titolarità',
+'Solidità Difensiva',
+'Clean Sheet'
+]
+: [
 'Avversario',
 'Motivazioni',
 'Titolarità',
