@@ -807,17 +807,54 @@ const playerSlug = decodeURIComponent(window.location.search.substring(1)).toLow
 const ctx = document.getElementById('radarChart');
 /* ================= CARICA JSON ================= */
 
+let tuttiGiocatori = [];
+    
 fetch("giocatori_master.json")
 .then(response => response.json())
 .then(data => {
 
-let tuttiGiocatori = [
+tuttiGiocatori = [
 ...data.attaccanti,
 ...data.centrocampisti,
 ...data.difensori,
 ...data.portieri
 ];
 
+function caricaGiocatore(slug){
+
+const player = tuttiGiocatori.find(p => {
+
+const s = getPlayerSlug(p.nome);
+return s === slug;
+
+});
+
+if(!player) return;
+
+document.getElementById("player-name").textContent = player.nome;
+document.getElementById("player-team").textContent = player.squadra;
+
+const ruoloMap = {
+P:"🔴 POR",
+D:"🟠 DIF",
+C:"🟢 CEN",
+A:"🔵 ATT"
+};
+
+document.getElementById("player-role").textContent = ruoloMap[player.ruolo];
+
+const img = document.getElementById("player-photo");
+img.src = "player-img/" + player.nome.toLowerCase() + ".PNG";
+
+document.getElementById("stat-voto").textContent = player.voto_algoritmo;
+document.getElementById("stat-gol").textContent = player.gol;
+document.getElementById("stat-assist").textContent = player.assist;
+document.getElementById("stat-amm").textContent = player.ammonizioni;
+document.getElementById("stat-esp").textContent = player.espulsioni;
+document.getElementById("stat-fm").textContent = player.fantamedia;
+
+}
+    
 let player = null;
 
 if(playerSlug){
@@ -1014,7 +1051,7 @@ if(e.key === "Enter"){
 
 const slug = getPlayerSlug(this.value);
 
-window.location.search = slug;
+caricaGiocatore(slug);
 
 }
 
@@ -1043,7 +1080,7 @@ div.onclick = () =>{
 
 const slug = getPlayerSlug(g.nome);
 
-window.location.search = slug;
+caricaGiocatore(slug);
 
 };
 
