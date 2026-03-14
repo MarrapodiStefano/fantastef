@@ -1,4 +1,4 @@
-const CACHE_NAME = "fantastef-cache-v1";
+const CACHE_NAME = "fantastef-cache-v2";
 
 const urlsToCache = [
 "/",
@@ -23,6 +23,11 @@ return cache.addAll(urlsToCache);
 });
 
 self.addEventListener("fetch", event => {
+
+if (event.request.mode === "navigate") {
+event.respondWith(fetch(event.request));
+return;
+}
 
 event.respondWith(
 caches.match(event.request)
