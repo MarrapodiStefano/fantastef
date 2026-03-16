@@ -1561,11 +1561,15 @@ function aggiungiGiocatoreAllaRosa(giocatore){
 const inputNomeRosa = document.getElementById("nomeNuovaRosa");
 
 if(inputNomeRosa){
-    inputNomeRosa.addEventListener("blur", function(){
-        setTimeout(() => {
-            window.scrollTo(0,0);
-        }, 100);
-    });
+
+inputNomeRosa.addEventListener("focus", () => {
+document.body.style.overflow = "hidden";
+});
+
+inputNomeRosa.addEventListener("blur", () => {
+document.body.style.overflow = "";
+});
+
 }
 
 // ================= MODULI CONSENTITI =================
