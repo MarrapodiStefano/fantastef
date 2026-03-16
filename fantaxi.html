@@ -2538,6 +2538,16 @@ gtag('config', 'G-XXXXXXX', {
 
 window.addEventListener("load",checkCookies);
 
+document.addEventListener("focusout", function(){
+
+setTimeout(() => {
+
+window.scrollTo(0,0);
+
+},100);
+
+});
+    
 </script>
 
 <!-- ================= MODALE NUOVA ROSA ================= -->
