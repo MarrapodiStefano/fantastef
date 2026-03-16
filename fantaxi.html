@@ -23,25 +23,17 @@
     box-sizing:border-box;
 }
 
-:root{
---app-height:100vh;
-}
-    
 body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     background:url("stadium-bg.png") center center / cover no-repeat;
     color:white;
-    min-height:var(--app-height);
+    min-height:100dvh;
 }
 
-html,body{
-height:100%;
-overflow:hidden;
-}
-
-body{
-position:relative;
-min-height:100vh;
+html, body{
+    height:100dvh;
+    min-height:100dvh;
+    overflow:hidden;
 }
 
 /* ================= WRAPPER ================= */
@@ -51,7 +43,7 @@ min-height:100vh;
     margin:auto;
     padding-top:80px;
 
-    min-height:calc(100vh - 65px);  /* 👈 sottrae bottom menu */
+    height:calc(100dvh - 65px);  /* 👈 sottrae bottom menu */
 
     display:flex;
     flex-direction:column;
@@ -254,6 +246,8 @@ button{
     padding:5px 20px 1px 20px;
     display:flex;
     flex-direction:column;
+
+    flex:1;                 /* 👈 occupa spazio disponibile */
     min-height:0;           /* 👈 fondamentale */
 }
 
@@ -767,25 +761,19 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 /* ================= MODALE ROSA ================= */
 
 .modal-overlay{
-position:fixed;
-top:0;
-left:0;
-width:100vw;
-height:100vh;
-
-display:none;
-justify-content:center;
-align-items:flex-start;
-padding-top:120px;
-
-background:rgba(0,0,0,0.75);
-backdrop-filter:blur(6px);
-
-z-index:9999;
-
-overflow:auto;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(6px);
+    display:none;
+    justify-content:center;
+    align-items:flex-start;
+    z-index:3000;
+    padding:40px 20px;
+    overflow:hidden;
+    touch-action: manipulation; /* 🔥 */
 }
-    
+
 .modal-box{
     width:100%;
     max-width:420px;
@@ -800,7 +788,7 @@ overflow:auto;
     flex-direction:column;
     max-height:80vh;
 }
-    
+
 /* ===== OVERLAY REGOLE LEGA ===== */
 
 .regole-list{
@@ -1047,11 +1035,11 @@ display:block;
 </style>
 </head>
 
-<body>
-
 <div class="rotate-warning">
 Ruota il telefono in verticale 📱
 </div>
+
+<body>
 
 
 
@@ -1242,22 +1230,21 @@ fetch("giocatori_master.json?v=" + Date.now())
 /* ================= MODALE ROSA ================= */
 
 function apriModalRosa(){
-
-document.getElementById("modalRosa").style.display = "flex";
-
+    document.getElementById("modalRosa").style.display = "flex";
 }
 
 function chiudiModalRosa(){
 
-document.activeElement.blur();
+    document.activeElement.blur(); // chiude tastiera iOS
 
-document.getElementById("modalRosa").style.display = "none";
-document.getElementById("nomeNuovaRosa").value = "";
+    document.getElementById("modalRosa").style.display = "none";
+    document.getElementById("nomeNuovaRosa").value = "";
 
-window.scrollTo(0,0);
-
+    setTimeout(() => {
+        window.scrollTo(0,0); // reset viewport Safari
+    }, 50);
 }
-    
+
 function getDati(){
 
     let datiRaw = localStorage.getItem("fantaXI");
@@ -1563,15 +1550,11 @@ function aggiungiGiocatoreAllaRosa(giocatore){
 const inputNomeRosa = document.getElementById("nomeNuovaRosa");
 
 if(inputNomeRosa){
-
-inputNomeRosa.addEventListener("focus", () => {
-document.body.style.overflow = "hidden";
-});
-
-inputNomeRosa.addEventListener("blur", () => {
-document.body.style.overflow = "";
-});
-
+    inputNomeRosa.addEventListener("blur", function(){
+        setTimeout(() => {
+            window.scrollTo(0,0);
+        }, 100);
+    });
 }
 
 // ================= MODULI CONSENTITI =================
@@ -2555,16 +2538,6 @@ gtag('config', 'G-XXXXXXX', {
 
 window.addEventListener("load",checkCookies);
 
-function setAppHeight(){
-document.documentElement.style
-.setProperty('--app-height', window.innerHeight + 'px');
-}
-
-window.addEventListener('resize', setAppHeight);
-window.addEventListener('orientationchange', setAppHeight);
-
-setAppHeight();
-  
 </script>
 
 <!-- ================= MODALE NUOVA ROSA ================= -->
