@@ -1252,17 +1252,12 @@ function chiudiModalRosa(){
 document.activeElement.blur();
 
 document.getElementById("modalRosa").style.display = "none";
-
-document.body.style.position = "";
-document.body.style.width = "";
-
 document.getElementById("nomeNuovaRosa").value = "";
 
-setTimeout(() => {
 window.scrollTo(0,0);
-}, 50);
 
 }
+    
 function getDati(){
 
     let datiRaw = localStorage.getItem("fantaXI");
