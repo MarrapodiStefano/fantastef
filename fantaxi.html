@@ -767,19 +767,17 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 /* ================= MODALE ROSA ================= */
 
 .modal-overlay{
-
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.75);
-    backdrop-filter:blur(6px);
-    display:none;
-
-    justify-content:center;
-    align-items:center;
-
-    z-index:3000;
-    padding:40px 20px;
-    overflow:hidden;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(6px);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:3000;
+padding:40px 20px;
+overflow:hidden;
+touch-action: manipulation;
 }
     
 .modal-box{
