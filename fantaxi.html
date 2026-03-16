@@ -33,7 +33,11 @@ body{
 html,body{
 height:100%;
 overflow-x:hidden;
-overflow-y:auto;
+}
+
+body{
+position:relative;
+min-height:100vh;
 }
 
 /* ================= WRAPPER ================= */
@@ -43,7 +47,7 @@ overflow-y:auto;
     margin:auto;
     padding-top:80px;
 
-    height:calc(100dvh - 65px);  /* 👈 sottrae bottom menu */
+    min-height:calc(100vh - 65px);  /* 👈 sottrae bottom menu */
 
     display:flex;
     flex-direction:column;
