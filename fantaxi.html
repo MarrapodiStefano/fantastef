@@ -27,7 +27,7 @@ body{
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     background:url("stadium-bg.png") center center / cover no-repeat;
     color:white;
-    min-height:100dvh;
+    min-height:100svh;
 }
 
 html,body{
@@ -1039,11 +1039,11 @@ display:block;
 </style>
 </head>
 
+<body>
+
 <div class="rotate-warning">
 Ruota il telefono in verticale 📱
 </div>
-
-<body>
 
 
 
@@ -1234,19 +1234,24 @@ fetch("giocatori_master.json?v=" + Date.now())
 /* ================= MODALE ROSA ================= */
 
 function apriModalRosa(){
+
+    document.body.style.position = "fixed";
+    document.body.style.width = "100%";
+
     document.getElementById("modalRosa").style.display = "flex";
+
 }
 
 function chiudiModalRosa(){
 
-    document.activeElement.blur(); // chiude tastiera iOS
+    document.activeElement.blur();
+
+    document.body.style.position = "";
+    document.body.style.width = "";
 
     document.getElementById("modalRosa").style.display = "none";
     document.getElementById("nomeNuovaRosa").value = "";
 
-    setTimeout(() => {
-        window.scrollTo(0,0); // reset viewport Safari
-    }, 50);
 }
 
 function getDati(){
