@@ -27,6 +27,10 @@ Contattami
 Segnala Bug
 </div>
 
+<div class="menu-item" onclick="window.location.href='privacy.html'">
+Privacy
+</div>
+
 </div>
 
 `;
