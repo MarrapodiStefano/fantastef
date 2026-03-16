@@ -30,10 +30,10 @@ body{
     min-height:100dvh;
 }
 
-html, body{
-    height:100dvh;
-    min-height:100dvh;
-    overflow:hidden;
+html,body{
+height:100%;
+overflow-x:hidden;
+overflow-y:auto;
 }
 
 /* ================= WRAPPER ================= */
@@ -2538,20 +2538,7 @@ gtag('config', 'G-XXXXXXX', {
 
 window.addEventListener("load",checkCookies);
 
-document.addEventListener("focusout", function(){
-
-setTimeout(() => {
-
-window.scrollTo({
-top:0,
-left:0,
-behavior:"instant"
-});
-
-},100);
-
-});
-    
+  
 </script>
 
 <!-- ================= MODALE NUOVA ROSA ================= -->
