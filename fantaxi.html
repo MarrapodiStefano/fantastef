@@ -765,32 +765,48 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 /* ================= MODALE ROSA ================= */
 
 .modal-overlay{
+
     position:fixed;
-    inset:0;
+    top:0;
+    left:0;
+
+    width:100vw;
+    height:100vh;
+
     background:rgba(0,0,0,0.75);
     backdrop-filter:blur(6px);
+
     display:none;
     justify-content:center;
-    align-items:flex-start;
-    z-index:3000;
-    padding:40px 20px;
-    overflow:hidden;
-    touch-action: manipulation; /* 🔥 */
-}
+    align-items:center;
 
+    z-index:3000;
+
+    padding:20px;
+
+    overflow:hidden;
+
+}
+    
 .modal-box{
+
     width:100%;
     max-width:420px;
+
     background:linear-gradient(180deg,#0f1f2f,#0a1624);
     border-radius:20px;
+
     padding:25px;
+
     text-align:center;
+
     box-shadow:0 0 30px rgba(46,204,113,0.3);
-    margin:auto;
 
     display:flex;
     flex-direction:column;
-    max-height:80vh;
+
+    height:auto;
+
 }
 
 /* ===== OVERLAY REGOLE LEGA ===== */
@@ -1234,12 +1250,7 @@ fetch("giocatori_master.json?v=" + Date.now())
 /* ================= MODALE ROSA ================= */
 
 function apriModalRosa(){
-
-    document.body.style.position = "fixed";
-    document.body.style.width = "100%";
-
     document.getElementById("modalRosa").style.display = "flex";
-
 }
 
 function chiudiModalRosa(){
