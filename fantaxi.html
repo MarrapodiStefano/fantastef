@@ -1294,6 +1294,12 @@ parsed.rose.forEach(r => {
 
 function salvaDati(dati){
     localStorage.setItem("fantaXI", JSON.stringify(dati));
+
+    // Avvisa il modulo Firebase che i dati FantaXI sono cambiati.
+    // La copia locale resta sempre disponibile come sicurezza.
+    window.dispatchEvent(new CustomEvent("fantaXIDataChanged", {
+        detail: dati
+    }));
 }
 
 function creaRosa(){
@@ -2632,6 +2638,8 @@ Rifiuta
 </div>
 
 </div>
+
+<script type="module" src="fantaxi-sync.js"></script>
 
 <script src="menu.js"></script>
 
