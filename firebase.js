@@ -15,7 +15,9 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/12.17.0/firebas
 
 const firebaseConfig = {
   apiKey: "AIzaSyDf6p2cVy-WsJIrG2aePmJeuv0nTRyQM64",
-  authDomain: "fantastef-24e1d.firebaseapp.com",
+  // Usiamo il dominio dell'app come authDomain per evitare il problema
+  // Safari/third-party storage durante il login con redirect.
+  authDomain: "fantastef.it",
   projectId: "fantastef-24e1d",
   storageBucket: "fantastef-24e1d.firebasestorage.app",
   messagingSenderId: "1016760740705",
