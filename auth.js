@@ -2,7 +2,7 @@
 import {
   auth,
   googleProvider,
-  signInWithPopup,
+  signInWithRedirect,
   signOut,
   onAuthStateChanged
 } from "./firebase.js";
@@ -29,7 +29,9 @@ function aggiornaInterfaccia(user) {
 
 async function accediConGoogle() {
   try {
-    await signInWithPopup(auth, googleProvider);
+    // Su iPhone evitiamo il popup: Firebase porta avanti il login
+    // e poi torna automaticamente alla stessa home-app.
+    await signInWithRedirect(auth, googleProvider);
   } catch (error) {
     console.error("Errore accesso Google:", error);
     alert("Accesso Google non riuscito. Riprova.");
