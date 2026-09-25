@@ -13,7 +13,7 @@ import {
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDf6p2cVy-WsJIrG2aePmJeu0nTRyQM64",
+  apiKey: "AIzaSyDf6p2cVy-WsJIrG2aePmJeuv0nTRyQM64",
   authDomain: "fantastef-24e1d.firebaseapp.com",
   projectId: "fantastef-24e1d",
   storageBucket: "fantastef-24e1d.firebasestorage.app",
