@@ -1,16 +1,11 @@
 // FantaStef - Accesso Google
 import {
   auth,
-  db,
   googleProvider,
   signInWithPopup,
   signOut,
   onAuthStateChanged
 } from "./firebase.js";
-import {
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const loginBtn = document.getElementById("googleLoginBtn");
 const logoutBtn = document.getElementById("googleLogoutBtn");
@@ -29,19 +24,6 @@ function aggiornaInterfaccia(user) {
     logoutBtn.style.display = "none";
     accountLabel.style.display = "none";
     accountLabel.textContent = "";
-  }
-}
-
-async function verificaFirestore(user) {
-  if (!user) return;
-
-  try {
-    // Test di sola lettura: non crea né modifica alcun dato.
-    await getDoc(doc(db, "users", user.uid));
-    alert("Test Firestore riuscito! L'account Google può accedere al proprio spazio.");
-  } catch (error) {
-    console.error("Errore test Firestore:", error);
-    alert("Test Firestore non riuscito. Controlliamo prima di continuare.");
   }
 }
 
@@ -71,9 +53,4 @@ if (logoutBtn) {
   logoutBtn.addEventListener("click", esciDaGoogle);
 }
 
-onAuthStateChanged(auth, user => {
-  aggiornaInterfaccia(user);
-  if (user) {
-    verificaFirestore(user);
-  }
-});
+onAuthStateChanged(auth, aggiornaInterfaccia);
