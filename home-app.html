@@ -69,6 +69,53 @@ body{
     height:50px;
 }
 
+.account-area{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.account-btn{
+    border:1px solid rgba(46,204,113,0.7);
+    border-radius:10px;
+    background:rgba(46,204,113,0.12);
+    color:white;
+    padding:7px 10px;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.account-btn.login{
+    background:#2ecc71;
+    color:#07130c;
+}
+
+.account-label{
+    max-width:130px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-size:12px;
+    opacity:0.85;
+}
+
+@media (max-width:768px){
+    .header{
+        padding:0 15px;
+    }
+
+    .account-label{
+        display:none !important;
+    }
+
+    .account-btn{
+        padding:7px 9px;
+        font-size:12px;
+    }
+}
+
 .logo-area{
     display:flex;
     align-items:center;
@@ -1113,7 +1160,12 @@ Ruota il telefono in verticale 📱
         <img src="logo.png">
         FantaStef
     </div>
-<div onclick="openSettings()">⚙</div>
+<div class="account-area">
+    <span id="accountLabel" class="account-label"></span>
+    <button id="googleLoginBtn" class="account-btn login" type="button">Accedi</button>
+    <button id="googleLogoutBtn" class="account-btn" type="button" style="display:none;">Esci</button>
+    <div onclick="openSettings()" style="cursor:pointer;">⚙</div>
+</div>
 </div>
 
 <div class="main-wrapper">
@@ -1717,6 +1769,8 @@ Rifiuta
 </div>
 
 <script src="menu.js"></script>
+
+<script type="module" src="auth.js"></script>
 
 <script>
 
