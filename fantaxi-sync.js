@@ -1,8 +1,6 @@
 // FantaStef - Sincronizzazione FantaXI con Firebase
-// La rosa locale resta intatta durante i test.
-// Se l'utente è autenticato:
-// - se esiste una rosa su Firestore, viene recuperata;
-// - se non esiste, la rosa locale viene migrata su Firestore.
+// Durante questa fase localStorage resta la copia locale di sicurezza.
+// Firestore diventa la copia sincronizzata dell'utente autenticato.
 
 import { auth, db, onAuthStateChanged } from "./firebase.js";
 import {
@@ -14,12 +12,38 @@ import {
 
 const COLLECTION = "fantaxi";
 
-async function sincronizzaFantaXI(user) {
-  if (!user) return;
+let utenteFantaXI = null;
+let sincronizzazioneInCorso = false;
 
-  const riferimento = doc(db, "users", user.uid, COLLECTION, "data");
+function riferimentoFantaXI(user) {
+  return doc(db, "users", user.uid, COLLECTION, "data");
+}
+
+async function salvaSuFirestore(dati) {
+  if (!utenteFantaXI || sincronizzazioneInCorso) return;
 
   try {
+    await setDoc(riferimentoFantaXI(utenteFantaXI), {
+      dati: dati,
+      updatedAt: serverTimestamp()
+    });
+
+    console.log("FantaXI: dati salvati su Firestore.");
+  } catch (error) {
+    console.error("FantaXI: errore salvataggio Firestore:", error);
+  }
+}
+
+async function sincronizzaFantaXI(user) {
+  utenteFantaXI = user || null;
+
+  if (!user) return;
+
+  const riferimento = riferimentoFantaXI(user);
+
+  try {
+    sincronizzazioneInCorso = true;
+
     const cloudSnapshot = await getDoc(riferimento);
     const localeRaw = localStorage.getItem("fantaXI");
 
@@ -50,7 +74,14 @@ async function sincronizzaFantaXI(user) {
     }
   } catch (error) {
     console.error("FantaXI: errore sincronizzazione:", error);
+  } finally {
+    sincronizzazioneInCorso = false;
   }
 }
+
+// Ogni volta che FantaXI chiama salvaDati(), aggiorniamo anche Firestore.
+window.addEventListener("fantaXIDataChanged", function(event) {
+  salvaSuFirestore(event.detail);
+});
 
 onAuthStateChanged(auth, sincronizzaFantaXI);
