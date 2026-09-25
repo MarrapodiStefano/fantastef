@@ -14,13 +14,19 @@ const COLLECTION = "fantaxi";
 
 let utenteFantaXI = null;
 let sincronizzazioneInCorso = false;
+let datiInAttesa = null;
 
 function riferimentoFantaXI(user) {
   return doc(db, "users", user.uid, COLLECTION, "data");
 }
 
 async function salvaSuFirestore(dati) {
-  if (!utenteFantaXI || sincronizzazioneInCorso) return;
+  if (!utenteFantaXI) return;
+
+  if (sincronizzazioneInCorso) {
+    datiInAttesa = dati;
+    return;
+  }
 
   try {
     await setDoc(riferimentoFantaXI(utenteFantaXI), {
@@ -76,6 +82,14 @@ async function sincronizzaFantaXI(user) {
     console.error("FantaXI: errore sincronizzazione:", error);
   } finally {
     sincronizzazioneInCorso = false;
+
+    // Se durante la sincronizzazione l'utente ha modificato la rosa,
+    // salviamo subito anche l'ultima versione locale.
+    if (datiInAttesa) {
+      const datiDaSalvare = datiInAttesa;
+      datiInAttesa = null;
+      await salvaSuFirestore(datiDaSalvare);
+    }
   }
 }
 
