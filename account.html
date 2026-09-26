@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Il mio account - FantaStef</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-512.png">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{
+    min-height:100%;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:url("stadium-bg.png") center center / cover fixed no-repeat;
+    color:white;
+}
+
+body{
+    min-height:100dvh;
+    padding-bottom:30px;
+}
+
+.header{
+    position:fixed;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:1750px;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 20px;
+    background:rgba(10,20,35,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid #2ecc71;
+    z-index:1000;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:24px;
+    font-weight:700;
+}
+
+.logo-area img{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+}
+
+.header-back{
+    font-size:25px;
+    cursor:pointer;
+    width:42px;
+}
+
+.header-spacer{width:42px}
+
+.container{
+    width:92%;
+    max-width:520px;
+    margin:0 auto;
+    padding-top:105px;
+}
+
+.account-card{
+    background:linear-gradient(180deg,rgba(15,31,47,.97),rgba(8,18,29,.97));
+    border-radius:26px;
+    padding:28px 22px;
+    box-shadow:0 0 35px rgba(46,204,113,.22),0 15px 40px rgba(0,0,0,.5);
+    text-align:center;
+}
+
+.account-icon{
+    width:76px;
+    height:76px;
+    margin:0 auto 16px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(46,204,113,.12);
+    border:2px solid rgba(46,204,113,.65);
+    font-size:36px;
+}
+
+h1{
+    font-size:26px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    opacity:.7;
+    font-size:14px;
+    margin-bottom:26px;
+}
+
+.user-box{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:20px;
+    text-align:left;
+}
+
+.label{
+    font-size:11px;
+    opacity:.55;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:5px;
+}
+
+.value{
+    font-size:16px;
+    font-weight:600;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.account-status{
+    margin-bottom:20px;
+    font-size:14px;
+    opacity:.8;
+}
+
+button,.link-button{
+    width:100%;
+    border:none;
+    border-radius:14px;
+    padding:13px 16px;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    text-decoration:none;
+    display:block;
+}
+
+.login-btn{
+    background:linear-gradient(90deg,#2ecc71,#27ae60);
+    color:#07130c;
+}
+
+.logout-btn{
+    background:linear-gradient(90deg,#e74c3c,#c0392b);
+    color:white;
+    margin-bottom:10px;
+}
+
+.secondary-btn{
+    background:#1c2a38;
+    color:white;
+    margin-top:10px;
+}
+
+.hidden{display:none}
+
+.note{
+    margin-top:22px;
+    font-size:12px;
+    line-height:1.5;
+    opacity:.55;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="header-back" onclick="tornaIndietro()">‹</div>
+    <div class="logo-area">
+        <img src="logo.png">
+        FantaStef
+    </div>
+    <div class="header-spacer"></div>
+</div>
+
+<main class="container">
+    <section class="account-card">
+
+        <div class="account-icon">👤</div>
+
+        <h1>Il mio account</h1>
+        <div class="subtitle">Gestisci il tuo accesso a FantaStef</div>
+
+        <div id="loggedBox" class="hidden">
+
+            <div class="user-box">
+                <div class="label">Nome</div>
+                <div class="value" id="userName">-</div>
+            </div>
+
+            <div class="user-box">
+                <div class="label">Email</div>
+                <div class="value" id="userEmail">-</div>
+            </div>
+
+            <div class="account-status">Account Google collegato ✓</div>
+
+            <button id="logoutBtn" class="logout-btn">Esci dall'account</button>
+
+        </div>
+
+        <div id="loggedOutBox" class="hidden">
+
+            <div class="account-status">
+                Non hai effettuato l'accesso.
+            </div>
+
+            <button id="loginBtn" class="login-btn">Accedi con Google</button>
+
+        </div>
+
+        <a class="link-button secondary-btn" href="privacy.html">
+            Privacy e informazioni
+        </a>
+
+        <div class="note">
+            Il tuo account serve a collegare in modo sicuro i tuoi dati FantaStef al tuo profilo.
+        </div>
+
+    </section>
+</main>
+
+<script type="module">
+import {
+    auth,
+    googleProvider,
+    signInWithRedirect,
+    signOut,
+    onAuthStateChanged
+} from "./firebase.js";
+
+const loggedBox = document.getElementById("loggedBox");
+const loggedOutBox = document.getElementById("loggedOutBox");
+const userName = document.getElementById("userName");
+const userEmail = document.getElementById("userEmail");
+
+document.getElementById("loginBtn").addEventListener("click", async () => {
+    try{
+        await signInWithRedirect(auth, googleProvider);
+    }catch(error){
+        console.error(error);
+        alert("Accesso Google non riuscito. Riprova.");
+    }
+});
+
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+    try{
+        await signOut(auth);
+    }catch(error){
+        console.error(error);
+        alert("Uscita dall'account non riuscita. Riprova.");
+    }
+});
+
+onAuthStateChanged(auth, user => {
+
+    if(user){
+        loggedBox.classList.remove("hidden");
+        loggedOutBox.classList.add("hidden");
+
+        userName.textContent = user.displayName || "Account Google";
+        userEmail.textContent = user.email || "-";
+
+    }else{
+        loggedBox.classList.add("hidden");
+        loggedOutBox.classList.remove("hidden");
+    }
+
+});
+
+window.tornaIndietro = function(){
+    window.location.href = "home-app.html";
+};
+</script>
+
+</body>
+</html>
