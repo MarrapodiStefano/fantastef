@@ -1702,7 +1702,7 @@ nomeSpan.onclick = function(){
 
 const slug = getPlayerSlug(g.nome);
 
-window.location.href = "giocatore.html?" + slug + "&return=fantaxi";
+window.location.href = "giocatore.html?player=" + encodeURIComponent(slug);
 
 };
 
@@ -2233,7 +2233,7 @@ linee.forEach(linea => {
 
         player.onclick = function(){
             const slug = getPlayerSlug(g.nome);
-            window.location.href = "giocatore.html?" + slug + "&return=fantaxi";
+            apriSchedaDaFantaXI(g.nome);
         };
 
         const voto = Number(g.voto_algoritmo) || 0;
@@ -2360,6 +2360,22 @@ function chiudiXI(){
     document.getElementById("xiOverlay").style.display = "none";
 }
 
+function apriSchedaDaFantaXI(nome){
+
+    const selectModulo = document.getElementById("selectModuloXI");
+    const panel = document.getElementById("xiBenchPanel");
+
+    sessionStorage.setItem("fantaXIreturnState", JSON.stringify({
+        modulo: selectModulo ? selectModulo.value : null,
+        panchina: !!(panel && panel.classList.contains("show"))
+    }));
+
+    const slug = getPlayerSlug(nome);
+
+    window.location.href =
+        "giocatore.html?player=" + encodeURIComponent(slug) + "&return=fantaxi";
+}
+
 function applicaModuloManuale(){
 
     const moduloScelto = document.getElementById("selectModuloXI").value;
@@ -2432,7 +2448,7 @@ function generaXIConModulo(moduloScelto){
 
             player.onclick = function(){
                 const slug = getPlayerSlug(g.nome);
-                window.location.href = "giocatore.html?" + slug + "&return=fantaxi";
+                apriSchedaDaFantaXI(g.nome);
             };
 
             const voto = Number(g.voto_algoritmo) || 0;
@@ -2602,6 +2618,46 @@ document.addEventListener("DOMContentLoaded", function(){
 
     aggiornaSelectRose();
     aggiornaBoxRosa();
+
+    // Se arriviamo dalla scheda di un giocatore aperta dal campetto,
+    // ricostruiamo automaticamente lo stesso XI.
+    const statoSalvato = sessionStorage.getItem("fantaXIreturnState");
+
+    if(statoSalvato){
+
+        sessionStorage.removeItem("fantaXIreturnState");
+
+        setTimeout(() => {
+
+            try{
+
+                const stato = JSON.parse(statoSalvato);
+
+                generaXI();
+
+                if(stato.modulo){
+
+                    const selectModulo = document.getElementById("selectModuloXI");
+
+                    if(selectModulo){
+
+                        generaXIConModulo(stato.modulo);
+                        selectModulo.value = stato.modulo;
+                    }
+                }
+
+                if(stato.panchina){
+                    togglePanchinaXI();
+                }
+
+            }catch(e){
+
+                console.error("Errore ripristino FantaXI:", e);
+
+            }
+
+        }, 50);
+    }
 
 });
 
