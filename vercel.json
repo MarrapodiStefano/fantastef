@@ -4,6 +4,10 @@
     {
       "source": "/__/auth/:path*",
       "destination": "https://fantastef-24e1d.firebaseapp.com/__/auth/:path*"
+    },
+    {
+      "source": "/home-app",
+      "destination": "/home-app.html"
     }
   ]
 }
