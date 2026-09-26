@@ -1075,6 +1075,13 @@ resultsBox.innerHTML="";
 
 function chiudiScheda(){
 
+const params = new URLSearchParams(window.location.search);
+
+if(params.get("return") === "fantaxi"){
+window.location.replace("fantaxi.html");
+return;
+}
+
 window.location.replace("home-app.html");
 
 }
