@@ -29,8 +29,13 @@ async function salvaSuFirestore(dati) {
   }
 
   try {
+    // Firestore non accetta valori undefined.
+    // Usiamo la stessa serializzazione già usata da localStorage,
+    // così i dati inviati al cloud sono identici a quelli locali.
+    const datiPuliti = JSON.parse(JSON.stringify(dati));
+
     await setDoc(riferimentoFantaXI(utenteFantaXI), {
-      dati: dati,
+      dati: datiPuliti,
       updatedAt: serverTimestamp()
     });
 
