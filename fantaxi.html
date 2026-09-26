@@ -221,7 +221,7 @@ button{
 .rosa-selector button{
     height:28px;
     min-width:36px;
-    padding:0 16px;
+    padding:0 12px;
     border-radius:12px;
     font-size:13px;
 
@@ -230,6 +230,18 @@ button{
     justify-content:center;
 
     white-space:nowrap;
+}
+
+.rosa-action-btn{
+    width:36px;
+    min-width:36px !important;
+    padding:0 !important;
+    font-size:15px !important;
+}
+
+.rosa-action-btn.danger{
+    background:linear-gradient(90deg,#e74c3c,#c0392b);
+    color:white;
 }
 
 .rosa-selector select{
@@ -1081,6 +1093,10 @@ Nuova Giornata
 
     <button id="btnNuovaRosa" onclick="apriModalRosa()">+</button>
 
+    <button id="btnRinominaRosa" class="rosa-action-btn" onclick="rinominaRosa()" title="Rinomina rosa" aria-label="Rinomina rosa">✏️</button>
+
+    <button id="btnEliminaRosa" class="rosa-action-btn danger" onclick="eliminaRosa()" title="Elimina rosa" aria-label="Elimina rosa">🗑️</button>
+
     <button id="btnBonusLega" onclick="apriOverlayRegole()">
     Bonus Lega
     </button>
@@ -1365,6 +1381,66 @@ function creaRosa(){
     aggiornaBoxRosa();
 
     chiudiModalRosa();
+}
+
+function rinominaRosa(){
+
+    const dati = getDati();
+    const rosa = dati.rose.find(r => r.id === dati.rosaAttiva);
+
+    if(!rosa){
+        alert("Seleziona prima una rosa.");
+        return;
+    }
+
+    const nuovoNome = prompt("Nuovo nome della rosa:", rosa.nome);
+
+    if(nuovoNome === null) return;
+
+    const nomePulito = nuovoNome.trim();
+
+    if(nomePulito === ""){
+        alert("Il nome della rosa non può essere vuoto.");
+        return;
+    }
+
+    rosa.nome = nomePulito;
+
+    salvaDati(dati);
+    aggiornaSelectRose();
+    aggiornaBoxRosa();
+}
+
+function eliminaRosa(){
+
+    const dati = getDati();
+    const indice = dati.rose.findIndex(r => r.id === dati.rosaAttiva);
+
+    if(indice === -1){
+        alert("Seleziona prima una rosa.");
+        return;
+    }
+
+    const rosa = dati.rose[indice];
+
+    const conferma = confirm(
+        "Vuoi eliminare definitivamente la rosa «" + rosa.nome + "»?\n\n" +
+        "Tutti i giocatori e le impostazioni di questa rosa verranno eliminati."
+    );
+
+    if(!conferma) return;
+
+    dati.rose.splice(indice, 1);
+
+    if(dati.rose.length > 0){
+        dati.rosaAttiva = dati.rose[0].id;
+    }else{
+        dati.rosaAttiva = null;
+    }
+
+    salvaDati(dati);
+    aggiornaSelectRose();
+    aggiornaBoxRosa();
 }
 
 function aggiornaSelectRose(){
