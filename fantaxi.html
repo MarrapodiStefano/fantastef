@@ -762,6 +762,21 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 .xi-formation-player.C .xi-formation-dot{background:#2ecc71}
 .xi-formation-player.A .xi-formation-dot{background:#3498db}
 
+.xi-formation-player{
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+}
+
+.xi-formation-player:hover .xi-formation-dot,
+.xi-formation-player:active .xi-formation-dot{
+    transform:scale(1.06);
+}
+
+.xi-formation-player:active .xi-formation-name,
+.xi-formation-player:active .xi-formation-voto{
+    transform:scale(.97);
+}
+
 .xi-formation-name{
     width:100%;
     padding:3px 4px;
@@ -2213,7 +2228,8 @@ linee.forEach(linea => {
         const player = document.createElement("button");
         player.className = "xi-formation-player " + g.ruolo;
         player.type = "button";
-        player.title = g.nome;
+        player.title = "Apri scheda di " + g.nome;
+        player.setAttribute("aria-label", "Apri scheda di " + g.nome);
 
         player.onclick = function(){
             const slug = getPlayerSlug(g.nome);
@@ -2411,7 +2427,8 @@ function generaXIConModulo(moduloScelto){
             const player = document.createElement("button");
             player.className = "xi-formation-player " + g.ruolo;
             player.type = "button";
-            player.title = g.nome;
+            player.title = "Apri scheda di " + g.nome;
+        player.setAttribute("aria-label", "Apri scheda di " + g.nome);
 
             player.onclick = function(){
                 const slug = getPlayerSlug(g.nome);
