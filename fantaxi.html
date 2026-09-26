@@ -731,8 +731,8 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 }
 
 .xi-formation-player{
-    width:72px;
-    max-width:23vw;
+    width:64px;
+    max-width:20vw;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -745,13 +745,13 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 }
 
 .xi-formation-dot{
-    width:42px;
-    height:42px;
+    width:34px;
+    height:34px;
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:14px;
+    font-size:12px;
     font-weight:900;
     box-shadow:0 3px 8px rgba(0,0,0,.42);
     border:2px solid rgba(255,255,255,.9);
@@ -768,8 +768,8 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     border-radius:7px;
     background:rgba(8,24,18,.82);
     color:#fff;
-    font-size:10px;
-    line-height:12px;
+    font-size:9px;
+    line-height:11px;
     font-weight:800;
     white-space:nowrap;
     overflow:hidden;
@@ -779,8 +779,8 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 }
 
 .xi-formation-voto{
-    min-width:28px;
-    height:28px;
+    min-width:24px;
+    height:24px;
     padding:0 5px;
     display:flex;
     align-items:center;
@@ -797,38 +797,113 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     display:none;
 }
 
-.xi-close-btn{
-    position:absolute;
-
-    bottom:70px;   /* 🔥 altezza verticale */
-    left:40px;      /* 🔥 distanza dal bordo sinistro */
-
-    padding:12px 26px;
-    border:none;
-    border-radius:22px;
-    background:linear-gradient(90deg,#2ecc71,#27ae60);
-    font-weight:700;
-    cursor:pointer;
-    box-shadow: 0 0 15px rgba(46,204,113,0.6);
-}
-
-/* ===== PULSANTE PANCHINA ===== */
-
+.xi-close-btn,
 .xi-bench-btn{
     position:absolute;
-    bottom:110px;   /* stessa altezza di Chiudi */
-    right:40px;     /* lato destro speculare */
-
-    padding:12px 26px;
+    bottom:16px;
+    height:38px;
+    padding:7px 16px;
     border:none;
-    border-radius:22px;
-    background:linear-gradient(90deg,#3498db,#2980b9);
-    color:white;
-    font-weight:700;
+    border-radius:18px;
+    font-size:13px;
+    font-weight:800;
     cursor:pointer;
+    z-index:5;
 }
 
-/* ================= MODALE ROSA ================= */
+.xi-close-btn{
+    left:16px;
+    background:linear-gradient(90deg,#2ecc71,#27ae60);
+    color:#0a1624;
+    box-shadow:0 0 12px rgba(46,204,113,0.45);
+}
+
+.xi-bench-btn{
+    right:16px;
+    background:linear-gradient(90deg,#3498db,#2980b9);
+    color:#fff;
+    box-shadow:0 0 12px rgba(52,152,219,0.4);
+}
+
+.xi-bench-panel{
+    display:none;
+    position:absolute;
+    left:12px;
+    right:12px;
+    top:10%;
+    bottom:66px;
+    z-index:4;
+    padding:12px;
+    border-radius:18px;
+    background:rgba(8,24,18,.94);
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 8px 24px rgba(0,0,0,.35);
+    overflow:auto;
+}
+
+.xi-bench-panel.show{display:block}
+
+.xi-bench-title{
+    color:#fff;
+    font-size:16px;
+    font-weight:900;
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.xi-bench-group{margin-bottom:10px}
+
+.xi-bench-role{
+    color:#9fe8bd;
+    font-size:11px;
+    font-weight:900;
+    margin-bottom:5px;
+    letter-spacing:.6px;
+}
+
+.xi-bench-player{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    width:100%;
+    padding:8px 10px;
+    margin-bottom:5px;
+    border-radius:10px;
+    background:rgba(255,255,255,.10);
+    color:#fff;
+}
+
+.xi-bench-player-name{
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-size:12px;
+    font-weight:800;
+}
+
+.xi-bench-player-meta{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    font-weight:900;
+}
+
+.xi-bench-player-voto{
+    min-width:25px;
+    height:25px;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+    color:#111827;
+    font-size:9px;
+    font-weight:900;
+}/* ================= MODALE ROSA ================= */
 
 .modal-overlay{
     position:fixed;
@@ -2140,6 +2215,9 @@ linee.forEach(linea => {
     field.appendChild(line);
 });
 
+mostraPanchinaXI(rosa, xiFinale);
+document.getElementById("xiBenchPanel")?.classList.remove("show");
+
 overlay.style.display = "flex";
 
 // Popoliamo select modulo
@@ -2177,6 +2255,70 @@ selectModulo.onchange = function(){
     btn.classList.add("apply-anim");
 };
 
+}
+
+function mostraPanchinaXI(rosa, titolari){
+
+    const panel = document.getElementById("xiBenchPanel");
+    if(!panel) return;
+
+    const titolariIds = new Set((titolari || []).map(g => g.id));
+
+    const ruoli = [
+        { codice:"P", nome:"PORTIERI" },
+        { codice:"D", nome:"DIFENSORI" },
+        { codice:"C", nome:"CENTROCAMPISTI" },
+        { codice:"A", nome:"ATTACCANTI" }
+    ];
+
+    panel.innerHTML = '<div class="xi-bench-title">PANCHINA</div>';
+
+    ruoli.forEach(({codice,nome}) => {
+
+        const giocatori = (rosa.giocatori[codice] || [])
+            .filter(g => !titolariIds.has(g.id));
+
+        if(!giocatori.length) return;
+
+        const gruppo = document.createElement("div");
+        gruppo.className = "xi-bench-group";
+
+        const ruolo = document.createElement("div");
+        ruolo.className = "xi-bench-role";
+        ruolo.textContent = nome;
+        gruppo.appendChild(ruolo);
+
+        giocatori.forEach(g => {
+
+            const riga = document.createElement("div");
+            riga.className = "xi-bench-player";
+
+            const voto = Number(g.voto_algoritmo) || 0;
+
+            riga.innerHTML = `
+                <span class="xi-bench-player-name">${g.nome}</span>
+                <span class="xi-bench-player-meta">
+                    ${g.ruolo || codice}
+                    <span class="xi-bench-player-voto">${voto.toFixed(1)}</span>
+                </span>
+            `;
+
+            gruppo.appendChild(riga);
+        });
+
+        panel.appendChild(gruppo);
+    });
+}
+
+function togglePanchinaXI(){
+
+    const panel = document.getElementById("xiBenchPanel");
+    if(!panel) return;
+
+    const aperta = panel.classList.toggle("show");
+    const btn = document.querySelector(".xi-bench-btn");
+
+    if(btn) btn.textContent = aperta ? "Campo" : "Panchina";
 }
 
 function chiudiXI(){
@@ -2270,6 +2412,9 @@ function generaXIConModulo(moduloScelto){
 
         field.appendChild(line);
     });
+
+    mostraPanchinaXI(rosa, xiFinale);
+    document.getElementById("xiBenchPanel")?.classList.remove("show");
 }
 
 function apriOverlayRegole(){
@@ -2574,6 +2719,12 @@ window.addEventListener("load",checkCookies);
 </div>
 
         <div id="xiOverlayScore" class="xi-overlay-score"></div>
+
+        <div id="xiBenchPanel" class="xi-bench-panel"></div>
+
+        <button onclick="togglePanchinaXI()" class="xi-bench-btn">
+            Panchina
+        </button>
 
         <button onclick="chiudiXI()" class="xi-close-btn">
             Chiudi
