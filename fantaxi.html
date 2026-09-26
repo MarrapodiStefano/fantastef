@@ -892,6 +892,25 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
     font-weight:900;
 }
 
+.xi-bench-role-dot{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    border:2px solid rgba(255,255,255,.9);
+    box-shadow:0 2px 6px rgba(0,0,0,.28);
+    font-size:9px;
+    font-weight:900;
+}
+
+.xi-bench-role-dot.P{background:#e74c3c}
+.xi-bench-role-dot.D{background:#f39c12}
+.xi-bench-role-dot.C{background:#2ecc71}
+.xi-bench-role-dot.A{background:#3498db}
+
 .xi-bench-player-voto{
     min-width:25px;
     height:25px;
@@ -2298,7 +2317,7 @@ function mostraPanchinaXI(rosa, titolari){
             riga.innerHTML = `
                 <span class="xi-bench-player-name">${g.nome}</span>
                 <span class="xi-bench-player-meta">
-                    ${g.ruolo || codice}
+                    <span class="xi-bench-role-dot ${codice}">${codice}</span>
                     <span class="xi-bench-player-voto">${voto.toFixed(1)}</span>
                 </span>
             `;
