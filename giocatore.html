@@ -802,7 +802,12 @@ return nome
 
 /* ================= PRENDI ID DAL LINK ================= */
 
-const playerSlug = decodeURIComponent(window.location.search.substring(1)).toLowerCase();
+const paramsPagina = new URLSearchParams(window.location.search);
+
+const playerSlug = (
+    paramsPagina.get("player") ||
+    window.location.search.substring(1).split("&")[0]
+).toLowerCase();
 
 const ctx = document.getElementById('radarChart');
 /* ================= CARICA JSON ================= */
