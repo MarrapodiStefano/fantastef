@@ -711,39 +711,86 @@ backdrop-filter:blur(4px);    /* Effetto vetro (se supportato) */
 .xi-field{
     position:relative;
     width:100%;
-    height:75%;
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    padding:20px 35px;
-    padding-top:45px;
-    gap:10px;
+    height:78%;
+    padding:0;
+    overflow:hidden;
 }
 
 .xi-column{
-    width:40%;
-    display:flex;
-    flex-direction:column;
-    gap:4px;
-    overflow-y:auto;
-    align-items:stretch;
-    margin:20px  0px;   /* ← il 20 sposta le colonne su e giu mentre il 5 le avvicina ai bordi */
+    width:100%;
 }
 
-.xi-column-title{
-    font-weight:900;
-    font-size:15px;
-    text-align:center;
-    margin-bottom:10px;
+.xi-formation-line{
+    position:absolute;
+    left:6%;
+    right:6%;
+    display:flex;
+    justify-content:space-around;
+    align-items:flex-start;
+    z-index:2;
+}
 
-    padding:4px 10px;
-    border-radius:12px;
-
-    background:rgba(0,0,0,0.45);
-    border:1px solid rgba(0,0,0,0.7);
-
+.xi-formation-player{
+    width:72px;
+    max-width:23vw;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:3px;
+    border:0;
+    padding:0;
+    background:none;
     color:white;
-    letter-spacing:1px;
+    cursor:pointer;
+}
+
+.xi-formation-dot{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    font-weight:900;
+    box-shadow:0 3px 8px rgba(0,0,0,.42);
+    border:2px solid rgba(255,255,255,.9);
+}
+
+.xi-formation-player.P .xi-formation-dot{background:#e74c3c}
+.xi-formation-player.D .xi-formation-dot{background:#f39c12}
+.xi-formation-player.C .xi-formation-dot{background:#2ecc71}
+.xi-formation-player.A .xi-formation-dot{background:#3498db}
+
+.xi-formation-name{
+    width:100%;
+    padding:3px 4px;
+    border-radius:7px;
+    background:rgba(8,24,18,.82);
+    color:#fff;
+    font-size:10px;
+    line-height:12px;
+    font-weight:800;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:center;
+    box-shadow:0 2px 5px rgba(0,0,0,.28);
+}
+
+.xi-formation-voto{
+    min-width:28px;
+    height:28px;
+    padding:0 5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:rgba(255,255,255,.96);
+    color:#111827;
+    font-size:10px;
+    font-weight:900;
+    box-shadow:0 2px 5px rgba(0,0,0,.24);
 }
 
 .xi-overlay-score{
@@ -2047,125 +2094,53 @@ const field = document.getElementById("xiField");
 const score = document.getElementById("xiOverlayScore");
 
 field.innerHTML = "";
-// Puliamo eventuali XI precedenti
 
-let totale = 0;
+// ================= DISPOSIZIONE IN CAMPO =================
 
-// Creiamo colonne
-const colTitolari = document.createElement("div");
-colTitolari.className = "xi-column";
+const linee = [
+    { ruolo:"A", top:"12%" },
+    { ruolo:"C", top:"36%" },
+    { ruolo:"D", top:"60%" },
+    { ruolo:"P", top:"82%" }
+];
 
-const colPanchina = document.createElement("div");
-colPanchina.className = "xi-column";
+linee.forEach(linea => {
 
-// Titoli
-const titoloTit = document.createElement("div");
-titoloTit.className = "xi-column-title";
-titoloTit.textContent = "TITOLARI";
+    const giocatori = xiFinale.filter(g => g.ruolo === linea.ruolo);
 
-const titoloPan = document.createElement("div");
-titoloPan.className = "xi-column-title";
-titoloPan.textContent = "PANCHINA";
+    if(!giocatori.length) return;
 
-colTitolari.appendChild(titoloTit);
-colPanchina.appendChild(titoloPan);
+    const line = document.createElement("div");
+    line.className = "xi-formation-line";
+    line.style.top = linea.top;
 
-// ================= PANCHINA STRATEGICA =================
+    giocatori.forEach(g => {
 
-let panchina = [];
+        const player = document.createElement("button");
+        player.className = "xi-formation-player " + g.ruolo;
+        player.type = "button";
+        player.title = g.nome;
 
-// 1 PORTIERE
-const portieriPanchina = rosa.giocatori.P
-    .filter(g => !xiFinale.some(t => t.id === g.id))
-    .slice(0,1);
+        player.onclick = function(){
+            const slug = getPlayerSlug(g.nome);
+            window.location.href = "giocatore.html?" + slug;
+        };
 
-panchina.push(...portieriPanchina);
+        const voto = Number(g.voto_algoritmo) || 0;
 
-// 2 DIFENSORI
-const difPanchina = rosa.giocatori.D
-    .filter(g => !xiFinale.some(t => t.id === g.id))
-    .slice(0,2);
+        player.innerHTML = `
+            <div class="xi-formation-dot">${g.ruolo}</div>
+            <div class="xi-formation-name">${g.nome}</div>
+            <div class="xi-formation-voto">${voto.toFixed(1)}</div>
+        `;
 
-panchina.push(...difPanchina);
+        line.appendChild(player);
+    });
 
-// 2 CENTROCAMPISTI
-const cenPanchina = rosa.giocatori.C
-    .filter(g => !xiFinale.some(t => t.id === g.id))
-    .slice(0,2);
-
-panchina.push(...cenPanchina);
-
-// 2 ATTACCANTI
-const attPanchina = rosa.giocatori.A
-    .filter(g => !xiFinale.some(t => t.id === g.id))
-    .slice(0,2);
-
-panchina.push(...attPanchina);
-
-// Funzione crea pill
-function creaPill(g){
-
-    const div = document.createElement("div");
-    div.className = "xi-player " + g.ruolo + " pill-hidden";
-
-    div.style.cursor = "pointer";
-
-    div.onclick = function(){
-
-        const slug = getPlayerSlug(g.nome);
-
-        window.location.href = "giocatore.html?" + slug;
-
-    };
-
-    const voto = Number(g.voto_algoritmo) || 0;
-    let classeVoto = "";
-    if(voto >= 8) classeVoto = "voto-top";
-    else if(voto >= 6.5) classeVoto = "voto-buono";
-    else classeVoto = "voto-rischio";
-
-    div.innerHTML = `
-        <span class="xi-name">${g.nome}</span>
-        <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
-    `;
-
-    totale += voto;
-
-    return div;
-}
-
-// Ordine ruolo P-D-C-A per titolari
-["P","D","C","A"].forEach(ruolo => {
-    xiFinale
-        .filter(g => g.ruolo === ruolo)
-        .forEach(g => {
-            colTitolari.appendChild(creaPill(g));
-        });
+    field.appendChild(line);
 });
-
-// Ordine ruolo P-D-C-A per panchina
-["P","D","C","A"].forEach(ruolo => {
-    panchina
-        .filter(g => g.ruolo === ruolo)
-        .forEach(g => {
-            colPanchina.appendChild(creaPill(g));
-        });
-});
-
-field.appendChild(colTitolari);
-field.appendChild(colPanchina);
 
 overlay.style.display = "flex";
-
-// ===== ANIMAZIONE STAGGER =====
-const allPills = field.querySelectorAll(".xi-player");
-
-allPills.forEach((pill, index) => {
-    setTimeout(() => {
-        pill.classList.remove("pill-hidden");
-        pill.classList.add("pill-show");
-    }, index * 60);
-});
 
 // Popoliamo select modulo
 const selectModulo = document.getElementById("selectModuloXI");
@@ -2253,110 +2228,48 @@ function generaXIConModulo(moduloScelto){
     const field = document.getElementById("xiField");
     field.innerHTML = "";
 
-    const colTitolari = document.createElement("div");
-    colTitolari.className = "xi-column";
+    const linee = [
+        { ruolo:"A", top:"12%" },
+        { ruolo:"C", top:"36%" },
+        { ruolo:"D", top:"60%" },
+        { ruolo:"P", top:"82%" }
+    ];
 
-    const colPanchina = document.createElement("div");
-    colPanchina.className = "xi-column";
+    linee.forEach(linea => {
 
-    const titoloTit = document.createElement("div");
-    titoloTit.className = "xi-column-title";
-    titoloTit.textContent = "TITOLARI";
+        const giocatori = xiFinale.filter(g => g.ruolo === linea.ruolo);
 
-    const titoloPan = document.createElement("div");
-    titoloPan.className = "xi-column-title";
-    titoloPan.textContent = "PANCHINA";
+        if(!giocatori.length) return;
 
-    colTitolari.appendChild(titoloTit);
-    colPanchina.appendChild(titoloPan);
+        const line = document.createElement("div");
+        line.className = "xi-formation-line";
+        line.style.top = linea.top;
 
-    function creaPill(g){
+        giocatori.forEach(g => {
 
-        const div = document.createElement("div");
-        div.className = "xi-player " + g.ruolo + " pill-hidden";
-        
-        div.style.cursor = "pointer";
+            const player = document.createElement("button");
+            player.className = "xi-formation-player " + g.ruolo;
+            player.type = "button";
+            player.title = g.nome;
 
-div.onclick = function(){
+            player.onclick = function(){
+                const slug = getPlayerSlug(g.nome);
+                window.location.href = "giocatore.html?" + slug;
+            };
 
-    const slug = getPlayerSlug(g.nome);
+            const voto = Number(g.voto_algoritmo) || 0;
 
-    window.location.href = "giocatore.html?" + slug;
+            player.innerHTML = `
+                <div class="xi-formation-dot">${g.ruolo}</div>
+                <div class="xi-formation-name">${g.nome}</div>
+                <div class="xi-formation-voto">${voto.toFixed(1)}</div>
+            `;
 
-};
-        const voto = Number(g.voto_algoritmo) || 0;
-
-        let classeVoto = "";
-        if(voto >= 8) classeVoto = "voto-top";
-        else if(voto >= 6.5) classeVoto = "voto-buono";
-        else classeVoto = "voto-rischio";
-
-        div.innerHTML = `
-            <span class="xi-name">${g.nome}</span>
-            <span class="xi-voto ${classeVoto}">${voto.toFixed(1)}</span>
-        `;
-
-        return div;
-    }
-
-    ["P","D","C","A"].forEach(ruolo => {
-        xiFinale
-            .filter(g => g.ruolo === ruolo)
-            .forEach(g => {
-                colTitolari.appendChild(creaPill(g));
-            });
-    });
-
-// ================= PANCHINA STRATEGICA =================
-
-let panchina = [];
-
-const portieriPanchina = rosa.giocatori.P
-    .filter(g => !xiFinale.some(t => t.id === g.id))
-    .slice(0,1);
-
-panchina.push(...portieriPanchina);
-
-const difPanchina = rosa.giocatori.D
-    .filter(g => !xiFinale.some(t => t.id === g.id))
-    .slice(0,2);
-
-panchina.push(...difPanchina);
-
-const cenPanchina = rosa.giocatori.C
-    .filter(g => !xiFinale.some(t => t.id === g.id))
-    .slice(0,2);
-
-panchina.push(...cenPanchina);
-
-const attPanchina = rosa.giocatori.A
-    .filter(g => !xiFinale.some(t => t.id === g.id))
-    .slice(0,2);
-
-panchina.push(...attPanchina);
-
-// Ordine ruolo per panchina
-["P","D","C","A"].forEach(ruolo => {
-    panchina
-        .filter(g => g.ruolo === ruolo)
-        .forEach(g => {
-            colPanchina.appendChild(creaPill(g));
+            line.appendChild(player);
         });
-});
 
-    field.appendChild(colTitolari);
-    field.appendChild(colPanchina);
-   
-    // ===== ANIMAZIONE STAGGER =====
-
-const allPills = field.querySelectorAll(".xi-player");
-
-allPills.forEach((pill, index) => {
-    setTimeout(() => {
-        pill.classList.remove("pill-hidden");
-        pill.classList.add("pill-show");
-    }, index * 60);
-});
+        field.appendChild(line);
+    });
 }
 
 function apriOverlayRegole(){
